@@ -1,0 +1,27 @@
+.swiper-container {
+	width: 100%;
+	height: 100%;
+	/* position: absolute; 
+	left: 0;*/
+}
+
+.swiper-wrapper {
+	width: 100%;
+	height: 100%;
+}
+
+.swiper-slide a {
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+
+.swiper-slide img {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.swiper-pagination-bullet-active {
+	background-color: rgb(240, 42, 12);
+}

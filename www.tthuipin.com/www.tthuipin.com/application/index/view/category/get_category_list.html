@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=yes,email=yes" name="format-detection">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+    <!-- <script src="__JS__/flexible.js"></script> -->
+    <script src="__JS__/rem.js"></script>
+    <title>分類</title>
+    <link rel="stylesheet" type="text/css" href="__PLUGIN__/swiper/dist/css/swiper.css">
+    <link rel="stylesheet" href="__CSS__/base.css">
+    <link rel="stylesheet" href="__CSS__/leo.css">
+
+</head>
+<body class="gray">
+<div class="container">
+<div class="menubox" id="menubox" style="display: block;z-index: 100;">
+    <div class="menu-header">
+        <div class="header-content" style="justify-content: flex-end;">
+            <!-- <a class="menu-close" id="close2" style="display: none;"></a> -->
+            <a class="menu-service right"></a>
+        </div>
+    </div>
+    <div class="nav-box">
+        <ul class="levelA ">
+            <li class="active"><a href="/">热门</a></li>
+            {volist name="catlist" id="vo"}
+            <li><a href="javascript:;" onclick="findTwo({$vo.cat_id})"><span>{$vo.cat_name}</span></a></li>
+            {/volist}
+        </ul>
+        <ul class="levelB on">
+            {volist name="hotlist" id="hot"}
+            <li>
+                <a href="##">
+                    <div class="level_img_box">
+                        <img src="{$hot.image}">
+                    </div>
+                    <span>{$hot.cat_name}</span>
+                </a>
+            </li>
+            {/volist}
+        </ul>
+        <ul class="levelB">
+        </ul>
+
+    </div>
+</div>
+
+
+<!-- <div class="bottom-bar gray50">
+    <a class="home" href="/">首页</a>
+    <a class="sort on" href="/class">分类</a>
+    <a class="purch" href="/shopcar">购物车</a>
+    <a class="mine" href="/myself">我的</a>
+</div> -->
+{include file="public/bottom" /}
+
+</div>
+<!-- 分类弹出层 -->
+
+<!-- 分类弹出层 -->
+
+<script src="__PLUGIN__/jquery/jquery-3.2.1.min.js"></script>
+<script src="__PLUGIN__/swiper/dist/js/swiper.js"></script>
+<script src="__JS__/slide.js"></script>
+<script src="__JS__/base.js"></script>
+<script>
+    //分类选项卡切换
+    $('.nav-box .levelA li').on('click', function() {
+        var index = $(this).index();
+        $(this).addClass('active').siblings().removeClass('active');
+        $('.nav-box .levelB').eq(index).addClass('on').siblings('.levelB').removeClass('on')
+    });
+</script>
+<script>
+    //获取二级分类和全部商品图片
+    function findTwo(obj){
+        str = '';
+        $.ajax({
+            type:'post',
+            url:'/catlevel',
+            data:{catid:obj},
+            success:function(data){
+                if(data.code == 200){
+                    str += "<li><a href='##'><div class='level_img_box'><img src='"+ data.data.image +"'></div><span>全部商品</span></a></li>";
+                }else{
+                    alert(data.message);
+                }
+            },
+            error:function(){
+                alert('網絡异常，請稍後再試...');
+            },
+        });
+        $.ajax({
+            type:'post',
+            url:'/cattwo',
+            data:{catid:obj},
+            success:function(data){
+                if(data.code == 200){
+                    // for(kk=0;kk<data.data[0].length;kk++) {
+                    //     strb += "<li><a href='##'><div class='level_img_box'><img src='" + data.data[0][kk].image + "'></div><span>" +  data.data[0][kk].cat_name + "</span></a></li>";
+                    // }
+                    // $(".levelB").append(strb);
+                    $.each(data.data[0],function(i,val){
+                        str += "<li><a href='##'><div class='level_img_box'><img src='"+ val.image +"'></div><span>"+ val.cat_name +"</span></a></li>";
+                        $(".levelB").html(str);
+                    });
+                }else{
+                    alert(data.message);
+                }
+            },
+            error:function(){
+                alert('網絡异常，請稍後再試...');
+            },
+        })
+    }
+
+    window.onload = function(){
+        findTwo(obj);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=yes,email=yes" name="format-detection">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+    <script type="text/javascript">
+	var sUserAgent = navigator.userAgent;
+	if(!/Android|webOS|iPhone|iPod|BlackBerry/i.test(sUserAgent)){
+		window.location.href="/pc_index";
+	}    
+    </script>
+        <script src="__JS__/rem.js"></script>
+    <script src="__PLUGIN__/jquery/jquery-3.2.1.min.js"></script>
+
+    <title>開心樂購</title>
+    <link rel="stylesheet" type="text/css" href="__PLUGIN__/swiper/dist/css/swiper.css">
+    <link rel="stylesheet" href="__CSS__/base.css">
+    <link rel="stylesheet" href="__CSS__/leo.css">
+	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="__IMG__/icon-desktop.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="__IMG__/icon-desktop.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="__IMG__/icon-desktop.png">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="__IMG__/icon-desktop.png">
+	<style>
+        .mdui-depletion > a::after{content: '+';color: #BCBCBC;display: block;font-size: 12px;position: absolute;left: 0.06rem;top: -1.6rem;transform: rotateZ(45deg);}
+    </style>
+</head>
+<body class="gray">
+<div class="container">
+
+
+<div class="nav-bar" style="flex-direction: column;padding:0rem;height: 2.5rem;line-height:2.5rem; ">
+    <div class="mdui-toolbar mdui-appbar-depletion" style="display: flex;width:100%;height:1.5rem;">
+        <div class="mdui-depletion" style="position: relative;margin: 0;text-overflow: ellipsis;
+    white-space: nowrap;overflow: hidden;width:100%;">
+            <div class="mdui-depletion-box" onclick="openTech()" style="display: flex;height: 50px;line-height: 50px;align-items: center;background: #4C4C4C;color: #fff;padding:7px 15px 7px 20px;justify-content: space-between;box-sizing: border-box;position: relative;">
+                <img src="__IMG__/icon-desktop.png" alt="" srcset="" style="height: 36px;border-radius: 2px !important;border-style: none;">
+                <div style="display: flex;flex-direction: column;color: #fff;flex: 1;padding-left: 8px;">
+                    <span style="line-height: 14px;font-size: 14px;margin: 1px 0 6px;">開心樂購1</span>
+                    <span style="line-height: 12px;font-size: 12px;">直通工廠 限時出清</span>
+                </div>
+                <span class="iosShow" style="background: #B4272D;border-radius: 4px;padding: 7px 8px;font-size: 12px;line-height: 12px;color: #fff">下載</span>
+            </div>
+            <a href="javascript:void(0)" onclick="closeTech()" style="position: absolute;top: 0;left: 0;display: block;height: 0;width: 0;font-size: 0;border-top: 20px solid #575757;border-right: 20px solid transparent;"></a>
+        </div>
+    </div>
+
+
+
+   <div style="display: flex;height:1rem;width:100%">
+        <div class="left-nav" style="left:0rem;height:1rem;">
+            <a class="menu" id="menu-btn"></a>
+            <a class="logo"></a>
+        </div>
+        <div class="right-nav" style="right:0rem;height:1rem;position:absolute;">
+            <a class="service"></a>
+            <a class="foot" id="foot-btn"></a>
+        </div>
+   </div>
+</div>
+<div class="swiper-container swiper1 tab-bar" style="top:2.5rem;">
+    <div class="swiper-wrapper tab-box">
+        <div class="swiper-slide tab on">热门</div>
+        {volist name="catlist" id="cat"}
+            <div class="swiper-slide tab " bind_id="{$cat.cat_id}" onclick="getgoodslist({$cat.cat_id},0)">{$cat.cat_name}</div>
+        {/volist}
+    </div>
+</div>
+
+<div class="wrap on" style="margin-top:3.5rem;">
+    <div class="swiper-container swiper2">
+        <div class="swiper-wrapper">
+            {volist name="banner" id="vo"}
+                <div class="swiper-slide">
+                    <a href="{$vo.url}"><img src="{$vo.img}" alt="" /></a>
+                </div>
+            {/volist}
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <div class="character">
+        <div class="item"><img src="__IMG__/check.png" alt="" />滿$899免運費</div>
+        <div class="item"><img src="__IMG__/check.png" alt="" />貨到付款</div>
+        <div class="item"><img src="__IMG__/check.png" alt="" />7天無憂退換貨</div>
+    </div>
+
+    <div class="pro-box">
+        {volist name="hotgoods" id="vo"}
+            <a class="pro-item" href="/goodsinfo?goodsid={$vo.id}">
+                <div class="pic-box">
+                    <div class="pro-img">
+                        <img src="{$vo.img}" alt="" />
+                    </div>
+                </div>
+                <div class="pro-txt">
+                    <div class="title">{$vo.name}</div>
+                    {php}
+                        $keywords = explode(',',$vo['keywords']);
+                    {/php}
+                    <div class="tag">
+                        {volist name="keywords" id="v" offset="0" length='3'}
+                        <span>{$v}</span>
+                        {/volist}
+                    </div>
+                    <div class="tag">
+                        {volist name="keywords" id="v" offset="3" length='3'}
+                        <span>{$v}</span>
+                        {/volist}
+                    </div>
+
+                    <div class="bottom">
+                        <div class="price">
+                            <span class="discount">{$vo.sell_price}</span>
+                            <span class="orignal">NT${$vo.market_price}</span>
+                        </div>
+                        <div class="btn">
+                            <button>限時出清</button>
+                            <span>{$vo.sale}件已出</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        {/volist}
+
+    </div>
+</div>
+{volist name="catlist" id="v"}
+<div class="wrap" style="margin-top:3.5rem;">
+    <div class="tab2-box">
+        <div class="tab2-box-mes" >請選擇二級分類</div>
+    </div>
+    <!-- 二级分类弹出层 -->
+    <div class="tab2nav" id="tab2nav" >
+        {if $v.image !== ''}
+        <a onclick="getgoodslist({$v.cat_id},0)" id="goodslist{$v.cat_id}" href="javascript:;" class="tab2nav-btn">
+            <img src="{$v.image}">
+            <span>全部商品</span></a>{/if}
+        {volist name="catlistt" id="vv"}
+            {if $v.cat_id == $vv.parent_id}
+            <a href="javascript:;" onclick="getgoodslist({$vv.cat_id},0)" class="tab2nav-btn">
+                <img src="{$vv.image}">
+                <span>{$vv.cat_name}</span></a>
+            {/if}
+        {/volist}
+    </div>
+    <!-- 二级分类弹出层 -->
+    <div class="pro-box2" >
+    </div>
+    <script>
+
+            page = 0;
+            num = 0
+
+            $(window).scroll(function(){
+		
+                if($(window).height() + $(window).scrollTop() + 10 >= $(document).height()){
+                    page++;
+                    num = page*10;
+                    var bind_id = $('.tab.on').attr('bind_id');
+                    getgoodslist(bind_id,num);
+                }
+            })
+
+	    // 根据不同的类目赋值初始str为空
+	    var len = $('.tab-box').find('.tab').length;
+            for(var i = 1;i < len;i++){
+                var bind_id = $('.tab-box .tab').eq(i).attr('bind_id');
+                window['str'+bind_id] = '';
+            }
+
+        
+        function getgoodslist(obj,page){
+	    if(page==0){
+                window['str'+obj] = '';
+            }
+
+            $.ajax({
+                type:'post',
+                url:'/goodslist',
+                data:{catid:obj,page:page},
+                success:function(data){
+                    if(data.code == 200){
+                        // console.log(data.data);
+                        // console.log(data);
+                        $.each(data.data,function(i,val){
+
+                            window['str'+obj] += "<a href='/goodsinfo?goodsid="+ val.id +"' class='pro-item2'><div class='pic-img'><img src='"+ val.img +"' alt='' style='height:8rem;' /></div><div class='pro-txt'> <div class='title'>"+ val.name +"</div><div class='tag'><span>"+ val.keyword +"</span></div><div class='bottom2'><div class='price'><span class='discount'>"+ val.sell_price +"</span><span class='orignal'>NT$"+ val.market_price +"</span></div><div class='btn'><button>限时出清</button><span>"+ val.sale +"件已出</span></div></div></div></a>";
+                            $(".pro-box2").html(window['str'+obj]);
+                            // $(".pro-box2").append(function(){
+                            //   return "<a href='/goodsinfo?goodsid="+ val.id +"' class='pro-item2'><div class='pic-img'><img src='"+ val.img +"' alt=' /></div><div class='pro-txt'><div class='title'>"+ val.name +"</div><div class='tag'><span>"+ val.keyword +"</span></div><div class='bottom2'><div class='price'><span class='discount'>"+ val.sell_price +"</span><span class='orignal'>NT$"+ val.market_price +"</span></div><div class='btn'><button>限时出清</button><span>"+ val.sale +"件已出</span></div></div></div></a>";
+                            // })
+                        });
+                    }else{
+                        alert('暫無商品,敬請期待！！！');
+                    }
+
+                },
+                error:function(){
+                    alert('網絡异常，請稍後再試...');
+                },
+            })
+
+        }
+
+    </script>
+</div>
+{/volist}
+<!--底部按钮-->
+{include file="public/bottom" /}
+
+<!-- 足迹弹出层 -->
+<div class="footbox" id="footbox">
+    <div class="foot-close" id="close1">
+        <img src="__IMG__/close.png" alt="">
+    </div>
+    <div class="foot-header">瀏覽過商品</div>
+    <div class="foot-content">
+        <div class="foot-content-scroll">
+
+        </div>
+    </div>
+</div>
+<!-- 足迹弹出层 -->
+
+<!-- 分类弹出层 -->
+{include file="public/menucat" /}
+</div>
+<!-- 分类弹出层 -->
+<script src="__PLUGIN__/jquery/jquery-3.2.1.min.js"></script>
+<script src="__PLUGIN__/swiper/dist/js/swiper.js"></script>
+<script src="__JS__/slide.js"></script>
+<script src="__JS__/base.js"></script>
+<script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script>
+    var swiper1 = new Swiper('.swiper1', {
+        // 设置slider容器能够同时显示的slides数量(carousel模式)。
+        //可以设置为number或者 'auto'则自动根据slides的宽度来设定数量。
+        //loop模式下如果设置为'auto'还需要设置另外一个参数loopedSlides。
+        slidesPerView: 7.1,
+        paginationClickable: true,//此参数设置为true时，点击分页器的指示点分页器会控制Swiper切换。
+        spaceBetween: 28,//slide之间的距离（单位px）。
+        freeMode: true,//默认为false，普通模式：slide滑动时只滑动一格，并自动贴合wrapper，设置为true则变为free模式，slide会根据惯性滑动且不会贴合。
+        loop: false,//是否可循环
+        onTab: function(swiper) {
+            var n = swiper1.clickedIndex;
+        }
+    })
+
+
+    var swiper2 = new Swiper('.swiper2', {
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
+
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        }
+    })
+</script>
+<script>
+    var modal1 = document.getElementById("footbox");
+    var modal2 = document.getElementById("menubox");
+    var modal3 = document.getElementById("tab2nav");
+    var btn1 = document.getElementById("close1");
+    var btn2 = document.getElementById("foot-btn");
+    var btn3 = document.getElementById("close2");
+    var btn4 = document.getElementById("menu-btn");
+    var btn5 = document.getElementById("tab2-btn");
+    var btn6 = document.getElementById("tab2-choose");
+    btn1.onclick = function() {
+        modal1.style.display = "none";
+    }
+    btn2.onclick = function() {
+        modal1.style.display = "block";
+    }
+    btn3.onclick = function() {
+        modal2.style.display = "none";
+    }
+    btn4.onclick = function() {
+        modal2.style.display = "block";
+    }
+    // btn5.onclick = function() {
+    //     modal3.style.display="flex";
+    // }
+    // btn6.onclick = function() {
+    //     modal3.style.display="none";
+    // }
+</script>
+<script>
+    //顶部选项卡切换
+    $('.tab-box .tab').on('click', function() {
+        var index = $(this).index();
+        $(this).addClass('on').siblings().removeClass('on');
+        $('.wrap').eq(index).addClass('on').siblings('.wrap').removeClass('on')
+    });
+
+    //二级选项显示隐藏
+    var liststatus=0;
+    $('.wrap .tab2-box').click(function(){
+        if(liststatus==0){
+            $(this).siblings('.tab2nav').css('display','flex');
+            liststatus=1;
+        }
+        else{
+            $(this).siblings('.tab2nav').css('display','none');
+            liststatus=0;
+        }
+
+    });
+
+    //分类选项卡切换
+    $('.nav-box .levelA li').on('click', function() {
+        var index = $(this).index();
+        $(this).addClass('active').siblings().removeClass('active');
+        $('.nav-box .levelB').eq(index).addClass('on').siblings('.levelB').removeClass('on')
+    });
+</script>
+
+<script>
+    //获取最近浏览过的商品
+    $(document).ready(function(){
+        var goodsids = BindHistory();
+        var str ='';
+        $.ajax({
+            type:'post',
+            url:'/visitgoods',
+            data:{goodids:goodsids},
+            success:function(data){
+                if(data.code == 200){
+                    console.log(data.data);
+                    $.each(data.data,function(i,val){
+                        str += "<a href='/goodsinfo?goodsid="+ val.id +"' class='foot-item'><div class='foot-pic'><img src='"+ val.img +"' alt='' /></div><div class='foot-txt'><div class='foot-title'>"+ val.name +"</div><div class='discount-price'>"+ val.sell_price +"</div><div class='orignal-price'>"+ val.market_price +"</div></div></a>";
+                        $(".foot-content-scroll").html(str);
+                    });
+                }else{
+                    $(".foot-content-scroll").html('<span style="color:red;font-size: 16px;text-align: center;">暫無瀏覽<br /></span><span style="color:red;font-size: 6px;">^_^！！！<br />快去找喜歡的商品吧！！！</span>');
+                }
+            },
+            error:function(){
+                alert('網絡异常，請稍後再試...');
+            },
+        });
+    });
+      function BindHistory() {
+          var cookieName = "PrdIDCookie";  //cookie名称
+          var nid;             //最新访问的商品ID
+          var N = 20;
+          var historyp = "";
+          if ($.cookie(cookieName) != null) //cookie 不存在
+          {
+              //获取浏览过的商品ID
+              historyp = $.cookie(cookieName);
+          }
+          if (historyp == null && historyp == "") {
+              return;
+          }
+          else
+          {
+              var prdIDs = [];  //将商品ID以列表或数据的方式保存
+              var pArray = historyp.split(',');
+              for (var i = 0; i < pArray.length; i++) {
+                  if (pArray[i] != "") {
+                      //alert(pArray[i]);
+                      prdIDs.push(pArray[i]);
+                  }
+              }
+              return prdIDs;
+              //--->请求商品详细详细...
+          }
+      }
+</script>
+
+<!-- Load Facebook SDK for JavaScript -->
+      <div id="fb-root"></div>
+      <script>
+        window.fbAsyncInit = function() {
+          FB.init({
+            xfbml            : true,
+            version          : 'v5.0'
+          });
+        };
+
+        (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/zh_TW/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+
+      <!-- Your customer chat code -->
+      <div class="fb-customerchat"
+        attribution=setup_tool
+        page_id="116332536481393"
+  logged_in_greeting="Hi! How can we help you?"
+  logged_out_greeting="Hi! How can we help you?">
+      </div>
+
+ <!-- 关闭角标按钮事件 -->
+<script>
+
+        function closeTech(){
+            $('.mdui-appbar-depletion').hide('slow');
+            $('.nav-bar').css({'height':'1rem'});
+            $('.swiper1').css({'top':'1rem'});
+            $('.wrap').css({'marginTop':'2rem'});
+        }
+	function openTech(){
+            window.location.href = '/shortcut';
+        }
+
+</script>
+</body>
+</html>

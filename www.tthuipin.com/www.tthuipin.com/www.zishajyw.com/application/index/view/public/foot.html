@@ -1,0 +1,50 @@
+
+<section data-v-6e32b6c1="" class="consult_body" style="display: none;">
+	<div class="van-overlay"  @click="close_inquiry" style="z-index: 2001;"></div>
+	<div data-v-6e32b6c1="" class="van-popup van-popup--round van-popup--bottom" style="width: 100%; z-index: 2002;">
+		<div data-v-6e32b6c1="" class="popover-bottom">
+			<div data-v-6e32b6c1="" class="header">
+				<img data-v-6e32b6c1="" src="__INDEX__/img/picture/l_logo.png" alt="">
+				<span data-v-6e32b6c1="" class="colse_consult"  @click="close_inquiry">关闭</span></div>
+			<div data-v-6e32b6c1="" class="popover-container">
+				<div data-v-6e32b6c1="" class="phone_container" style="margin: 0.26rem 0;">
+					<span data-v-6e32b6c1="" style="font-size: 0.42rem;">手机号码：</span>
+					<input data-v-6e32b6c1="" class="xjTel" placeholder="请输入您的手机号码" type="number">
+				</div>
+				<span data-v-6e32b6c1="" style="color: rgb(219, 59, 46); font-size: 0.37rem;">客服人员将在10分钟内回复</span>
+				<button data-v-6e32b6c1=""  class="confirm">立即咨询</button>
+				<div data-v-6e32b6c1="" class="bottomBtn">
+					<span data-v-6e32b6c1="">
+						<svg data-v-6e32b6c1="" aria-hidden="true" class="icon icon-kefu">
+							<use data-v-6e32b6c1="" xlink:href="#icon-kefu"></use>
+						</svg>
+						<div data-v-6e32b6c1="">在线客服</div>
+					</span>
+					
+					<a data-v-6e32b6c1="" href="tel:4001168060">
+						<svg data-v-6e32b6c1="" aria-hidden="true" class="icon icon-phone">
+							<use data-v-6e32b6c1="" xlink:href="#icon-phone"></use>
+						</svg>
+						<div data-v-6e32b6c1="">拨打电话</div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<div class="van-toast van-toast--middle van-toast--fail" style="z-index: 2003;display: none;">
+	<i class="van-icon van-icon-fail van-toast__icon"></i>
+	<div class="van-toast__text">您输入的手机号码不正确</div>
+</div>
+<div class="van-toast van-toast--middle van-toast--text" style="z-index: 2004; display: none;">
+	<div class="van-toast__text">稍后会有专职人员与您取得联系</div>
+</div>
+
+<div class="van-toast van-toast--middle van-toast--loading" style="z-index: 2003; display: none; ">
+    <div class="van-loading van-loading--circular van-toast__loading"><span class="van-loading__spinner van-loading__spinner--circular"><svg
+            viewBox="25 25 50 50" class="van-loading__circular">
+						<circle cx="50" cy="50" r="20" fill="none"></circle>
+					</svg></span></div>
+    <div class="van-toast__text">加载中...</div>
+</div>

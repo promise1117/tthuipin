@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>開心樂購</title>
+		<link rel="stylesheet" href="__PUBLIC__/static/mobile1/css/iconfont.css">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/mobile1/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/mobile1/css/shopcart_mobile.css" />
+		<link rel="stylesheet" type="text/css" href="https://www.layuicdn.com/layui/css/layui.css" />
+	</head>
+	<body>
+		{include file="public/header" /}
+
+		<form action="/address" method="post">
+		<section>
+			<!-- 进度条 -->
+			<div class="step">
+				<ul class="step__list fix">
+					<li class="active"><span>
+							<font style="vertical-align: inherit;">
+								<font style="vertical-align: inherit;">1個</font>
+							</font>
+						</span><b>
+							<font style="vertical-align: inherit;">
+								<font style="vertical-align: inherit;">購物袋</font>
+							</font>
+						</b></li>
+					<li><span>
+							<font style="vertical-align: inherit;">
+								<font style="vertical-align: inherit;">2 </font>
+							</font>
+						</span><b>
+							<font style="vertical-align: inherit;">
+								<font style="vertical-align: inherit;">運送</font>
+							</font>
+						</b></li>
+					<li><span>
+							<font style="vertical-align: inherit;">
+								<font style="vertical-align: inherit;">3 </font>
+							</font>
+						</span><b>
+							<font style="vertical-align: inherit;">
+								<font style="vertical-align: inherit;">付款</font>
+							</font>
+						</b></li>
+				</ul>
+			</div><!-- 购物车列表 -->
+
+			{if $shop_car == array()}
+			<!--    空購物車    -->
+			<div class="cart-empty" style="padding: 8.33rem 0; text-align: center;">
+				<p style="font-size: 1.33rem;
+					font-weight: 700;
+					margin-bottom: 1.66rem;">您還沒添加任何商品呦.</p>
+				<a class="btn btn-purple" href="/index" style="	
+				border-color: #ab85f7;
+				background: #ab85f7;width: 300px;
+				text-transform: uppercase;
+				display: inline-block;
+				padding: 15px 15px;
+				border: 1px solid rgba(0, 0, 0, .25);
+				background-image: none;
+				color: #fff;
+				text-align: center;
+				text-decoration: none;
+				font-family: inherit;
+				font-weight: inherit;
+				white-space: nowrap;
+				-webkit-user-select: none;
+				-moz-user-select: none;
+				user-select: none;
+				overflow: visible;
+				cursor: pointer;
+				font-size: 1.2rem;">去逛逛</a>
+			</div>
+			{else /}
+			<div class="cart-wrap">
+
+
+
+				{volist name="shop_car" id="vo"}
+				<div class="cart-item">
+					<div class="media">
+						<div class="media-checkbox">
+							<input type="hidden" name="random_num[]" value="{$vo.random_num}">
+							<input type="checkbox" name="sub2" class="ckbtn" id="checkbox{$key}">
+							<label for="checkbox{$key}" class="checkbox">
+								✔
+							</label>
+						</div>
+
+						<div class="media-main">
+							<p class="main__title"> {$vo.order.taocan}</p>
+							{php}
+
+							if($vo['order']['size']){
+								$sizeArr = array_values($vo['order']['size']);
+							}else{
+								$sizeArr = array();
+							}
+
+							{/php}
+							{volist name="vo.order.photo" key="k" id="v"}
+							<div class="index-goods">
+								<div class="main-left">
+									<div>
+										<a href="javascript:;">
+											<img src="{$v}" title="">
+										</a>
+									</div>
+								</div>
+								<div class="main-right">
+									<p>
+										顏色：{$vo.order.color[$k]}
+									</p>
+									{if $sizeArr != array()}
+									<p>
+										尺寸：{$sizeArr[$k-1]}
+									</p>
+									{/if}
+								</div>
+							</div>
+							{/volist}
+
+
+							<p>
+								<!-- 单价用作js计算 -->
+								<span class="single_sell_price" style="display:none;">{$vo.order.sell_price}</span>
+								<span class="single_market_price" style="display:none;">{$vo.order.market_price}</span>
+								<font style="vertical-align: inherit;">
+									<font style="vertical-align: inherit;">價格：</font>
+								</font><strong class="c-a lang-price" data-price="{$vo.order.sell_price}">
+								<font style="font-size:1.16rem;vertical-align: inherit;">
+									NT$<font style="vertical-align: inherit;" class="sell_price">{$vo.order.sell_price}</font>
+								</font>
+							</strong><span class="list__item-price-old lang-price" data-price="{$vo.order.market_price}">
+										<font style="vertical-align: inherit;">
+											NT$<font style="vertical-align: inherit;" class="market_price">{$vo.order.market_price}</font>
+										</font>
+									</span>
+							</p>
+							<div class="cart-item__qty fix">
+								<a class="cart-item__qty-minus J-NumBtn numbox1" name="plus">
+									<i class="iconfont icon-minus"></i>
+								</a>
+								<input readonly class="cart-item__qty-input J-NumInput numbox2" data-code="0" type="number" value="1" name="num[]">
+								<a class="cart-item__qty-add J-NumBtn numbox3" name="add">
+									<i class="iconfont icon-plus"></i>
+								</a>
+								<a class="cart-item__delete" href="javascript:;" data-code="0" data-number="{$vo.random_num}">
+									<i class="iconfont icon-trash"></i>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				{/volist}
+
+			</div><!-- 满包邮提示 -->
+			<!--<a class="link__continue-shop" href="/">&lt; Continue shopping</a><div class="content-box"><template v-if="finalprice < free_shipping_amount"><p class="freeship-tips">You're <span>{{symbol_left}}{{(free_shipping_amount_number-finalprice_number).toFixed(decimals)}}</span> from <span>FREE SHIPPING</span>!</p></template><template v-else><p class="freeship-tips">Sweet! You scored <span>Sweet! You scored <span>FREE SHIPPING</span>!</span>!</p></template></div>-->
+			<!-- 购物车清单 -->
+			<div class="content-box">
+				<div class="cart-order">
+					<p class="cart-order__item fix"><span class="tit">
+							<font style="vertical-align: inherit;">
+								<font style="vertical-align: inherit;">總數</font>
+							</font>
+						</span><span class="val c-a">
+							<font style="vertical-align: inherit;">
+								<font style="vertical-align: inherit;" class="countNum">1</font>
+							</font>
+						</span></p>
+<!--					<p class="cart-order__item fix"><span class="tit">-->
+<!--							<font style="vertical-align: inherit;">-->
+<!--								<font style="vertical-align: inherit;">小計</font>-->
+<!--							</font>-->
+<!--						</span><span class="val c-a lang-price" data-price="8.81">-->
+<!--							<font style="vertical-align: inherit;">-->
+
+<!--							 	-->
+<!--								<font style="vertical-align: inherit;">US $ 8.81</font>-->
+<!--							</font>-->
+<!--						</span></p>-->
+					<!--<div class="cart-order__btns"><button class="btn-checkout"><i class="iconfont icon-lock"></i>CHECK OUT</button><span>or</span>&lt;!&ndash;ga('send', 'event', 'Express Checkout', 'click');&ndash;&gt;
+						<button class="btn-paypal" onclick="location.href='/ExpressCheckout/reviewOrder';">Paypal</button></div>-->
+				</div>
+			</div><!-- 底部固定按钮 -->
+			<div class="pay-group">
+				<div class="group-title">
+					<input type="hidden" name="total_sell_price" value="">
+					<input type="hidden" name="total_cheap_price" value="">
+<!--					<span id="cktext">全選</span>-->
+					<span>
+						<font style="vertical-align: inherit;">
+							<font style="vertical-align: inherit;">總計：</font>
+						</font>
+					</span><span class="lang-price" data-price="8.81">
+						<font style="vertical-align: inherit;">
+							NT$<font style="vertical-align: inherit;" class="total_sell_price">8.88</font>
+						</font>
+					</span></div>
+				<div><button type="button" class="group-paypal" onclick=""></button><span class="group-or">
+						<font style="vertical-align: inherit;">
+							<font style="vertical-align: inherit;">or</font>
+						</font>
+					</span><button class="group-checkout" type="submit" onclick="">
+					
+						<font style="vertical-align: inherit;">
+							<font style="vertical-align: inherit;">貨到付款</font>
+						</font>
+					</button></div>
+			</div>
+			{/if}
+		</section>
+		</form>
+
+		{include file="public/footer" /}
+
+		<script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://cdn.staticfile.org/Swiper/4.5.1/js/swiper.min.js"></script>
+		<script src="https://www.layuicdn.com/layer-v3.1.1/layer.js"></script>
+		<script src="__PUBLIC__/static/mobile1/js/remstyle.js"></script>
+		<script src="__PUBLIC__/static/mobile1/js/common.js"></script>
+		<script src="__PUBLIC__/static/mobile1/js/shopcart_mobile.js"></script>
+
+		
+	</body>
+</html>

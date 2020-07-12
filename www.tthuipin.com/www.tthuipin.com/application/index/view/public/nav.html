@@ -1,0 +1,33 @@
+<div class="home-nav header-fixed">
+
+    <div class="swiper-container swiper-container-horizontal swiper-container-android">
+
+        <div class="nav-bar swiper-wrapper" style="transform: translate3d(-302.4px, 0px, 0px); width: 921.501px; transition-duration: 0ms;">
+
+            <a target="_self" class="swiper-slide active" onclick="location.href='/?nav_id=0'"><span>首頁</span></a>
+
+            <a target="_self" class="swiper-slide" onclick="location.href='/hot?nav_id=1'" style="margin-left:-5px;"><span>熱門推薦</span></a>
+
+            <a target="_self" class="swiper-slide" onclick="location.href='/new?nav_id=2'"><span>每日新品</span></a>
+
+            <a target="_self" class="swiper-slide special_sale" onclick="location.href='/special?nav_id=3'">
+				<span>限時特賣</span>
+				<img src="__MOBILE2__/img/fire3.png" style="height: 15px; position: absolute; top: -5%; right: 2%; z-index: 100; ">
+			</a>
+
+
+            {volist name="catlist" id="vo"}
+
+            <a  target="_self" class="swiper-slide" onclick="location.href='/categorylist?cat_id={$vo.cat_id}&cat_name={$vo.cat_name}&parent_id={$vo.parent_id}&nav_id={$key+4}'"><span>{$vo.cat_name}</span></a>
+
+            {/volist}
+
+
+        </div>
+
+        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+    </div>
+
+</div>
+
+<div class="aliziAlert"><a class="close" onclick="$('.aliziAlert').slideUp(500);">×</a>首次下單即送100折價碼</div>

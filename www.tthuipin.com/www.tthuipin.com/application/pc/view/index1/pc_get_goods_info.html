@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="description" content="開心樂購">
+
+    <meta name="author" content="">
+
+    <title>開心樂購</title>
+
+    <!-- Mobile Specific Meta-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" src="__PUBLIC__/static/pc/images/favicon.png" />
+
+    <!-- Themefisher Icon font -->
+    <link rel="stylesheet" href="__PUBLIC__/static/pc/plugins/themefisher-font/style.css">
+    <!-- bootstrap.min css -->
+    <link rel="stylesheet" href="__PUBLIC__/static/pc/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_721843_4racy1y7fm.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/pc/plugins/slick-carousel/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/pc/plugins/slick-carousel/slick/slick-theme.css"/>
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="__PUBLIC__/static/pc/css/style.css">
+
+
+    <link rel="stylesheet" type="text/css" href="__PLUGIN__/swiper/dist/css/swiper.css">
+    <link rel="stylesheet" href="__CSS__/base.css">
+    <link rel="stylesheet" href="__CSS__/leo.css">
+    <script src="__JS__/rem.js"></script>
+    <script src="__PLUGIN__/jquery/jquery-3.2.1.min.js"></script>
+
+</head>
+
+<body id="body">
+<div class="container top" style="border-bottom: 1px solid #ccc;">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="left-nav" style="height:1rem;padding-right:1rem;">
+                <!--						<a class="menu" id="menu-btn"></a>-->
+                <a class="logo" href="/pc_index"></a>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div style="">
+                <form class="navbar-form navbar-right" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <button type="submit" class="btn btn-default">搜索</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<nav class="navbar navbar-default nav_fixed" role="navigation">
+    <!--	navbar-fixed-top-->
+
+    <div>
+        <ul class="nav navbar-nav" style="padding-left:50%;position:relative;left:-100px;">
+            <li class="active"><a href="/pc_index">热门</a></li>
+
+
+            {volist name="catlist" id="vo"}
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+                    {$vo.cat_name} <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    {volist name="$vo.cat_two" id="v"}
+                    <li><a href="pc_categorylist?cat_id={$v.cat_id}&cat_name={$v.cat_name}">{$v.cat_name}</a></li>
+                    <li class="divider"></li>
+                    {/volist}
+                </ul>
+            </li>
+            {/volist}
+
+        </ul>
+    </div>
+
+</nav>
+<ul id="right_fixed" class="list-unstyled" style="position: fixed;right:0rem;top:30%;z-index:999;">
+    <li><a class="purch on" href="/sure" style="
+    display: inline-block;
+    text-align: center;
+    padding-top: 0.66666666rem;
+    padding-bottom: 0.13333333rem;
+    font-size: 0.29333333rem;
+    line-height: 0.53333333rem;
+    color: #333333;
+    background: rgb(241,252,255) url(__IMG__/purch.png) center top 0.13333333rem no-repeat;
+    background-size: 0.53333333rem 0.53333333rem;padding-left:0.3rem;padding-right:0.3rem;
+    ">购物</a></li>
+    <li><a class="mine on" href="/myself" style="
+	display: inline-block;
+    text-align: center;
+    padding-top: 0.66666666rem;
+    padding-bottom: 0.13333333rem;
+    font-size: 0.29333333rem;
+    line-height: 0.53333333rem;
+    color: #333333;
+    background: rgb(241,252,255) url(__IMG__/mine.png) center top 0.13333333rem no-repeat;
+    background-size: 0.53333333rem 0.53333333rem;padding-left:0.3rem;padding-right:0.3rem;">我的</a></li>
+    <li><a class="service on" href="https://www.facebook.com/messages/t/116332536481393" style="display: inline-block;
+    text-align: center;
+    padding-top: 0.66666666rem;
+    padding-bottom: 0.13333333rem;
+    font-size: 0.29333333rem;
+    line-height: 0.53333333rem;
+    color: #333333;
+    background: rgb(241,252,255) url(__IMG__/service.png) center top 0.13333333rem no-repeat;
+    background-size: 0.53333333rem 0.53333333rem;padding-left:0.3rem;padding-right:0.3rem;">客服</a></li>
+</ul>
+
+<section class="single-product">
+    <div class="container">
+<!--        <div class="row">-->
+<!--            <div class="col-md-6">-->
+<!--                <ol class="breadcrumb">-->
+<!--                    <li><a href="/pc_index">首页</a></li>-->
+<!--                    <li><a href="">衣服</a></li>-->
+<!--                    <li class="active">商品详情页</li>-->
+<!--                </ol>-->
+<!--            </div>-->
+<!--&lt;!&ndash;            <div class="col-md-6">&ndash;&gt;-->
+<!--&lt;!&ndash;                <ol class="product-pagination text-right">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <li><a href="#"><i class="tf-ion-ios-arrow-left"></i> Next </a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <li><a href="#">Preview <i class="tf-ion-ios-arrow-right"></i></a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                </ol>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--        </div>-->
+
+        <form name="order" action="/sure" method="post">
+        <input type="hidden" name="goods_no" value="{$info.goods_no}">
+        <input type="hidden" name="img" value="{$info.img}">
+        <div class="row mt-20">
+            <div class="col-md-2">
+                <div class="sidebar">
+
+                    <div class="navbar navbar-default" id="mycollapse">
+                        <!-- <ul class="nav navbar-nav nav-pills nav-stacked"> -->
+                        <ul class="nav nav-pills nav-stacked">
+                            <li><a href="javascript:void(0);"><i class="fa fa-dashboard fa-fw"></i>分类</a></li>
+
+                            {volist name="catlist" id="vo"}
+                            <li>
+                                <a href="#second-level-{$key+1}" class="second-level accordion-toggle"
+                                   data-toggle="collapse"
+                                   data-parent="#mycollapse">
+                                    <i class="fa fa-table fa-fw"></i> {$vo.cat_name}<i
+                                        class="fa fa-angle-left pull-right"></i>
+                                </a>
+                                <ul class="nav collapse" id="second-level-{$key+1}">
+                                    {volist name="$vo.cat_two" id="v"}
+                                    <li><a href="pc_categorylist?cat_id={$v.cat_id}&cat_name={$v.cat_name}">{$v.cat_name}</a></li>
+                                    {/volist}
+                                </ul>
+                            </li>
+                            {/volist}
+
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="single-product-slider">
+                    <div id='carousel-custom' class='carousel slide' data-ride='carousel'>
+                        <div class='carousel-outer'>
+                            <!-- me art lab slider -->
+                            <div class='carousel-inner '>
+                                {volist name="taocan" id="vo"}
+                                {volist name="vo.goodstc_bind" id="v"}
+                                <div class='item active'>
+                                    <img src='{$v.image}' alt='' data-zoom-image="{$v.image}" />
+                                </div>
+                                {/volist}
+                                {/volist}
+
+                            </div>
+
+<!--                             sag sol -->
+                            <a class='left carousel-control' href='#carousel-custom' data-slide='prev'>
+                                <i class="tf-ion-ios-arrow-left"></i>
+                            </a>
+                            <a class='right carousel-control' href='#carousel-custom' data-slide='next'>
+                                <i class="tf-ion-ios-arrow-right"></i>
+                            </a>
+                        </div>
+
+<!--                         thumb -->
+                        <ol class='carousel-indicators mCustomScrollbar meartlab'>
+                            {volist name="taocan" id="vo"}
+                            {volist name="vo.goodstc_bind" id="v"}
+                            <li data-target='#carousel-custom' data-slide-to='0' class='active'>
+
+
+                                    <img src='{$v.image}' alt='' />
+
+                            </li>
+                            {/volist}
+                            {/volist}
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+
+                <div id="parapop">
+                    <div class="overlay" id="overlay"></div>
+                    <div class="parapop-content">
+                        <div class="para-header">
+                            {volist name="taocan" id="vo" offset="0" length='1'}
+                            <div class="para-title">
+                                <h2 class="title1">{$vo['taocan']}</h2>
+
+                                <div class="title2box">
+                                    <span class="totalprice">
+                                      NT$
+                                      <span class="price" id="spsellprice">{$vo['sell_price']}</span>
+                                        <input type="hidden" name="sell_price" value="{$vo['sell_price']}">
+                                    </span>
+                                    <span class="originprice" id="origin_price">
+                                      $
+                                      <span class="original_price">{$vo['market_price']}</span>
+                                              <input type="hidden" name="market_price" value="{$vo['market_price']}">
+                                    </span>
+                                    <span class="slogan" id="suite_cut_slogan">
+                                      已優惠$
+                                      <span class="discounts_price">{$vo.cost_price}</span>
+                                              <input type="hidden" name="cost_price" value="{$vo.cost_price}">
+                                    </span>
+                                    <input type="hidden" name="taocan_id" value="{$vo.id}">
+                                </div>
+                            </div>
+                            {/volist}
+
+                            <div class="para-tabs">
+                                <div class="para1">
+                                    <span>套餐选择</span>
+                                    <div class="options-tabs">
+
+                                        <div class="para1">
+
+                                            <div class="options">
+                                                {volist name="taocan" id="vo"}
+                                                <input type="radio" name="taocan" value="{$vo['taocan']}" id="taocan{$vo.id}">
+                                                <label for="taocan{$vo.id}" class="option1 option-tab" sell-price="{$vo.sell_price}" market-price="{$vo.market_price}" cost-price="{$vo.cost_price}" taocan-id="{$vo.id}">{$vo['taocan']}</label>
+
+
+                                                {/volist}
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {volist name="taocan" id="vo"}
+
+
+                        <div class="wrap" style="padding-bottom: 0.3rem;">
+                            {php}
+                            $join = $vo['join'];
+                            $listcolor = Db('Goodsinfo')->where('pid',$vo['id'])->select();
+                            {/php}
+                            {volist name="vo.goodstc_bind" id="v" start="0" length="1"}
+                            <div class="para-rows" style="padding:0rem;">
+                                <div class="para-item">
+
+                                    <div class="para-prices">
+                                        <div class="price">
+                                            颜色：<span class="p2 p2_color">{$v.color}</span><br><br>
+                                            {php}
+                                            $size = explode(',',$v['size']);
+                                            $size = $size['0'];
+                                            {/php}
+                                            尺码：<span class="p2 p2_size">{$size}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="para1">
+                                    <span>颜色（单选）</span>
+                                    <div class="options">
+                                        {volist name="listcolor" id="co"}
+                                        <input type="radio" name="color[{$v.id}]" value="{$co.color}" data-color="{$co.image}" id="color_{$v.id}_{$key}">
+                                        <label for="color_{$v.id}_{$key}" class="option1 option-tab1" key="{$key}">{$co.color}</label>
+                                        {php}
+                                        $sizeArr = explode(',',$co['size']);
+
+                                        {/php}
+                                        {/volist}
+                                    </div>
+
+                                </div>
+                                <div class="para1">
+                                    <span>尺寸（单选）</span>
+                                    <div class="options">
+                                        {volist name="sizeArr" id="sz"}
+                                        <input type="radio" name="size[{$v.id}]" value="{$sz}" id="size_{$v.id}_{$key}">
+                                        <label for="size_{$v.id}_{$key}" class="option1 option-tab2">{$sz}</label>
+                                        {/volist}
+                                    </div>
+                                </div>
+                            </div>
+                            {/volist}
+                        </div>
+
+                        {/volist}
+
+                        <button class="submit btn-block btn-danger btn" id="submit-btn">确认</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+<!--        <div class="row">-->
+<!--            <div class="col-xs-12">-->
+<!--                <div class="tabCommon mt-20">-->
+<!--                    <ul class="nav nav-tabs">-->
+<!--                        <li class="active"><a data-toggle="tab" href="#details" aria-expanded="true">Details</a></li>-->
+<!--                        <li class=""><a data-toggle="tab" href="#reviews" aria-expanded="false">Reviews (3)</a></li>-->
+<!--                    </ul>-->
+<!--                    <div class="tab-content patternbg">-->
+<!--                        <div id="details" class="tab-pane fade active in">-->
+<!--                            <h4>Product Description</h4>-->
+<!--                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut per spici</p>-->
+<!--                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis delectus quidem repudiandae veniam distinctio repellendus magni pariatur molestiae asperiores animi, eos quod iusto hic doloremque iste a, nisi iure at unde molestias enim fugit, nulla voluptatibus. Deserunt voluptate tempora aut illum harum, deleniti laborum animi neque, praesentium explicabo, debitis ipsa?</p>-->
+<!--                        </div>-->
+<!--                        <div id="reviews" class="tab-pane fade">-->
+<!--                            <div class="post-comments">-->
+<!--                                <ul class="media-list comments-list m-bot-50 clearlist">-->
+<!--                                    &lt;!&ndash; Comment Item start&ndash;&gt;-->
+<!--                                    <li class="media">-->
+
+<!--                                        <a class="pull-left" href="#">-->
+<!--                                            <img class="media-object comment-avatar" src="__PUBLIC__/static/pc/images/blog/avater-1.jpg" alt="" width="50" height="50" />-->
+<!--                                        </a>-->
+
+<!--                                        <div class="media-body">-->
+<!--                                            <div class="comment-info">-->
+<!--                                                <h4 class="comment-author">-->
+<!--                                                    <a href="#">Jonathon Andrew</a>-->
+
+<!--                                                </h4>-->
+<!--                                                <time datetime="2013-04-06T13:53">July 02, 2015, at 11:34</time>-->
+<!--                                                <a class="comment-button" href="#"><i class="tf-ion-chatbubbles"></i>Reply</a>-->
+<!--                                            </div>-->
+
+<!--                                            <p>-->
+<!--                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at magna ut ante eleifend eleifend.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod laborum minima, reprehenderit laboriosam officiis praesentium? Impedit minus provident assumenda quae.-->
+<!--                                            </p>-->
+<!--                                        </div>-->
+
+<!--                                    </li>-->
+<!--                                    &lt;!&ndash; End Comment Item &ndash;&gt;-->
+
+<!--                                    &lt;!&ndash; Comment Item start&ndash;&gt;-->
+<!--                                    <li class="media">-->
+
+<!--                                        <a class="pull-left" href="#">-->
+<!--                                            <img class="media-object comment-avatar" src="__PUBLIC__/static/pc/images/blog/avater-4.jpg" alt="" width="50" height="50" />-->
+<!--                                        </a>-->
+
+<!--                                        <div class="media-body">-->
+
+<!--                                            <div class="comment-info">-->
+<!--                                                <div class="comment-author">-->
+<!--                                                    <a href="#">Jonathon Andrew</a>-->
+<!--                                                </div>-->
+<!--                                                <time datetime="2013-04-06T13:53">July 02, 2015, at 11:34</time>-->
+<!--                                                <a class="comment-button" href="#"><i class="tf-ion-chatbubbles"></i>Reply</a>-->
+<!--                                            </div>-->
+
+<!--                                            <p>-->
+<!--                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at magna ut ante eleifend eleifend. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni natus, nostrum iste non delectus atque ab a accusantium optio, dolor!-->
+<!--                                            </p>-->
+
+<!--                                        </div>-->
+
+<!--                                    </li>-->
+<!--                                    &lt;!&ndash; End Comment Item &ndash;&gt;-->
+
+<!--                                    &lt;!&ndash; Comment Item start&ndash;&gt;-->
+<!--                                    <li class="media">-->
+
+<!--                                        <a class="pull-left" href="#">-->
+<!--                                            <img class="media-object comment-avatar" src="__PUBLIC__/static/pc/images/blog/avater-1.jpg" alt="" width="50" height="50">-->
+<!--                                        </a>-->
+
+<!--                                        <div class="media-body">-->
+
+<!--                                            <div class="comment-info">-->
+<!--                                                <div class="comment-author">-->
+<!--                                                    <a href="#">Jonathon Andrew</a>-->
+<!--                                                </div>-->
+<!--                                                <time datetime="2013-04-06T13:53">July 02, 2015, at 11:34</time>-->
+<!--                                                <a class="comment-button" href="#"><i class="tf-ion-chatbubbles"></i>Reply</a>-->
+<!--                                            </div>-->
+
+<!--                                            <p>-->
+<!--                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at magna ut ante eleifend eleifend.-->
+<!--                                            </p>-->
+
+<!--                                        </div>-->
+
+<!--                                    </li>-->
+<!--                                </ul>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+        </form>
+    </div>
+</section>
+
+<!--猜你喜欢-->
+{if $likegoods == array()}{else /}
+<section class="products section bg-gray">
+    <div class="container">
+
+        <div class="row">
+            <div class="title text-center">
+                <h2>猜你喜欢</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            {volist name="likegoods" id="vo"}
+
+            <div class="col-md-3">
+                <div class="product-item">
+
+                    <div class="product-thumb">
+                        <span class="bage">Sale</span>
+                        						<a href="/pc_goodsinfo?goodsid={$vo.id}" style="display:inline-block;">
+                        <img class="img-responsive" src="{$vo.img}" alt="product-img" style="height:350px !important;"/>
+                        						</a>
+                        <div class="preview-meta">
+                            <ul>
+                                <li>
+									<span  data-toggle="modal" data-target="#product-modal{$vo.id}">
+										<i class="tf-ion-ios-search-strong"></i>
+									</span>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" ><i class="tf-ion-ios-heart"></i></a>
+                                </li>
+
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <div class="product-content">
+                        <h4 style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"><a href="/pc_goodsinfo?goodsid={$vo.id}">{$vo.name}</a></h4>
+                        <p class="price">${$vo.sell_price}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal product-modal fade" id="product-modal{$vo.id}">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="tf-ion-close"></i>
+                </button>
+                <div class="modal-dialog " role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-8 col-sm-6 col-xs-12">
+                                    <div class="modal-image">
+                                        <img class="img-responsive" src="{$vo.img}" alt="product-img" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                    <div class="product-short-details">
+                                        <h2 class="product-title">{$vo.keywords}</h2>
+                                        <p class="product-price">${$vo.sell_price}</p>
+                                        <p class="product-short-description">
+                                            {$vo.content}
+                                        </p>
+                                        <a href="cart.html" class="btn btn-main">加入购物车</a>
+                                        <a href="product-single.html" class="btn btn-transparent">查看商品详情</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.modal -->
+
+            {/volist}
+
+
+
+        </div>
+    </div>
+</section>
+{/if}
+
+
+<section id="footer" style="background-color: rgb(18, 18, 18);color:#fff;text-align: center;">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3">
+                <dl>
+                    <dt style="padding:30px;">顾客服务</dt>
+
+                    <dd style="padding:6px;"><a href="javascript:void(0);" style="color:#fff;">联系我们</a></dd>
+                    <dd style="padding:6px;"><a href="javascript:void(0);" style="color:#fff;">退货</a></dd>
+                    <dd style="padding:6px;"><a href="javascript:void(0);" style="color:#fff;">网站导航</a></dd>
+
+                </dl>
+            </div>
+            <div class="col-sm-3">
+                <dl>
+                    <dt style="padding:30px;">产品</dt>
+                    {volist name="catlist" id="vo"}
+                    <dd style="padding:6px;">{$vo.cat_name}</dd>
+                    {/volist}
+                </dl>
+            </div>
+
+            <div class="col-sm-3">
+                <dl>
+                    <dt style="padding:30px;">信息</dt>
+                    <dd style="padding:6px;"><a href="javascript:void(0);" style="color:#fff;">关于我们</a></dd>
+
+                </dl>
+            </div>
+            <div class="col-sm-3">
+                <dl>
+                    <dt style="padding:30px;">联系我们</dt>
+                    <dd style="padding:6px;">
+                        <a href="" class="iconfont icon-Facebook" style="font-size:20px;"></a>
+                        <a href="" class="iconfont icon-pinterest" style="font-size:20px;"></a>
+                        <a href="" class="iconfont icon-google" style="font-size:20px;"></a>
+                        <a href="" class="iconfont icon-Twitter" style="font-size:20px;"></a>
+                        <a href="" class="iconfont icon-linkedin" style="font-size:20px;"></a>
+                    </dd>
+                    <dd style="padding:6px;">
+                        <form class="navbar-form navbar-right" role="search" style="margin-right:70px;">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="您的邮箱地址">
+                            </div>
+                            <button type="submit" class="btn btn-sm">提交</button>
+                        </form>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="row" style="margin:20px;">
+            <div class="col-xs-6" style="text-align:left;font-size:16px;color:#4c4c4c;">Xorder model by xorder @2018-2020</div>
+            <div class="col-xs-6" style="text-align:right;"><img src="https://demob2c027_qq_com.xweb.net.cn/image/179/xorder/pay.png" alt=""></div>
+        </div>
+    </div>
+</section>
+<!--<a class="btn btn&#45;&#45;success btn&#45;&#45;floating box-shadow-wide" target="_blank" href="#products/aviato-e-commerce-template/">-->
+<!--    <span class="btn__text">-->
+<!--        Purchase Full Template Pack-->
+<!--    </span>-->
+<!--</a>-->
+
+
+<!--
+Essential Scripts
+=====================================-->
+
+
+
+<!-- Bootstrap 3.1 -->
+<script src="__PUBLIC__/static/pc/plugins/bootstrap/js/bootstrap.min.js"></script>
+<!-- Instagram Feed Js -->
+<script src="__PUBLIC__/static/pc/plugins/instafeed.js/instafeed.min.js"></script>
+<!-- Slick Carousel -->
+<script src="__PUBLIC__/static/pc/plugins/slick-carousel/slick/slick.min.js"></script>
+<!-- Google Map js -->
+
+
+<!-- Main Js File -->
+<script src="__PUBLIC__/static/pc/js/script.js"></script>
+<script>
+    $('.wrap').first().addClass('on');
+    $.each($('.options'),function(){
+        $(this).find('input').first().attr('checked',true);
+        $(this).find('label').first().addClass('on');
+    })
+
+
+    $('.option-tab1').on('click', function() {
+        var key = $(this).attr('key');
+        $(this).addClass('on').siblings().removeClass('on');
+        $(this).prev().attr('checked',true).siblings('input').attr('checked',false);
+        $(this).css({'border': '1px solid #B4272D','color': '#B4272D'});
+        $(this).siblings('label').css({'border': '1px solid #DDD','color': '#7b7b7b'});
+        var data_color = $(this).prev().attr('data-color');
+        $('input[name="img"]').val(data_color);
+        $(this).parents('.para-rows').find('.para-img').find('img').attr('src',data_color);
+        // $('.item').eq(key).find('img').attr('src',data_color);
+        $('.item').eq(key).addClass('active').siblings('.item').removeClass('active');
+
+        // $('.carousel-indicators li').eq(key).find('img').attr('src',data_color);
+        $('.carousel-indicators li').eq(key).addClass('active').siblings('li').removeClass('active');
+        $(this).parents('.para-rows').find('.p2_color').text($(this).prev().val());
+
+
+
+    });
+
+    $('.option-tab2').on('click', function() {
+
+        $(this).addClass('on').siblings().removeClass('on');
+        $(this).prev().attr('checked',true).siblings('input').attr('checked',false);
+        $(this).css({'border': '1px solid #B4272D','color': '#B4272D'});
+        $(this).siblings('label').css({'border': '1px solid #DDD','color': '#7b7b7b'});
+        $(this).parents('.para-rows').find('.p2_size').text($(this).prev().val());
+
+    });
+
+
+
+
+
+    $('.options-tabs .option-tab').on('click', function() {
+        var index = $(this).index();
+
+        // 切换套餐改变标题价格
+        $('#spsellprice').text($(this).attr('sell-price'));
+        $('input[name="sell_price"]').val($(this).attr('sell-price'));
+        $('.original_price').text($(this).attr('market-price'));
+        $('input[name="market_price"]').val($(this).attr('market-price'));
+        $('.discounts_price').text($(this).attr('cost-price'));
+        $('input[name="cost_price"]').val($(this).attr('cost-price'));
+        $('input[name="taocan_id"]').val($(this).attr('taocan-id'));
+
+
+        $('.title1').html($(this).html());
+
+        $(this).addClass('on').siblings().removeClass('on');
+        $(this).prev().attr('checked',true).siblings('input').attr('checked',false);
+
+        $('.wrap').eq(index).addClass('on').siblings('.wrap').removeClass('on');
+
+
+    });
+
+
+    $('.carousel-indicators li:gt(0)').removeClass('active');
+
+    $('.carousel-inner .item:gt(0)').removeClass('active');
+</script>
+
+<script>
+    // 侧边手风琴
+    $(function () {
+        $(document).on('click', '.accordion-toggle', function(event) {
+            event.stopPropagation();
+            var $this = $(this);
+            var parent = $this.data('parent');
+            var actives = parent && $(parent).find('.collapse.in');
+
+            // From bootstrap itself
+            if (actives && actives.length) {
+                actives.data('collapse');
+                actives.collapse('hide');
+            }
+
+            var target = $this.attr('data-target') || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, ''); //strip for ie7
+            $(target).collapse('toggle');
+        });
+    })
+</script>
+
+<script>
+
+    $('#right_fixed li a').hover(function(){
+        $(this).css({'backgroundColor':'skyblue'})
+    })
+    $('#right_fixed li a').mouseleave(function(){
+        $(this).css({'backgroundColor':'rgb(241,252,255)'})
+    })
+    $('.tf-ion-ios-heart').click(function(){
+        $(this).toggleClass('change_color');
+    })
+
+</script>
+
+<script>
+    $(window).scroll(function () {
+        var h = $('.nav_fixed').offset().top - $(window).scrollTop();
+        if(h <= 0){
+            $('.nav_fixed').addClass('navbar-fixed-top');
+        }
+        if($(window).scrollTop()<$('.top').height()){
+            $('.nav_fixed').removeClass('navbar-fixed-top');
+        }
+    })
+
+</script>
+</body>
+</html>

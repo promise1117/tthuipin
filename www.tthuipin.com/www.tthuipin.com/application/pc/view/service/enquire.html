@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+
+    <meta name="renderer" content="webkit">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>開心樂購</title>
+
+    <!--    <link rel="shortcut icon" href="__PUBLIC__/static/pc/images/favicon.png" type="image/x-icon">-->
+
+    <link rel="stylesheet" href="__PUBLIC__/static/pc1/css/iconfont.css">
+
+
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/pc1/css/common.css" />
+
+
+    <link rel="stylesheet" href="https://www.layuicdn.com/layui-v2.5.5/css/layui.css">
+
+
+
+
+    <style type="text/css">
+
+        .container-box {
+
+            max-width: 1100px;
+
+            position: relative;
+
+            margin: 0 auto 100px;
+
+            padding-top: 50px;
+
+        }
+
+
+
+        .feat-grid {
+
+            width: 100%;
+
+            margin: 0 auto;
+	
+
+
+        }
+
+
+
+        .login .title {
+
+            text-align: center;
+
+            color: #4D4F5C;
+	
+	   font-size: 26px;
+        }
+
+
+
+        .login .login-content {
+
+            width: 700px;
+
+            margin-top: 80px;
+
+            margin-left: auto;
+
+            margin-right: auto;
+	 
+	  font-size: 14px;
+
+        }
+
+
+
+        .feat-grid .row {
+
+            position: relative;
+
+            margin-left: 0;
+
+            margin-right: 0;
+
+            zoom: 1;
+
+            box-sizing: border-box;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+        }
+
+
+
+
+
+        .form-item {
+
+            margin-bottom: 20px;
+
+        }
+
+
+
+        .form-title,
+
+        .form-title-2,
+
+        .from-title-3,
+
+        .from-title-4 {
+
+            position: relative;
+
+            display: inline-block;
+
+            width: 100%;
+
+            font-weight: bold;
+
+            padding-right: 6px;
+
+            vertical-align: middle;
+
+        }
+
+
+
+        .form-title {
+
+            width: 200px;
+
+            min-height: 42px;
+
+            line-height: 42px;
+
+            color: #808495;
+
+        }
+
+
+
+        .form-input {
+
+            width: 320px;
+
+            min-height: 42px;
+
+            display: inline-block;
+
+            padding: 0 5px;
+
+            border: 1px solid #ccc;
+
+            border-radius: 4px;
+
+            /* line-height: 1.42857143; */
+
+            background-color: #fff;
+
+            background-image: none;
+
+            transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+
+        }
+
+
+
+        .btn-a {
+
+            width: 145px;
+
+            height: 40px;
+
+            background-color: #3b86ff;
+
+            display: inline-block;
+
+            border-radius: 20px;
+
+            border: 0;
+
+            outline: none;
+
+            color: #fff;
+
+            margin-left: 30px;
+
+            cursor: pointer;
+
+        }
+
+
+
+        .feat-grid .row:after {
+
+            clear: both;
+
+            content: "";
+
+            display: block;
+
+            height: 0;
+
+            visibility: hidden;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<!-- 公用頭部 -->
+
+
+
+{include file="public/header" /}
+
+
+
+<div class="container-box">
+
+    <div class="login feat-grid">
+
+        <h1 class="title">訂單查詢</h1>
+
+
+
+        <form id="form" method="post" onsubmit="return search();" novalidate="novalidate">
+
+            <div class="login-content">
+
+                <div class="form-item row">
+
+                    <label class="form-title">填寫 訂單/手機號/姓名：</label>
+
+                    <input name="email" type="text" class="form-input" placeholder="">
+
+                    <button id="loginBtn" type="submit" class="btn-a col-sm-offset-1">
+
+<!--                        <input id="sitename" type="hidden" name="sitename" value="newpopreal">-->
+
+                        <i class="send-animate"><span class="send-main"></span></i><span>查詢</span>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <blockquote class="layui-elem-quote order hidden">您的所有訂單: </blockquote>
+<!--            <blockquote class="layui-elem-quote layui-quote-nm">-->
+<!--                <ul>-->
+<!--                    <li>-->
+<!--                        <span>訂單號: <font class="order_no"></font> </span><span>物流狀態: <font class="transport"></font></span>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </blockquote>-->
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<!-- 公用底部 -->
+
+{include file="public/footer" /}
+
+
+
+
+
+
+
+<script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
+
+<script src="__PUBLIC__/static/pc1/js/browser-polyfill.min.js"></script>
+
+<script src="__PUBLIC__/static/pc1/js/browser.min.js"></script>
+
+<script src="__PUBLIC__/static/pc1/js/common.js" type="text/babel"></script>
+
+<script src="https://www.layuicdn.com/layui-v2.5.5/layui.js"></script>
+
+<script>
+    layui.use(['layer'],function () {
+        var layer = layui.layer;
+
+    })
+
+    function search() {
+        layer.load();
+        var search_msg = $('input[name="email"]').val();
+        $.ajax({
+            type:'post',
+            url : '{:url("pc/Service/orderSearch")}',
+            data : {
+                'order_no':search_msg
+            },
+            success:function (data) {
+
+                $('.order').show();
+                $('.layui-quote-nm').remove();
+
+                if(data.length == 0){
+                    $('#form').append(function () {
+                        return `<blockquote class="layui-elem-quote layui-quote-nm">
+                                    <ul>
+                                        <li>
+                                            <span style="margin-right: 200px">暫無訂單</span>
+                                        </li>
+                                    </ul>
+                                </blockquote>`;
+                    })
+                }
+                $.each(data,function (key,value) {
+                    switch (value.status) {
+                        case 1:
+                            value.status = '下單成功';
+                            break;
+                        case 2:
+                            value.status = '配送中';
+                            break;
+                        case 3:
+                            value.status = '到達待取';
+                            break;
+                        default:
+                            value.status = '订单完成';
+                            break;
+
+                    }
+
+
+                    $('#form').append(function () {
+                        return `<blockquote class="layui-elem-quote layui-quote-nm">
+                                    <ul>
+                                        <li>
+                                            <span style="margin-right: 200px">訂單號: <font class="order_no">`+value.order_no+`</font> </span><span>物流狀態: <font class="transport">`+value.status+`</font></span>
+                                        </li>
+                                    </ul>
+                                </blockquote>`;
+                    })
+                });
+
+                layer.close(layer.index);
+            },
+            error:function () {
+
+            }
+        })
+
+
+        return false;
+    }
+</script>
+
+
+
+
+
+
+</body>
+
+</html>
+

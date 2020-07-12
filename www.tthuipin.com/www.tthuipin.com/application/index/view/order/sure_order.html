@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <link rel="stylesheet" href="__MOBILE2__/css/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="https://www.layuicdn.com/layui/css/layui.css">
+    <link rel="stylesheet" type="text/css" href="__MOBILE2__/lib/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="__MOBILE2__/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="__MOBILE2__/css/shopcart_mv2.css" />
+    <title>開心樂購</title>
+
+    {include file="public/facebook_pixel_code" /}
+    <!-- Facebook Pixel Code -->
+    <script>
+
+        if(navigator.language!=='zh-CN'){
+            fbq('track', 'AddToCart');
+        }
+
+    </script>
+
+</head>
+<body>
+{include file="public/heads" /}
+{include file="public/left" /}
+{include file="public/nav" /}
+<!-- 购物车列表 -->
+
+<form action="/address" method="post">
+<section>
+    {if $shop_car == array()}
+    <!--    空購物車    -->
+    <div class="cart-empty" style="padding: 8.33rem 0; text-align: center;">
+        <p style="font-size: 1.33rem;
+					font-weight: 700;
+					margin-bottom: 1.66rem;">您還沒添加任何商品呦.</p>
+        <a class="btn btn-purple" href="/index" style="
+				border-color: #ab85f7;
+				background: #ab85f7;width: 300px;
+				text-transform: uppercase;
+				display: inline-block;
+				padding: 15px 15px;
+				border: 1px solid rgba(0, 0, 0, .25);
+				background-image: none;
+				color: #fff;
+				text-align: center;
+				text-decoration: none;
+				font-family: inherit;
+				font-weight: inherit;
+				white-space: nowrap;
+				-webkit-user-select: none;
+				-moz-user-select: none;
+				user-select: none;
+				overflow: visible;
+				cursor: pointer;
+				font-size: 1.2rem;">去逛逛</a>
+    </div>
+    {else /}
+    <div class="cart-wrap">
+
+
+        {volist name="shop_car" id="vo"}
+        <div class="cart-item">
+            <div class="media">
+                <div class="media_head">
+                    <div class="media-checkbox">
+                        <input type="hidden" name="random_num[]" value="{$vo.random_num}">
+                        <input type="checkbox" name="sub2" class="ckbtn" id="checkbox{$key}">
+                        <label for="checkbox{$key}" class="checkbox">
+                            ✔
+                        </label>
+                    </div>
+                    <p class="main__title">{$vo.order.taocan}</p>
+                    <a class="cart-item__delete" href="javascript:;" data-code="" data-number="{$vo.random_num}">
+                        <img src="__MOBILE2__/img/delete_03.jpg">
+                    </a>
+                </div>
+
+                <div class="media_main">
+                    {php}
+
+                    if($vo['order']['size']){
+                    $sizeArr = array_values($vo['order']['size']);
+                    }else{
+                    $sizeArr = array();
+                    }
+
+                    {/php}
+                    {volist name="vo.order.photo" key="k" id="v"}
+                    <div class="index-goods">
+                        <div class="main-left">
+                            <a href="/goodsinfo?goodsid={$vo.id}">
+                                <img src="{$v}" title="">
+                            </a>
+                        </div>
+                        <div class="main-right">
+                            <h1 class="goods_title">{$vo.order.taocan}</h1>
+                            <div class="goods_main">
+                                顏色: <span class="attr1">{$vo.order.color[$k]}</span>&nbsp;
+                                {if $sizeArr != array()}
+                                &nbsp;尺碼: <span class="attr2">{$sizeArr[$k-1]}</span>
+                                {/if}
+                            </div>
+                        </div>
+                    </div>
+                    {/volist}
+                </div>
+                <div class="media_bottom">
+                    <p class="media_price">
+                        <!-- 单价用作js计算 -->
+                        <span class="single_sell_price" style="display:none;">{$vo.order.sell_price}</span>
+                        <span class="single_market_price" style="display:none;">{$vo.order.market_price}</span>
+                        <span class="single_cost_price" style="display:none;">{$vo.order.cost_price}</span>
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">價格:</font>
+                        </font>
+                        <strong class="c-a lang-price" data-price="">
+                            <font style="vertical-align: inherit;">
+                                NT$<font style="vertical-align: inherit;" class="sell_price">{$vo.order.sell_price}</font>
+                            </font>
+                        </strong>
+                            <!--  用作计算的成本价  -->
+                        <span class="cost_price" style="display: none;">{$vo.order.cost_price}</span>
+                        <span class="list__item-price-old lang-price" data-price="">
+									<font style="vertical-align: inherit;">
+										NT$<font style="vertical-align: inherit;" class="market_price">{$vo.order.market_price}</font>
+									</font>
+								</span>
+                    </p>
+                    <div class="cart-item__qty fix">
+                        <a class="cart-item__qty-minus J-NumBtn numbox1" name="plus">
+                            <i class="iconfont icon-minus"></i>
+                        </a>
+                        <input readonly="" class="cart-item__qty-input J-NumInput numbox2" data-code="0" type="number" value="1" name="num[]">
+                        <a class="cart-item__qty-add J-NumBtn numbox3" name="add">
+                            <i class="iconfont icon-plus"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {/volist}
+
+
+    </div>
+    {/if}
+	</section>
+
+    <!-- 底部固定按钮 -->
+    <div class="pay-group">
+        <div class="group-title">
+            <div class="group_left">
+
+                <input type="hidden" name="total_sell_price" value="">
+                <input type="hidden" name="total_cheap_price" value="">
+                <input type="hidden" name="total_cost_price" value="">
+                <div class="media-checkbox">
+                    <input type="checkbox" name="" class="ckbtn" id="checkbox_all">
+                    <label for="checkbox_all" class="checkbox">
+                        ✔
+                    </label>
+                </div>
+                <span id="cktext">全選</span>
+            </div>
+            <div class="group_right">
+                <div class="cart-order">
+                    <p class="cart-order__item fix"><span class="tit">
+									<font style="vertical-align: inherit;">
+										<font style="vertical-align: inherit;">數量：</font>
+									</font>
+								</span>
+                        <span class="val">
+									<font style="vertical-align: inherit;">
+										<font style="vertical-align: inherit;" class="countNum">1</font>
+									</font>
+									件
+								</span>
+                    </p>
+                </div>
+                <span>
+							<font style="vertical-align: inherit;">
+								<font style="vertical-align: inherit;">合計：</font>
+							</font>
+						</span>
+                <span class="lang-price c-a" data-price="">
+							<font style="vertical-align: inherit;">
+								NT$<font style="vertical-align: inherit;" class="total_sell_price">956</font>
+							</font>
+						</span>
+            </div>
+        </div>
+		<div class="group_btn">
+			<div class="group-paypal" id="UPTRE_BtnPaypal" onclick="">
+				<img src="__MOBILE2__/img/paypal_06.jpg">
+			</div>
+			<button class="group-checkout" type="submit" onclick="">
+				<font style="vertical-align: inherit;">
+					<font style="vertical-align: inherit;">貨到付款</font>
+				</font>
+			</button>
+		</div>
+    </div>
+
+
+</form>
+<div style="width: 100%; height: 8.33rem; opacity: 0;">占位符</div>
+<section class="tips_body" style="display: none;">
+	<div class="van-overlay"></div>
+	<div class="van-popup">
+		<div class="popover-main">
+			<div class="tips_header">
+				<img src="__MOBILE2__/img/logo.jpg" alt="">
+				<span class="colse_tips">關閉</span></div>
+			<div class="popover-container">
+				<div class="input_container">
+					<span style="font-size: 16px;">Line ID：</span>
+					<input class="service_value" placeholder="請輸入您的Line ID" type="text">
+				</div>
+				<span style="color: rgb(219, 59, 46); font-size: 15px;">客服人員將在10分鐘內回復</span>
+				<button class="confirm" type="submit">確認</button>
+			</div>
+		</div>
+	</div>
+</section>
+<script src="__MOBILE2__/lib/jquery.min.js"></script>
+<script src="__MOBILE2__/lib/rem.js"></script>
+<script src="__MOBILE2__/lib/swiper.min.js"></script>
+<script src="https://www.layuicdn.com/layer-v3.1.1/layer.js"></script>
+<script src="__MOBILE2__/js/common.js"></script>
+<script src="__MOBILE2__/js/shopcart_mv2.js"></script>
+
+<script>
+
+    $('#UPTRE_BtnPaypal').click(function () {
+        layer.msg('暫時未開通此支付功能哦～');
+    })
+    {if !empty($symbol)}
+    // $('.group-checkout').click();
+        $('body').css({'display':'none'});
+        setTimeout(function(){
+            $('.group-checkout').click();
+            },500);
+    {/if}
+</script>
+
+{include file="public/statistical_code" /}
+</body>
+</html>
+
+<!--请将以下码嵌入到您网页源代码的最后面，通常是</body></HTML>之后,这样在服务器升级维护的时候也不会影响您的网页打开呈现速度。-->
+<!--<script language=javascript>-->
+<!--    &lt;!&ndash;-->
+<!--    var LiveAutoInvite0='您好，来自%IP%的朋友';-->
+<!--    var LiveAutoInvite1='来自首页的对话';-->
+<!--    var LiveAutoInvite2='网站商务通 主要功能：<br>1、主动邀请<br>2、即时沟通<br>3、查看即时访问动态<br>4、访问轨迹跟踪<br>5、内部对话<br>6、不安装任何插件也实现双向文件传输<br><br><b>如果您有任何问题请接受此邀请以开始即时沟通</b>';-->
+<!--    //&ndash;&gt;-->
+<!--</script>-->
+<!--<script language="javascript" src="https://dvt.zoosnet.net/JS/LsJS.aspx?siteid=DVT75903618&float=1&lng=cn"></script>-->

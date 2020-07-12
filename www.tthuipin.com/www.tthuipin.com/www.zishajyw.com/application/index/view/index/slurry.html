@@ -1,0 +1,282 @@
+<!doctype html>
+<html>
+	<head>
+		<title>泥料</title>
+		<meta data-n-head="ssr" charset="utf-8">
+		<meta data-n-head="ssr" name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0,minimum-scale=1.0, maximum-scale=1.0">
+		<meta data-n-head="ssr" name="keywords" data-hid="keywords" content="">
+		<meta data-n-head="ssr" name="description" data-hid="description" content="">
+
+		<link rel="stylesheet" href="__INDEX__/css/style/cc9cbb9d0dd6b9ab414a.css">
+		<link rel="stylesheet" href="__INDEX__/css/style/7c37c1f9cd04d16fbfdb.css">
+		<link rel="stylesheet" href="__INDEX__/css/style/c4866032732d10b4bdfa.css">
+		<link rel="stylesheet" href="__INDEX__/css/style/8c0b904f195ad20c5f45.css">
+		<link rel="stylesheet" href="__INDEX__/css/style/cf7545887e715f6544b8.css">
+	</head>
+	<body>
+		<div id="app">
+			<router-view />
+		</div>
+		<template id="tem">
+			<div data-server-rendered="true" id="__nuxt">
+				<div id="__layout">
+					<div style="max-width:750px;margin:0 auto;">
+						<div class="my-main-container" data-v-29843982>
+							<div class="van-nav-bar van-hairline--bottom" style="z-index:1;" data-v-d09b833a data-v-d09b833a data-v-29843982>
+								<div class="van-nav-bar__left" data-v-d09b833a data-v-d09b833a  onclick="window.history.back(-1); ">
+									<i class="van-icon van-icon-arrow-left van-nav-bar__arrow" data-v-d09b833a data-v-d09b833a></i>
+									<span class="van-nav-bar__text" data-v-d09b833a data-v-d09b833a>返回</span>
+								</div>
+								<div class="van-nav-bar__title van-ellipsis" data-v-d09b833a data-v-d09b833a>泥料</div>
+								<div class="van-nav-bar__right" data-v-d09b833a data-v-d09b833a  onclick="location.href='/';">
+									<span class="van-nav-bar__text" data-v-d09b833a data-v-d09b833a>首页</span>
+								</div>
+							</div>
+							{volist name="cat" id="vo"}
+								{volist name="$vo.cat_two" id="v"}
+									<div data-v-29843982="" style="margin-bottom: 0.53rem; padding: 0 5%;">
+									<section data-v-d7fb8786="" data-v-29843982="" style="margin-top: 0.26rem;">
+										<div data-v-d7fb8786="" class="header-container">
+											<h1 data-v-d7fb8786="">{$v.cat_name}</h1>
+											<router-link to="/mud_mixing_{$v.cat_id}" class="more" data-v-d7fb8786>查看更多</router-link>
+											<!-- <a data-v-d7fb8786="" href="mud_mixing" class="more">查看更多</a> -->
+										</div>
+										<div data-v-d7fb8786="" class="split"></div>
+										<div data-v-d7fb8786="" style="padding: 0 0.26rem;">
+											<span data-v-d7fb8786="" class="description">{$v.keywords}</span>
+											<div data-v-77f4ad42="" data-v-d7fb8786="" class="container" style="margin-top: 0.26rem;">
+												{volist name="$v.cat_three" id="vv" offset="0" length="6"}
+												<router-link data-v-77f4ad42="" to="/propertyDetail_{$vv.cat_id}" class="item">
+													<img data-v-77f4ad42="" alt="" src="{$vv.image}"
+													 lazy="loaded">
+													<span data-v-77f4ad42="">{$vv.cat_name}</span>
+												</router-link>
+												{/volist}
+
+
+											</div>
+										</div>
+									</section>
+								</div>
+								{/volist}
+							{/volist}
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+		</template>
+
+		{volist name="cat" id="vo"}
+			{volist name="$vo.cat_two" id="v"}
+			<template id="mud_mixing_{$v.cat_id}">
+				<div id="__nuxt">
+					<div id="__layout">
+						<div style="max-width:750px;margin:0 auto;">
+							<div data-v-568ea247="">
+								<div data-v-d09b833a="" data-v-568ea247="" class="van-nav-bar van-hairline--bottom" style="z-index: 1;">
+									<div data-v-d09b833a="" class="van-nav-bar__left" onclick="window.history.back(-1); ">
+										<i data-v-d09b833a="" class="van-icon van-icon-arrow-left van-nav-bar__arrow"> </i>
+										<span data-v-d09b833a="" class="van-nav-bar__text">返回</span>
+									</div>
+									<div data-v-d09b833a="" class="van-nav-bar__title van-ellipsis">{$v.cat_name}</div>
+									<div data-v-d09b833a="" class="van-nav-bar__right" onclick="location.href='/';">
+										<span data-v-d09b833a="" class="van-nav-bar__text">首页</span>
+									</div>
+								</div>
+								<div data-v-568ea247="" class="my-main-container" style="padding: 0.26rem 2%;">
+									<div data-v-568ea247="" style="padding: 0 0.26rem;">
+										<p data-v-568ea247="" class="description">{$v.keywords}</p>
+									</div>
+									<div data-v-77f4ad42="" data-v-d7fb8786="" class="container" style="margin-top: 0.26rem;">
+										{volist name="$v.cat_three" id="vv"}
+										<router-link data-v-77f4ad42="" to="/propertyDetail_{$vv.cat_id}" class="item">
+											<img data-v-77f4ad42="" alt="" src="{$vv.image}"
+											 lazy="loaded">
+											<span data-v-77f4ad42="">{$vv.cat_name}</span>
+										</router-link>
+										{/volist}
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</template>
+			{/volist}
+		{/volist}
+
+		
+		{volist name="cat" id="vo"}
+			{volist name="$vo.cat_two" id="v"}
+				{volist name="$v.cat_three" id="vv"}
+				<template id="propertyDetail_{$vv.cat_id}">
+					<div id="__nuxt">
+						<div id="__layout">
+							<div style="max-width:750px;margin:0 auto;">
+								<div data-v-55ef8ece="">
+									<div data-v-d09b833a="" data-v-568ea247="" class="van-nav-bar van-hairline--bottom" style="z-index: 1;">
+										<div data-v-d09b833a="" class="van-nav-bar__left" onclick="window.history.back(-1); ">
+											<i data-v-d09b833a="" class="van-icon van-icon-arrow-left van-nav-bar__arrow"> </i>
+											<span data-v-d09b833a="" class="van-nav-bar__text">返回</span>
+										</div>
+										<div data-v-d09b833a="" class="van-nav-bar__title van-ellipsis">{$vv.cat_name}</div>
+										<div data-v-d09b833a="" class="van-nav-bar__right" onclick="location.href='/';">
+											<span data-v-d09b833a="" class="van-nav-bar__text">首页</span>
+										</div>
+									</div>
+									<div data-v-55ef8ece="" class="my-main-container" style="padding: 10px 2%;">
+										<div data-v-55ef8ece="" style="padding: 0px 10px;">
+											<span data-v-55ef8ece="" class="description">
+												{$vv.keywords}
+											</span>
+										</div>
+										<div data-v-55ef8ece="" class="header-container">
+											<h1 data-v-55ef8ece="">{$vv.cat_name} — 紫砂壶推荐</h1>
+										</div>
+										<div data-v-55ef8ece="" class="goods_wrap">
+											<div data-v-55ef8ece="" class="goods_list">
+												{volist name="$vv.link_goods" id="vvv"}
+												<div data-v-217ef9e2="" data-v-7a7d1ec7="" style="padding: 4px 0px; width: 49%;">
+													<a data-v-217ef9e2="" href="/goodsinfo?goodsid={$vvv.id}" class="goods_avatar_container">
+														<img data-v-217ef9e2="" alt="" class="goods_avatar" src="{$vvv.img}">
+													</a>
+													<div data-v-217ef9e2="" style="margin-bottom: 10px;">
+														<div data-v-217ef9e2="" class="goods_header">
+															<span data-v-217ef9e2="" class="goods_name">{$vvv.name}</span>
+															<button data-v-217ef9e2="" class="btn_qry">询价</button>
+														</div>
+														<div data-v-217ef9e2="" class="goods_info">
+															<span data-v-217ef9e2="">作者:{$vvv.people_name}</span> <span data-v-217ef9e2="">编号:{$vvv.goods_no}</span>
+															<span data-v-217ef9e2="">泥料:{$vvv.mud_name}</span> <span data-v-217ef9e2="">容量:{$vvv.capacity_name}</span>
+														</div>
+													</div>
+												</div>
+												{/volist}
+												<div data-v-55ef8ece="" style="width: 49%;"></div>
+											</div>
+										</div>
+										<div data-v-55ef8ece="" class="header-container">
+											<h1 data-v-55ef8ece="">其他泥料推荐</h1>
+										</div>
+										<div data-v-77f4ad42="" data-v-d7fb8786="" class="container" style="margin-top: 0.26rem;">
+											{volist name="hotlist" id="vo"}
+											{volist name="$vo.cat_two" id="v"}
+											{volist name="$v.cat_three" id="vv"}
+											<router-link data-v-77f4ad42="" to="/propertyDetail_{$vv.cat_id}" class="item">
+												<img data-v-77f4ad42="" alt="" src="{$vv.image}"
+												 lazy="loaded">
+												<span data-v-77f4ad42="">{$vv.cat_name}</span>
+											</router-link>
+											{/volist}
+											{/volist}
+											{/volist}
+
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</template>
+				{/volist}
+			{/volist}
+		{/volist}
+		
+		<script src="__INDEX__/lib/jquery/jquery.js"></script>
+		<script src="__INDEX__/js/rem.js"></script>
+		<script src="__INDEX__/lib/vue/vue.min.js"></script>
+		<script src="__INDEX__/lib/vue/vue-router-2.7.0.js"></script>
+		<script src="__INDEX__/lib/swiper/swiper.min4.js"></script>
+		<script src="__INDEX__/js/action/font_1534256_qc3ia182za.js"></script>
+		<script src="__INDEX__/js/common.js"></script>
+<!--		<script src="__INDEX__/js/slurry.js"></script>-->
+		<script>
+			$(function() {
+				const router = new VueRouter({
+					routes: [{
+						path: '/',
+						component: {
+							template: '#tem'
+						}
+					},
+						{volist name="cat" id="vo"}
+							{volist name="$vo.cat_two" id="v"}
+							{
+								path: '/mud_mixing_{$v.cat_id}',
+								component: {
+									template: '#mud_mixing_{$v.cat_id}'
+								}
+							},
+							{/volist}
+						{/volist}
+						{volist name="cat" id="vo"}
+						{volist name="$vo.cat_two" id="v"}
+						{volist name="$v.cat_three" id="vv"}
+						{
+							path: '/propertyDetail_{$vv.cat_id}',
+							component: {
+								template: '#propertyDetail_{$vv.cat_id}'
+							}
+						},
+						{/volist}
+						{/volist}
+						{/volist}
+						
+					]
+				})
+
+
+
+				const vm = new Vue({
+					el: '#app',
+					data: {},
+					methods: {
+						// 询价
+						inquiry() {
+							$('.consult_body').show();
+						},
+						close_inquiry() {
+							$('.consult_body').hide();
+						}
+					},
+					router,
+					components: {
+						com: {
+							template: '#propertyDetail',
+							methods: {
+								// 询价
+								inquiry() {
+									$('.consult_body').show();
+								},
+								close_inquiry() {
+									$('.consult_body').hide();
+								}
+							},
+
+						},
+					},
+					created() {
+
+					},
+					mounted() {
+
+					}
+
+				})
+
+
+
+
+
+
+
+
+			})
+
+		</script>
+	</body>
+</html>

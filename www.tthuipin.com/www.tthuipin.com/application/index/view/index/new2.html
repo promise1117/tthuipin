@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>開心樂購</title>
+    <!--		<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">-->
+    <link rel="stylesheet" href="__PUBLIC__/static/mobile1/css/iconfont.css">
+    <!--		<link rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/Swiper/4.5.1/css/swiper.min.css" />-->
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/mobile1/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/mobile1/css/hot_deal_mobile.css" />
+</head>
+<body>
+
+{include file="public/header" /}
+
+
+<div class="content-box mt100">
+    <ul class="list-wrap fix">
+
+
+        {volist name="newgoods" id="vo" offset="0" length="24"}
+
+        <form  name="order" action="/sure" method="post">
+            <input type="hidden" name="goods_no" value="{$vo.goods_no}">
+            <input type="hidden" name="img" value="{$vo.img}">
+
+            <input type="hidden" name="sell_price" value="{$vo['sell_price']}">
+            <input type="hidden" name="market_price" value="{$vo['market_price']}">
+            <input type="hidden" name="cost_price" value="{$vo['market_price']-$vo['sell_price']}">
+
+            {volist name="vo" id="voo" offset="0" length='1'}
+            <input type="hidden" name="taocan_id" value="{$voo.id}">
+            {/volist}
+            <li class="list__item">
+                <div class="list__item-inner"><a class="list_item-img" href="/goodsinfo?goodsid={$vo.id}">
+                    <img class="lazy" src="{$vo.img}" style="display: block;"></a>
+				</div>
+                <div class="list__item-price"><span class="lang-price" data-price="{$vo.sell_price}">NT${$vo.sell_price}</span>
+                    <div class="list__item-price-old lang-price" data-price="{$vo.market_price}">NT${$vo.market_price}</div>
+                    <a class="list-add-wish" data-action="add-wishlist" data-sku="MY18102902" href="javascript:;">
+                        <i class="iconfont icon-like"></i>
+                    </a>
+                </div>
+                <div class="list__item-name">
+                    <a href="/goodsinfo?goodsid={$vo.id}" title="{$vo.name}">{$vo.name}</a>
+                </div>
+                <div class="tag__flashsale mobile" style="background-image : url(img/fs.webp)">
+                    <span class="tag__val">70</span>
+                </div>
+            </li>
+
+        </form>
+
+        {/volist}
+
+
+    </ul>
+</div>
+
+
+{include file="public/footer" /}
+
+<script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/Swiper/4.5.1/js/swiper.min.js"></script>
+<script src="__PUBLIC__/static/mobile1/js/remstyle.js"></script>
+<script src="__PUBLIC__/static/mobile1/js/common.js"></script>
+<script src="__PUBLIC__/static/mobile1/js/hot_deal_mobile.js"></script>
+</body>
+</html>

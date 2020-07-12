@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>開心樂購</title>
+<!--    <link rel="shortcut icon" href="__PUBLIC__/static/pc/images/favicon.png" type="image/x-icon">-->
+    <link rel="stylesheet" href="__PUBLIC__/static/pc1/css/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/Swiper/4.5.1/css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.layuicdn.com/layui/css/layui.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/pc1/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/pc1/css/shoppingcart.css" />
+</head>
+<body>
+<!-- 公用頭部 -->
+
+{include file="public/header" /}
+
+
+
+<div class="wrap-box page-cart">
+    <div class="container">
+
+
+        <!-- 进度条 -->
+        <div class="step">
+            <ul class="step__list fix">
+                <li class="active"><span>1</span><b>購物袋</b></li>
+                <li><span>2</span><b>運送</b></li>
+                <li><span>3</span><b>付款</b></li>
+            </ul>
+        </div>
+        <form action="pc_address.html" method="post">
+        {if $shop_car == array()}
+        <!--    空購物車    -->
+        <div class="cart-empty">
+            <p>您還沒添加任何商品呦.</p><a class="btn btn-purple" href="/pc_index">去逛逛</a>
+        </div>
+        {else /}
+        <table class="cart-list" width="100%">
+            <tbody>
+            <tr>
+                <th width="500">所有商品</th>
+                <th>單價</th>
+                <th>數量</th>
+                <th>總價</th>
+                <th>操作</th>
+            </tr>
+            </tbody>
+            <tbody>
+
+            {volist name="shop_car" id="vo"}
+            <tr class="cart-container">
+                <td>
+                    <div class="cart-item__pic pr l" cartinfo="{&quot;id&quot;:&quot;7409356&quot;,&quot;sku&quot;:&quot;MG17081020&quot;,&quot;size&quot;:&quot;Girl-90&quot;,&quot;color&quot;:&quot;red&quot;}"><a
+                            href="javascript:;" title=""><img
+                            src="{$vo.img}" alt=""></a>
+                        <div class="countdown">
+                            <i class="iconfont"></i>
+                            <span class="timer" endtime="2019-12-05 15:59:59">
+											<span class="day_count "></span>
+											<span class="day"></span>
+											<span class="day_seconds "><span></span><span></span></span></span></div>
+                        </div>
+                    <div class="cart-item__info"><a class="name" href="javascript:;">{$vo.order.taocan}</a><!-- 处理color, size 开始 -->
+                        <!-- 处理color, size 结束 -->
+                        <p>顏色:
+
+                            {volist name="vo.order.color" id="v"}
+                            {$v}
+                            {/volist}
+
+                            {volist name="vo.order.size" id="v" offset="0" length="1"}
+                            {if $v != ''}
+                            <br>尺寸:
+                            {/if}
+                            {/volist}
+                            {volist name="vo.order.size" id="v"}
+
+
+                            {if $v != ''}
+
+
+                            {$v}
+
+                            {/if}
+                            {/volist}
+                        </p>
+<!--                        <p class="mt10"><span class="cart-tag_flash">Flash Sale</span></p>-->
+                    </div>
+                </td>
+                <td>
+                    <div style="position:relative; top: 40px;">
+                        <!-- 单价用作js计算 -->
+                        <span class="single_sell_price" style="display:none;">{$vo.order.sell_price}</span>
+                        <span class="single_market_price" style="display:none;">{$vo.order.market_price}</span>
+                        <span class="single_cost_price" style="display:none;">{$vo.order.cost_price}</span>
+                        <p class="font-red lang-price" data-price="{$vo.order.sell_price}">NT${$vo.order.sell_price}</p>
+                        <p class="cart-maiket-price lang-price" data-price="{$vo.order.market_price}">NT${$vo.order.market_price}</p>
+                    </div>
+                </td>
+                <td>
+                    <div class="cart-item__qty fix" style="position:relative; top: 50px;">
+                        <a class="cart-item__qty-minus J-NumBtn numbox1" name="plus">
+                            <i class="iconfont icon-minus"></i></a>
+                        <input readonly class="cart-item__qty-input J-NumInput numbox2" data-code="1" name="num[]" type="text" value="1">
+                        <a class="cart-item__qty-add J-NumBtn numbox3" name="add">
+                            <i class="iconfont icon-plus"></i>
+                        </a>
+                    </div>
+                </td>
+                <td><span class="amount_1 font-red lang-price" data-price="{$vo.order.sell_price}" style="position:relative; top: 40px;">NT$ <span class="sell_price" style="width: 58px;display: inline-block;">{$vo.order.sell_price}</span></span>
+                    <!-- 用作計算的市場價 -->
+                    <span class="market_price" style="display: none;">{$vo.order.market_price}</span>
+                    <span class="cost_price" style="display: none;">{$vo.order.cost_price}</span>
+                </td>
+
+                <td><a class="cart-item__delete" data-number="{$vo.goods_no}" href="javascript:;" data-code="1" title="remove the item" style="position:relative; top: 40px;"><i
+                        class="iconfont icon-trash"></i></a></td>
+            </tr>
+            {/volist}
+
+            </tbody>
+        </table><!-- 购物清单 -->
+        <div class="cart-order-wrap fix">
+            <div class="cart-order">
+                <div class="fix">
+                    <div class="cart-order__list asideBox fix">
+<!--                        <div class="cart-order__item fix">-->
+<!--                            <p class="tit">Total Quantity</p>-->
+<!--                            <p class="val goodsNum"><strong>1</strong></p>-->
+<!--                        </div>-->
+                        <div class="cart-order__item fix">
+                            <p class="tit"></p>
+                            <!--              總價計算              -->
+                            <span>活動優惠：NT$ <span class="total_cheap_price">0.00</span></span>
+                            <input type="hidden" name="total_sell_price" value="">
+                            <input type="hidden" name="total_cheap_price" value="">
+                            <input type="hidden" name="total_cost_price" value="">
+                            <p class="val grand-total font-red"><strong class="lang-price" data-price="9.00">總計：NT$ <span class="total_sell_price">0.00</span></strong></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="cart-order__btns">
+                    <button id="UPTRE_BtnPaypal" type="button" class="btn-paypal">Paypal</button><span>or</span><button type="submit" class="btn btn-purple btn-cart-checkout">
+                    貨到付款</button>
+                </div>
+            </div>
+        </div>
+        {/if}
+        </form>
+    </div>
+</div>
+
+<!-- 公用底部 -->
+{include file="public/footer" /}
+
+
+<script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
+<script src="__PUBLIC__/static/pc1/js/browser-polyfill.min.js"></script>
+<script src="__PUBLIC__/static/pc1/js/browser.min.js"></script>
+<script src="__PUBLIC__/static/pc1/js/common.js" type="text/babel"></script>
+<script src="__PUBLIC__/static/pc1/js/shoppingcart.js" type="text/babel"></script>
+<script src="https://www.layuicdn.com/layer-v3.1.1/layer.js"></script>
+
+
+<script>
+
+        $('#UPTRE_BtnPaypal').click(function () {
+            layer.msg('暫時未開通此支付功能哦～');
+        })
+
+
+        {if !empty($symbol)}
+        // $('.group-checkout').click();
+
+             $('body').css({'display':'none'});
+            setTimeout(function(){
+                $('.btn-cart-checkout').click();
+            },1000);
+
+        {/if}
+</script>
+</body>
+
+
+</html>

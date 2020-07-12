@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>開心樂購</title>
+<!--		<link rel="shortcut icon" href="__PUBLIC__/static/pc/images/favicon.png" type="image/x-icon">-->
+		<link rel="stylesheet" href="__PUBLIC__/static/pc1/css/iconfont.css">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/pc1/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/pc1/css/address.css" />
+		<link rel="stylesheet" type="text/css" href="__PLUGIN__/mobileSelect/css/mobileSelect.css">
+	</head>
+	<body>
+	<!-- 公用頭部 -->
+
+	{include file="public/header" /}
+
+
+		<div class="wrap-box">
+			<div class="container">
+				<!-- 进度条 -->
+				<div class="step">
+					<ul class="step__list fix">
+						<li class="active"><span>1</span><b>購物袋</b></li>
+						<li class="active"><span>2</span><b>運送</b></li>
+						<li><span>3</span><b>付款</b></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="wrap-box mt20">
+			<form  novalidate="novalidate" action="/pc_money" method="post">
+			<div class="container fix">
+			<p>
+				<span style="padding: 0.3rem; background-color: rgb(253, 239, 217); color: red ; font-family: arial, helvetica, clean, sans-serif; font-size: 1.26rem;">為保障消費者權益，本商城不會洩露任何個人資訊！</span>
+			</p>
+				<div class="address-main">
+					<div class="address-list">
+						<h3 class="address-list__title">購物地址填寫</h3>
+						<!-- 添加新地址 -->
+						<div class="new-address ">
+							<div class="address-list__content">
+<!--								<p class="j-note-message hidden" style="display: block;">提示：请填写中文地址</p>-->
+
+<!--									<input type="hidden" name="type" value="0"><input type="hidden" name="isdefault" value="1">-->
+									<div class="form-group">
+										<label for="SendFirstName" class="control-label"><span class="control-label-required">*</span>
+											付款方式:
+										</label>
+										<span class="payment">
+											<input type="radio" name="payment" value="payment4" id="payment4" checked="checked">
+											<label for="payment4" class="radio-box active">黑貓宅配</label>
+											<input type="radio" name="payment" value="payment1" id="payment1">
+											<label for="payment1" class="radio-box active">711超商取貨</label>
+											<input type="radio" name="payment" value="payment2" id="payment2">
+											<label for="payment2" class="radio-box">全家超商取貨</label>
+										</span>
+									</div>
+									<div class="form-group">
+										<label for="SendFirstName" class="control-label"><span class="control-label-required">*</span>
+											收货地址:
+										</label>
+										<label class="location">
+											<div class="address">
+												<select id="select1"> </select>
+												<select id="select2"></select>
+												<select id="select3" style="display: none;"></select>
+												<input class="form-control" name="address" placeholder="請輸入收貨地址..." value="" style="width: 58%;" >
+											</div>
+										</label>
+
+
+										<input type="hidden" name="detail_city" id="detail_city" value="">
+										<input type="hidden" name="detail_area" id="detail_area" value="">
+										<input type="hidden" name="detail_address" id="detail_address" value="">
+										<input type="hidden" name="detail_delivery " id="detail_delivery " value="">
+
+										<label id="SendAddress-error" class="error hidden" for="SendAddress">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">請輸入您的收貨地址。</font>
+											</font>
+										</label>
+									</div>
+								<div class="form-group">
+									<label for="SendFirstName" class="control-label"><span class="control-label-required">*</span>
+										姓名:
+									</label>
+									<input class="form-control" name="name" placeholder="請輸入姓名...">
+									<label id="SendName-error" class="error hidden" for="SendName">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">請輸入您的名字。</font>
+										</font>
+									</label>
+								</div>
+								<div class="form-group">
+									<label for="SendFirstName" class="control-label"><span class="control-label-required">*</span>
+										手機號碼:
+									</label>
+									<input class="form-control" name="telphone" placeholder="請輸入手機號碼...">
+									<label id="SendCode-error" class="error hidden" for="SendCode">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">請輸入您的手機號碼。</font>
+										</font>
+									</label>
+								</div>
+
+								<div class="form-group">
+									<label for="SendFirstName" class="control-label">
+										<span class="control-label-required"></span>Line ID:
+									</label>
+									<input class="form-control" type="text" name="lineid" placeholder="請輸入Line ID...">
+									<label id="Line-error" class="error hidden" for="SendCode">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">請輸入您的Line ID。</font>
+										</font>
+									</label>
+								</div>
+								<div class="form-group">
+									<label for="SendFirstName" class="control-label">E-mail: </label>
+									<input class="form-control" type="email" name="email" placeholder="請輸入E-mail...">
+									<label id="SendEmail-error" class="error hidden" for="SendEmail">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">請輸入您的電子郵件。</font>
+										</font>
+									</label>
+								</div>
+
+								<div class="form-group">
+									<label for="SendAddress1" class="control-label">
+										留言:
+									</label>
+									<textarea placeholder="請輸入您的留言..." name="message"></textarea>
+								</div>
+
+									<div class="form-group address-btns"><input type="hidden" name="address_id" value="">
+<!--										<button type="submit" class="btn btn-purple btn-address-submit disabled-save">Save</button>-->
+									</div><input type="hidden" name="__hash__" value="2a65fda8a12f3cfb742eb90a7982b75c_cad4ad493387d2e2c1d5b500343f3342">
+
+							</div>
+						</div>
+					</div>
+
+					<div class="coupon" data-name="">
+						<h3 class="coupon__title">折價碼</h3>
+						<div class="coupon__content">
+							<h4 class="coupon__have hidden">
+								You have a coupon <em>me15</em> for <em>15%</em> off available for your first order.
+							</h4>
+							<div class="coupon__wrap">
+								<input type="text" class="coupon__input" value="">
+								<input type="hidden" class="coupon_input" name="discount" value="" placeholder="點擊輸入折價碼">
+								<button class="coupon__button trans" type="button">兌換</button>
+							</div>
+							<div class="coupon__msg" style=""></div>
+						</div>
+					</div>
+					<div class="order-view mt30">
+						<h3 class="order-view__title">
+							<font style="vertical-align: inherit;">
+								<font style="vertical-align: inherit;">訂單預覽</font>
+							</font>
+						</h3>
+						<div class="order-view__list">
+							<table class="cart-list" width="100%">
+								<tbody>
+									<tr>
+										<th width="420">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">所有商品</font>
+											</font>
+										</th>
+										<th>
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">單價</font>
+											</font>
+										</th>
+										<th>
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">數量</font>
+											</font>
+										</th>
+										<th>
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">價格</font>
+											</font>
+										</th>
+									</tr>
+								</tbody>
+								<tbody>
+									{volist name="shop_car" id="vo"}
+									<tr>
+										<td>
+											<div class="cart-item__pic pr l" cartinfo="{&quot;id&quot;:&quot;7409570&quot;,&quot;sku&quot;:&quot;MY18102902&quot;,&quot;size&quot;:&quot;Girl-80&quot;,&quot;color&quot;:&quot;red&quot;}"><a
+												 href="javascript:;"><img src="{$vo.img}"
+													 alt=""></a>
+<!--												<div class="countdown"><i class="iconfont icon-clock"></i><span class="timer" endtime="2019-12-05 15:59:59"><span-->
+<!--														 class="day_count ">-->
+<!--															<font style="vertical-align: inherit;">-->
+<!--																<font style="vertical-align: inherit;">3</font>-->
+<!--															</font>-->
+<!--														</span><span class="day">-->
+<!--															<font style="vertical-align: inherit;">-->
+<!--																<font style="vertical-align: inherit;">天</font>-->
+<!--															</font>-->
+<!--														</span><span class="day_seconds ">-->
+<!--															<font style="vertical-align: inherit;">-->
+<!--																<font style="vertical-align: inherit;">01</font>-->
+<!--															</font><span></span>-->
+<!--															<font style="vertical-align: inherit;">-->
+<!--																<font style="vertical-align: inherit;">：</font>-->
+<!--															</font><span></span>-->
+<!--															<font style="vertical-align: inherit;">-->
+<!--																<font style="vertical-align: inherit;">39:25</font>-->
+<!--															</font>-->
+<!--														</span></span>-->
+<!--												</div>-->
+											</div>
+											<div class="cart-item__info"><a href="javascript:;">
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">{$vo.order.taocan}</font>
+													</font>
+												</a>
+												<p>顏色:
+
+													{volist name="vo.order.color" id="v"}
+													{$v}
+													{/volist}
+
+													{volist name="vo.order.size" id="v" offset="0" length="1"}
+													{if $v != ''}
+													<br>尺寸:
+													{/if}
+													{/volist}
+													{volist name="vo.order.size" id="v"}
+
+
+													{if $v != ''}
+
+
+													{$v}
+
+													{/if}
+													{/volist}
+												</p>
+<!--												<p class="mt10"><span class="cart-tag_flash">-->
+<!--														<font style="vertical-align: inherit;">-->
+<!--															<font style="vertical-align: inherit;">闪购</font>-->
+<!--														</font>-->
+<!--													</span></p>-->
+											</div>
+										</td>
+										<td>
+											<div style="position:relative; top: 40px;">
+												<p class="font-red lang-price" data-price="{$vo.order.sell_price}">
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">NT $ {$vo.order.sell_price}</font>
+													</font>
+												</p>
+												<p class="cart-maiket-price lang-price" data-price="{$vo.order.market_price}">
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">NT $ {$vo.order.market_price}</font>
+													</font>
+												</p>
+											</div>
+										</td>
+										<td>
+											<font style="vertical-align: inherit;position:relative; top: 40px;">
+												<font style="vertical-align: inherit;">{$vo.order.num}个</font>
+											</font>
+										</td>
+										<td>
+											<span class="font-red lang-price" data-price="12.70" style="position:relative; top: 40px;">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">NT $ {:intval($vo.order.sell_price)*intval($vo.order.num)}
+													</font>
+												</font>
+											</span>
+										</td>
+									</tr>
+									{/volist}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="aside-total">
+					<div class="checkout-order-wrap fix">
+						<h3>訂單摘要</h3>
+						<div class="checkout-order asideBox">
+							<p><span>總價:</span><b class="sub-total font-red lang-price" data-price="{$data.total_sell_price}">NT＄<font class="sub_price">{$data.total_sell_price}</font></b></p>
+							<p><span>滿減優惠:</span>
+								<strong>
+									<font style="vertical-align: inherit;">
+										<font style="vertical-align: inherit;font-size:12px;">NT＄{$data.total_sell_price>=2899?500:$data.total_sell_price>=1899&&$data.total_sell_price<2899?200:0}{if $data.total_sell_price<1899}(再買NT＄{$data.total_sell_price-1899|abs}可減NT＄200){elseif $data.total_sell_price<2899&&$data.total_sell_price>=1899 /}(再買NT＄{$data.total_sell_price-2899|abs}可減NT＄500){/if}</font>
+									</font>
+								</strong>
+<!--								<b class="grand-total lang-price" data-price="0">NT＄0</b>-->
+							</p>
+
+
+							<p><span>折扣碼減免:</span><b class="shipping-amount font-red lang-price" data-price="0">NT＄<span id="cost_price" style="float: right;">0</span></b></p>
+							<p><span>運費:</span>
+								<strong>
+									<font style="vertical-align: inherit;">
+										<font style="vertical-align: inherit;">滿NT＄699免運費</font>
+									</font>
+								</strong>
+								<b class="grand-total lang-price" data-price="100">NT＄<font class="freight">{$data.total_sell_price>=699?0:100}</font></b>
+							</p>
+							<p><span>最終應付:</span><b class="grand-total lang-price" data-price="{$data.total_sell_price+50}">NT＄<font class="final_price" id="final_price">{$data.total_sell_price<699?$data.total_sell_price+100:($data.total_sell_price<1899?$data.total_sell_price:($data.total_sell_price<2899?$data.total_sell_price-200:$data.total_sell_price-500))}</font></b></p>
+							<div class="checkout-order__btn">
+
+								<input type="hidden" name="payable_amount" value="{$data.total_sell_price<699?$data.total_sell_price+100:($data.total_sell_price<1899?$data.total_sell_price:($data.total_sell_price<2899?$data.total_sell_price-200:$data.total_sell_price-500))}">
+								<input type="hidden" name="payable_costall" value="{$data.total_cost_price}">
+								<button class="btn btn-purple btn-checkout btn-address-submit" type="submit">
+									確認下單
+								</button>
+							</div>
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+			</form>
+		</div>
+
+
+
+	<!-- 公用底部 -->
+	{include file="public/footer" /}
+
+
+		<script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
+		<script src="__PUBLIC__/static/pc1/js/browser-polyfill.min.js"></script>
+		<script src="__PUBLIC__/static/pc1/js/browser.min.js"></script>
+		<script src="__JS__/roc_qj.js"></script>
+		<script src="__JS__/roc_711.js"></script>
+		<script src="__PUBLIC__/static/pc1/js/common.js" type="text/babel"></script>
+		<script src="__PUBLIC__/static/pc1/js/address.js" type="text/babel"></script>
+	<script src="https://www.layuicdn.com/layer-v3.1.1/layer.js"></script>
+	<script>
+		// var sub_price = Number($('.sub_price').html());
+		// if(sub_price >= 850){
+		// 	$('.freight').html(0);
+		// 	$('.final_price').html(sub_price);
+		// }
+		// $('input[name="payable_amount"]').val($('.final_price').html());
+	</script>
+
+	<script>
+		$('.coupon__button').click(function(){
+			var code = $('.coupon__input').val();
+			// layer.msg('暫時沒有此折價碼哦～',{time:1000,icon:5})
+			layer.load();
+			$.ajax({
+				url:'get_discount_code',
+				data:{code:code},
+
+				success: function(data){
+					layer.close(layer.index);
+
+					if(data.code == 200){
+						var discount = data.data.cost_price;
+						$('.coupon_input').val(discount);
+						if(discount == "reduce_50"){
+							var msg = '50代金券';
+							layer.msg(msg+'兌換成功,請勿離開此頁面,否則折價碼失效～',{time:4000,icon:6});
+							var cost_price =  50;
+							var final_price = parseInt($('#final_price').html());
+							var payable_amount = final_price - cost_price;
+							$('#cost_price').html(cost_price);
+							$('.final_price').html(payable_amount);
+							$('input[name="payable_amount"]').val(payable_amount);
+
+						}else if(discount == "reduce_100"){
+							var msg = '100代金券';
+							layer.msg(msg+'兌換成功,請勿離開此頁面,否則折價碼失效～',{time:4000,icon:6});
+							cost_price =  100;
+							var final_price = parseInt($('#final_price').html());
+							var payable_amount = final_price - cost_price;
+							$('#cost_price').html(cost_price);
+							$('.final_price').html(payable_amount);
+							$('input[name="payable_amount"]').val(payable_amount);
+						}else if(discount == "reduce_150"){
+							var msg = '150代金券';
+							layer.msg(msg+'兌換成功,請勿離開此頁面,否則折價碼失效～',{time:4000,icon:6});
+							cost_price =  150;
+							var final_price = parseInt($('#final_price').html());
+							var payable_amount = final_price - cost_price;
+							$('#cost_price').html(cost_price);
+							$('.final_price').html(payable_amount);
+							$('input[name="payable_amount"]').val(payable_amount);
+						}else if(discount == "multiply_70"){
+							var msg = '7折代金券';
+							layer.msg(msg+'兌換成功,請勿離開此頁面,否則折價碼失效～',{time:4000,icon:6});
+							var final_price = parseInt($('#final_price').html());
+							cost_price = parseInt(final_price*0.3);
+							var payable_amount = final_price - cost_price;
+							$('#cost_price').html(cost_price);
+							$('.final_price').html(payable_amount);
+							$('input[name="payable_amount"]').val(payable_amount);
+						}else if(discount == "multiply_75"){
+							var msg = '7.5折代金券';
+							layer.msg(msg+'兌換成功,請勿離開此頁面,否則折價碼失效～',{time:4000,icon:6});
+							var final_price = parseInt($('#final_price').html());
+							cost_price = parseInt(final_price*0.25);
+
+							var payable_amount = final_price - cost_price;
+							$('#cost_price').html(cost_price);
+							$('.final_price').html(payable_amount);
+							$('input[name="payable_amount"]').val(payable_amount);
+						}else if(discount == "multiply_80"){
+							var msg = '8折代金券';
+							layer.msg(msg+'兌換成功,請勿離開此頁面,否則折價碼失效～',{time:4000,icon:6});
+							var final_price = parseInt($('#final_price').html());
+							cost_price = parseInt(final_price*0.2);
+
+							var payable_amount = final_price - cost_price;
+							$('#cost_price').html(cost_price);
+							$('.final_price').html(payable_amount);
+							$('input[name="payable_amount"]').val(payable_amount);
+						}else if(discount == "multiply_85"){
+							var msg = '8.5折代金券';
+							layer.msg(msg+'兌換成功,請勿離開此頁面,否則折價碼失效～',{time:4000,icon:6});
+							var final_price = parseInt($('#final_price').html());
+							cost_price = parseInt(final_price*0.15);
+
+							var payable_amount = final_price - cost_price;
+							$('#cost_price').html(cost_price);
+							$('.final_price').html(payable_amount);
+							$('input[name="payable_amount"]').val(payable_amount);
+						}
+
+
+					}else{
+						layer.msg('暫時沒有這個折價碼哦, 趕緊聯繫客服申請吧～',{time:2000,icon:5});
+					}
+
+				},
+				error: function(data){
+					layer.close(layer.index);
+					layer.msg('暫時沒有這個折價碼哦, 趕緊聯繫客服申請吧～',{time:2000,icon:5});
+				}
+
+			})
+		})
+	</script>
+
+
+
+	</body>
+</html>

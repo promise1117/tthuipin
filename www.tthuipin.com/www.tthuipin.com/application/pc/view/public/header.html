@@ -1,0 +1,256 @@
+<!-- 头部 -->
+<header>
+    <div class="container">
+        <div class="header-top">
+            <div class="header-logo">
+                <a href="/pc_index.html"><img src="__PUBLIC__/static/images/logo.jpg" alt="" style="width:40%;"></a>
+            </div>
+            <form method="post" action="/pc_search">
+            <div class="search-box" style="top:30%;">
+                <input type="text" id="search-input" name="search" maxlength="64" placeholder="請輸入商品名或貨號...">
+                <div class="search-submit">
+                    <button type="submit">
+                    <a href="javascript:;"><img src="__PUBLIC__/static/pc1/img/search.png" alt=""></a>
+                    </button>
+                </div>
+            </div>
+            </form>
+            <div class="header-cart">
+
+
+                {if $shop_car == array()}
+                <!--      空購物車      -->
+                <a href="/pc_sure" rel="nofollow">
+                    <img src="__PUBLIC__/static/pc1/img/cart.png" alt="">
+                    <span class="cart-point">{$shop_car|count}</span>
+                </a>
+                <div class="cart-box hidden" data-name="headCart">
+                    <img src="__PUBLIC__/static/pc1/img/cartEmpty.jpg">
+                    <div class="header-cart__empty tc pt5 pb5" style="font-size: 16px;"><strong>您的購物車是空的</strong></div>
+                </div>
+                {else /}
+                <!-- 购物袋弹窗 -->
+                <a href="/pc_sure" rel="nofollow">
+                    <img src="__PUBLIC__/static/pc1/img/cart.png" alt="">
+                    <span class="cart-point">{$shop_car|count}</span>
+                </a>
+                <div class="cart-box hidden" data-name="headCart" data-type="1">
+
+                    {volist name="shop_car" id="vo"}
+                    <div class="cart-box__product" style="margin-bottom:5px;">
+                        <div class="cart-box__item fix">
+                            <a href="javascript:;"><img class="l" src="{$vo.img}" alt=""></a>
+                            <div class="cart-box__detail">
+                                <h4><a href="" data-name="led">{$vo.name}</a></h4>
+                                <p class="mt5">單價: <span class="lang-price" data-price="{$vo.order.sell_price}">NT${$vo.order.sell_price}</span><br>
+                                顏色:
+
+                                    {volist name="vo.order.color" id="v"}
+                                    {$v}
+                                    {/volist}
+
+                                    {volist name="vo.order.size" id="v" offset="0" length="1"}
+                                    {if $v != ''}
+                                    <br>尺寸:
+                                    {/if}
+                                    {/volist}
+                                    {volist name="vo.order.size" id="v"}
+
+
+                                    {if $v != ''}
+
+
+                                    {$v}
+
+                                    {/if}
+                                    {/volist}
+                                
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    {/volist}
+                    <div class="cart-box__btns fix mt20">
+                        <a class="l btn-express-checkout" href="javascript:;">
+                            <img class="UPTRE_BtnPaypal" src="__PUBLIC__/static/pc1/img/static/btn-paypal.png" width="174">
+                        </a>
+                        <a class="l btn btn-purple" href="/pc_sure">查看購物車</a>
+                    </div>
+
+                </div>
+                {/if}
+                <div class="category-list-arrow hidden"><i></i></div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- 导航 -->
+<nav>
+    <div class="container pr">
+        <ul class="menu">
+            <li class="menu-item"><a href="/pc_index">首頁</a></li>
+            <li class="menu-item"><a class="masked" href="/pc_hot">推薦</a></li>
+            <li class="menu-item"><a class="masked" href="/pc_new">新品</a></li>
+            <li class="menu-item"><a class="masked" href="/pc_special">特賣</a></li>
+            {volist name="catlist" id="vo"}
+            <li class="menu-item"><a href="pc_categorylist?cat_id={$vo.cat_id}&cat_name={$vo.cat_name}&parent_id={$vo.parent_id}">{$vo.cat_name}<i class="menu-item__arrow"></i></a>
+                <div class="menu-item__content" style="top: 40px;">
+                    <ul class="menu-item__sub">
+                        {volist name="$vo.cat_two" id="v"}
+                        <li class="menu-item_so"><a href="pc_categorylist?cat_id={$v.cat_id}&cat_name={$v.cat_name}&parent_id={$v.parent_id}">{$v.cat_name}</a></li>
+                        {/volist}
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-30">2019-08-30</a></li>-->
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-27">2019-08-27</a></li>-->
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-20">2019-08-20</a></li>-->
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-19">2019-08-19</a></li>-->
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-13">2019-08-13</a></li>-->
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-12">2019-08-12</a></li>-->
+                    </ul>
+                    <div class="menu-item__img"><a href="javascript:;"><img class="lazy" src="__PUBLIC__/static/pc1/img/1552044143422.jpg" alt=""></a></div>
+                </div>
+            </li>
+            {/volist}
+            <!--            <li class="menu-item"><a href="">Matching Outfits<i class="menu-item__arrow"></i></a>-->
+            <!--                <div class="menu-item__content" style="top: 40px;">-->
+            <!--                    <ul class="menu-item__sub">-->
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-09-10">2019-09-10</a></li>-->
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-30">2019-08-30</a></li>-->
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-27">2019-08-27</a></li>-->
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-20">2019-08-20</a></li>-->
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-19">2019-08-19</a></li>-->
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-13">2019-08-13</a></li>-->
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-12">2019-08-12</a></li>-->
+            <!--                    </ul>-->
+            <!--                    <div class="menu-item__img"><a href=""><img class="lazy" src="__PUBLIC__/static/pc1/img/1552044143422.jpg" alt=""></a></div>-->
+            <!--                </div>-->
+            <!--            </li>-->
+            <!--            <li class="menu-item"><a href="">Infants&Toddler <i class="menu-item__arrow"></i></a>-->
+            <!--                <div class="menu-item__content" style="top: 40px;">-->
+            <!--                    <ul class="menu-item__sub">-->
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-09-10">2019-09-10</a></li>-->
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-30">2019-08-30</a></li>-->
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-27">2019-08-27</a></li>-->
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-20">2019-08-20</a></li>-->
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-19">2019-08-19</a></li>-->
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-13">2019-08-13</a></li>-->
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-12">2019-08-12</a></li>-->
+            <!--                    </ul>-->
+            <!--                    <div class="menu-item__img"><a href=""><img class="lazy" src="__PUBLIC__/static/pc1/img/1552044143422.jpg" alt=""></a></div>-->
+            <!--                </div>-->
+            <!--            </li>-->
+            <!--            <li class="menu-item"><a href="">Kids <i class="menu-item__arrow"></i></a>-->
+            <!--                <div class="menu-item__content" style="top: 40px;">-->
+            <!--                    <ul class="menu-item__sub">-->
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-09-10">2019-09-10</a></li>-->
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-30">2019-08-30</a></li>-->
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-27">2019-08-27</a></li>-->
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-20">2019-08-20</a></li>-->
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-19">2019-08-19</a></li>-->
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-13">2019-08-13</a></li>-->
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-12">2019-08-12</a></li>-->
+            <!--                    </ul>-->
+            <!--                    <div class="menu-item__img"><a href=""><img class="lazy" src="__PUBLIC__/static/pc1/img/1552044143422.jpg" alt=""></a></div>-->
+            <!--                </div>-->
+            <!--            </li>-->
+            <!--            <li class="menu-item"><a href="">Accessories<i class="menu-item__arrow"></i></a>-->
+            <!--                <div class="menu-item__content" style="top: 40px;">-->
+            <!--                    <ul class="menu-item__sub">-->
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-09-10">2019-09-10</a></li>-->
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-30">2019-08-30</a></li>-->
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-27">2019-08-27</a></li>-->
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-20">2019-08-20</a></li>-->
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-19">2019-08-19</a></li>-->
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-13">2019-08-13</a></li>-->
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-12">2019-08-12</a></li>-->
+            <!--                    </ul>-->
+            <!--                    <div class="menu-item__img"><a href=""><img class="lazy" src="__PUBLIC__/static/pc1/img/1552044143422.jpg" alt=""></a></div>-->
+            <!--                </div>-->
+            <!--            </li>-->
+            <!--            <li class="menu-item" style="margin-right:30px;font-weight:bold;">-->
+            <!--                <a href="" title="Under $9.99" style="color:#ff90cb;">-->
+            <!--                    <span>Under $9.99</span>-->
+            <!--                    <i class="menu-item__arrow"></i>-->
+            <!--                    <img src="__PUBLIC__/static/pc1/img/sale.webp" style="position: absolute;top:11px;right:-22px;height:15px;">-->
+            <!--                </a>-->
+            <!--                <div class="menu-item__content" style="top: 40px;">-->
+            <!--                    <ul class="menu-item__sub">-->
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-09-10">2019-09-10</a></li>-->
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-30">2019-08-30</a></li>-->
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-27">2019-08-27</a></li>-->
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-20">2019-08-20</a></li>-->
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-19">2019-08-19</a></li>-->
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-13">2019-08-13</a></li>-->
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-12">2019-08-12</a></li>-->
+            <!--                    </ul>-->
+            <!--                    <div class="menu-item__img"><a href=""><img class="lazy" src="__PUBLIC__/static/pc1/img/1552044143422.jpg" alt=""></a></div>-->
+            <!--                </div>-->
+            <!--            </li>-->
+            <!--            <li class="menu-item"><a href="">Matching Swimwear </a></li>-->
+
+        </ul>
+<!--        <div class="header-cart">-->
+
+
+<!--            {if $shop_car == array()}-->
+<!--            &lt;!&ndash;      空購物車      &ndash;&gt;-->
+<!--            <a href="/pc_sure" rel="nofollow">-->
+<!--                <img src="__PUBLIC__/static/pc1/img/cart.png" alt="">-->
+<!--                <span class="cart-point">{$shop_car|count}</span>-->
+<!--            </a>-->
+<!--            <div class="cart-box hidden" data-name="headCart">-->
+<!--                <img src="__PUBLIC__/static/pc1/img/cartEmpty.jpg">-->
+<!--                <div class="header-cart__empty tc pt5 pb5" style="font-size: 16px;"><strong>Your Shopping Bag is Empty</strong></div>-->
+<!--            </div>-->
+<!--            {else /}-->
+<!--            &lt;!&ndash; 购物袋弹窗 &ndash;&gt;-->
+<!--            <a href="/pc_sure" rel="nofollow">-->
+<!--                <img src="__PUBLIC__/static/pc1/img/cart.png" alt="">-->
+<!--                <span class="cart-point">{$shop_car|count}</span>-->
+<!--            </a>-->
+<!--            <div class="cart-box hidden" data-name="headCart" data-type="1">-->
+
+<!--                {volist name="shop_car" id="vo"}-->
+<!--                <div class="cart-box__product">-->
+<!--                    <div class="cart-box__item fix">-->
+<!--                        <a href=""><img class="l" src="{$vo.img}" alt=""></a>-->
+<!--                        <div class="cart-box__detail">-->
+<!--                            <h4><a href="" data-name="led">{$vo.order.taocan}</a></h4>-->
+<!--                            <p class="mt5">單價: <span class="lang-price" data-price="{$vo.order.sell_price}">NT${$vo.order.sell_price}</span><br>-->
+<!--                                顏色:-->
+<!--                                <span>-->
+<!--                                    {volist name="vo.order.color" id="v" offset="0" length="1"}-->
+<!--                                    {$v}-->
+<!--                                    {/volist}-->
+<!--                                </span><br>-->
+<!--                                尺寸:-->
+<!--                                <span>-->
+<!--                                    {volist name="vo.order.size" id="v" offset="0" length="1"}-->
+<!--                                    {$v}-->
+<!--                                    {/volist}-->
+<!--                                </span><br></p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                {/volist}-->
+<!--                <div class="cart-box__btns fix mt20">-->
+<!--                    <a class="l btn-express-checkout" href="">-->
+<!--                        <img src="//sources.aopcdn.com/www/prod/pr/static/v1573787728270/resources-pc/images/btn-paypal.png" width="174">-->
+<!--                    </a>-->
+<!--                    <a class="l btn btn-purple" href="/pc_sure">查看購物車</a>-->
+<!--                </div>-->
+
+<!--            </div>-->
+<!--            {/if}-->
+<!--            <div class="category-list-arrow hidden"><i></i></div>-->
+<!--        </div>-->
+    </div>
+</nav>
+<!--请将以下码嵌入到您网页源代码的最后面，通常是</body></HTML>之后,这样在服务器升级维护的时候也不会影响您的网页打开呈现速度。-->
+<!--<script language=javascript>-->
+<!--    &lt;!&ndash;-->
+<!--    var LiveAutoInvite0='您好，来自%IP%的朋友';-->
+<!--    var LiveAutoInvite1='来自首页的对话';-->
+<!--    var LiveAutoInvite2='网站商务通 主要功能：<br>1、主动邀请<br>2、即时沟通<br>3、查看即时访问动态<br>4、访问轨迹跟踪<br>5、内部对话<br>6、不安装任何插件也实现双向文件传输<br><br><b>如果您有任何问题请接受此邀请以开始即时沟通</b>';-->
+<!--    //&ndash;&gt;-->
+<!--</script>-->
+<!--<script language="javascript" src="https://dvt.zoosnet.net/JS/LsJS.aspx?siteid=DVT75903618&float=1&lng=cn"></script>-->

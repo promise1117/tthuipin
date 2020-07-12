@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=yes,email=yes" name="format-detection">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+    <!-- <script src="__JS__/flexible.js"></script> -->
+    <script src="__JS__/rem.js"></script>
+    <title>確認下單</title>
+    <link rel="stylesheet" type="text/css" href="__PLUGIN__/swiper/dist/css/swiper.css">
+    <link rel="stylesheet" href="__CSS__/base.css">
+    <link rel="stylesheet" href="__CSS__/leo.css">
+</head>
+<body class="gray">
+  <div class="container">
+
+<div class="nav-bar border0">
+    <div class="left-nav single2">
+        <a class="menu" id="menu-btn"></a>
+        <!-- <a class="logo"></a> -->
+    </div>
+    <div class="nav-progress">
+        <ul>
+            <li class="active"><i>1</i></li>
+            <li></li>
+            <li><i>2</i></li>
+            <li></li>
+            <li><i>3</i></li>
+        </ul>
+        <ul>
+            <li class="active"><i>確認商品</i></li>
+            <li><i>填寫付款資料</i></li>
+            <li><i>訂購完成</i></li>
+        </ul>
+    </div>
+    <div class="right-nav single">
+        <a class="service"></a>
+    </div>
+</div>
+
+<!-- 购物车空样式 -->
+<div class="result-empty whitebg" style="display: none;">
+    <img class="empty" src="__IMG__/empty2.png" alt="" />
+    <span class="empty-txt">您還沒添加任何商品呦</span>
+    <a class="more-btn" href="##">去逛逛</a>
+</div>
+<!-- 购物车空样式 -->
+
+<div class="noti-bar">
+    <a href="01-index.html" class="toHome">
+        <span>還差￥100免運費</span>
+        <span>去凑單 ></span>
+    </a>
+</div>
+
+<div class="cart-container">
+    <div class="cart-items">
+        <ul class="cart-list">
+            <li class="list-item">
+                <div class="item-box">
+                    <div class="item-info">
+                        <input class="check-orignal" name="check-btn" id="check-btn" type="checkbox" checked style="display: none;">
+                        <label for="check-btn" class="check-box"></label>
+                        <a href="#">
+                            <img class="cart-img" src="__IMG__/pro1.jpg" alt="" />
+                        </a>
+                        <div class="cart-info">
+                            <div class="cart-title">
+                                <div class="cart-tag">
+                                    <span>限時</span>
+                                </div>
+                                时尚潮流大码羊绒两件套
+                            </div>
+                            <div class="cart-tag2">S / 灰色</div>
+                            <div class="cart-price">
+										<span class="price1">
+											299
+											<span class="original-price">￥359</span>
+										</span>
+                                <div class="cart-operate">
+                                    <img class="delete-icon" src="__IMG__/del.png" />
+                                    <div class="numbox">
+                                        <button class="numbox1" id="minus" onclick="sub()">-</button>
+                                        <input class="numbox2" type="number" value="1"  id="txt">
+                                        <button class="numbox3" id="plus" onclick="add()">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="bottom-cart">
+    <div class="selectAll" id="as">
+        <input class="check-orignal" name="check-btn-all" id="check-btn-all" type="checkbox" checked style="display: none;">
+        <label for="check-btn-all" class="check-box" style="display: inline-block;vertical-align: middle;" οnclick="my()"></label>
+        全選
+    </div>
+    <div class="info">
+        <span><i>￥</i>299</span>
+        <span>活動優惠：￥60</span>
+    </div>
+    <button id="buyNow" class="btn-sure">
+				<!--<span class="time-date">-->
+					<!--<span id="minutes"></span>：-->
+					<!--<span id="seconds"></span>-->
+				<!--</span>-->
+        確認下單
+    </button>
+</div>
+<div class="bottom-bar  gray50">
+    <a class="home" href="/">首頁</a>
+    <a class="sort" href="/class">分類</a>
+    <a class="purch on" href="/shopcar">
+        購物車
+        <!--<label class="num">1</label>-->
+    </a>
+    <a class="mine" href="/myself">我的</a>
+</div>
+
+
+<!-- 分类弹出层 -->
+{include file="public/menucat" /}
+
+
+</div>
+<!-- 分类弹出层 -->
+<script src="__PLUGIN__/jquery/jquery-3.2.1.min.js"></script>
+<script src="__PLUGIN__/swiper/dist/js/swiper.js"></script>
+<script src="__JS__/slide.js"></script>
+<script src="__JS__/time.js"></script>
+<script src="__JS__/base.js"></script>
+<script>
+    // 弹出层打开与关闭
+    var modal2 = document.getElementById("menubox");
+    // var modal4 = document.getElementById("sharebox");
+    var btn3 = document.getElementById("close2");
+    var btn4 = document.getElementById("menu-btn");
+    // var btn7 = document.getElementById("share-btn");
+    // var btn8 = document.getElementById("share-close");
+    btn3.onclick = function() {
+        modal2.style.display = "none";
+    }
+    btn4.onclick = function() {
+        modal2.style.display = "block";
+    }
+    // btn7.onclick = function() {
+    // 	modal4.style.display = "block";
+    // }
+    // btn8.onclick = function() {
+    // 	modal4.style.display = "none";
+    // }
+
+</script>
+<script>
+    // 全选/取消全选
+    $('input[name="check-btn-all"]').on("click",function(){
+        if($(this).is(':checked')){
+            $('input[name="check-btn"]').each(function(){
+                $(this).prop("checked",true);
+            });
+        }else{
+            $('input[name="check-btn"]').each(function(){
+                $(this).prop("checked",false);
+            });
+        }
+    });
+
+</script>
+<script>
+    // 数量框数值加减
+    function add(){
+        var txt=document.getElementById("txt");
+        var a=txt.value;
+        a++;
+        txt.value=a;
+    }
+    function sub(){
+        var txt=document.getElementById("txt");
+        var a=txt.value;
+        if(a>1){
+            a--;
+            txt.value=a;
+        }else{
+            txt.value=1;
+        }
+
+    }
+</script>
+<script>
+    // 倒计时
+    var	day = document.getElementById('day');
+    var	hours = document.getElementById('hours');
+    var	minutes = document.getElementById('minutes');
+    var seconds = document.getElementById('seconds');
+    // 日 时 分 秒的dom对象
+    countDownTime.init('2019/11/03 12:00:00', day, hours, minutes, seconds);
+    countDownTime.start();
+</script>
+<script>
+    //分类选项卡切换
+    $('.nav-box .levelA li').on('click', function() {
+        var index = $(this).index();
+        $(this).addClass('active').siblings().removeClass('active');
+        $('.nav-box .levelB').eq(index).addClass('on').siblings('.levelB').removeClass('on')
+    });
+</script>
+</body>
+</html>

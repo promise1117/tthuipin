@@ -1,0 +1,1966 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+
+    <meta name="renderer" content="webkit">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>開心樂購</title>
+
+
+
+    <!--    <link rel="shortcut icon" href="__PUBLIC__/static/pc/images/favicon.png" type="image/x-icon">-->
+
+    <link rel="stylesheet" href="__PUBLIC__/static/pc1/css/iconfont.css">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/Swiper/4.5.1/css/swiper.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="__MOBILE2__/lib/swiper.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/pc1/css/common.css" />
+
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/pc1/css/prudects.css" />
+
+    <script type="text/javascript">
+
+        var sUserAgent = navigator.userAgent;
+
+        if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(sUserAgent)){
+
+
+
+            var href = window.location.protocol+'//'+window.location.host+'/goodsinfo'+window.location.search;
+
+
+
+            window.location.href=href;
+
+        }
+
+    </script>
+
+
+
+</head>
+
+<body>
+
+<!-- 公用頭部 -->
+
+
+
+
+{include file="public/header" /}
+
+
+
+<!-- 面包屑导航 -->
+
+<!--<div class="wrap-box">-->
+
+<!--    <div class="container">-->
+
+<!--        <ul class="breadcrumb fix">-->
+
+<!--            <li><a href="">-->
+
+<!--                <font style="vertical-align: inherit;">-->
+
+<!--                    <font style="vertical-align: inherit;">家</font>-->
+
+<!--                </font>-->
+
+<!--            </a></li>-->
+
+<!--            <li><a href="">-->
+
+<!--                <font style="vertical-align: inherit;">-->
+
+<!--                    <font style="vertical-align: inherit;">配套服装</font>-->
+
+<!--                </font>-->
+
+<!--            </a></li>-->
+
+<!--            <li><a href="">-->
+
+<!--                <font style="vertical-align: inherit;">-->
+
+<!--                    <font style="vertical-align: inherit;">妈妈和我</font>-->
+
+<!--                </font>-->
+
+<!--            </a></li>-->
+
+<!--            <li>-->
+
+<!--                <font style="vertical-align: inherit;">-->
+
+<!--                    <font style="vertical-align: inherit;">妈妈女孩纯色字母图案搭配上衣</font>-->
+
+<!--                </font>-->
+
+<!--            </li>-->
+
+<!--        </ul>-->
+
+<!--    </div>-->
+
+<!--</div>-->
+
+<!-- 商品详情 -->
+
+<div class="wrap-box "  style="margin-top:50px;">
+
+    <div class="container">
+
+        <div class="goods-detail fix">
+
+            <div class="goods-detail__left">
+
+				
+                <div class="vertical-center-2 detail-img slick-initialized slick-slider slick-vertical" style="display: none;">
+				<button class="slick-prev slick-arrow slick-disabled" aria-label="以前" type="button" aria-disabled="true" >
+
+                    <font style="vertical-align: inherit;">
+
+                        <font style="vertical-align: inherit;">以前</font>
+
+                    </font>
+
+                </button>
+
+                    <div class="slick-list draggable" style="height: 460px;">
+
+                        <div class="slick-track">
+
+
+
+                            <!--
+
+                                   套餐圖片,切換套餐顯示不同套餐圖片
+
+                            -->
+
+                            {volist name="taocan" id="vo"}
+
+
+
+                            <div class="small_img hidden">
+
+
+
+
+
+                                {volist name="vo.goodstc_bind" id="v"}
+                                {volist name="v" id="vv"}
+
+                                <div class="swiper-slide slick-slide slick-current slick-active" data-value="black" data-mid="//pr.aopcdn.com/goods/MY18101003/3254058_0fa652ba85.jpg@!h450-w450"
+
+                                     data-big="//pr.aopcdn.com/goods/MY18101003/3254058_0fa652ba85.jpg@!h900-w900" data-slick-index="0"
+
+                                     aria-hidden="false" tabindex="0" style="width: 105px;">
+
+                                    <img src="{$vv.image|str_replace='http','https',###}">
+
+                                    <span class="active-border"></span>
+
+                                </div>
+
+                                {/volist}
+                                {/volist}
+
+
+
+                            </div>
+
+
+
+
+
+                            {/volist}
+
+
+
+                        </div>
+
+                    </div>
+					<button class="slick-next slick-arrow" aria-label="下一个" type="button" style="display: none;" ria-disabled="false">
+
+                        <font style="vertical-align: inherit;">
+
+                            <font style="vertical-align: inherit;">下一个</font>
+
+                        </font>
+
+                    </button>
+
+                </div>
+
+                <div class="big-img-view">
+
+                    {volist name="taocan" id="vo"}
+
+                    <div class="big_img hidden">
+
+
+
+
+
+                        {volist name="vo.goodstc_bind" id="v" offset="0" length="1"}
+                        {volist name="v" id="vv" offset="0" length="1"}
+
+                        <img class="bigImg" src="{$vv.image|str_replace='http','https',###}"
+
+                             jqimg="//pr.aopcdn.com/goods/MY18101003/3254058_0fa652ba85.jpg@!h900-w900" alt="">
+
+                        {/volist}
+                        {/volist}
+
+
+
+                    </div>
+
+                    {/volist}
+
+                    <div class="sold-lout-layer hidden"><img src="https://ups.aopcdn.com/s1/common/17871/1u773aa6fd0aa2465aa5a10c7028d70e7f.png"
+
+                                                             alt=""></div>
+
+                    <div class="tag__flashsale" style="background-image : url(//pr.aopcdn.com//banner/1516693366458.jpg?ver=15166950)"><span
+
+                            class="tag__val">
+
+									<font style="vertical-align: inherit;">
+
+										<font style="vertical-align: inherit;">0.3</font>
+
+									</font>
+
+								</span></div>
+
+                    <div class="tag-clearance" style="display: none;">
+
+                        <font style="vertical-align: inherit;">
+
+                            <font style="vertical-align: inherit;">清仓</font>
+
+                        </font>
+
+                    </div>
+
+                </div>
+
+                <div class="share-box ">
+
+                    <!-- Go to www.addthis.com/dashboard to customize your tools 定制您的工具-->
+
+                    <div class="addthis_inline_share_toolbox" data-url="https://www.popreal.com/Products/mom-girl-solid-color-letter-pattern-matching-top-24611.html"
+
+                         data-title="Mom Girl Solid Color Letter Pattern Matching Top" data-description="Buy Mom Girl Solid Color Letter Pattern Matching Top online with cheap prices and discover fashion Mommy &amp; Me at popreal.com."
+
+                         style="clear: both;">
+
+                        <div id="atstbx" class="at-resp-share-element at-style-responsive addthis-smartlayers addthis-animated at4-show"
+
+                             aria-labelledby="at-fce4b2fa-7d3c-4e95-8b58-93a4cd186a79" role="region">
+
+                            <div class="at-share-btn-elements">
+
+                                <a href="https://www.facebook.com/開心樂購-116332536481393" target="_top" class="at-share-btn">
+
+                                    <img src="__PUBLIC__/static/pc1/img/fove.png">
+
+                                </a>
+
+                                <a href="https://twitter.com" target="_top" class="at-share-btn" style="position: relative;top: 2px;">
+
+                                    <img src="__PUBLIC__/static/pc1/img/dove.png">
+
+                                </a>
+
+                                <a href="https://www.pinterest.com" target="_top" class="at-share-btn">
+
+                                    <img src="__PUBLIC__/static/pc1/img/eove.png">
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="goods-detail__right">
+
+
+
+                <form id="details-form" name="order" action="/pc_sure?type=symbol" method="post" target="_blank">
+
+                    <input type="hidden" name="goods_no" value="{$info.goods_no}">
+
+                    <input type="hidden" name="img" value="{$info.img}">
+
+
+
+                    <input type="hidden" name="sell_price" value="{$info['sell_price']}">
+
+                    <input type="hidden" name="market_price" value="{$info['market_price']}">
+
+                    <input type="hidden" name="cost_price" value="{$info['market_price']-$info['sell_price']}">
+
+
+
+                    {volist name="taocan" id="vo" offset="0" length='1'}
+
+                    <input type="hidden" name="taocan_id" value="{$vo.id}">
+
+                    {/volist}
+
+
+
+                    <h3 class="goods-name">
+
+                        <font style="vertical-align: inherit;">
+
+                            <font style="vertical-align: inherit;">{$info.name}</font>
+
+                        </font>
+
+                    </h3>
+
+                    <p class="goods-sku">
+
+                        <font style="vertical-align: inherit;">
+
+                            <font style="vertical-align: inherit;">貨號：{$info.goods_no}</font>
+
+                        </font>
+
+                    </p>
+
+                    <div class="title" style="color: #ACACAE;margin-top:1rem;">
+                        <p>{$info.content}</p>
+                    </div>
+
+                    <div class="goods-attr mt15">
+
+                        {volist name="taocan" id="vo"}
+
+                        <div class="goods-price hidden">
+
+                            <span class="price lang-price" data-price="9.52">
+
+										<font style="vertical-align: inherit;">
+
+											NT$<font style="vertical-align: inherit;" class="sell_price">{$vo.goodstc_bind.0.0.sell_price} </font>
+
+										</font>
+
+                            </span>
+
+                            <span class="market-price lang-price" style="" data-price="31.72">
+
+										<font style="vertical-align: inherit;">
+
+											NT$<font style="vertical-align: inherit;" class="market_price">{$vo.goodstc_bind.0.0.market_price}</font>
+
+										</font>
+
+                            </span>
+
+                            <!--Flash Countdown-->
+
+                            <!--                            <div class="countdown"><i class="iconfont icon-clock"></i>&nbsp;-->
+
+                            <!--                                <span class="timer" endtime="2019-12-05 15:59:59"><span class="day_count ">3</span><span class="day">days</span><span-->
+
+                            <!--                                        class="day_seconds ">00<span></span>:<span></span>33:51</span></span>-->
+
+                            <!--                            </div>-->
+
+                        </div>
+
+                        {/volist}
+
+
+                        {if count($taocan) == 1}
+                        <div class="goods-meal mt20 hidden">
+
+                            <h4 class="goods-meal__title">
+
+                                <font style="vertical-align: inherit;">
+
+                                    <font style="vertical-align: inherit;">套餐选择：</font>
+
+                                </font>
+
+                            </h4>
+
+                            <div class="goods-meal__list mt15 fix" target="meal">
+
+                                {volist name="taocan" id="vo"}
+
+                                <input type="radio" class="hidden" name="taocan" value="{$vo['taocan']}" id="taocan{$vo.id}">
+
+                                <label for="taocan{$vo.id}" data-key="{$key}" class="option1 option-tab" sell-price="{$vo.goodstc_bind.0.0.sell_price}" market-price="{$vo.goodstc_bind.0.0.market_price}" cost-price="{$vo.goodstc_bind.0.0.market_price - $vo.goodstc_bind.0.0.sell_price}" taocan-id="{$vo.id}">{$vo['taocan']}</label>
+
+                                {/volist}
+
+                                <!--                                <span data-value="1">套餐1</span>-->
+
+                                <!--                                <span data-value="2">套餐2</span>-->
+
+                                <!--                                <span data-value="3">套餐3</span>-->
+
+                            </div>
+
+                        </div>
+                        {else/}
+                        <div class="goods-meal mt20">
+
+                            <h4 class="goods-meal__title">
+
+                                <font style="vertical-align: inherit;">
+
+                                    <font style="vertical-align: inherit;">套餐选择：</font>
+
+                                </font>
+
+                            </h4>
+
+                            <div class="goods-meal__list mt15 fix" target="meal">
+
+                                {volist name="taocan" id="vo"}
+
+                                <input type="radio" class="hidden" name="taocan" value="{$vo['taocan']}" id="taocan{$vo.id}">
+
+                                <label for="taocan{$vo.id}" data-key="{$key}" class="option1 option-tab" sell-price="{$vo.goodstc_bind.0.0.sell_price}" market-price="{$vo.goodstc_bind.0.0.market_price}" cost-price="{$vo.goodstc_bind.0.0.market_price - $vo.goodstc_bind.0.0.sell_price}" taocan-id="{$vo.id}">{$vo['taocan']}</label>
+
+                                {/volist}
+
+                                <!--                                <span data-value="1">套餐1</span>-->
+
+                                <!--                                <span data-value="2">套餐2</span>-->
+
+                                <!--                                <span data-value="3">套餐3</span>-->
+
+                            </div>
+
+                        </div>
+                        {/if}
+
+
+
+                        <!--          为了满足每个套餐下面对应产品数量,所以针对每个套餐做处理    套餐1          -->
+                        {volist name="taocan" id="vo" offset="0" length="1"}
+
+
+
+                        <!--    不同的套餐對應不同的顏色尺寸     -->
+
+                        <div class="taocan hidden">
+
+
+
+                            {volist name="vo.goodstc_bind" key="k" id="v"}
+
+                            <div class="specifications">
+                                <div class="goods-color mt20">
+
+                                    <h4 class="goods-color__title">
+
+                                        <font style="vertical-align: inherit;">
+                                            {volist name="v" id="co" offset="0" length="1"}
+                                            <font style="vertical-align: inherit;">{$co.attribute_name}：</font>
+                                            {/volist}
+                                        </font><span data-value="color">
+
+                                                    <font style="vertical-align: inherit;">
+
+                                                        <font class="color" style="vertical-align: inherit;">{$v.0.color}</font>
+
+                                                    </font>
+
+                                                </span>
+
+
+                                    </h4>
+
+                                    <div class="goods-color-radio">
+
+
+
+                                        {volist name="v" id="co"}
+
+                                        <input type="radio" class="hidden" name="color[{$k}]" value="{$co.color}_{$co.id}" data-color="{$co.image}" id="color_{$co.id}_{$key}">
+
+                                        {/volist}
+
+                                    </div>
+
+
+
+                                    <div class="goods-color__list mt15 fix" target="color">
+
+
+
+
+                                        {volist name="v" id="co"}
+
+                                        <!--                                <div class="goods-color-item">-->
+
+                                        <label for="color_{$co.id}_{$key}" sell-price="{$co.sell_price}" market-price="{$co.market_price}" cost-price="{$co.market_price - $co.sell_price}" class="option1 option-tab1" key="{$key}">{$co.color}</label>
+
+                                        <!--                                </div>-->
+
+
+
+                                        {/volist}
+
+                                    </div>
+
+                                </div>
+
+                                <!--            一种颜色对应一种尺寸  遍历尺寸                 -->
+                                {volist name="v" id="co"}
+                                {if $co.size!=""}
+
+                                {php}
+
+                                $sizeArr = explode(',',$co['size']);
+                                $size = $sizeArr[0];
+
+                                {/php}
+                                <div class="goods-size mt20">
+
+                                    <h4 class="goods-size__title">
+
+                                        <font style="vertical-align: inherit;">
+
+                                            <font style="vertical-align: inherit;">{$co.sub_attribute_name}：</font>
+
+                                        </font><a class="goods-size__link-sizechart" href="javascript:;">
+
+                                        <font style="vertical-align: inherit;">
+
+                                            <font style="vertical-align: inherit;" class="size">
+
+                                                {$size}
+
+                                            </font>
+
+                                        </font>
+
+                                    </a>
+
+                                    </h4>
+
+                                    <div class="goods-size__list mt15 fix" target="size">
+
+
+                                        {volist name="sizeArr" id="sz"}
+
+
+                                        <input type="radio" class="hidden" name="size[{$co.id}]" value="{$sz}" id="size_{$co.id}_{$key}">
+
+                                        <label for="size_{$co.id}_{$key}" class="option1 option-tab2">{$sz}</label>
+
+                                        {/volist}
+
+                                    </div>
+
+                                </div>
+
+                                {/if}
+
+                                {/volist}
+
+                            </div>
+                            {/volist}
+
+
+
+                        </div>
+
+
+
+                        {/volist}
+
+
+
+                        <!--          为了满足每个套餐下面对应产品数量,所以针对每个套餐做处理    套餐2          -->
+                        {volist name="taocan" id="vo" offset="1" length="1"}
+
+
+
+                        <!--    不同的套餐對應不同的顏色尺寸     -->
+
+                        <div class="taocan hidden">
+
+
+
+                            {volist name="vo.goodstc_bind" key="k" id="v"}
+
+                            <div class="specifications">
+                                <div class="goods-color mt20">
+
+                                    <h4 class="goods-color__title">
+
+                                        <font style="vertical-align: inherit;">
+
+                                            {volist name="v" id="co" offset="0" length="1"}
+                                            <font style="vertical-align: inherit;">{$co.attribute_name}：</font>
+                                            {/volist}
+
+                                        </font><span data-value="color">
+
+                                                    <font style="vertical-align: inherit;">
+
+                                                        <font class="color" style="vertical-align: inherit;">{$v.0.color}</font>
+
+                                                    </font>
+
+                                                </span>
+
+
+                                    </h4>
+
+                                    <div class="goods-color-radio">
+
+
+
+                                        {volist name="v" id="co"}
+
+                                        <input type="radio" class="hidden" name="color[{$k}]" value="{$co.color}_{$co.id}" data-color="{$co.image}" id="color_{$co.id}_{$key}">
+
+                                        {/volist}
+
+                                    </div>
+
+
+
+                                    <div class="goods-color__list mt15 fix" target="color">
+
+
+
+
+                                        {volist name="v" id="co"}
+
+                                        <!--                                <div class="goods-color-item">-->
+
+                                        <label for="color_{$co.id}_{$key}" sell-price="{$co.sell_price}" market-price="{$co.market_price}" cost-price="{$co.market_price - $co.sell_price}" class="option1 option-tab1" key="{$key}">{$co.color}</label>
+
+                                        <!--                                </div>-->
+
+
+
+                                        {/volist}
+
+                                    </div>
+
+                                </div>
+
+                                <!--            一种颜色对应一种尺寸  遍历尺寸                 -->
+                                {volist name="v" id="co"}
+                                {if $co.size!=""}
+
+                                {php}
+
+                                $sizeArr = explode(',',$co['size']);
+                                $size = $sizeArr[0];
+
+                                {/php}
+                                <div class="goods-size mt20">
+
+                                    <h4 class="goods-size__title">
+
+                                        <font style="vertical-align: inherit;">
+
+                                            <font style="vertical-align: inherit;">{$co.sub_attribute_name}：</font>
+
+                                        </font><a class="goods-size__link-sizechart" href="javascript:;">
+
+                                        <font style="vertical-align: inherit;">
+
+                                            <font style="vertical-align: inherit;" class="size">
+
+                                                {$size}
+
+                                            </font>
+
+                                        </font>
+
+                                    </a>
+
+                                    </h4>
+
+                                    <div class="goods-size__list mt15 fix" target="size">
+
+
+                                        {volist name="sizeArr" id="sz"}
+
+
+                                        <input type="radio" class="hidden" name="size[{$co.id}]" value="{$sz}" id="size_{$co.id}_{$key}">
+
+                                        <label for="size_{$co.id}_{$key}" class="option1 option-tab2">{$sz}</label>
+
+                                        {/volist}
+
+                                    </div>
+
+                                </div>
+
+                                {/if}
+
+                                {/volist}
+
+                            </div>
+
+                            {/volist}
+
+
+
+                        </div>
+
+
+
+                        {/volist}
+
+
+                        <!--          为了满足每个套餐下面对应产品数量,所以针对每个套餐做处理    套餐3          -->
+                        {volist name="taocan" id="vo" offset="2" length="1"}
+
+
+
+                        <!--    不同的套餐對應不同的顏色尺寸     -->
+
+                        <div class="taocan hidden">
+
+
+
+                            {volist name="vo.goodstc_bind" key="k" id="v"}
+
+                            <div class="specifications">
+                                <div class="goods-color mt20">
+
+                                    <h4 class="goods-color__title">
+
+                                        <font style="vertical-align: inherit;">
+
+                                            {volist name="v" id="co" offset="0" length="1"}
+                                            <font style="vertical-align: inherit;">{$co.attribute_name}：</font>
+                                            {/volist}
+
+                                        </font><span data-value="color">
+
+                                                        <font style="vertical-align: inherit;">
+
+                                                            <font class="color" style="vertical-align: inherit;">{$v.0.color}</font>
+
+                                                        </font>
+
+                                                    </span>
+
+
+                                    </h4>
+
+                                    <div class="goods-color-radio">
+
+
+
+                                        {volist name="v" id="co"}
+
+                                        <input type="radio" class="hidden" name="color[{$k}]" value="{$co.color}_{$co.id}" data-color="{$co.image}" id="color_{$co.id}_{$key}">
+
+                                        {/volist}
+
+                                    </div>
+
+
+
+                                    <div class="goods-color__list mt15 fix" target="color">
+
+
+
+
+                                        {volist name="v" id="co"}
+
+                                        <!--                                <div class="goods-color-item">-->
+
+                                        <label for="color_{$co.id}_{$key}" sell-price="{$co.sell_price}" market-price="{$co.market_price}" cost-price="{$co.market_price - $co.sell_price}" class="option1 option-tab1" key="{$key}">{$co.color}</label>
+
+                                        <!--                                </div>-->
+
+
+
+                                        {/volist}
+
+                                    </div>
+
+                                </div>
+
+                                <!--            一种颜色对应一种尺寸  遍历尺寸                 -->
+                                {volist name="v" id="co"}
+                                {if $co.size!=""}
+
+                                {php}
+
+                                $sizeArr = explode(',',$co['size']);
+                                $size = $sizeArr[0];
+
+                                {/php}
+                                <div class="goods-size mt20">
+
+                                    <h4 class="goods-size__title">
+
+                                        <font style="vertical-align: inherit;">
+
+                                            <font style="vertical-align: inherit;">{$co.sub_attribute_name}：</font>
+
+                                        </font><a class="goods-size__link-sizechart" href="javascript:;">
+
+                                        <font style="vertical-align: inherit;">
+
+                                            <font style="vertical-align: inherit;" class="size">
+
+                                                {$size}
+
+                                            </font>
+
+                                        </font>
+
+                                    </a>
+
+                                    </h4>
+
+                                    <div class="goods-size__list mt15 fix" target="size">
+
+
+                                        {volist name="sizeArr" id="sz"}
+
+
+                                        <input type="radio" class="hidden" name="size[{$co.id}]" value="{$sz}" id="size_{$co.id}_{$key}">
+
+                                        <label for="size_{$co.id}_{$key}" class="option1 option-tab2">{$sz}</label>
+
+                                        {/volist}
+
+                                    </div>
+
+                                </div>
+
+                                {/if}
+
+                                {/volist}
+                            </div>
+
+
+                            {/volist}
+
+
+
+                        </div>
+
+
+
+                        {/volist}
+
+
+
+
+                        <!--          为了满足每个套餐下面对应产品数量,所以针对每个套餐做处理    套餐4          -->
+                        {volist name="taocan" id="vo" offset="3" length="1"}
+
+
+
+                        <!--    不同的套餐對應不同的顏色尺寸     -->
+
+                        <div class="taocan hidden">
+
+
+
+                            {volist name="vo.goodstc_bind" key="k" id="v"}
+
+                            <div class="specifications">
+                                <div class="goods-color mt20">
+
+                                    <h4 class="goods-color__title">
+
+                                        <font style="vertical-align: inherit;">
+
+                                            {volist name="v" id="co" offset="0" length="1"}
+                                            <font style="vertical-align: inherit;">{$co.attribute_name}：</font>
+                                            {/volist}
+
+                                        </font><span data-value="color">
+
+                                                        <font style="vertical-align: inherit;">
+
+                                                            <font class="color" style="vertical-align: inherit;">{$v.0.color}</font>
+
+                                                        </font>
+
+                                                    </span>
+
+
+                                    </h4>
+
+                                    <div class="goods-color-radio">
+
+
+
+                                        {volist name="v" id="co"}
+
+                                        <input type="radio" class="hidden" name="color[{$k}]" value="{$co.color}_{$co.id}" data-color="{$co.image}" id="color_{$co.id}_{$key}">
+
+                                        {/volist}
+
+                                    </div>
+
+
+
+                                    <div class="goods-color__list mt15 fix" target="color">
+
+
+
+
+                                        {volist name="v" id="co"}
+
+                                        <!--                                <div class="goods-color-item">-->
+
+                                        <label for="color_{$co.id}_{$key}" sell-price="{$co.sell_price}" market-price="{$co.market_price}" cost-price="{$co.market_price - $co.sell_price}" class="option1 option-tab1" key="{$key}">{$co.color}</label>
+
+                                        <!--                                </div>-->
+
+
+
+                                        {/volist}
+
+                                    </div>
+
+                                </div>
+
+                                <!--            一种颜色对应一种尺寸  遍历尺寸                 -->
+                                {volist name="v" id="co"}
+                                {if $co.size!=""}
+
+                                {php}
+
+                                $sizeArr = explode(',',$co['size']);
+                                $size = $sizeArr[0];
+
+                                {/php}
+                                <div class="goods-size mt20">
+
+                                    <h4 class="goods-size__title">
+
+                                        <font style="vertical-align: inherit;">
+
+                                            <font style="vertical-align: inherit;">{$co.sub_attribute_name}：</font>
+
+                                        </font><a class="goods-size__link-sizechart" href="javascript:;">
+
+                                        <font style="vertical-align: inherit;">
+
+                                            <font style="vertical-align: inherit;" class="size">
+
+                                                {$size}
+
+                                            </font>
+
+                                        </font>
+
+                                    </a>
+
+                                    </h4>
+
+                                    <div class="goods-size__list mt15 fix" target="size">
+
+
+                                        {volist name="sizeArr" id="sz"}
+
+
+                                        <input type="radio" class="hidden" name="size[{$co.id}]" value="{$sz}" id="size_{$co.id}_{$key}">
+
+                                        <label for="size_{$co.id}_{$key}" class="option1 option-tab2">{$sz}</label>
+
+                                        {/volist}
+
+                                    </div>
+
+                                </div>
+
+                                {/if}
+
+                                {/volist}
+                            </div>
+
+
+                            {/volist}
+
+
+
+                        </div>
+
+
+
+                        {/volist}
+
+
+
+                        <!--          为了满足每个套餐下面对应产品数量,所以针对每个套餐做处理    套餐5          -->
+                        {volist name="taocan" id="vo" offset="4" length="1"}
+
+
+
+                        <!--    不同的套餐對應不同的顏色尺寸     -->
+
+                        <div class="taocan hidden">
+
+
+
+                            {volist name="vo.goodstc_bind" key="k" id="v"}
+
+                            <div class="specifications">
+                                <div class="goods-color mt20">
+
+                                    <h4 class="goods-color__title">
+
+                                        <font style="vertical-align: inherit;">
+
+                                            {volist name="v" id="co" offset="0" length="1"}
+                                            <font style="vertical-align: inherit;">{$co.attribute_name}：</font>
+                                            {/volist}
+
+                                        </font><span data-value="color">
+
+                                                        <font style="vertical-align: inherit;">
+
+                                                            <font class="color" style="vertical-align: inherit;">{$v.0.color}</font>
+
+                                                        </font>
+
+                                                    </span>
+
+
+                                    </h4>
+
+                                    <div class="goods-color-radio">
+
+
+
+                                        {volist name="v" id="co"}
+
+                                        <input type="radio" class="hidden" name="color[{$k}]" value="{$co.color}_{$co.id}" data-color="{$co.image}" id="color_{$co.id}_{$key}">
+
+                                        {/volist}
+
+                                    </div>
+
+
+
+                                    <div class="goods-color__list mt15 fix" target="color">
+
+
+
+
+                                        {volist name="v" id="co"}
+
+                                        <!--                                <div class="goods-color-item">-->
+
+                                        <label for="color_{$co.id}_{$key}" sell-price="{$co.sell_price}" market-price="{$co.market_price}" cost-price="{$co.market_price - $co.sell_price}" class="option1 option-tab1" key="{$key}">{$co.color}</label>
+
+                                        <!--                                </div>-->
+
+
+
+                                        {/volist}
+
+                                    </div>
+
+                                </div>
+
+                                <!--            一种颜色对应一种尺寸  遍历尺寸                 -->
+                                {volist name="v" id="co"}
+                                {if $co.size!=""}
+
+                                {php}
+
+                                $sizeArr = explode(',',$co['size']);
+                                $size = $sizeArr[0];
+
+                                {/php}
+                                <div class="goods-size mt20">
+
+                                    <h4 class="goods-size__title">
+
+                                        <font style="vertical-align: inherit;">
+
+                                            <font style="vertical-align: inherit;">{$co.sub_attribute_name}：</font>
+
+                                        </font><a class="goods-size__link-sizechart" href="javascript:;">
+
+                                        <font style="vertical-align: inherit;">
+
+                                            <font style="vertical-align: inherit;" class="size">
+
+                                                {$size}
+
+                                            </font>
+
+                                        </font>
+
+                                    </a>
+
+                                    </h4>
+
+                                    <div class="goods-size__list mt15 fix" target="size">
+
+
+                                        {volist name="sizeArr" id="sz"}
+
+
+                                        <input type="radio" class="hidden" name="size[{$co.id}]" value="{$sz}" id="size_{$co.id}_{$key}">
+
+                                        <label for="size_{$co.id}_{$key}" class="option1 option-tab2">{$sz}</label>
+
+                                        {/volist}
+
+                                    </div>
+
+                                </div>
+
+                                {/if}
+
+                                {/volist}
+                            </div>
+
+
+                            {/volist}
+
+
+
+                        </div>
+
+
+
+                        {/volist}
+
+
+
+
+                        <!--             套餐6          -->
+                        {volist name="taocan" id="vo" offset="5" length="1"}
+
+
+
+                        <!--    不同的套餐對應不同的顏色尺寸     -->
+
+                        <div class="taocan hidden">
+
+
+
+                            {volist name="vo.goodstc_bind" key="k" id="v"}
+
+                            <div class="specifications">
+                                <div class="goods-color mt20">
+
+                                    <h4 class="goods-color__title">
+
+                                        <font style="vertical-align: inherit;">
+
+                                            {volist name="v" id="co" offset="0" length="1"}
+                                            <font style="vertical-align: inherit;">{$co.attribute_name}：</font>
+                                            {/volist}
+
+                                        </font><span data-value="color">
+
+                                                        <font style="vertical-align: inherit;">
+
+                                                            <font class="color" style="vertical-align: inherit;">{$v.0.color}</font>
+
+                                                        </font>
+
+                                                    </span>
+
+
+                                    </h4>
+
+                                    <div class="goods-color-radio">
+
+
+
+                                        {volist name="v" id="co"}
+
+                                        <input type="radio" class="hidden" name="color[{$k}]" value="{$co.color}_{$co.id}" data-color="{$co.image}" id="color_{$co.id}_{$key}">
+
+                                        {/volist}
+
+                                    </div>
+
+
+
+                                    <div class="goods-color__list mt15 fix" target="color">
+
+
+
+
+                                        {volist name="v" id="co"}
+
+                                        <!--                                <div class="goods-color-item">-->
+
+                                        <label for="color_{$co.id}_{$key}" sell-price="{$co.sell_price}" market-price="{$co.market_price}" cost-price="{$co.market_price - $co.sell_price}" class="option1 option-tab1" key="{$key}">{$co.color}</label>
+
+                                        <!--                                </div>-->
+
+
+
+                                        {/volist}
+
+                                    </div>
+
+                                </div>
+
+                                <!--            一种颜色对应一种尺寸  遍历尺寸                 -->
+                                {volist name="v" id="co"}
+                                {if $co.size!=""}
+
+                                {php}
+
+                                $sizeArr = explode(',',$co['size']);
+                                $size = $sizeArr[0];
+
+                                {/php}
+                                <div class="goods-size mt20">
+
+                                    <h4 class="goods-size__title">
+
+                                        <font style="vertical-align: inherit;">
+
+                                            <font style="vertical-align: inherit;">{$co.sub_attribute_name}：</font>
+
+                                        </font><a class="goods-size__link-sizechart" href="javascript:;">
+
+                                        <font style="vertical-align: inherit;">
+
+                                            <font style="vertical-align: inherit;" class="size">
+
+                                                {$size}
+
+                                            </font>
+
+                                        </font>
+
+                                    </a>
+
+                                    </h4>
+
+                                    <div class="goods-size__list mt15 fix" target="size">
+
+
+                                        {volist name="sizeArr" id="sz"}
+
+
+                                        <input type="radio" class="hidden" name="size[{$co.id}]" value="{$sz}" id="size_{$co.id}_{$key}">
+
+                                        <label for="size_{$co.id}_{$key}" class="option1 option-tab2">{$sz}</label>
+
+                                        {/volist}
+
+                                    </div>
+
+                                </div>
+
+                                {/if}
+
+                                {/volist}
+                            </div>
+
+
+                            {/volist}
+
+
+
+                        </div>
+
+
+
+                        {/volist}
+
+
+                        <!--             套餐7          -->
+                        {volist name="taocan" id="vo" offset="6" length="1"}
+
+
+
+                        <!--    不同的套餐對應不同的顏色尺寸     -->
+
+                        <div class="taocan hidden">
+
+
+
+                            {volist name="vo.goodstc_bind" key="k" id="v"}
+
+                            <div class="specifications">
+                                <div class="goods-color mt20">
+
+                                    <h4 class="goods-color__title">
+
+                                        <font style="vertical-align: inherit;">
+
+                                            {volist name="v" id="co" offset="0" length="1"}
+                                            <font style="vertical-align: inherit;">{$co.attribute_name}：</font>
+                                            {/volist}
+
+                                        </font><span data-value="color">
+
+                                                        <font style="vertical-align: inherit;">
+
+                                                            <font class="color" style="vertical-align: inherit;">{$v.0.color}</font>
+
+                                                        </font>
+
+                                                    </span>
+
+
+                                    </h4>
+
+                                    <div class="goods-color-radio">
+
+
+
+                                        {volist name="v" id="co"}
+
+                                        <input type="radio" class="hidden" name="color[{$k}]" value="{$co.color}_{$co.id}" data-color="{$co.image}" id="color_{$co.id}_{$key}">
+
+                                        {/volist}
+
+                                    </div>
+
+
+
+                                    <div class="goods-color__list mt15 fix" target="color">
+
+
+
+
+                                        {volist name="v" id="co"}
+
+                                        <!--                                <div class="goods-color-item">-->
+
+                                        <label for="color_{$co.id}_{$key}" sell-price="{$co.sell_price}" market-price="{$co.market_price}" cost-price="{$co.market_price - $co.sell_price}" class="option1 option-tab1" key="{$key}">{$co.color}</label>
+
+                                        <!--                                </div>-->
+
+
+
+                                        {/volist}
+
+                                    </div>
+
+                                </div>
+
+                                <!--            一种颜色对应一种尺寸  遍历尺寸                 -->
+                                {volist name="v" id="co"}
+                                {if $co.size!=""}
+
+                                {php}
+
+                                $sizeArr = explode(',',$co['size']);
+                                $size = $sizeArr[0];
+
+                                {/php}
+                                <div class="goods-size mt20">
+
+                                    <h4 class="goods-size__title">
+
+                                        <font style="vertical-align: inherit;">
+
+                                            <font style="vertical-align: inherit;">{$co.sub_attribute_name}：</font>
+
+                                        </font><a class="goods-size__link-sizechart" href="javascript:;">
+
+                                        <font style="vertical-align: inherit;">
+
+                                            <font style="vertical-align: inherit;" class="size">
+
+                                                {$size}
+
+                                            </font>
+
+                                        </font>
+
+                                    </a>
+
+                                    </h4>
+
+                                    <div class="goods-size__list mt15 fix" target="size">
+
+
+                                        {volist name="sizeArr" id="sz"}
+
+
+                                        <input type="radio" class="hidden" name="size[{$co.id}]" value="{$sz}" id="size_{$co.id}_{$key}">
+
+                                        <label for="size_{$co.id}_{$key}" class="option1 option-tab2">{$sz}</label>
+
+                                        {/volist}
+
+                                    </div>
+
+                                </div>
+
+                                {/if}
+
+                                {/volist}
+                            </div>
+
+
+                            {/volist}
+
+
+
+                        </div>
+
+
+
+                        {/volist}
+
+
+
+                        <!--             套餐8          -->
+                        {volist name="taocan" id="vo" offset="7" length="1"}
+
+
+
+                        <!--    不同的套餐對應不同的顏色尺寸     -->
+
+                        <div class="taocan hidden">
+
+
+
+                            {volist name="vo.goodstc_bind" key="k" id="v"}
+
+                            <div class="specifications">
+                                <div class="goods-color mt20">
+
+                                    <h4 class="goods-color__title">
+
+                                        <font style="vertical-align: inherit;">
+
+                                            {volist name="v" id="co" offset="0" length="1"}
+                                            <font style="vertical-align: inherit;">{$co.attribute_name}：</font>
+                                            {/volist}
+
+                                        </font><span data-value="color">
+
+                                                        <font style="vertical-align: inherit;">
+
+                                                            <font class="color" style="vertical-align: inherit;">{$v.0.color}</font>
+
+                                                        </font>
+
+                                                    </span>
+
+
+                                    </h4>
+
+                                    <div class="goods-color-radio">
+
+
+
+                                        {volist name="v" id="co"}
+
+                                        <input type="radio" class="hidden" name="color[{$k}]" value="{$co.color}_{$co.id}" data-color="{$co.image}" id="color_{$co.id}_{$key}">
+
+                                        {/volist}
+
+                                    </div>
+
+
+
+                                    <div class="goods-color__list mt15 fix" target="color">
+
+
+
+
+                                        {volist name="v" id="co"}
+
+                                        <!--                                <div class="goods-color-item">-->
+
+                                        <label for="color_{$co.id}_{$key}" sell-price="{$co.sell_price}" market-price="{$co.market_price}" cost-price="{$co.market_price - $co.sell_price}" class="option1 option-tab1" key="{$key}">{$co.color}</label>
+
+                                        <!--                                </div>-->
+
+
+
+                                        {/volist}
+
+                                    </div>
+
+                                </div>
+
+                                <!--            一种颜色对应一种尺寸  遍历尺寸                 -->
+                                {volist name="v" id="co"}
+                                {if $co.size!=""}
+
+                                {php}
+
+                                $sizeArr = explode(',',$co['size']);
+                                $size = $sizeArr[0];
+
+                                {/php}
+                                <div class="goods-size mt20">
+
+                                    <h4 class="goods-size__title">
+
+                                        <font style="vertical-align: inherit;">
+
+                                            <font style="vertical-align: inherit;">{$co.sub_attribute_name}：</font>
+
+                                        </font><a class="goods-size__link-sizechart" href="javascript:;">
+
+                                        <font style="vertical-align: inherit;">
+
+                                            <font style="vertical-align: inherit;" class="size">
+
+                                                {$size}
+
+                                            </font>
+
+                                        </font>
+
+                                    </a>
+
+                                    </h4>
+
+                                    <div class="goods-size__list mt15 fix" target="size">
+
+
+                                        {volist name="sizeArr" id="sz"}
+
+
+                                        <input type="radio" class="hidden" name="size[{$co.id}]" value="{$sz}" id="size_{$co.id}_{$key}">
+
+                                        <label for="size_{$co.id}_{$key}" class="option1 option-tab2">{$sz}</label>
+
+                                        {/volist}
+
+                                    </div>
+
+                                </div>
+
+                                {/if}
+
+                                {/volist}
+                            </div>
+
+
+                            {/volist}
+
+
+
+                        </div>
+
+
+
+                        {/volist}
+
+
+
+
+
+
+
+                        <div class="goods-btns pr mt30"><input type="hidden" name="attributes[9]" value="girl-130" data-value="size" id="size-attr"><input
+
+                                type="hidden" name="attributes[8]" value="black" data-value="color" id="color-attr"><input type="hidden" name="id"
+
+                                                                                                                           value="24611" id="goods_id"><input type="hidden" name="goods_sn" value="MY18101003" id="goods_sn">
+
+                            <font style="vertical-align: inherit;">
+
+                                <font style="vertical-align: inherit;">
+
+                                    <input id="UPTRE_AddCart" type="submit" class="btn-addBag submitbtn trans" value="添加到購物車" onclick="AddCart()">
+
+                                    <input id="UPTRE_Buy" type="submit" class="btn-buy submitbtn trans" value="立即购买" onclick="" style="background-color: rgb(231,67,154);">
+
+                                </font>
+
+                                <!-- <a class="goods-add-wish" data-action="add-wishlist" data-sku="MY18101003" href="javascript:;"><i class="iconfont icon-like"></i></a> -->
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="goods-info">
+
+                        <div class="goods-info__tab fix"><a class="active" href="javascript:;">
+                            <font style="vertical-align: inherit;">
+
+                                <font style="vertical-align: inherit;">產品詳細咨詢</font>
+
+                            </font>
+
+
+                        </a><a href="javascript:;">
+
+                            <font style="vertical-align: inherit;">
+
+                                <font style="vertical-align: inherit;">運輸和退貨詳細信息</font>
+
+                            </font>
+
+                        </a><a href="javascript:;">
+
+
+                            <font style="vertical-align: inherit;">
+
+                                <font style="vertical-align: inherit;">商品詳情</font>
+
+                            </font>
+
+                        </a></div>
+
+                        <div class="goods-info__content">
+
+                            <div class="goods-info__item" style="display: block">
+
+                                <table width="100%">
+
+                                    <tbody>
+
+
+                                    <tr>
+
+                                        <td>
+
+                                            <font style="vertical-align: inherit;">
+
+                                                <font style="vertical-align: inherit;">季节:</font>
+
+                                            </font>
+
+                                        </td>
+
+                                        <td>
+
+                                            <font style="vertical-align: inherit;">
+
+                                                <font style="vertical-align: inherit;">秋天，春天，冬天</font>
+
+                                            </font>
+
+                                        </td>
+
+                                    </tr>
+
+                                    </tbody>
+
+                                </table>
+                                <div class="swiper-container" style="">
+                                    <div class="swiper-wrapper">
+                                        {php}
+
+                                        $banner = json_decode($info['ad_img']);
+
+                                        {/php}
+
+                                        {volist name="banner" id="v"}
+                                        <div class="swiper-slide" style="width: 438px;">
+                                            <img alt=" {$info['name']} " src="{$v|str_replace='http','https',###}">
+
+                                        </div>
+                                        {/volist}
+
+                                    </div>
+                                    <div class="swiper-pagination"></div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="goods-info__item">
+
+                                <p>
+
+                                    <font style="vertical-align: inherit;">
+
+                                        <font style="vertical-align: inherit;">全球交付</font>
+
+                                    </font>
+
+                                </p>
+
+                                <p>
+
+                                    <font style="vertical-align: inherit;">
+
+                                        <font style="vertical-align: inherit;">超级储蓄：5-12个工作日；</font>
+
+                                    </font>
+
+                                </p>
+
+                                <p>
+
+                                    <font style="vertical-align: inherit;">
+
+                                        <font style="vertical-align: inherit;">快递：2-8个工作日；</font>
+
+                                    </font>
+
+                                </p>
+
+                                <p>
+
+                                    <font style="vertical-align: inherit;">
+
+                                        <font style="vertical-align: inherit;">付款后通常需要5-7个工作日才能准备运输。</font>
+
+                                    </font>
+
+                                </p>
+
+                            </div>
+
+
+                            <div class="goods-info__item" style="display: none;">
+
+                                <div class="dialog-content__inner">
+
+                                    <div class="dialog-header">
+                                        <h3>
+                                            商品詳情
+                                        </h3>
+                                    </div>
+
+
+                                    {php}
+                                    $goinfo = json_decode($info['iamge_info']);
+                                    {/php}
+                                    <div class="dialog-body">
+                                        {volist name="goinfo" id="vo"}
+                                        <p><img src="{$vo|str_replace='http','https',###}"></p>
+                                        {php}
+                                        file_exists($vo) == true ? "<p><img src='".$vo."'></p>" : '';
+                                        {/php}
+                                        {/volist}
+                                    </div>
+                                    <div class="photobox">
+                                        <div class="dialog-header">
+                                            <h3>
+                                                客戶須知
+                                            </h3>
+                                        </div>
+                                        <div class="notify">
+                                            <p>註：應台灣海關要求，顧客須填寫真實姓名，以便部分海外商品順利過關。</p>
+                                            <p>本產品的實際使用效果根據個人情況決定，不保證每位用戶都能享受到所宣傳的效果。若有疑問請諮詢在線客服或通過電子郵箱聯絡我們，本公司享有最終解釋權。</p>
+
+                                            <dl>
+                                                <dt>•關於發貨方式</dt>
+                                                <dd>支援貨到付款+免運費+質量問題無理由退換貨！收到商品後如有任何疑問請聯繫我們：vip8service@gmail.com.同時，請附上您的姓名和聯繫方式及訂單編號在郵件當中，以便我們能快速的給您及時處理，祝您購物愉快！！！</dd>
+                                            </dl>
+
+                                            <dl>
+                                                <dt>•關於配送時間</dt>
+                                                <dd>下單成功後，我們會按照下單先後順序進行配貨，配貨週期為3個工作日，一般送達時間為7個工作日左右</dd>
+                                            </dl>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <input type="hidden" name="__hash__" value="53fa2b314a6da7bd647f22d80b23adbb_96065f6e20c39dc9580489ed3feeb2c0">
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="container">
+    {if $likegoods !== array()}
+    <h3 class="recommend__title">
+        <font style="vertical-align: inherit;">猜你喜歡</font>
+    </h3>
+    <ul class="list-wrap fix">
+        {volist name="likegoods" id="vo"}
+        <li class="list__item">
+            <div class="list__item-inner"><a class="list_item-img" href="/pc_goodsinfo?goodsid={$vo.id}">
+                <img class="lazy" src="{$vo.img|str_replace='http','https',###}" style="display: block;"></a>
+            </div>
+
+            <div class="list__item-price"><span class="lang-price" data-price="12.70">NT${$vo.sell_price}</span>
+                <div class="list__item-price-old lang-price" data-price="25.40">NT${$vo.market_price}</div>
+                <a class="list-add-wish" data-action="add-wishlist" data-sku="MY18102902" href="javascript:;">
+                    <i class="iconfont icon-like"></i>
+                </a>
+            </div>
+            <div class="list__item-name">
+                <a href="/pc_goodsinfo?goodsid={$vo.id}" title="{$vo.name}">{$vo.name}</a>
+            </div>
+            <div class="tag__flashsale mobile" style="background-image : url(img/fs.webp)">
+                <span class="tag__val">70</span>
+            </div>
+        </li>
+        {/volist}
+    </ul>
+    {/if}
+</div>
+
+<!-- 公用底部 -->
+
+{include file="public/footer" /}
+
+<script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
+
+<script src="__PUBLIC__/static/pc1/js/browser-polyfill.min.js"></script>
+
+<script src="__PUBLIC__/static/pc1/js/browser.min.js"></script>
+
+<script src="__PUBLIC__/static/pc1/js/common.js" type="text/babel"></script>
+
+<script src="__PUBLIC__/static/pc1/js/prudects.js" type="text/babel"></script>
+
+<script src="__MOBILE2__/lib/swiper.min.js"></script>
+
+
+
+<script>
+
+    $(function(){
+
+        var mySwiper = new Swiper ('.swiper-container', {
+            autoplay: {
+                delay: 2000,
+            }, //自动滑动，1秒切换一次
+            // // effect: 'slide', //滑动效果
+            // // touchAngle: 30, //滑动的角度超过30度无效
+            // // 轮播图的方向，也可以是vertical方向
+            direction: 'horizontal',
+            // //环形切换关闭
+            loop: true,
+            effect : 'cube',
+            pagination : '.swiper-pagination',
+            // // 切换的速度
+            // speed: 800, //滑动或者自动换页时的速度
+        })
+    })
+
+
+
+    // 根據請求方式添加購物車或者直接購買傳遞不同的參數
+
+    function AddCart(){
+
+        $('form').attr('action','/pc_sure/addCart');
+
+    }
+
+
+
+    // 默認顯示第一張大圖和小圖和第一個套餐顏色尺寸
+
+    $('.small_img').eq(0).css({'display':'block'});
+
+    $('.big_img').eq(0).addClass('active').css({'display':'block'});
+
+    $('.taocan').eq(0).css({'display':'block'});
+
+    $('.goods-price').eq(0).css({'display':'block'});
+
+
+
+    var data_key = 0;
+
+    // 更換套餐顯示不同的大圖和小圖和套餐顏色尺寸
+
+    $('.goods-meal__list .option1').click(function(){
+
+        data_key = $(this).attr('data-key');
+
+        $('.big_img').eq(data_key).addClass('active').css({'display':'block'}).siblings('.big_img').removeClass('active').css({'display':'none'});
+
+        $('.small_img').eq(data_key).css({'display':'block'}).siblings('.small_img').css({'display':'none'});
+
+        $('.taocan').eq(data_key).css({'display':'block'}).siblings('.taocan').css({'display':'none'});
+
+        $('.goods-price').eq(data_key).css({'display':'block'}).siblings('.goods-price').css({'display':'none'});
+
+
+
+        // 傳遞套餐價格給隱藏input
+
+
+
+        $('input[name="sell_price"]').val($(this).attr('sell-price'));
+
+        $('input[name="market_price"]').val($(this).attr('market-price'));
+
+        $('input[name="cost_price"]').val($(this).attr('cost-price'));
+
+
+        $('.sell_price').html($(this).attr('sell-price'));
+        $('.market_price').html($(this).attr('market-price'));
+
+
+
+
+        var img = $('.big_img.active').find('img').attr('src');
+
+
+
+        $('input[name="img"]').val(img);
+
+    })
+
+
+    // 更换颜色价格改变
+
+    $('.goods-color__list label').click(function(){
+
+        $('input[name="sell_price"]').val($(this).attr('sell-price'));
+
+        $('input[name="market_price"]').val($(this).attr('market-price'));
+
+        $('input[name="cost_price"]').val($(this).attr('cost-price'));
+
+        $('.sell_price').html($(this).attr('sell-price'));
+        $('.market_price').html($(this).attr('market-price'));
+    })
+
+    $('#UPTRE_Buy').click(function(){
+        //console.log($('input:checked'))
+    })
+
+</script>
+
+</body>
+
+</html>
+

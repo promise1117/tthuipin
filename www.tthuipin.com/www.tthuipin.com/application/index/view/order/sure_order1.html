@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=yes,email=yes" name="format-detection">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+    <!-- <script src="__JS__/flexible.js"></script> -->
+    <script src="__JS__/rem.js"></script>
+    <title>開心樂購--確認下單</title>
+    <link rel="stylesheet" type="text/css" href="__PLUGIN__/swiper/dist/css/swiper.css">
+    <link rel="stylesheet" href="__CSS__/base.css">
+    <link rel="stylesheet" href="__CSS__/leo.css">
+
+</head>
+<body class="gray">
+<form action="address.html" method="post">
+  <div class="container">
+
+
+<div class="nav-bar border0">
+    <div class="left-nav single2">
+        <a class="menu" id="menu-btn"></a>
+        <!-- <a class="logo"></a> -->
+    </div>
+    <div class="nav-progress">
+        <ul>
+            <li class="active"><i>1</i></li>
+            <li></li>
+            <li><i>2</i></li>
+            <li></li>
+            <li><i>3</i></li>
+        </ul>
+        <ul>
+            <li class="active"><i>確認商品</i></li>
+            <li><i>填寫付款資料</i></li>
+            <li><i>訂購完成</i></li>
+        </ul>
+    </div>
+    <div class="right-nav single">
+        <a class="service"></a>
+    </div>
+</div>
+
+
+<div class="noti-bar">
+  <a href="/" class="toHome">
+      <span>還差￥100免運費</span>
+      <span>去湊單 ></span>
+  </a>
+</div>
+
+{if $shop_car == array()}
+
+      <!-- 购物车空样式 -->
+      <div class="result-empty whitebg" style="">
+          <img class="empty" src="__IMG__/empty2.png" alt="" />
+          <span class="empty-txt">您還沒添加任何商品呦</span>
+          <a class="more-btn" href="/">去逛逛</a>
+      </div>
+      <!-- 购物车空样式 -->
+      {else /}
+{volist name="shop_car" id="vo"}
+
+
+
+
+<div class="cart-container">
+    <div class="cart-items">
+        <ul class="cart-list">
+            <li class="list-item">
+                <div class="item-box">
+                    <div class="item-info">
+                        <input class="check-orignal" name="check-btn" id="check-btn" type="checkbox" checked style="display: none;">
+                        <label for="check-btn" class="check-box"></label>
+                        <a href="javascript:void(0)">
+                            <img class="cart-img" src="{$vo.img}" alt="" />
+                        </a>
+                        <div class="cart-info">
+                            <div class="cart-title">
+                                <div class="cart-tag">
+                                    <span>限時</span>
+                                </div>
+
+                                {$vo.order.taocan}
+
+                            </div>
+
+                            <div class="cart-tag2">
+                                {volist name="vo.order.color" id="v" offset="0" length="1"}
+                                <span>{$v}</span>
+                                {/volist}/
+                                {volist name="vo.order.size" id="v" offset="0" length="1"}
+                                <span>{$v}</span>
+
+                                {/volist}...
+
+
+                            </div>
+
+                            <div class="cart-price">
+										<div class="price1">
+                      <!-- 单价用作js计算 -->
+                      <span class="single_sell_price" style="display:none;">{$vo.order.sell_price}</span>
+											<span class="single_market_price" style="display:none;">{$vo.order.market_price}</span>
+                      <!-- -->
+											<span class="sell_price">{$vo.order.sell_price}</span>
+
+											<span class="original-price">￥<span class="market_price">{$vo.order.market_price}</span></span>
+                    </div>
+                                <div class="cart-operate">
+                                    <img class="delete-icon" src="__IMG__/del.png" data-number="{$vo.goods_no}"/>
+                                    <div class="numbox">
+                                        <button class="numbox1" type="button">-</button>
+                                        <input class="numbox2" name="num[]" type="number" value="1">
+                                        <button class="numbox3" type="button">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+{/volist}
+      {/if}
+
+<div class="bottom-cart">
+    <div class="selectAll" id="as">
+        <input class="check-orignal" name="check-btn-all" id="check-btn-all" type="checkbox" checked style="display: none;">
+        <label for="check-btn-all" class="check-box" style="display: inline-block;vertical-align: middle;" onclick="my()"></label>
+        全選
+    </div>
+    <div class="info">
+        <span class="total_sell_price"><i>￥</i>299</span>
+        <span class="total_cheap_price">活動優惠：<i>￥</i>60</span>
+    </div>
+
+      <input type="hidden" name="total_sell_price" value="">
+      <input type="hidden" name="total_cheap_price" value="">
+      <button id="buyNow" class="btn-sure" type="submit">
+<!--          <span class="time-date">-->
+<!--            <span id="minutes"></span>：-->
+<!--            <span id="seconds"></span>-->
+<!--          </span>-->
+          確認下單
+      </button>
+
+
+</div>
+
+<!-- <div class="bottom-bar gray50">
+    <a class="home" href="###">首页</a>
+    <a class="sort" href="###">分类</a>
+    <a class="purch on" href="###">
+        购物车
+        <label class="num">{ $shop_car|count }</label>
+    </a>
+    <a class="mine" href="###">我的</a>
+</div> -->
+{include file="public/bottom" /}
+
+
+
+
+<!-- 分类弹出层 -->
+{include file="public/menucat" /}
+  </div>
+  </form>
+<!-- 分类弹出层 -->
+<script src="__PLUGIN__/jquery/jquery-3.2.1.min.js"></script>
+<script src="__PLUGIN__/swiper/dist/js/swiper.js"></script>
+<script src="__JS__/slide.js"></script>
+<script src="__JS__/time.js"></script>
+<script src="__JS__/base.js"></script>
+<script>
+    // 弹出层打开与关闭
+    var modal2 = document.getElementById("menubox");
+    // var modal4 = document.getElementById("sharebox");
+    var btn3 = document.getElementById("close2");
+    var btn4 = document.getElementById("menu-btn");
+    // var btn7 = document.getElementById("share-btn");
+    // var btn8 = document.getElementById("share-close");
+    btn3.onclick = function() {
+        modal2.style.display = "none";
+    }
+    btn4.onclick = function() {
+        modal2.style.display = "block";
+    }
+    // btn7.onclick = function() {
+    // 	modal4.style.display = "block";
+    // }
+    // btn8.onclick = function() {
+    // 	modal4.style.display = "none";
+    // }
+
+</script>
+<script>
+    // css 补充样式
+
+    $('.cart-container').eq(-1).css({marginBottom:'6em'});
+    $('.bottom-cart').css({zIndex:'999'});
+
+    // 全选/取消全选
+    $('input[name="check-btn-all"]').on("click",function(){
+        if($(this).is(':checked')){
+            $('input[name="check-btn"]').each(function(){
+                $(this).prop("checked",true);
+            });
+        }else{
+            $('input[name="check-btn"]').each(function(){
+                $(this).prop("checked",false);
+            });
+        }
+    });
+
+</script>
+
+<script>
+    // 倒计时
+    var	day = document.getElementById('day');
+    var	hours = document.getElementById('hours');
+    var	minutes = document.getElementById('minutes');
+    var seconds = document.getElementById('seconds');
+    // 日 时 分 秒的dom对象
+    countDownTime.init('2019/11/03 12:00:00', day, hours, minutes, seconds);
+    countDownTime.start();
+</script>
+<script type="text/javascript">
+     var minute = "29";
+     var second = 59;
+     setInterval(function() {
+         second--;
+         if(second == 00 && minute == 00) {
+             minute = 29;
+             second = 59;
+        }; //当分钟和秒钟都为00时，重新给值
+        if(second == 00) {
+            second = 59;
+            minute--;
+            if(minute < 10) minute = "0" + minute;
+        }; //当秒钟为00时，秒数重新给值
+        if(second < 10) second = "0" + second;
+        $("#minutes").text(minute);
+        $("#seconds").text(second);
+    }, 1000);
+</script>
+<script>
+    //分类选项卡切换
+    $('.nav-box .levelA li').on('click', function() {
+        var index = $(this).index();
+        $(this).addClass('active').siblings().removeClass('active');
+        $('.nav-box .levelB').eq(index).addClass('on').siblings('.levelB').removeClass('on')
+    });
+</script>
+
+<script type="text/javascript">
+
+  function total_sell_price(){
+    var total_sell_price = 0;
+    $.each($(".sell_price"),function(i,val){
+      total_sell_price = (parseInt($(this).html()) + total_sell_price);
+    });
+
+    $('.total_sell_price').html("<i>￥</i>"+total_sell_price);
+  };
+  function total_cheap_price(){
+    var total_market_price = 0;
+    var total_sell_price = 0;
+    $.each($(".sell_price"),function(i,val){
+      total_sell_price = parseInt($(this).html()) + total_sell_price;
+    })
+    $.each($(".market_price"),function(i,val){
+      total_market_price = parseInt($(this).html()) + total_market_price;
+    })
+
+    var total_cheap_price = (total_market_price - total_sell_price).toFixed(2);
+    $('input[name="total_sell_price"]').val(total_sell_price);
+    $('input[name="total_cheap_price"]').val(total_cheap_price);
+
+    $('.total_cheap_price').html("<i>￥</i>"+total_cheap_price);
+  };
+
+  $(function(){
+
+    // 删除按钮
+    $('.delete-icon').click(function(){
+      var data_number = $(this).attr('data-number');
+
+      if(confirm("确定删除该商品?")){
+ 　      $(this).parents('.cart-container').remove();
+
+         total_sell_price();
+         total_cheap_price();
+
+         $.post('/del',{'data_number':data_number},function(data){
+             // console.log(data);
+           if(data.length == 0){
+               window.location.href = '/sure';
+           }
+         })
+      }
+    })
+
+    // 递减按钮
+    $('.numbox1').click(function(){
+      var num = $(this).next().val();
+      if(num <= 1){
+        $(this).next().val(1);
+        var sell_price = (parseInt($(this).parents('.cart-operate').prev().find('.single_sell_price').html())*1).toFixed(2);
+        var market_price = (parseInt($(this).parents('.cart-operate').prev().find('.single_market_price').html())*1).toFixed(2);
+        $(this).parents('.cart-operate').prev().find('.sell_price').html(sell_price);
+        $(this).parents('.cart-operate').prev().find('.market_price').html(market_price);
+        total_sell_price();
+        total_cheap_price();
+      }else{
+        num--;
+        $(this).next().val(num);
+        var sell_price = (parseInt($(this).parents('.cart-operate').prev().find('.single_sell_price').html())*num).toFixed(2);
+        var market_price = (parseInt($(this).parents('.cart-operate').prev().find('.single_market_price').html())*num).toFixed(2);
+        $(this).parents('.cart-operate').prev().find('.sell_price').html(sell_price);
+        $(this).parents('.cart-operate').prev().find('.market_price').html(market_price);
+        total_sell_price();
+        total_cheap_price();
+      }
+    })
+    // 递增按钮
+    $('.numbox3').click(function(){
+      var num = $(this).prev().val();
+      num++
+      $(this).prev().val(num);
+      var sell_price = (parseInt($(this).parents('.cart-operate').prev().find('.single_sell_price').html())*num).toFixed(2);
+      var market_price = (parseInt($(this).parents('.cart-operate').prev().find('.single_market_price').html())*num).toFixed(2);
+      $(this).parents('.cart-operate').prev().find('.sell_price').html(sell_price);
+      $(this).parents('.cart-operate').prev().find('.market_price').html(market_price);
+      total_sell_price();
+      total_cheap_price();
+    })
+  })
+
+  total_sell_price();
+  total_cheap_price();
+
+
+</script>
+</body>
+</html>

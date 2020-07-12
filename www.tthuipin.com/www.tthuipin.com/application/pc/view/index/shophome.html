@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>home2</title>
+
+
+     <link rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/Swiper/4.5.1/css/swiper.min.css" />
+    <link rel="stylesheet" href="__PUBLIC__/static/pc1/css/shophome.css">
+ 
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     <script src="https://cdn.staticfile.org/Swiper/4.5.1/js/swiper.min.js"></script>
+
+	<script src="__PUBLIC__/static/pc1/js/common.js"></script>
+    <script src="__PUBLIC__/static/pc1/js/shophome.js"></script>
+
+ 	<script type="text/javascript">			
+
+
+
+			var sUserAgent = navigator.userAgent;
+
+
+
+			if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(sUserAgent)){
+
+
+
+				
+
+
+
+				window.location.href="/index";
+
+
+
+			}
+
+
+
+	</script>
+
+
+
+</head>
+
+<body>
+
+ <!-- header -->
+
+<header>
+
+    <div class="container">
+
+        
+
+        <div id="logoArea" class="vanclLogoSearch">
+	    <a href="/pc_index.html" class="header-logo"><img src="__PUBLIC__/static/pc1/img/static/logo.jpg" alt=""></a>
+
+            <div class="vanclSearch fr">
+
+                <div class="searchTab">
+                  <form method="post" action="/pc_search">
+
+                    <div class="search fl">
+
+                        <input type="text" name="search" class="searchText ac_input textBox Enter fl" id="skey" placeholder="請輸入關鍵字" autocomplete="off">
+
+                        <input type="submit" value="" class="searchBtn sousuoBtn btn" id="btnHeaderSearch" onfocus="this.blur()">
+
+                    </div>
+                    </form>
+
+                    <div class="active" id="shoppingCarNone">
+
+                        <p>
+
+                            <a id="shoppingcar_link" href="/pc_sure" class="shopborder track cartab">购物车(<span car_product_total="shoppingCar_product_totalcount">{$shop_car|count}</span>)</a>
+
+                            <s></s>
+
+                        </p>
+
+                        <div class="bottomlines"></div>
+
+                        <div class="BuycarTab shopDropList">
+
+                            <div class="shopnopru">
+
+                                <div class="SCtotalpageno">您的購物車中沒有任何商品</div>
+
+                                <div class="SCtotalpageBottom"></div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="hotWord">
+
+                    <p> 
+
+                        热门搜索：
+
+                        <a name="" class="track" href="pc_search?search=情侶" target="_blank">情侶</a>
+
+                        <a name="" class="track" href="pc_search?search=香水" target="_blank">香水</a>
+
+                        <a name="" class="track" href="pc_search?search=手表" target="_blank">手表</a>
+
+                        <a name="" class="track" href="pc_search?search=十二星座" target="_blank">十二星座</a>
+
+                        <a name="" class="track" href="pc_search?search=玩具" target="_blank">玩具</a>
+
+                        <a name="" class="track" href="pc_search?search=T恤" target="_blank">T恤</a>
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+
+
+<!-- nav -->
+
+
+
+<nav>
+
+    <div class="container pr">
+
+        <ul class="menu">
+
+            <li class="menu-item"><a href="/pc_index">首頁</a><span class="NavLine"></span></li>
+
+            <li class="menu-item"><a class="masked" href="/pc_hot">推薦</a><span class="NavLine"></span></li>
+
+            <li class="menu-item"><a class="masked" href="/pc_new">新品</a><span class="NavLine"></span></li>
+
+            <li class="menu-item"><a class="masked" href="/pc_special">特賣</a><span class="NavLine"></span></li>
+
+                <li class="menu-item"><a href="pc_categorylist?cat_id=18&cat_name=女生衣著&parent_id=0">女生衣著<i class="menu-item__arrow"></i></a><span class="NavLine"></span>
+
+                <div class="menu-item__content" style="top: 40px;">
+
+                    <ul class="menu-item__sub">
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=32&cat_name=洋裝&parent_id=18">洋裝</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=102&cat_name=裙子&parent_id=18">裙子</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=103&cat_name=短褲&parent_id=18">短褲</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=104&cat_name=長褲&parent_id=18">長褲</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=105&cat_name=外套&parent_id=18">外套</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=30&cat_name=針織衫/毛衣&parent_id=18">針織衫/毛衣</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=28&cat_name=帽T/T恤&parent_id=18">帽T/T恤</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=107&cat_name=襯衫&parent_id=18">襯衫</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=109&cat_name=休閒運動服飾&parent_id=18">休閒運動服飾</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=29&cat_name=多件式套裝&parent_id=18">多件式套裝</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=110&cat_name=內睡衣&parent_id=18">內睡衣</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=196&cat_name=上衣類&parent_id=18">上衣類</a></li>
+
+                                                <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-30">2019-08-30</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-27">2019-08-27</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-20">2019-08-20</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-19">2019-08-19</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-13">2019-08-13</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-12">2019-08-12</a></li>-->
+
+                    </ul>
+
+                    <div class="menu-item__img"><a href="javascript:;"><img class="lazy" src="__PUBLIC__/static/pc1/img/1552044143422.jpg" alt=""></a></div>
+
+                </div>
+
+            </li>
+
+                <li class="menu-item"><a href="pc_categorylist?cat_id=58&cat_name=女士潮鞋&parent_id=0">女士潮鞋<i class="menu-item__arrow"></i></a><span class="NavLine"></span>
+
+                <div class="menu-item__content" style="top: 40px;">
+
+                    <ul class="menu-item__sub">
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=62&cat_name=休閒鞋&parent_id=58">休閒鞋</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=68&cat_name=平底鞋&parent_id=58">平底鞋</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=66&cat_name=靴子&parent_id=58">靴子</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=65&cat_name=高跟鞋&parent_id=58">高跟鞋</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=60&cat_name=凉鞋/拖鞋&parent_id=58">凉鞋/拖鞋</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=59&cat_name=懶人鞋 &parent_id=58">懶人鞋 </a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=61&cat_name=運動鞋&parent_id=58">運動鞋</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=63&cat_name=小白鞋&parent_id=58">小白鞋</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=64&cat_name=帆布鞋&parent_id=58">帆布鞋</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=67&cat_name=增高鞋&parent_id=58">增高鞋</a></li>
+
+                                                <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-30">2019-08-30</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-27">2019-08-27</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-20">2019-08-20</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-19">2019-08-19</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-13">2019-08-13</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-12">2019-08-12</a></li>-->
+
+                    </ul>
+
+                    <div class="menu-item__img"><a href="javascript:;"><img class="lazy" src="__PUBLIC__/static/pc1/img/1552044143422.jpg" alt=""></a></div>
+
+                </div>
+
+            </li>
+
+                        <li class="menu-item"><a href="pc_categorylist?cat_id=69&cat_name=女生包包&parent_id=0">女生包包<i class="menu-item__arrow"></i></a><span class="NavLine"></span>
+
+                <div class="menu-item__content" style="top: 40px;">
+
+                    <ul class="menu-item__sub">
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=72&cat_name=雙背包&parent_id=69">雙背包</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=75&cat_name=側背包/肩背包&parent_id=69">側背包/肩背包</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=74&cat_name=手提/托特包&parent_id=69">手提/托特包</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=70&cat_name=皮夾&parent_id=69">皮夾</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=73&cat_name=帆布包&parent_id=69">帆布包</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=71&cat_name=斜背包&parent_id=69">斜背包</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=76&cat_name=腰包&parent_id=69">腰包</a></li>
+
+                                                <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-30">2019-08-30</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-27">2019-08-27</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-20">2019-08-20</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-19">2019-08-19</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-13">2019-08-13</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-12">2019-08-12</a></li>-->
+
+                    </ul>
+
+                    <div class="menu-item__img"><a href="javascript:;"><img class="lazy" src="__PUBLIC__/static/pc1/img/1552044143422.jpg" alt=""></a></div>
+
+                </div>
+
+            </li>
+
+                        <li class="menu-item"><a href="pc_categorylist?cat_id=47&cat_name=居家生活&parent_id=0">居家生活<i class="menu-item__arrow"></i></a><span class="NavLine"></span>
+
+                <div class="menu-item__content" style="top: 40px;">
+
+                    <ul class="menu-item__sub">
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=52&cat_name=餐廚&parent_id=47">餐廚</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=53&cat_name=收納&parent_id=47">收納</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=166&cat_name=寢具&parent_id=47">寢具</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=54&cat_name=浴室用品&parent_id=47">浴室用品</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=94&cat_name=家庭衛生&parent_id=47">家庭衛生</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=119&cat_name=個人護理&parent_id=47">個人護理</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=153&cat_name=日用品&parent_id=47">日用品</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=154&cat_name=居家裝飾&parent_id=47">居家裝飾</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=155&cat_name=燈具&parent_id=47">燈具</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=156&cat_name=其他&parent_id=47">其他</a></li>
+
+                                                <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-30">2019-08-30</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-27">2019-08-27</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-20">2019-08-20</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-19">2019-08-19</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-13">2019-08-13</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-12">2019-08-12</a></li>-->
+
+                    </ul>
+
+                    <div class="menu-item__img"><a href="javascript:;"><img class="lazy" src="__PUBLIC__/static/pc1/img/1552044143422.jpg" alt=""></a></div>
+
+                </div>
+
+            </li>
+
+                        <li class="menu-item"><a href="pc_categorylist?cat_id=78&cat_name=女生配件&parent_id=0">女生配件<i class="menu-item__arrow"></i></a><span class="NavLine"></span>
+
+                <div class="menu-item__content" style="top: 40px;">
+
+                    <ul class="menu-item__sub">
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=23&cat_name=髮飾&parent_id=78">髮飾</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=79&cat_name=耳環/耳釘&parent_id=78">耳環/耳釘</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=80&cat_name=項鍊&parent_id=78">項鍊</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=81&cat_name=眼鏡&parent_id=78">眼鏡</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=82&cat_name=手環/手錶&parent_id=78">手環/手錶</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=83&cat_name=戒指&parent_id=78">戒指</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=84&cat_name=帽子&parent_id=78">帽子</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=85&cat_name=皮帶/腰帶&parent_id=78">皮帶/腰帶</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=86&cat_name=絲巾&parent_id=78">絲巾</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=112&cat_name=襪子&parent_id=78">襪子</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=180&cat_name=胸針&parent_id=78">胸針</a></li>
+
+                                                <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-30">2019-08-30</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-27">2019-08-27</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-20">2019-08-20</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-19">2019-08-19</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-13">2019-08-13</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-12">2019-08-12</a></li>-->
+
+                    </ul>
+
+                    <div class="menu-item__img"><a href="javascript:;"><img class="lazy" src="__PUBLIC__/static/pc1/img/1552044143422.jpg" alt=""></a></div>
+
+                </div>
+
+            </li>
+
+                        <li class="menu-item"><a href="pc_categorylist?cat_id=128&cat_name=清潔保養&parent_id=0">清潔保養<i class="menu-item__arrow"></i></a><span class="NavLine"></span>
+
+                <div class="menu-item__content" style="top: 40px;">
+
+                    <ul class="menu-item__sub">
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=129&cat_name=洗面乳&parent_id=128">洗面乳</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=130&cat_name=爽膚水/化妝水&parent_id=128">爽膚水/化妝水</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=133&cat_name=乳液/乳霜&parent_id=128">乳液/乳霜</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=131&cat_name=精華液/面霜&parent_id=128">精華液/面霜</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=181&cat_name=防曬/隔離&parent_id=128">防曬/隔離</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=132&cat_name=卸妝&parent_id=128">卸妝</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=135&cat_name=面膜&parent_id=128">面膜</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=134&cat_name=眼膜/眼霜&parent_id=128">眼膜/眼霜</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=182&cat_name=唇膏/唇膜&parent_id=128">唇膏/唇膜</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=136&cat_name=身體乳/身體油&parent_id=128">身體乳/身體油</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=198&cat_name=祛痘美白&parent_id=128">祛痘美白</a></li>
+
+                                                <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-30">2019-08-30</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-27">2019-08-27</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-20">2019-08-20</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-19">2019-08-19</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-13">2019-08-13</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-12">2019-08-12</a></li>-->
+
+                    </ul>
+
+                    <div class="menu-item__img"><a href="javascript:;"><img class="lazy" src="__PUBLIC__/static/pc1/img/1552044143422.jpg" alt=""></a></div>
+
+                </div>
+
+            </li>
+
+                        <li class="menu-item"><a href="pc_categorylist?cat_id=44&cat_name=創意生活&parent_id=0">創意生活<i class="menu-item__arrow"></i></a><span class="NavLine"></span>
+
+                <div class="menu-item__content" style="top: 40px;">
+
+                    <ul class="menu-item__sub">
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=167&cat_name=公仔、模型&parent_id=44">公仔、模型</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=168&cat_name=LEGO與積木&parent_id=44">LEGO與積木</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=169&cat_name=玩偶、娃娃&parent_id=44">玩偶、娃娃</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=170&cat_name=收藏、紀念品&parent_id=44">收藏、紀念品</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=171&cat_name=樂器&parent_id=44">樂器</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=172&cat_name=玩具&parent_id=44">玩具</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=55&cat_name=3C配件&parent_id=44">3C配件</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=95&cat_name=手工藝品&parent_id=44">手工藝品</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=56&cat_name=創意禮品&parent_id=44">創意禮品</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=57&cat_name=車載配飾&parent_id=44">車載配飾</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=117&cat_name=電子產品&parent_id=44">電子產品</a></li>
+
+                                                <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-30">2019-08-30</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-27">2019-08-27</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-20">2019-08-20</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-19">2019-08-19</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-13">2019-08-13</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-12">2019-08-12</a></li>-->
+
+                    </ul>
+
+                    <div class="menu-item__img"><a href="javascript:;"><img class="lazy" src="__PUBLIC__/static/pc1/img/1552044143422.jpg" alt=""></a></div>
+
+                </div>
+
+            </li>
+
+                        <li class="menu-item"><a href="pc_categorylist?cat_id=49&cat_name=流行彩妝&parent_id=0">流行彩妝<i class="menu-item__arrow"></i></a><span class="NavLine"></span>
+
+                <div class="menu-item__content" style="top: 40px;">
+
+                    <ul class="menu-item__sub">
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=183&cat_name=唇彩類產品&parent_id=49">唇彩類產品</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=50&cat_name=眼影&parent_id=49">眼影</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=90&cat_name=粉底、氣墊粉餅&parent_id=49">粉底、氣墊粉餅</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=122&cat_name=隔離霜/飾底乳&parent_id=49">隔離霜/飾底乳</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=184&cat_name=假睫毛&parent_id=49">假睫毛</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=185&cat_name=眉彩類產品&parent_id=49">眉彩類產品</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=186&cat_name=蜜粉&parent_id=49">蜜粉</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=125&cat_name=打亮、修容&parent_id=49">打亮、修容</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=124&cat_name=腮紅&parent_id=49">腮紅</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=93&cat_name=眼線類產品&parent_id=49">眼線類產品</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=127&cat_name=遮瑕膏&parent_id=49">遮瑕膏</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=195&cat_name=睫毛膏&parent_id=49">睫毛膏</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=89&cat_name=髮際線粉&parent_id=49">髮際線粉</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=91&cat_name=香水/香氛&parent_id=49">香水/香氛</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=92&cat_name=美容工具&parent_id=49">美容工具</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=51&cat_name=彩妝工具&parent_id=49">彩妝工具</a></li>
+
+                                                <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-30">2019-08-30</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-27">2019-08-27</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-20">2019-08-20</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-19">2019-08-19</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-13">2019-08-13</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-12">2019-08-12</a></li>-->
+
+                    </ul>
+
+                    <div class="menu-item__img"><a href="javascript:;"><img class="lazy" src="__PUBLIC__/static/pc1/img/1552044143422.jpg" alt=""></a></div>
+
+                </div>
+
+            </li>
+
+                        <li class="menu-item"><a href="pc_categorylist?cat_id=96&cat_name=寵物用品&parent_id=0">寵物用品<i class="menu-item__arrow"></i></a><span class="NavLine"></span>
+
+                <div class="menu-item__content" style="top: 40px;">
+
+                    <ul class="menu-item__sub">
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=187&cat_name=寵物服飾&parent_id=96">寵物服飾</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=98&cat_name=寵物用品&parent_id=96">寵物用品</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=188&cat_name=寵物玩具&parent_id=96">寵物玩具</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=189&cat_name=寵物睡窩&parent_id=96">寵物睡窩</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=190&cat_name=餵食容器&parent_id=96">餵食容器</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=191&cat_name=寵物/其他&parent_id=96">寵物/其他</a></li>
+
+                                                <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-30">2019-08-30</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-27">2019-08-27</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-20">2019-08-20</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-19">2019-08-19</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-13">2019-08-13</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-12">2019-08-12</a></li>-->
+
+                    </ul>
+
+                    <div class="menu-item__img"><a href="javascript:;"><img class="lazy" src="__PUBLIC__/static/pc1/img/1552044143422.jpg" alt=""></a></div>
+
+                </div>
+
+            </li>
+
+                        <li class="menu-item"><a href="pc_categorylist?cat_id=115&cat_name=戶外運動&parent_id=0">戶外運動<i class="menu-item__arrow"></i></a><span class="NavLine"></span>
+
+                <div class="menu-item__content" style="top: 40px;">
+
+                    <ul class="menu-item__sub">
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=116&cat_name=登山、露營&parent_id=115">登山、露營</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=173&cat_name=戶外休閒用品&parent_id=115">戶外休閒用品</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=174&cat_name=運動用品&parent_id=115">運動用品</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=175&cat_name=健身運動器材&parent_id=115">健身運動器材</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=176&cat_name=腳踏車、自行車&parent_id=115">腳踏車、自行車</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=177&cat_name=游泳&parent_id=115">游泳</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=178&cat_name=行李箱&parent_id=115">行李箱</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=179&cat_name=旅行相關用品&parent_id=115">旅行相關用品</a></li>
+
+                                                <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-30">2019-08-30</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-27">2019-08-27</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-20">2019-08-20</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-19">2019-08-19</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-13">2019-08-13</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-12">2019-08-12</a></li>-->
+
+                    </ul>
+
+                    <div class="menu-item__img"><a href="javascript:;"><img class="lazy" src="__PUBLIC__/static/pc1/img/1552044143422.jpg" alt=""></a></div>
+
+                </div>
+
+            </li>
+
+                        <li class="menu-item"><a href="pc_categorylist?cat_id=137&cat_name=母嬰玩具&parent_id=0">母嬰玩具<i class="menu-item__arrow"></i></a><span class="NavLine"></span>
+
+                <div class="menu-item__content" style="top: 40px;">
+
+                    <ul class="menu-item__sub">
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=138&cat_name=嬰幼兒裝與配件&parent_id=137">嬰幼兒裝與配件</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=139&cat_name=嬰兒鞋、襪&parent_id=137">嬰兒鞋、襪</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=97&cat_name=男童童裝&parent_id=137">男童童裝</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=99&cat_name=女童童裝&parent_id=137">女童童裝</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=142&cat_name=孕婦裝及用品&parent_id=137">孕婦裝及用品</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=120&cat_name=兒童玩具&parent_id=137">兒童玩具</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=121&cat_name=哺育用品&parent_id=137">哺育用品</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=145&cat_name=清潔護理&parent_id=137">清潔護理</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=146&cat_name=嬰幼兒家具、寢具&parent_id=137">嬰幼兒家具、寢具</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=147&cat_name=嬰幼兒居家防護&parent_id=137">嬰幼兒居家防護</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=148&cat_name=其他&parent_id=137">其他</a></li>
+
+                                                <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-30">2019-08-30</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-27">2019-08-27</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-20">2019-08-20</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-19">2019-08-19</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-13">2019-08-13</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-12">2019-08-12</a></li>-->
+
+                    </ul>
+
+                    <div class="menu-item__img"><a href="javascript:;"><img class="lazy" src="__PUBLIC__/static/pc1/img/1552044143422.jpg" alt=""></a></div>
+
+                </div>
+
+            </li>
+
+                        <li class="menu-item"><a href="pc_categorylist?cat_id=157&cat_name=居家家紡&parent_id=0">居家家紡<i class="menu-item__arrow"></i></a><span class="NavLine"></span>
+
+                <div class="menu-item__content" style="top: 40px;">
+
+                    <ul class="menu-item__sub">
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=158&cat_name=4件組/雙人床包&parent_id=157">4件組/雙人床包</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=159&cat_name=天絲/純棉床包&parent_id=157">天絲/純棉床包</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=160&cat_name=地毯/地墊&parent_id=157">地毯/地墊</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=161&cat_name=防塵套&parent_id=157">防塵套</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=162&cat_name=清潔劑&parent_id=157">清潔劑</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=163&cat_name=除霉&parent_id=157">除霉</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=164&cat_name=家居裝飾擺件&parent_id=157">家居裝飾擺件</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=165&cat_name=相框&parent_id=157">相框</a></li>
+
+                                                <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-30">2019-08-30</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-27">2019-08-27</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-20">2019-08-20</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-19">2019-08-19</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-13">2019-08-13</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-12">2019-08-12</a></li>-->
+
+                    </ul>
+
+                    <div class="menu-item__img"><a href="javascript:;"><img class="lazy" src="__PUBLIC__/static/pc1/img/1552044143422.jpg" alt=""></a></div>
+
+                </div>
+
+            </li>
+
+                        <li class="menu-item"><a href="pc_categorylist?cat_id=197&cat_name=男生衣著&parent_id=0">男生衣著<i class="menu-item__arrow"></i></a>
+
+                <div class="menu-item__content" style="top: 40px;">
+
+                    <ul class="menu-item__sub">
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=199&cat_name=男裝&parent_id=197">男裝</a></li>
+
+                                                <li class="menu-item_so"><a href="pc_categorylist?cat_id=200&cat_name=褲子&parent_id=197">褲子</a></li>
+
+                                                <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-30">2019-08-30</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-27">2019-08-27</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-20">2019-08-20</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-19">2019-08-19</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-13">2019-08-13</a></li>-->
+
+                        <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-12">2019-08-12</a></li>-->
+
+                    </ul>
+
+                    <div class="menu-item__img"><a href="javascript:;"><img class="lazy" src="__PUBLIC__/static/pc1/img/1552044143422.jpg" alt=""></a></div>
+
+                </div>
+
+            </li>
+
+                        <!--            <li class="menu-item"><a href="">Matching Outfits<i class="menu-item__arrow"></i></a>-->
+
+            <!--                <div class="menu-item__content" style="top: 40px;">-->
+
+            <!--                    <ul class="menu-item__sub">-->
+
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-09-10">2019-09-10</a></li>-->
+
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-30">2019-08-30</a></li>-->
+
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-27">2019-08-27</a></li>-->
+
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-20">2019-08-20</a></li>-->
+
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-19">2019-08-19</a></li>-->
+
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-13">2019-08-13</a></li>-->
+
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-12">2019-08-12</a></li>-->
+
+            <!--                    </ul>-->
+
+            <!--                    <div class="menu-item__img"><a href=""><img class="lazy" src="img/1552044143422.jpg" alt=""></a></div>-->
+
+            <!--                </div>-->
+
+            <!--            </li>-->
+
+            <!--            <li class="menu-item"><a href="">Infants&Toddler <i class="menu-item__arrow"></i></a>-->
+
+            <!--                <div class="menu-item__content" style="top: 40px;">-->
+
+            <!--                    <ul class="menu-item__sub">-->
+
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-09-10">2019-09-10</a></li>-->
+
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-30">2019-08-30</a></li>-->
+
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-27">2019-08-27</a></li>-->
+
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-20">2019-08-20</a></li>-->
+
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-19">2019-08-19</a></li>-->
+
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-13">2019-08-13</a></li>-->
+
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-12">2019-08-12</a></li>-->
+
+            <!--                    </ul>-->
+
+            <!--                    <div class="menu-item__img"><a href=""><img class="lazy" src="img/1552044143422.jpg" alt=""></a></div>-->
+
+            <!--                </div>-->
+
+            <!--            </li>-->
+
+            <!--            <li class="menu-item"><a href="">Kids <i class="menu-item__arrow"></i></a>-->
+
+            <!--                <div class="menu-item__content" style="top: 40px;">-->
+
+            <!--                    <ul class="menu-item__sub">-->
+
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-09-10">2019-09-10</a></li>-->
+
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-30">2019-08-30</a></li>-->
+
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-27">2019-08-27</a></li>-->
+
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-20">2019-08-20</a></li>-->
+
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-19">2019-08-19</a></li>-->
+
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-13">2019-08-13</a></li>-->
+
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-12">2019-08-12</a></li>-->
+
+            <!--                    </ul>-->
+
+            <!--                    <div class="menu-item__img"><a href=""><img class="lazy" src="img/1552044143422.jpg" alt=""></a></div>-->
+
+            <!--                </div>-->
+
+            <!--            </li>-->
+
+            <!--            <li class="menu-item"><a href="">Accessories<i class="menu-item__arrow"></i></a>-->
+
+            <!--                <div class="menu-item__content" style="top: 40px;">-->
+
+            <!--                    <ul class="menu-item__sub">-->
+
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-09-10">2019-09-10</a></li>-->
+
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-30">2019-08-30</a></li>-->
+
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-27">2019-08-27</a></li>-->
+
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-20">2019-08-20</a></li>-->
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-19">2019-08-19</a></li>-->
+
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-13">2019-08-13</a></li>-->
+
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-12">2019-08-12</a></li>-->
+
+            <!--                    </ul>-->
+
+            <!--                    <div class="menu-item__img"><a href=""><img class="lazy" src="img/1552044143422.jpg" alt=""></a></div>-->
+
+            <!--                </div>-->
+
+            <!--            </li>-->
+
+            <!--            <li class="menu-item" style="margin-right:30px;font-weight:bold;">-->
+
+            <!--                <a href="" title="Under $9.99" style="color:#ff90cb;">-->
+
+            <!--                    <span>Under $9.99</span>-->
+
+            <!--                    <i class="menu-item__arrow"></i>-->
+
+            <!--                    <img src="img/sale.webp" style="position: absolute;top:11px;right:-22px;height:15px;">-->
+
+            <!--                </a>-->
+
+            <!--                <div class="menu-item__content" style="top: 40px;">-->
+
+            <!--                    <ul class="menu-item__sub">-->
+
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-09-10">2019-09-10</a></li>-->
+
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-30">2019-08-30</a></li>-->
+
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-27">2019-08-27</a></li>-->
+
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-20">2019-08-20</a></li>-->
+
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-19">2019-08-19</a></li>-->
+
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-13">2019-08-13</a></li>-->
+
+            <!--                        <li class="menu-item_so"><a href="/Sale/New-In/2019-08-12">2019-08-12</a></li>-->
+
+            <!--                    </ul>-->
+
+            <!--                    <div class="menu-item__img"><a href=""><img class="lazy" src="img/1552044143422.jpg" alt=""></a></div>-->
+
+            <!--                </div>-->
+
+            <!--            </li>-->
+
+            <!--            <li class="menu-item"><a href="">Matching Swimwear </a></li>-->
+
+
+
+        </ul>
+
+<!--        <div class="header-cart">-->
+
+
+
+
+
+<!--            -->
+
+<!--            &lt;!&ndash; 购物袋弹窗 &ndash;&gt;-->
+
+<!--            <a href="/pc_sure" rel="nofollow">-->
+
+<!--                <img src="img/cart.png" alt="">-->
+
+<!--                <span class="cart-point">1</span>-->
+
+<!--            </a>-->
+
+<!--            <div class="cart-box hidden" data-name="headCart" data-type="1">-->
+
+
+
+<!--                -->
+
+<!--                <div class="cart-box__product">-->
+
+<!--                    <div class="cart-box__item fix">-->
+
+<!--                        <a href=""><img class="l" src="http://shop.tthuipin.com/uploads/20200627/97571f0aa3ab8e223c54f18226a5dcd4.jpg" alt=""></a>-->
+
+<!--                        <div class="cart-box__detail">-->
+
+<!--                            <h4><a href="" data-name="led">熱銷【任意一件】NT$988</a></h4>-->
+
+<!--                            <p class="mt5">單價: <span class="lang-price" data-price="988">NT$988</span><br>-->
+
+<!--                                顏色:-->
+
+<!--                                <span>-->
+
+<!--                                    -->
+
+<!--                                    01-->
+
+<!--                                    -->
+
+<!--                                </span><br>-->
+
+<!--                                尺寸:-->
+
+<!--                                <span>-->
+
+<!--                                    -->
+
+<!--                                    女 S(90斤以内)-->
+
+<!--                                    -->
+
+<!--                                </span><br></p>-->
+
+<!--                        </div>-->
+
+<!--                    </div>-->
+
+<!--                </div>-->
+
+<!--                -->
+
+<!--                <div class="cart-box__btns fix mt20">-->
+
+<!--                    <a class="l btn-express-checkout" href="">-->
+
+<!--                        <img src="//sources.aopcdn.com/www/prod/pr/static/v1573787728270/resources-pc/images/btn-paypal.png" width="174">-->
+
+<!--                    </a>-->
+
+<!--                    <a class="l btn btn-purple" href="/pc_sure">查看購物車</a>-->
+
+<!--                </div>-->
+
+
+
+<!--            </div>-->
+
+<!--            -->
+
+<!--            <div class="category-list-arrow hidden"><i></i></div>-->
+
+<!--        </div>-->
+
+    </div>
+
+</nav>
+
+
+
+<!-- 焦点图 -->
+
+		<section>
+
+			<div class="swiper-container">
+
+				<div class="swiper-wrapper"></div>
+
+				<!-- 分页器 -->
+
+				<div class="swiper-pagination"></div>
+
+			</div>
+
+		</section>
+
+
+
+<!-- main -->
+
+
+
+<main>
+
+    <div class="container">
+
+        <div class=" recommend clear">
+
+            <h2>優選推薦</h2>
+
+            <ul>
+                <li class="pic_one">
+                    <a href="https://www.psion.shop/pc_categorylist?cat_id=56&cat_name=%E5%89%B5%E6%84%8F%E7%94%9F%E6%B4%BB&parent_id=44" class="track" name="hp-hp-jpzk-1_1-v:n" target="_blank"> 
+                        <img src="https://www.psion.shop/public/static/pc1/img/static/m08.jpg" alt="">
+                    </a>
+                    <h3><span><em>NT$799.00</em>元起</span>创意礼品 </h3>
+                </li>
+                <li class="pic_two">
+                    <div> 
+                        <a href="https://www.psion.shop/pc_categorylist?cat_id=58&cat_name=%E5%A5%B3%E9%9E%8B&parent_id=0" class="track" name="hp-hp-jpzk-1_2-v:n" target="_blank"> 
+                            <img src="https://www.psion.shop/public/static/pc1/img/static/m087.jpg" alt=""> 
+                        </a>
+                        <h3><span><em>NT$799.00</em>元起</span>女鞋 </h3>
+                    </div>
+                    <div> 
+                        <a href="https://www.psion.shop/pc_categorylist?cat_id=78&cat_name=%E9%85%8D%E9%A3%BE&parent_id=0" class="track" name="hp-hp-jpzk-1_3-v:n" target="_blank"> 
+                            <img src="https://www.psion.shop/public/static/pc1/img/static/m084.jpg" alt=""> 
+                        </a>
+                        <h3><span><em>NT$799.00</em>元起</span> 配饰</h3>
+                    </div>
+                </li>
+                <li class="pic_three" style="margin-right: 0px;"> 
+                    <a href="https://www.psion.shop/pc_categorylist?cat_id=18&cat_name=%E5%A5%B3%E8%A3%9D&parent_id=0" class="track" name="hp-hp-jpzk-1_4-v:n" target="_blank">
+                        <img src="https://www.psion.shop/public/static/pc1/img/static/m085.jpg" alt="">
+                    </a>
+                    <h3><span> <em>NT$799.00</em>元起</span>女装 </h3>
+                </li>
+            </ul>
+        </div>
+
+
+
+
+
+        <div class=" kuzhuanglist clear">
+
+            <h2>限時特賣</h2>
+
+            <ul class=" goodsList1">
+
+       
+            </ul>
+
+          </div>
+
+
+
+
+
+        <div class=" clear  boutiqueList">
+
+            <h2>最新產品</h2>
+
+            <ul class="boutique goodsList2">
+
+                
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+
+{include file="public/footer" /}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

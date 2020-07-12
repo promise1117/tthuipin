@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!-- saved from url=(0025) -->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>紫砂壶商城</title>
+    <meta data-n-head="ssr" name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0,minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="__INDEX__/lib/swiper/swiper.min.css">
+    <link rel="stylesheet" href="__INDEX__/css/style/cc9cbb9d0dd6b9ab414a.css">
+    <link rel="stylesheet" href="__INDEX__/css/style/7c37c1f9cd04d16fbfdb.css">
+    <link rel="stylesheet" href="__INDEX__/css/style/9fafd2e043eb519e87e2.css">
+    <link rel="stylesheet" href="__INDEX__/css/style/82f2df4abfc6d48deffe.css">
+	<link rel="stylesheet" type="text/css" href="__INDEX__/css/common.css">
+    <link rel="stylesheet" type="text/css" href="__INDEX__/css/categorylist.css" />
+
+</head>
+<body class="">
+<div id="__nuxt">
+    <div id="__layout">
+        <div style="max-width:750px;margin:0 auto;">
+            <section class="container" data-v-6fc7e12e="">
+                <div class="van-nav-bar van-hairline--bottom" style="z-index:1;" data-v-d09b833a="" data-v-6fc7e12e="">
+                    <div class="van-nav-bar__left" data-v-d09b833a="">
+                        <i class="van-icon van-icon-arrow-left van-nav-bar__arrow" data-v-d09b833a=""></i>
+                        <span class="van-nav-bar__text" data-v-d09b833a="">返回</span>
+                    </div>
+                    <div class="van-nav-bar__title van-ellipsis" data-v-d09b833a="">紫砂商城</div>
+                    <div class="van-nav-bar__right" data-v-d09b833a="" onclick="window.location.href='/'"><span class="van-nav-bar__text" data-v-d09b833a="">首页</span></div>
+                </div>
+                <!-- Swiper轮播图 -->
+                <div class="swiper-container">
+                    <div class="swiper-wrapper"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+                <div data-v-6fc7e12e="" style="">
+                    <div class="van-sticky">
+                        <div class="sort_container" data-v-6fc7e12e="">
+                            <ul data-v-6fc7e12e="">
+                                <li class="sort_tab active" data-v-6fc7e12e=""><span data-v-6fc7e12e="">最新</span></li>
+                                <li class="sort_tab" data-v-6fc7e12e="" class=""><span data-v-6fc7e12e="">人气</span></li>
+                                <li style="border-left:solid 1px #eee; display: none;" data-v-6fc7e12e="" class="">
+                                    <span data-v-6fc7e12e="">筛选</span>
+                                    <svg aria-hidden="true" class="icon icon-shaixuan" data-v-6fc7e12e="">
+                                        <use xlink:href="#icon-shaixuan" data-v-6fc7e12e=""></use>
+                                    </svg>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+				<!-- 最新 -->
+                <div role="feed" class="van-list" data-v-6fc7e12e="">
+                    <ul class="clearfix" data-v-18cf6dfa="" data-v-6fc7e12e="">
+
+                        {volist name="newgoods" id="vo"}
+                        <li data-v-18cf6dfa="">
+                            <div style="padding:0px;width:100%;" data-v-217ef9e2="" data-v-18cf6dfa="">
+                                <a href="/goodsinfo?goodsid={$vo.id}" class="goods_avatar_container" data-v-217ef9e2="">
+                                    <img data-v-217ef9e2="" alt="" class="goods_avatar" src="{$vo.img}">
+                                </a>
+                                <div style="margin-bottom: 10px;" data-v-217ef9e2="">
+                                    <div class="goods_header" data-v-217ef9e2="">
+                                        <span class="goods_name" data-v-217ef9e2="">{$vo.name}</span>
+                                        <button class="btn_qry" data-v-217ef9e2="">询价</button>
+                                    </div>
+                                    <div class="goods_info" data-v-217ef9e2="">
+                                        <span data-v-217ef9e2="">作者:{$vo.people_name}</span> <span data-v-217ef9e2="">编号:{$vo.goods_no}</span>
+                                        <span data-v-217ef9e2="">泥料:{$vo.mud_name}</span> <span data-v-217ef9e2="">容量:{$vo.capacity_name}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                       {/volist}
+                    </ul>
+                </div>
+				
+				<!-- 人气 -->
+				<div role="feed" class="van-list hidden" data-v-6fc7e12e="">
+                    <ul class="clearfix" data-v-18cf6dfa="" data-v-6fc7e12e="">
+                        {volist name="hotgoods" id="vo"}
+                        <li data-v-18cf6dfa="">
+                            <div style="padding:0px;width:100%;" data-v-217ef9e2="" data-v-18cf6dfa="">
+                                <a href="/goodsinfo?goodsid={$vo.id}" class="goods_avatar_container" data-v-217ef9e2="">
+                                    <img data-v-217ef9e2="" alt="" class="goods_avatar" src="{$vo.img}">
+                                </a>
+                                <div style="margin-bottom: 10px;" data-v-217ef9e2="">
+                                    <div class="goods_header" data-v-217ef9e2="">
+                                        <span class="goods_name" data-v-217ef9e2="">{$vo.name}</span>
+                                        <button class="btn_qry" data-v-217ef9e2="">询价</button>
+                                    </div>
+                                    <div class="goods_info" data-v-217ef9e2="">
+                                        <span data-v-217ef9e2="">作者:{$vo.people_name}</span> <span data-v-217ef9e2="">编号:{$vo.goods_no}</span>
+                                        <span data-v-217ef9e2="">泥料:{$vo.mud_name}</span> <span data-v-217ef9e2="">容量:{$vo.capacity_name}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                       {/volist}
+                    </ul>
+                </div>
+            </section>
+
+            {include file="public/bottom" /}
+        </div>
+    </div>
+</div>
+
+
+
+<script src="__INDEX__/lib/jquery/jquery.js"></script>
+<script src="__INDEX__/js/rem.js"></script>
+<script src="__INDEX__/js/action/font_1534256_qc3ia182za.js"></script>
+<script src="__INDEX__/lib/swiper/swiper.min4.js"></script>
+<script src="__INDEX__/js/common.js"></script>
+<script src="__INDEX__/js/categorylist.js"></script>
+</body>
+</html>

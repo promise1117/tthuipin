@@ -1,0 +1,132 @@
+<!-- 侧边栏 -->
+<div class="slide">
+    <div class="slide__wrap">
+        <div class="slide_top">
+            <div class="go_back">
+               <svg t="1591346274803" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="18619"
+				 width="20" height="20">
+					<path d="M695.04 840.32 399.36 541.44l285.44-295.04c12.16-12.8 12.16-33.28 0-45.44-12.16-12.8-32-12.8-44.16 0l-309.76 320c-12.16 12.8-12.16 33.28 0 45.44C333.44 568.96 336 570.24 339.2 572.16l311.04 314.24c12.8 12.8 32.64 12.8 45.44 0C707.2 873.6 707.2 853.12 695.04 840.32z"
+					 p-id="18620" fill="#606060"></path>
+				</svg>
+            </div>
+        </div>
+        <div class="slide_main">
+            <div class="slide_nav">
+                <ul>
+                    <li class="active" data-index="0" data-id="176">为您推荐</li>
+                    {volist name="catlist" id="vo" key="k"}
+                    <li data-index="1" data-id="178" class="">{$vo.cat_name}</li>
+                    {/volist}
+                </ul>
+            </div>
+            <div class="slide_menu">
+                <ul class="menu_ul">
+                    <li class="menu_li active">
+                        <div class="menu_list">
+                            <div class="menu_title">
+                                <h2 class="menu_text">为您推荐</h2>
+                            </div>
+                            <ul>
+
+                                {volist name="hot" id="v" offset="0" length="1"}
+                                <li>
+                                    <a href="javascript:;" onclick="location.href='/?nav_id=0'">
+                                        <div class="menu_nav">
+                                            <img  class="lazy" src="public/static/mobile2/img/pseudo_graph.jpg" data-src="__MOBILE2__/img/image/home.jpg">
+                                        </div>
+                                        <p class="menu_desc">首頁</p>
+                                    </a>
+                                </li>
+                                {/volist}
+                                {volist name="hot" id="v" offset="0" length="1"}
+                                <li>
+                                    <a href="javascript:;" onclick="location.href='/enquire'">
+                                        <div class="menu_nav">
+                                            <img  class="lazy" src="public/static/mobile2/img/pseudo_graph.jpg" data-src="__MOBILE2__/img/image/menu_desc.png">
+                                        </div>
+                                        <p class="menu_desc">訂單查詢</p>
+                                    </a>
+                                </li>
+                                {/volist}
+                                {volist name="hot" id="v" offset="0" length="1"}
+                                <li>
+                                    <a href="javascript:;" onclick="location.href='/hot?nav_id=1'">
+                                        <div class="menu_nav">
+                                            <img  class="lazy" src="public/static/mobile2/img/pseudo_graph.jpg" data-src="__MOBILE2__/img/image/explosion.png">
+                                        </div>
+                                        <p class="menu_desc">熱銷推薦</p>
+                                    </a>
+                                </li>
+                                {/volist}
+                                {volist name="hot" id="v" offset="0" length="1"}
+                                <li>
+                                    <a href="javascript:;" onclick="location.href='/new?nav_id=2'">
+                                        <div class="menu_nav">
+                                            <img  class="lazy" src="public/static/mobile2/img/pseudo_graph.jpg" data-src="__MOBILE2__/img/image/new_products.png">
+                                        </div>
+                                        <p class="menu_desc">每日新品</p>
+                                    </a>
+                                </li>
+                                {/volist}
+
+                                {volist name="hot" id="v" offset="0" length="1"}
+                                <li>
+                                    <a href="javascript:;" onclick="location.href='/special?nav_id=3'">
+                                        <div class="menu_nav">
+                                            <img  class="lazy" src="public/static/mobile2/img/pseudo_graph.jpg" data-src="__MOBILE2__/img/image/time_sale.png">
+                                        </div>
+                                        <p class="menu_desc">限時特賣</p>
+                                    </a>
+                                </li>
+                                {/volist}
+                            </ul>
+                        </div>
+
+
+                        <div class="menu_list">
+                            <div class="menu_title">
+                                <h2 class="menu_text">限時特賣</h2>
+                            </div>
+                            <ul>
+                                {volist name="catlist" id="vo" key="k"}
+                                <li>
+                                    <a href="/special?nav_id=3&cat_id={$vo.cat_id}">
+                                        <div class="menu_img">
+                                            <img  class="lazy" src="public/static/mobile2/img/pseudo_graph.jpg" data-src="{$vo.image}">
+                                        </div>
+                                        <p class="menu_desc">{$vo.cat_name}</p>
+                                    </a>
+                                </li>
+                                {/volist}
+                            </ul>
+                        </div>
+                    </li>
+                    {volist name="catlist" id="vo" key="k"}
+                    <li class="menu_li">
+                        <div class="menu_list">
+                            <div class="menu_title">
+                                <h2 class="menu_text">{$vo.cat_name}</h2>
+                            </div>
+                            <ul>
+                                {volist name="$vo.cat_two" id="v"}
+                                <li>
+                                    <a href="/categorylist?cat_id={$v.cat_id}&cat_name={$v.cat_name}&parent_id={$v.parent_id}&nav_id={$k+3}">
+                                        <div class="menu_img">
+                                            <img class="lazy" src="public/static/mobile2/img/pseudo_graph.jpg" data-src="{$v.image}">
+                                        </div>
+                                        <p class="menu_desc">{$v.cat_name}</p>
+                                    </a>
+                                </li>
+                                {/volist}
+
+
+                            </ul>
+                        </div>
+
+                    </li>
+                    {/volist}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

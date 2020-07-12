@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+
+    <meta name="renderer" content="webkit">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>開心樂購</title>
+
+    <!--    <link rel="shortcut icon" href="public//static/pc/images/favicon.png" type="image/x-icon">-->
+
+    <link rel="stylesheet" href="__PUBLIC__/static/pc1/css/iconfont.css">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/Swiper/4.5.1/css/swiper.min.css" />
+
+
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/pc1/css/common.css" />
+
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/pc1/css/products.css" />	
+    <script type="text/javascript">
+        var sUserAgent = navigator.userAgent;
+
+        if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(sUserAgent)) {
+
+
+
+            var href = window.location.protocol + '//' + window.location.host + '/goodsinfo' + window.location.search;
+
+
+
+            window.location.href = href;
+
+        }
+    </script>
+
+
+
+</head>
+
+<body>
+
+{include file="public/header" /}
+
+<!-- 商品详情 -->
+ <div class="wrap-box " style="margin-top:50px;">
+
+    <div class="container">
+
+        <div class="goods-detail fix">
+
+            <div class="goods-detail__left">
+
+
+                <div class="big-img-view">
+					<div class="goods_close play_stop hide">
+						<i style="display:flex;justify-content:center;align-items:center;">
+							<svg t="1591353796888" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+							 p-id="23787" width="18" height="18">
+								<path d="M940.8 83.2c25.6 25.6 25.6 64 0 83.2L595.2 512l345.6 345.6c25.6 25.6 25.6 64 0 83.2-25.6 25.6-64 25.6-83.2 0L512 595.2l-345.6 345.6c-25.6 25.6-64 25.6-83.2 0-25.6-25.6-25.6-64 0-83.2L428.8 512 83.2 166.4c-25.6-25.6-25.6-64 0-83.2s64-25.6 83.2 0L512 428.8l345.6-345.6C876.8 57.6 921.6 57.6 940.8 83.2z"
+								 p-id="23788" fill="#ffffff"></path>
+							</svg>
+						</i>
+					</div>
+					<div class="play hide">
+						<svg t="1592192884523" class="icon " viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+						 p-id="4347" width="36" height="36">
+							<path d="M512 85.333333c235.264 0 426.666667 191.402667 426.666667 426.666667s-191.402667 426.666667-426.666667 426.666667S85.333333 747.264 85.333333 512 276.736 85.333333 512 85.333333z m0-85.333333C229.248 0 0 229.248 0 512s229.248 512 512 512 512-229.248 512-512S794.752 0 512 0z m-85.333333 298.666667v426.666666l298.666666-213.333333-298.666666-213.333333z"
+							 p-id="4348" fill="#ffffff"></path>
+						</svg>
+					</div>
+
+					<div class="playerbox hide">
+						<video controls class="video"></video>
+					</div>
+				
+
+                    {php}
+
+                    $banner = json_decode($info['ad_img']);
+
+                    {/php}
+
+                    {volist name="banner" id="v" offset="0" length="1"}
+                    <div class="big_img hidden">
+                        <img class="bigImg" src="{$v|str_replace='http','https',###}" jqimg="//pr.aopcdn.com/goods/MY18101003/3254058_0fa652ba85.jpg@!h900-w900"
+                             alt="">
+                    </div>
+                    {/volist}
+
+
+                </div>
+				
+				<div class="thumb-warp">
+							<div class="thumb-content">
+								<ul id="UlThumb" class="thumb tm-clear" style="left: 0px;">
+                                    {php}
+
+                                    $banner = json_decode($info['ad_img']);
+
+                                    {/php}
+
+                                    {volist name="banner" id="v" offset="0" length="1"}
+									<li class="tw-selected"><a href="javascript:void(0);"><img src="{$v|str_replace='http','https',###}"></a></li>
+                                    {/volist}
+                                    {volist name="banner" id="v" offset="1"}
+									<li><a href="javascript:void(0);"><img src="{$v|str_replace='http','https',###}"></a></li>
+                                    {/volist}
+
+								</ul>
+							</div>
+				</div>
+
+
+            </div>
+
+            <div class="goods-detail__right">
+
+
+
+                <form id="details-form" name="order" action="/pc_sure?type=symbol" method="post" target="_blank">
+
+                    <input type="hidden" name="goods_no" value="{$info.goods_no}">
+
+                    <input type="hidden" name="img" value="{$info.img}">
+
+
+                    {volist name="taocan" id="vo" offset="0" length="1"}
+                    <input type="hidden" name="sell_price" value="{$vo.goodstc_bind.0.0.sell_price}">
+
+                    <input type="hidden" name="market_price" value="{$vo.goodstc_bind.0.0.market_price}">
+
+                    <input type="hidden" name="cost_price" value="{$vo.goodstc_bind.0.0.cost_price}">
+
+
+                    <input type="hidden" name="taocan_id" value="{$vo.id}">
+                    {/volist}
+
+
+
+                    <h3 class="goods-name">
+
+                        <font style="vertical-align: inherit;">
+
+                            <font style="vertical-align: inherit;">{$info.name}</font>
+
+                        </font>
+
+                    </h3>
+
+                    <p class="goods-sku">
+
+                        <font style="vertical-align: inherit;">
+
+                            <font style="vertical-align: inherit;">貨號：{$info.goods_no}</font>
+
+                        </font>
+
+                    </p>
+
+                    <div class="title" style="color: #ACACAE;margin-top:1rem;">
+                        <p> <pre style="white-space: pre-wrap!important;
+word-wrap: break-word!important;">{$info.content}</pre></p>
+                    </div>
+
+                    <div class="goods-attr mt10">
+
+                        {volist name="taocan" id="vo"}
+
+                        <div class="goods-price hidden">
+
+									<span class="price lang-price" data-price="9.52">
+
+										<font style="vertical-align: inherit;">
+
+											NT$<font style="vertical-align: inherit;" class="sell_price">{$vo.goodstc_bind.0.0.sell_price} </font>
+
+										</font>
+
+									</span>
+
+                            <span class="market-price lang-price" style="" data-price="31.72">
+
+										<font style="vertical-align: inherit;">
+
+											NT$<font style="vertical-align: inherit;" class="market_price">{$vo.goodstc_bind.0.0.market_price}</font>
+
+										</font>
+
+									</span>
+
+                            <!--Flash Countdown-->
+
+                            <!--                            <div class="countdown"><i class="iconfont icon-clock"></i>&nbsp;-->
+
+                            <!--                                <span class="timer" endtime="2019-12-05 15:59:59"><span class="day_count ">3</span><span class="day">days</span><span-->
+
+                            <!--                                        class="day_seconds ">00<span></span>:<span></span>33:51</span></span>-->
+
+                            <!--                            </div>-->
+
+                        </div>
+
+                        {/volist}
+
+                        {if count($taocan) == 1}
+                        <div class="goods-meal mt15 ">
+
+                            <h4 class="goods-meal__title">
+
+                                <font style="vertical-align: inherit;">
+
+                                    <font style="vertical-align: inherit;">套餐選擇：</font>
+
+                                </font>
+
+                            </h4>
+
+                            <div class="goods-meal__list mt10 fix" target="meal">
+
+                                {volist name="taocan" id="vo"}
+                                <input type="radio" class="hidden" name="taocan" value="{$vo['taocan']}" id="taocan{$vo.id}">
+
+                                <label for="taocan{$vo.id}" data-key="{$key}" class="option1 option-tab" sell-price="{$vo.goodstc_bind.0.0.sell_price}" market-price="{$vo.goodstc_bind.0.0.market_price}" cost-price="{$vo.goodstc_bind.0.0.cost_price}" taocan-id="{$vo.id}">{$vo['taocan']}</label>
+
+                                {/volist}
+<!--                                <input type="radio" class="hidden" name="taocan" value="第二套入僅需NT$1600" id="taocan30452">-->
+
+<!--                                <label for="taocan30452" data-key="1" class="option1 option-tab" sell-price="1600" market-price="3200"-->
+<!--                                       cost-price="1600" taocan-id="30452">第二套入僅需NT$1600</label>-->
+
+
+                                <!--                                <span data-value="1">套餐1</span>-->
+
+                                <!--                                <span data-value="2">套餐2</span>-->
+
+                                <!--                                <span data-value="3">套餐3</span>-->
+
+                            </div>
+
+                        </div>
+                        {else/}
+                        <div class="goods-meal mt15">
+
+                            <h4 class="goods-meal__title">
+
+                                <font style="vertical-align: inherit;">
+
+                                    <font style="vertical-align: inherit;">套餐選擇：</font>
+
+                                </font>
+
+                            </h4>
+
+                            <div class="goods-meal__list mt10 fix" target="meal">
+
+                                {volist name="taocan" id="vo"}
+                                <input type="radio" class="hidden" name="taocan" value="{$vo['taocan']}" id="taocan{$vo.id}">
+
+                                <label for="taocan{$vo.id}" data-key="{$key}" class="option1 option-tab" sell-price="{$vo.goodstc_bind.0.0.sell_price}" market-price="{$vo.goodstc_bind.0.0.market_price}" cost-price="{$vo.goodstc_bind.0.0.cost_price}" taocan-id="{$vo.id}">{$vo['taocan']}</label>
+
+                                {/volist}
+                                <!--                                <input type="radio" class="hidden" name="taocan" value="第二套入僅需NT$1600" id="taocan30452">-->
+
+                                <!--                                <label for="taocan30452" data-key="1" class="option1 option-tab" sell-price="1600" market-price="3200"-->
+                                <!--                                       cost-price="1600" taocan-id="30452">第二套入僅需NT$1600</label>-->
+
+
+                                <!--                                <span data-value="1">套餐1</span>-->
+
+                                <!--                                <span data-value="2">套餐2</span>-->
+
+                                <!--                                <span data-value="3">套餐3</span>-->
+
+                            </div>
+
+                        </div>
+                        {/if}
+
+                        <!--          为了满足每个套餐下面对应产品数量,所以针对每个套餐做处理    套餐1          -->
+
+
+
+                        <!--    不同的套餐對應不同的顏色尺寸     -->
+                        {volist name="taocan" id="vo"}
+                        <div class="taocan hidden">
+
+
+
+                            {volist name="vo.goodstc_bind" key="k" id="v"}
+                            <div class="specifications">
+                                <div class="goods-color mt15">
+
+                                    <h4 class="goods-color__title">
+
+                                        <font style="vertical-align: inherit;">
+                                            {volist name="v" id="co" offset="0" length="1"}
+                                            <font style="vertical-align: inherit;">{$co.attribute_name}：</font>
+                                            {/volist}
+                                        </font><span data-value="color">
+
+													<font style="vertical-align: inherit;">
+
+														<font class="color" style="vertical-align: inherit;">{$v.0.color}</font>
+
+													</font>
+
+												</span>
+
+
+                                    </h4>
+
+                                    <div class="goods-color-radio">
+
+
+
+                                        {volist name="v" id="co"}
+                                        <input type="radio" class="hidden" name="color[{$k}]" value="{$co.color}_{$co.id}" data-color="{$co.image|str_replace='http','https',###}" id="color_{$co.id}_{$key}">
+
+                                        {/volist}
+
+
+                                    </div>
+
+
+
+                                    <div class="goods-color__list mt10 fix" target="color">
+
+
+
+                                        {volist name="v" id="co"}
+
+                                        <!--                                <div class="goods-color-item">-->
+
+                                        <label for="color_{$co.id}_{$key}" sell-price="{$co.sell_price}" market-price="{$co.market_price}" cost-price="{$co.cost_price}" class="option1 option-tab1"
+                                               key="{$key}" title="{$co.color|str_replace='http','https',###}" data-color = "{$co.color|str_replace='http','https',###}" style="background: url({$co.image|str_replace='http','https',###}); background-size: 100% 100%;"></label>
+
+                                        <!--                                </div>-->
+
+                                        {/volist}
+
+
+
+
+
+                                    </div>
+
+                                </div>
+
+                                <!--            一种颜色对应一种尺寸  遍历尺寸                 -->
+                                {volist name="v" id="co"}
+                                {if $co.size!=""}
+
+                                {php}
+
+                                $sizeArr = explode(',',$co['size']);
+                                $size = $sizeArr[0];
+
+                                {/php}
+                                <div class="goods-size mt15">
+
+                                    <h4 class="goods-size__title">
+
+                                        <font style="vertical-align: inherit;">
+
+                                            <font style="vertical-align: inherit;">{$co.sub_attribute_name}：</font>
+
+                                        </font><a class="goods-size__link-sizechart" href="javascript:;">
+
+                                        <font style="vertical-align: inherit;">
+
+                                            <font style="vertical-align: inherit;" class="size">
+
+                                                {$size}
+                                            </font>
+
+                                        </font>
+
+                                    </a>
+
+                                    </h4>
+
+                                    <div class="goods-size__list mt10 fix" target="size">
+
+
+                                        {volist name="sizeArr" id="sz"}
+
+                                        <input type="radio" class="hidden" name="size[{$co.id}]" value="{$sz}" id="size_{$co.id}_{$key}">
+
+                                        <label for="size_{$co.id}_{$key}" class="option1 option-tab2">{$sz}</label>
+
+                                        {/volist}
+
+
+
+
+                                    </div>
+
+                                </div>
+
+                                {/if}
+
+                                {/volist}
+<!--                                <div class="goods-size mt15">-->
+
+<!--                                    <h4 class="goods-size__title">-->
+
+<!--                                        <font style="vertical-align: inherit;">-->
+
+<!--                                            <font style="vertical-align: inherit;">尺寸：</font>-->
+
+<!--                                        </font><a class="goods-size__link-sizechart" href="javascript:;">-->
+
+<!--                                        <font style="vertical-align: inherit;">-->
+
+<!--                                            <font style="vertical-align: inherit;" class="size">-->
+
+<!--                                                S-->
+<!--                                            </font>-->
+
+<!--                                        </font>-->
+
+<!--                                    </a>-->
+
+<!--                                    </h4>-->
+
+<!--                                    <div class="goods-size__list mt10 fix" target="size">-->
+
+
+
+
+<!--                                        <input type="radio" class="hidden" name="size[30463]" value="S" id="size_30463_0">-->
+
+<!--                                        <label for="size_30463_0" class="option1 option-tab2">S</label>-->
+
+
+
+<!--                                        <input type="radio" class="hidden" name="size[30463]" value="M" id="size_30463_1">-->
+
+<!--                                        <label for="size_30463_1" class="option1 option-tab2">M</label>-->
+
+
+
+<!--                                        <input type="radio" class="hidden" name="size[30463]" value="L" id="size_30463_2">-->
+
+<!--                                        <label for="size_30463_2" class="option1 option-tab2">L</label>-->
+
+
+
+<!--                                        <input type="radio" class="hidden" name="size[30463]" value="XL" id="size_30463_3">-->
+
+<!--                                        <label for="size_30463_3" class="option1 option-tab2">XL</label>-->
+
+
+
+<!--                                        <input type="radio" class="hidden" name="size[30463]" value="XXL" id="size_30463_4">-->
+
+<!--                                        <label for="size_30463_4" class="option1 option-tab2">XXL</label>-->
+
+
+<!--                                    </div>-->
+
+<!--                                </div>-->
+
+
+
+                            </div>
+                            {/volist}
+
+
+                        </div>
+
+                        {/volist}
+
+
+
+
+
+
+
+
+                        <div class="goods-btns pr mt10"><input type="hidden" name="attributes[9]" value="girl-130" data-value="size" id="size-attr"><input
+                                type="hidden" name="attributes[8]" value="black" data-value="color" id="color-attr"><input type="hidden" name="id"
+                                                                                                                           value="24611" id="goods_id"><input type="hidden" name="goods_sn" value="MY18101003" id="goods_sn">
+
+                            <input id="UPTRE_AddCart" type="submit" class="btn-addBag submitbtn trans" value="添加到購物車" onclick="AddCart()">
+
+                            <input id="UPTRE_Buy" type="submit" class="btn-buy submitbtn trans" value="立即購買" onclick="" style="background-color: rgb(231,67,154);">
+
+                        </div>
+                        <div class="tm-ser mt10">
+                            <dt class="tb-metatit">全臺免運</dt>
+                            <dt class="tb-metatit">貨到付款</dt>
+                            <dt class="tb-metatit">嚴格質檢</dt>
+                            <dt class="tb-metatit">商超取貨</dt>
+                            <dt class="tb-metatit">7天鑒賞</dt>
+                            <dt class="tb-metatit">安心售後</dt>
+                        </div>
+
+                    </div>
+
+                    <input type="hidden" name="__hash__" value="53fa2b314a6da7bd647f22d80b23adbb_96065f6e20c39dc9580489ed3feeb2c0">
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<div class="container">
+     <div class="details"> 
+		<!--
+        <div class="ranking_list skin-box">
+            <div class="skin-box-hd">
+                <h3><span>商品排行榜</span></h3>
+            </div>
+            <div class="skin-box-bd">
+                <ul class="top-list-tab">
+                    <li class="selected"><span class="J_SaleTab tab1">銷售量</span></li>
+                </ul>
+                <div class="panels">
+                    <div class="panel sale">
+                        <ul>
+                            {volist name="leaderboard" id="vo"}
+                            <li class="item even first">
+                                <div class="img">
+                                    <a href="/pc_goodsinfo?goodsid={$vo.id}" target="_blank">
+                                        <img alt="" src="{$vo.img|str_replace='http','https',###}"
+                                             class="hover-show img-ks-lazyload">
+                                    </a>
+                                </div>
+                                <div class="detail">
+                                    <p class="desc">
+                                        <a title="{$vo.name}" href="/pc_goodsinfo?goodsid={$vo.id}" target="_blank">{$vo.name}</a>
+                                    </p>
+                                    <p class="price">NT$<span>{$vo.sell_price}</span></p>
+                                    <p class="sale">
+                                        已售出<span class="sale-count">{$vo.sale}</span>筆
+                                    </p>
+                                </div>
+                            </li>
+                            {/volist}
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+		-->
+
+        <div class="product_details">
+            <div class="tb-tabbar-inner-wrap">
+                <ul id="J_TabBar" class="tb-tabbar tb-clear">
+                    <li class="tb-first selected">
+                        <a class="tb-tab-anchor" href="javascript:void(0);" data-index="0">商品詳情</a>
+                        <div class="tb-selected-indicator"></div>
+                    </li>
+
+
+                </ul>
+            </div>
+            <div id="attributes" class="attributes">
+                <div class="attributes-list" id="J_AttrList">
+<!--                    <p class="attr-list-hd tm-clear"><em>产品参数：</em></p>-->
+<!--                    <ul id="J_AttrUL">-->
+
+<!--                        <li id="J_attrBrandName" title="&nbsp;GANGAN WORLD/甘甘的世界">品牌:&nbsp;GANGAN WORLD/甘甘的世界</li>-->
+
+<!--                    </ul>-->
+                </div>
+            </div>
+
+
+            <div class="dialog-content__inner">
+
+                <!-- <div class="dialog-header">
+                    <h3>
+                        商品詳情
+                    </h3>
+                </div> -->
+
+                {php}
+                $goinfo = json_decode($info['iamge_info']);
+                {/php}
+                <div class="dialog-body">
+					
+                    {volist name="goinfo" id="vo"}
+                    <p><img src="{$vo|str_replace='http','https',###}"></p>
+                    {php}
+                    file_exists($vo) == true ? "<p><img src='".$vo."'></p>" : '';
+                    {/php}
+                    {/volist}
+
+                </div>
+                <div class="photobox">
+                    <div class="dialog-header">
+                        <h3>
+                            客戶須知
+                        </h3>
+                    </div>
+					<img style="display:block; margin:auto;" class="lazy" src="public/static/mobile2/img/image/tips.jpg" alt="">
+
+                    <!--<div class="notify">
+						<p>註：應台灣海關要求，顧客須填寫真實姓名并下載EZWAY APP完成實名認證，以便部分海外商品順利過關。</p>
+						<p>本商品的實際使用效果根據個人情況決定，不保證每位用戶都能享受到所宣傳的效果。若有疑問請諮詢線上客服或通過電子郵箱聯絡我們，本公司享有最終解釋權。</p>
+
+						<dl>
+							<dt>•關於發貨方式</dt>
+							<dd>支持超商取貨或黑貓宅配+免運費+品質問題無理由退換貨！收到商品後如有任何疑問請聯絡我們：<a href="mailto:fzq396673948@yahoo.com">fzq396673948@yahoo.com</a>.同時，請附上您的姓名和聯絡方式及訂單編號在郵件當中，以便我們能快速的給您及時處理，祝您購物愉快！！！</dd>
+						</dl>
+
+						<dl>
+							<dt>•關於配送時間</dt>
+							<dd>下單成功後，我們會按照下單先後順序進行配貨，配貨週期為3個工作日，一般送達時間為7個工作日左右</dd>
+						</dl>
+						<dl>
+							<dt>•如何申請退換貨</dt>
+							<dd>由於質量原因產生的退換貨：至收到商品之日起7天內，向售後服務中心發送郵件至：fzq396673948@yahoo.com，客服會在收到郵件後的1-3個工作日內受理您的請求。僅正價貨品可以退换货，遺憾的是限时出清促銷商品不能退换货。</dd>
+						</dl>
+						<dl>
+							<dt>•退換貨流程</dt>
+							<dd>​確認收貨—申請退換貨—客服登記處理—黑貓上門取貨—退換貨商品檢查—退款/換貨。</dd>
+						</dl>
+						<dl>
+							<dt>•退換貨請註明：訂單號、姓名、電話。</dt>
+							<dt>•如何取消訂單</dt>
+							<dd>取消訂單需要向售後服務中心發送郵件並註明相關原因，郵件內容應註明您的訂單號、姓名、電話。</dd>
+						</dl>
+
+					</div>-->
+                </div>
+            </div>
+        </div>
+		<!--
+		<div id="ald-skuRight" class="ald-skuRight ald ald-03054">
+			<div class="ald-inner ">
+				<div class="ald-hd "> <s></s><span>猜你喜歡</span> </div>
+				<div class="ald-carousel">
+					<div class="wrapCon">
+						<ul class="ald-switchable-content" style="position: absolute;">
+
+                            {volist name="likegoods" id="vo"}
+							<li class="ks-switchable-panel-internal631" style="display: block;">
+								<div class="img">
+									<a class="ALDCLS-act" href="/pc_goodsinfo?goodsid={$vo.id}" target="_blank">
+									  <img src="{$vo.img|str_replace='http','https',###}">
+									</a>
+									<p class="look_price">NT${$vo.sell_price}</p>
+								</div>
+							</li>
+                            {/volist}
+
+						</ul>
+					</div>
+					<ul class="ald-switchable-trigger">
+						<li class="ald-switchable-prev-btn" data-spm-anchor-id="a220o.1000855.1998025129.i1.7d735114kTzWep">上一个</li>
+						<li class="ald-switchable-next-btn" data-spm-anchor-id="a220o.1000855.1998025129.i0.7d735114kTzWep">下一个</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		-->
+		
+    </div>
+</div>
+
+{include file="public/footer" /}
+
+
+
+
+
+<script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
+
+<script src="__PUBLIC__/static/pc1/js/browser-polyfill.min.js"></script>
+
+<script src="__PUBLIC__/static/pc1/js/browser.min.js"></script>
+
+<script src="https://cdn.staticfile.org/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+<script src="__PUBLIC__/static/pc1/js/common.js" type="text/babel"></script>
+
+<script src="__PUBLIC__/static/pc1/js/products.js"></script>
+
+<script src="__MOBILE2__/lib/swiper.min.js"></script>
+
+
+
+
+<script>
+    $(function() {
+
+        var mySwiper = new Swiper('.swiper-container', {
+            autoplay: {
+                delay: 2000,
+            }, //自动滑动，1秒切换一次
+            // // effect: 'slide', //滑动效果
+            // // touchAngle: 30, //滑动的角度超过30度无效
+            // // 轮播图的方向，也可以是vertical方向
+            direction: 'horizontal',
+            // //环形切换关闭
+            loop: true,
+            effect: 'cube',
+            pagination: '.swiper-pagination',
+            // // 切换的速度
+            // speed: 800, //滑动或者自动换页时的速度
+        })
+    })
+
+
+
+    // 根據請求方式添加購物車或者直接購買傳遞不同的參數
+
+    function AddCart() {
+
+        $('form').attr('action', '/pc_sure/addCart');
+
+    }
+
+
+
+    // 默認顯示第一張大圖和小圖和第一個套餐顏色尺寸
+
+    $('.small_img').eq(0).css({
+        'display': 'block'
+    });
+
+    $('.big_img').eq(0).addClass('active').css({
+        'display': 'block'
+    });
+
+    $('.taocan').eq(0).css({
+        'display': 'block'
+    });
+
+    $('.goods-price').eq(0).css({
+        'display': 'block'
+    });
+
+
+
+    var data_key = 0;
+
+    // 更換套餐顯示不同的大圖和小圖和套餐顏色尺寸
+
+    $('.goods-meal__list .option1').click(function() {
+
+        data_key = $(this).attr('data-key');
+
+        $('.big_img').eq(data_key).addClass('active').css({
+            'display': 'block'
+        }).siblings('.big_img').removeClass('active').css({
+            'display': 'none'
+        });
+
+        $('.small_img').eq(data_key).css({
+            'display': 'block'
+        }).siblings('.small_img').css({
+            'display': 'none'
+        });
+
+        $('.taocan').eq(data_key).css({
+            'display': 'block'
+        }).siblings('.taocan').css({
+            'display': 'none'
+        });
+
+        $('.goods-price').eq(data_key).css({
+            'display': 'block'
+        }).siblings('.goods-price').css({
+            'display': 'none'
+        });
+
+
+
+        // 傳遞套餐價格給隱藏input
+
+
+
+        $('input[name="sell_price"]').val($(this).attr('sell-price'));
+
+        $('input[name="market_price"]').val($(this).attr('market-price'));
+
+        $('input[name="cost_price"]').val($(this).attr('cost-price'));
+
+
+        $('.sell_price').html($(this).attr('sell-price'));
+        $('.market_price').html($(this).attr('market-price'));
+
+
+
+
+        var img = $('.big_img.active').find('img').attr('src');
+
+
+
+        $('input[name="img"]').val(img);
+
+    })
+
+
+    // 更换颜色价格改变
+
+    $('.goods-color__list label').click(function() {
+
+        $('input[name="sell_price"]').val($(this).attr('sell-price'));
+
+        $('input[name="market_price"]').val($(this).attr('market-price'));
+
+        $('input[name="cost_price"]').val($(this).attr('cost-price'));
+
+        $('.sell_price').html($(this).attr('sell-price'));
+        $('.market_price').html($(this).attr('market-price'));
+    })
+
+    $('#UPTRE_Buy').click(function() {
+        //console.log($('input:checked'))
+    })
+</script>
+
+</body>
+
+</html>

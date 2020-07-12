@@ -1,0 +1,91 @@
+<!doctype html>
+<html data-n-head-ssr>
+	<head>
+		<title>紫砂壶名家大全</title>
+		<meta data-n-head="ssr" charset="utf-8">
+		<meta data-n-head="ssr" name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0,minimum-scale=1.0, maximum-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="__INDEX__/lib/swiper/swiper.min.css">
+		<link rel="stylesheet" href="__INDEX__/css/style/9d9896ea9a96013187ab.css">
+		<link rel="stylesheet" href="__INDEX__/css/style/a874ef5ee6a504758be3.css">
+		<link rel="stylesheet" type="text/css" href="__INDEX__/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="__INDEX__/css/artist.css" />
+	</head>
+	<body>
+		<div data-server-rendered="true" id="__nuxt">
+			<!---->
+			<div id="__layout">
+				<div style="max-width:750px;margin:0 auto;">
+					<section style="background:#eee;" data-v-3dd884a8>
+						<section data-v-e07e0280 data-v-3dd884a8>
+							<div class="search_navbar" data-v-e07e0280>
+								<i class="left van-icon van-icon-arrow-left" style="color:#fff;" data-v-e07e0280 data-v-e07e0280></i>
+								<div class="search_container" data-v-e07e0280>
+									<svg aria-hidden="true" class="icon icon-search" data-v-e07e0280>
+										<use xlink:href="#icon-Search" data-v-e07e0280></use>
+									</svg>
+									<input type="text" name maxlength="20" placeholder="正宗紫砂壶" data-v-e07e0280></div>
+									<a href="/" class="btn_home nuxt-link-active" data-v-e07e0280>
+										首页
+									</a>
+							</div>
+						</section>
+
+
+						<!-- Swiper轮播图 -->
+						<div class="swiper-container">
+							<div class="swiper-wrapper"></div>
+							<div class="swiper-pagination"></div>
+						</div>
+
+						<ul class="artist_class_container hide" data-v-3dd884a8>
+							<li data-v-3dd884a8><a href="/Artist/list/1013" data-v-3dd884a8>大师 / 研高</a></li>
+							<li data-v-3dd884a8><a href="/Artist/list/17" data-v-3dd884a8>高级工艺师</a></li>
+							<li data-v-3dd884a8><a href="/Artist/list/16" data-v-3dd884a8>工艺美术师</a></li>
+							<li data-v-3dd884a8><a href="/Artist/list/15" data-v-3dd884a8>助理工艺师</a></li>
+							<li data-v-3dd884a8><a href="/Artist/list/14" data-v-3dd884a8>工艺美术员</a></li>
+							<li data-v-3dd884a8><a href="/Artist/list/1015" data-v-3dd884a8>实力派</a></li>
+						</ul>
+						{volist name="cat" id="vo"}
+						{volist name="$vo.cat_two" id="v"}
+
+						<div class="artist_class_title" data-v-3dd884a8 style="margin-top: .266667rem;">
+							<h2 data-v-3dd884a8>{$v.cat_name}</h2>
+							<span data-v-3dd884a8>
+								<a  class="hide" href="/Artist_list" data-v-3dd884a8>更多&gt;&gt;</a>
+							</span>
+						</div>
+						<div style="padding: 10px;background:#fff;" data-v-3dd884a8>
+							<img src="/static/index/img/picture/banner2.jpg" alt style="width: 100%;border-radius: 2px; display:none;" data-v-3dd884a8>
+							<div class="artist_container" data-v-3dd884a8>
+								{volist name="$v.cat_three" id="vv"}
+								<div style="padding:10px 0;width:49%;" data-v-53164fc3 data-v-3dd884a8>
+									<a href="/category?cat_id={$vv.cat_id}&is_people={$vv.is_people}&is_shape={$vv.is_shape}&is_capacity={$vv.is_capacity}&is_theme={$vv.is_theme}&is_mud={$vv.is_mud}&is_tealeaf={$vv.is_tealeaf}&is_ambitus={$vv.is_ambitus}&is_chinaware={$vv.is_chinaware}&is_iron_kettle={$vv.is_iron_kettle}&is_silver_kettle={$vv.is_silver_kettle}" data-v-53164fc3>
+										<img alt="" src="{$vv.img}" class="artist_avatar"
+										 data-v-53164fc3>
+									</a>
+									<div class="artist_info" data-v-53164fc3>
+										<span class="artist_name" data-v-53164fc3>{$vv.cat_name}</span>
+										<span class="artist_zc" data-v-53164fc3>{$vv.position}</span>
+									</div>
+								</div>
+								{/volist}
+							</div>
+						</div>
+						{/volist}
+						{/volist}
+
+	
+					</section>
+
+
+				</div>
+			</div>
+		</div>
+		
+		<script src="__INDEX__/lib/jquery/jquery.js"></script>
+		<script src="__INDEX__/js/rem.js"></script>
+		<script src="__INDEX__/js/action/font_1534256_qc3ia182za.js"></script>
+		<script src="__INDEX__/lib/swiper/swiper.min4.js"></script>
+		<script src="__INDEX__/js/artist.js"></script>
+	</body>
+</html>

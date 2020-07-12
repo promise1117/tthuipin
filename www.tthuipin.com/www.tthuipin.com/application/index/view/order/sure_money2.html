@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>開心樂購</title>
+		<link rel="stylesheet" href="__PUBLIC__/static/mobile1/css/iconfont.css">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/mobile1/css/common.css" />
+		<style type="text/css">
+			a {
+				text-decoration: none;
+				color: #666;
+			}
+
+			section {
+				width: 100%;
+				margin-top: 8.75rem;
+				margin-bottom: 6.66rem;
+				background: #fff;
+			}
+
+			.step {
+				padding: 1rem 0;
+				border-bottom: 1px solid #666;
+			}
+
+			.step__list li {
+				width: 33.33%;
+				float: left;
+				font-size: 1rem;
+				text-align: center;
+			}
+
+			.step__list li span {
+				width: 1.5rem;
+				height: 1.5rem;
+				line-height: 1.5rem;
+				margin: 0 auto;
+				color: #fff;
+				border-radius: 50%;
+				background: #ccc;
+				display: block;
+			}
+
+			.step__list li b {
+				display: block;
+				color: #ccc;
+				padding-top: 0.41rem;
+				font-weight: 400;
+			}
+
+			.step__list li.active b {
+				color: #ab85f7;
+			}
+
+			.step__list li.active span {
+				background: #ab85f7;
+			}
+
+			.order-success {
+				height: 5.83rem;
+				display: block;
+				position: relative;
+				background: #fff;
+				padding: 1.66rem 0 0.83rem 0;
+				box-sizing: border-box;
+			}
+
+			.order-success .text-center {
+				text-align: center;
+			}
+
+			.order-success .text-center .success {
+				width: 3.5rem;
+				height: 3.5rem;
+				display: block;
+				margin: 0 auto;
+			}
+
+			.order-success .success-txt {
+				text-align: center;
+				margin: 0.5rem auto;
+				display: flex;
+				justify-content: center;
+			}
+
+			.order-success .success-txt span {
+				font-size: 1rem;
+				line-height: 1rem;
+				color: #000000;
+			}
+
+			.success-detail {
+				padding: 4%;
+				background: #FFFCEE;
+				position: relative;
+				top: 2.5rem;
+			}
+
+			.detail .mdui-ordersn {
+				margin-top: 0.33rem;
+			}
+
+			.detail .mdui-ordersn span {
+				font-size: 1rem;
+				color: #363636;
+				line-height: 1rem;
+				display: inline-block;
+				margin-top: 0.41rem;
+			}
+
+			.detail .btn-copy {
+				width: 3.5rem;
+				height: 1.5rem;
+				line-height: 1.5rem;
+				position: relative;
+				display: inline-block;
+				color: #9F8A60;
+				min-width: initial;
+				text-align: center;
+				padding: 0px;
+				border: 1px solid #9F8A60;
+				border-radius: 2px;
+				font-size: 1rem;
+				margin-left: 0.13333333rem;
+				background: transparent;
+			}
+
+			.detail span {
+				line-height: 1.5rem;
+				display: block;
+				margin-top: 0.41rem;
+				font-size: 1rem;
+				color: #979797;
+			}
+		</style>
+	</head>
+	<body>
+	{include file="public/header" /}
+
+		<section>
+			<!-- 进度条 -->
+			<div class="step">
+				<ul class="step__list fix">
+					<li class="active"><span>
+							<font style="vertical-align: inherit;">
+								<font style="vertical-align: inherit;">1個</font>
+							</font>
+						</span><b>
+							<font style="vertical-align: inherit;">
+								<font style="vertical-align: inherit;">購物袋</font>
+							</font>
+						</b></li>
+					<li class="active"><span>
+							<font style="vertical-align: inherit;">
+								<font style="vertical-align: inherit;">2 </font>
+							</font>
+						</span><b>
+							<font style="vertical-align: inherit;">
+								<font style="vertical-align: inherit;">運送</font>
+							</font>
+						</b></li>
+					<li class="active"><span>
+							<font style="vertical-align: inherit;">
+								<font style="vertical-align: inherit;">3 </font>
+							</font>
+						</span><b>
+							<font style="vertical-align: inherit;">
+								<font style="vertical-align: inherit;">付款</font>
+							</font>
+						</b></li>
+				</ul>
+			</div>
+			<div class="order-success">
+
+				<div class="text-center">
+
+					<img class="success" src="__PUBLIC__/static/mobile1/img/icon-success.png">
+
+				</div>
+
+				<div class="success-txt">
+
+					<span>下單成功</span>
+
+				</div>
+
+			</div>
+			<div class="success-detail">
+
+				<div class="detail">
+
+					<div class="mdui-ordersn">
+
+						<span>訂單號 : {$order_no}</span>
+
+						<button id="btn-copy" class="btn-copy" data-clipboard-text="{$order_no}">復制</button>
+
+					</div>
+
+					<span>將從9號倉庫出貨，預計9-15天內送達</span>
+
+				</div>
+
+			</div>
+		</section>
+
+
+	{include file="public/footer" /}
+		<script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://cdn.staticfile.org/Swiper/4.5.1/js/swiper.min.js"></script>
+		<script src="https://cdn.staticfile.org/clipboard.js/2.0.4/clipboard.min.js"></script>
+		<script src="__PUBLIC__/static/mobile1/js/remstyle.js"></script>
+		<script src="__PUBLIC__/static/mobile1/js/common.js"></script>
+		<script>
+			// 复制文本内容
+			var copyBtn = new ClipboardJS('.btn-copy');
+
+			copyBtn.on("success", function(e) {
+				// 复制成功
+				$('#btn-copy').text('已复制');
+				e.clearSelection();
+			});
+			copyBtn.on("error", function(e) {
+				//复制失败；
+				console.log(e.action)
+			});
+		</script>
+		
+	</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+		<title>個人中心</title>
+		<link rel="stylesheet" href="public/static/mobile2/css/iconfont.css">
+		<link rel="stylesheet" type="text/css" href="public/static/mobile2/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="public/static/mobile2/css/my.css" />
+		<script src="https://cdn.staticfile.org/jquery/3.5.0/jquery.min.js"></script>
+		<script src="public/static/mobile2/js/common.js"></script>
+	</head>
+	<body>
+		{include file="public/header" /}
+
+		{include file="public/left" /}
+
+		<div class="newmain">
+			<div class="my_top">
+				<div class="search">
+					<div class="search-icon">
+						<svg t="1592965031279" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2166"
+						 width="25" height="25">
+							<path d="M830.486464 796.124515 672.790943 638.42797c44.959904-52.799318 72.109099-121.232412 72.109099-196.016087 0-167.084182-135.448007-302.533214-302.53219-302.533214s-302.533214 135.449031-302.533214 302.533214 135.449031 302.53219 302.533214 302.53219c74.782651 0 143.215745-27.149196 196.017111-72.109099L796.101988 830.531518c9.499249 9.499249 24.885227 9.499249 34.384476 0S839.986737 805.623764 830.486464 796.124515zM442.366829 698.401131c-141.380814 0-255.989248-114.631985-255.989248-255.989248 0-141.403341 114.608434-255.989248 255.989248-255.989248 141.37979 0 255.989248 114.585907 255.989248 255.989248C698.356077 583.769146 583.747643 698.401131 442.366829 698.401131z"
+							 p-id="2167" fill="#919095"></path>
+						</svg>
+					</div>
+					<input type="text" class="search_input" placeholder="情侶">
+				</div>
+				<h1>個人中心</h1>
+			</div>
+			<ul class="my_middle">
+				<li class="my_middle_col col-sm-4">
+					<a href="/my_order">
+						<img src="public/static/mobile2/img/my/order.jpg">
+						<h2>本機訂單 <span style="">( <span id="order_num">0</span> )</span></h2>
+					</a>
+				</li>
+				<li class="my_middle_col col-sm-4">
+					<a href="/special?nav_id=3">
+						<img src="public/static/mobile2/img/my/special.jpg">
+						<h2>限時特賣</h2>
+					</a>
+				</li>
+				<li class="my_middle_col col-sm-4 ">
+					<a href="https://lin.ee/dfiqlrm">
+						<img src="public/static/mobile2/img/my/customer_service.jpg">
+						<h2>線上客服</h2>
+					</a>
+				</li>
+			</ul>
+
+			<div id="app">
+				<main>
+
+					<div class="foot_title">
+						<h2>
+							<svg t="1592474491144" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+							 p-id="12542" width="20" height="20">
+								<path d="M664.918984 216.067715c-47.6711-21.668682-97.942443-29.840871-149.823458-30.831439-42.965901-0.866747-83.826844 7.553083-121.592261 28.726481-46.928174 26.25006-77.016687 64.386941-84.198307 120.725514-8.791294 69.587424 5.571947 131.745586 50.890447 185.607739 13.001209 15.601451 25.754776 31.450544 37.641596 47.918742 26.126239 35.784281 33.060218 75.530834 22.411608 118.620556-6.933978 27.983555-17.954051 53.985973-31.450544 79.121645-9.286578 17.582588-15.849093 36.155744-19.439903 55.719468-4.581378 25.01185-4.457557 50.147521 1.114389 75.03555 7.18162 32.564933 21.297219 61.415236 44.823217 84.941233 30.831439 30.707618 68.349214 43.832648 110.819831 39.870375 56.957678-5.200484 104.381137-29.469407 139.298669-77.016687 20.18283-27.36445 36.403386-57.081499 50.023701-88.284401 36.279565-83.083918 63.644015-169.139541 84.817412-257.300121 12.753567-53.243047 18.573156-107.476663 14.115598-162.577025-1.733495-11.391536-3.095526-22.906892-5.200483-34.174607-16.71584-87.541475-64.634583-149.823458-144.251512-186.103023z m110.69601 227.335429c6.438694 63.644015-5.076663 122.830472-16.71584 171.368319-19.316082 80.359855-33.060218 126.792745-65.996615 202.4474-7.429262 16.839661-53.243047 160.967352-177.187908 167.90133-55.843289 3.095526-112.058041-68.596856-109.210157-121.220798 4.7052-88.036759 35.660459-114.28682 49.156953-157.995647 9.781862-31.574365 11.143894-85.312696-8.29601-129.764449-22.906892-52.623942-104.876421-116.144135-101.161789-200.961548 2.228779-48.414027 10.277146-99.304474 70.577992-126.297461 87.665296-39.127449 192.294075-14.610883 235.631439 5.076663 72.311487 32.936397 113.17243 90.389359 123.201935 189.446191zM278.102056 67.482467C228.697461 46.43289 178.54994 70.577993 164.681983 121.716082c-15.849093 58.814994 21.792503 127.659492 79.988392 146.108827 48.290206 15.229988 94.599274-11.391536 105.743168-60.79613 5.200484-22.906892 2.847884-45.318501-5.94341-69.587425-12.258283-30.459976-33.431681-55.843289-66.368077-69.958887z m35.78428 121.839903c-5.448126 29.71705-32.441112 46.556711-61.539057 38.632164-35.041354-9.658041-59.062636-49.776058-50.890447-85.188875C208.514631 112.058041 237.860218 96.580411 267.701088 107.971947c19.935187 7.676904 33.184039 22.287787 41.108586 40.118017 5.819589 14.23942 7.676904 27.488271 5.076662 41.232406zM507.2948 23.897461c-26.373881-28.726481-65.50133-28.726481-91.379927 0-32.19347 35.784281-28.850302 100.418863 6.933978 132.736154 25.754776 23.278356 61.167594 22.040145 84.693592-3.466989 20.801935-22.535429 26.126239-49.899879 23.154534-76.026118-3.343168-22.287787-10.400967-39.127449-23.402177-53.243047z m-6.933978 58.072067c1.609674 14.487062-1.23821 29.71705-12.753567 42.222975-13.001209 14.115599-32.688755 14.858525-47.051995 1.981137-19.811366-17.954051-21.668682-53.738331-3.838452-73.673519 14.363241-15.972914 36.031923-15.972914 50.642805 0 7.18162 7.676904 11.143894 17.087304 13.001209 29.469407z m216.067715-11.639177c-15.229988-29.964692-47.6711-39.003628-75.778477-21.173398-35.041354 22.163966-47.175816 76.645224-25.01185 111.810399 15.972914 25.259492 45.689964 32.441112 71.073277 16.71584 22.535429-13.867956 33.184039-35.412817 36.774849-57.700604 2.228779-19.316082 0.371463-35.041354-7.057799-49.652237zM696.369528 117.629988c-1.857316 11.639178-7.429262 22.783071-19.06844 29.964692-13.248851 8.172189-28.60266 4.457557-37.022491-8.667473-11.515357-18.201693-5.200484-46.556711 13.00121-58.072068 14.610883-9.286578 31.450544-4.581378 39.37509 11.020073 3.962273 7.553083 4.952842 15.725272 3.714631 25.754776z m161.214994 61.043773c-12.258283-27.859734-41.356227-37.641596-67.606287-22.906893-32.812576 18.449335-46.556711 67.111004-28.107376 100.0474 13.248851 23.649819 39.746554 31.574365 63.644014 18.573156 21.049577-11.515357 31.822007-30.459976 36.155744-50.518984 2.971705-17.211125 1.981137-31.574365-4.086095-45.194679z m-24.888029 40.241838c-1.981137 9.162757-6.933978 17.83023-16.468198 23.030713-10.896252 5.94341-22.906892 2.3526-28.974123-8.543652-8.419831-14.982346-2.104958-37.270133 12.753567-45.689964 12.010641-6.686336 25.259492-2.3526 30.831439 10.400968 2.847884 6.438694 3.219347 12.877388 1.857315 20.801935z"
+								 fill="#2c2c2c" p-id="12543"></path>
+							</svg>
+							我的足跡
+						</h2>
+					</div>
+					<ul class="list-wrap" v-if="flag">
+						
+						<li class="list__item" v-for="item in footprint">
+							<a :href="item.link" class="list_item-img">
+								<div class="list__item-inner">
+									<img :src="item.img">
+								</div>
+								<div class="list_item_main">
+									<div class="list__item-name">
+											<span>熱銷</span>
+											<label  >{{item.title}}</label>
+										</div>
+									<div class="services"><span>貨到付款</span> <span>全臺免運</span></div>
+									<div class="list__item-price"><span :data-price="item.price" class="lang-price">NT${{item.price}}</span></div>
+								</div>
+							</a>
+						</li>
+					</ul>
+					<h3 class="record" v-else>暫無記錄</h3>
+
+				</main>
+			</div>
+		</div>
+		<!-- 搜索弹窗 -->
+		<form action="search">
+			<div class="search-layer">
+				<div class="close-btn"><i class="iconfont icon-close"></i></div>
+				<div class="search-box">
+					<button class="search-icon iconfont icon-search" type="submit"></button>
+					<input type="text" name="search" class="search-input" maxlength="64" placeholder="請輸入商品名或貨號...">
+				</div>
+				<ul class="search-content">
+					<li><a href="javascript:;" onclick="location.href='search?search='+this.innerHTML;">情侶</a></li>
+					<li><a href="javascript:;" onclick="location.href='search?search='+this.innerHTML;">香水</a></li>
+					<li><a href="javascript:;" onclick="location.href='search?search='+this.innerHTML;">手錶</a></li>
+					<li><a href="javascript:;" onclick="location.href='search?search='+this.innerHTML;">十二星座</a></li>
+					<li><a href="javascript:;" onclick="location.href='search?search='+this.innerHTML;">玩具</a></li>
+					<li><a href="javascript:;" onclick="location.href='search?search='+this.innerHTML;">T恤</a></li>
+				</ul>
+			</div>
+		</form>
+		{include file="public/footer" /}
+		<script src=https://cdn.staticfile.org/vue/2.6.11/vue.min.js> </script>
+		<script src="https://cdn.staticfile.org/Swiper/4.5.0/js/swiper.min.js"></script>
+
+		<script type="text/javascript">
+			const vm = new Vue({
+				el: '#app',
+				data: {
+					flag: false,
+					footprint: []
+				},
+				methods: {},
+				created() {
+					if (localStorage.getItem("order_list") !== null) {
+						var order_list = JSON.parse(localStorage.getItem('order_list'));
+						$('#order_num').text(order_list.length);
+					}
+					if (localStorage.getItem("footprint") !== null) {
+						this.flag = true;
+						this.footprint = JSON.parse(localStorage.getItem('footprint'));
+						console.log(this.footprint)
+					} 
+				}
+			});
+
+
+		</script>
+	</body>
+</html>

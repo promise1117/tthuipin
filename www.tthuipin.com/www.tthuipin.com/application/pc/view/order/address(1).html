@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title></title>
+		<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="css/iconfont.css">
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<link rel="stylesheet" type="text/css" href="css/address.css" />
+	</head>
+	<body>
+		<!-- 头部 -->
+		<header>
+			<div class="container">
+				<div class="header-top">
+					<div class="header-logo">
+						<a href="index.html"><img src="img/logo.webp" alt=""></a>
+					</div>
+					<div class="search-box">
+						<input type="text" id="search-input" maxlength="64" placeholder="I am shopping for">
+						<div class="search-submit">
+							<a href=""><img src="img/search.png" alt=""></a>
+						</div>
+					</div>
+					<div class="header-cart">
+						<a href="shoppingcart.html" rel="nofollow">
+							<img src="img/cart.png" alt="">
+							<span class="cart-point">1</span>
+						</a>
+						<!-- 购物袋弹窗 -->
+						<div class="cart-box hidden" data-name="headCart">
+							<img src="img/cartEmpty.jpg">
+							<div class="header-cart__empty tc pt5 pb5" style="font-size: 16px;"><strong>Your Shopping Bag is Empty</strong></div>
+						</div>
+						<div class="cart-box hidden" data-name="headCart" data-type="1">
+							<div class="cart-box__product">
+								<div class="cart-box__item fix">
+									<a href=""><img class="l" src="img/product.jpg" alt=""></a>
+									<div class="cart-box__detail">
+										<h4><a href="" data-name="led">Mom Girl Plaid Self Tie Shirt Dress</a></h4>
+										<p class="mt5">Unit Price: <span class="lang-price" data-price="15.39">US$15.39</span><br>Color:
+											<span>Red</span><br>Size:
+											<span>Mom-3xl</span><br></p>
+									</div>
+								</div>
+							</div>
+							<div class="cart-box__btns fix mt20">
+								<a class="l btn-express-checkout" href="">
+									<img src="//sources.aopcdn.com/www/prod/pr/static/v1573787728270/resources-pc/images/btn-paypal.png" width="174">
+								</a>
+								<a class="l btn btn-purple" href="shoppingcart.html">View Cart</a>
+							</div>
+						</div>
+						<div class="category-list-arrow hidden"><i></i></div>
+					</div>
+				</div>
+			</div>
+		</header>
+		<!-- 导航 -->
+		<nav>
+			<div class="container pr">
+				<ul class="menu">
+					<li class="menu-item"><a href="index.html">HOME</a></li>
+					<li class="menu-item"><a class="masked" href="">HOT SALE</a></li>
+					<li class="menu-item"><a href="">NEW IN<i class="menu-item__arrow"></i></a>
+						<div class="menu-item__content" style="top: 40px;">
+							<ul class="menu-item__sub">
+								<li class="menu-item_so"><a href="/Sale/New-In/2019-09-10">2019-09-10</a></li>
+								<li class="menu-item_so"><a href="/Sale/New-In/2019-08-30">2019-08-30</a></li>
+								<li class="menu-item_so"><a href="/Sale/New-In/2019-08-27">2019-08-27</a></li>
+								<li class="menu-item_so"><a href="/Sale/New-In/2019-08-20">2019-08-20</a></li>
+								<li class="menu-item_so"><a href="/Sale/New-In/2019-08-19">2019-08-19</a></li>
+								<li class="menu-item_so"><a href="/Sale/New-In/2019-08-13">2019-08-13</a></li>
+								<li class="menu-item_so"><a href="/Sale/New-In/2019-08-12">2019-08-12</a></li>
+							</ul>
+							<div class="menu-item__img"><a href=""><img class="lazy" src="img/1552044143422.jpg" alt=""></a></div>
+						</div>
+					</li>
+					<li class="menu-item"><a class="masked" href="">Flash Sale</a></li>
+					<li class="menu-item"><a href="">Matching Outfits<i class="menu-item__arrow"></i></a>
+						<div class="menu-item__content" style="top: 40px;">
+							<ul class="menu-item__sub">
+								<li class="menu-item_so"><a href="/Sale/New-In/2019-09-10">2019-09-10</a></li>
+								<li class="menu-item_so"><a href="/Sale/New-In/2019-08-30">2019-08-30</a></li>
+								<li class="menu-item_so"><a href="/Sale/New-In/2019-08-27">2019-08-27</a></li>
+								<li class="menu-item_so"><a href="/Sale/New-In/2019-08-20">2019-08-20</a></li>
+								<li class="menu-item_so"><a href="/Sale/New-In/2019-08-19">2019-08-19</a></li>
+								<li class="menu-item_so"><a href="/Sale/New-In/2019-08-13">2019-08-13</a></li>
+								<li class="menu-item_so"><a href="/Sale/New-In/2019-08-12">2019-08-12</a></li>
+							</ul>
+							<div class="menu-item__img"><a href=""><img class="lazy" src="img/1552044143422.jpg" alt=""></a></div>
+						</div>
+					</li>
+					<li class="menu-item"><a href="">Infants&Toddler <i class="menu-item__arrow"></i></a>
+						<div class="menu-item__content" style="top: 40px;">
+							<ul class="menu-item__sub">
+								<li class="menu-item_so"><a href="/Sale/New-In/2019-09-10">2019-09-10</a></li>
+								<li class="menu-item_so"><a href="/Sale/New-In/2019-08-30">2019-08-30</a></li>
+								<li class="menu-item_so"><a href="/Sale/New-In/2019-08-27">2019-08-27</a></li>
+								<li class="menu-item_so"><a href="/Sale/New-In/2019-08-20">2019-08-20</a></li>
+								<li class="menu-item_so"><a href="/Sale/New-In/2019-08-19">2019-08-19</a></li>
+								<li class="menu-item_so"><a href="/Sale/New-In/2019-08-13">2019-08-13</a></li>
+								<li class="menu-item_so"><a href="/Sale/New-In/2019-08-12">2019-08-12</a></li>
+							</ul>
+							<div class="menu-item__img"><a href=""><img class="lazy" src="img/1552044143422.jpg" alt=""></a></div>
+						</div>
+					</li>
+					<li class="menu-item"><a href="">Kids <i class="menu-item__arrow"></i></a>
+						<div class="menu-item__content" style="top: 40px;">
+							<ul class="menu-item__sub">
+								<li class="menu-item_so"><a href="/Sale/New-In/2019-09-10">2019-09-10</a></li>
+								<li class="menu-item_so"><a href="/Sale/New-In/2019-08-30">2019-08-30</a></li>
+								<li class="menu-item_so"><a href="/Sale/New-In/2019-08-27">2019-08-27</a></li>
+								<li class="menu-item_so"><a href="/Sale/New-In/2019-08-20">2019-08-20</a></li>
+								<li class="menu-item_so"><a href="/Sale/New-In/2019-08-19">2019-08-19</a></li>
+								<li class="menu-item_so"><a href="/Sale/New-In/2019-08-13">2019-08-13</a></li>
+								<li class="menu-item_so"><a href="/Sale/New-In/2019-08-12">2019-08-12</a></li>
+							</ul>
+							<div class="menu-item__img"><a href=""><img class="lazy" src="img/1552044143422.jpg" alt=""></a></div>
+						</div>
+					</li>
+					<li class="menu-item"><a href="">Accessories<i class="menu-item__arrow"></i></a>
+						<div class="menu-item__content" style="top: 40px;">
+							<ul class="menu-item__sub">
+								<li class="menu-item_so"><a href="/Sale/New-In/2019-09-10">2019-09-10</a></li>
+								<li class="menu-item_so"><a href="/Sale/New-In/2019-08-30">2019-08-30</a></li>
+								<li class="menu-item_so"><a href="/Sale/New-In/2019-08-27">2019-08-27</a></li>
+								<li class="menu-item_so"><a href="/Sale/New-In/2019-08-20">2019-08-20</a></li>
+								<li class="menu-item_so"><a href="/Sale/New-In/2019-08-19">2019-08-19</a></li>
+								<li class="menu-item_so"><a href="/Sale/New-In/2019-08-13">2019-08-13</a></li>
+								<li class="menu-item_so"><a href="/Sale/New-In/2019-08-12">2019-08-12</a></li>
+							</ul>
+							<div class="menu-item__img"><a href=""><img class="lazy" src="img/1552044143422.jpg" alt=""></a></div>
+						</div>
+					</li>
+					<li class="menu-item" style="margin-right:30px;font-weight:bold;">
+						<a href="" title="Under $9.99" style="color:#ff90cb;">
+							<span>Under $9.99</span>
+							<i class="menu-item__arrow"></i>
+							<img src="img/sale.webp" style="position: absolute;top:11px;right:-22px;height:15px;">
+						</a>
+						<div class="menu-item__content" style="top: 40px;">
+							<ul class="menu-item__sub">
+								<li class="menu-item_so"><a href="/Sale/New-In/2019-09-10">2019-09-10</a></li>
+								<li class="menu-item_so"><a href="/Sale/New-In/2019-08-30">2019-08-30</a></li>
+								<li class="menu-item_so"><a href="/Sale/New-In/2019-08-27">2019-08-27</a></li>
+								<li class="menu-item_so"><a href="/Sale/New-In/2019-08-20">2019-08-20</a></li>
+								<li class="menu-item_so"><a href="/Sale/New-In/2019-08-19">2019-08-19</a></li>
+								<li class="menu-item_so"><a href="/Sale/New-In/2019-08-13">2019-08-13</a></li>
+								<li class="menu-item_so"><a href="/Sale/New-In/2019-08-12">2019-08-12</a></li>
+							</ul>
+							<div class="menu-item__img"><a href=""><img class="lazy" src="img/1552044143422.jpg" alt=""></a></div>
+						</div>
+					</li>
+					<li class="menu-item"><a href="">Matching Swimwear </a></li>
+
+				</ul>
+				<div class="header-cart">
+					<a href="shoppingcart.html" rel="nofollow">
+						<img src="img/cart.png" alt="">
+						<span class="cart-point">1</span>
+					</a>
+					<!-- 购物袋弹窗 -->
+					<div class="cart-box hidden" data-name="headCart">
+						<img src="img/cartEmpty.jpg">
+						<div class="header-cart__empty tc pt5 pb5" style="font-size: 16px;"><strong>Your Shopping Bag is Empty</strong></div>
+					</div>
+					<div class="cart-box hidden" data-name="headCart" data-type="1">
+						<div class="cart-box__product">
+							<div class="cart-box__item fix">
+								<a href=""><img class="l" src="img/product.jpg" alt=""></a>
+								<div class="cart-box__detail">
+									<h4><a href="" data-name="led">Mom Girl Plaid Self Tie Shirt Dress</a></h4>
+									<p class="mt5">Unit Price: <span class="lang-price" data-price="15.39">US$15.39</span><br>Color:
+										<span>Red</span><br>Size:
+										<span>Mom-3xl</span><br></p>
+								</div>
+							</div>
+						</div>
+						<div class="cart-box__btns fix mt20">
+							<a class="l btn-express-checkout" href="">
+								<img src="//sources.aopcdn.com/www/prod/pr/static/v1573787728270/resources-pc/images/btn-paypal.png" width="174">
+							</a>
+							<a class="l btn btn-purple" href="shoppingcart.html">View Cart</a>
+						</div>
+
+					</div>
+					<div class="category-list-arrow hidden"><i></i></div>
+				</div>
+			</div>
+		</nav>
+		<div class="wrap-box">
+			<div class="container">
+				<!-- 进度条 -->
+				<div class="step">
+					<ul class="step__list fix">
+						<li class="active"><span>1</span><b>Shopping Bag</b></li>
+						<li class="active"><span>2</span><b>Shipping</b></li>
+						<li><span>3</span><b>Payment</b></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="wrap-box mt20">
+			<div class="container fix">
+				<div class="address-main">
+					<div class="address-list">
+						<h3 class="address-list__title">Shipping Address</h3>
+						<!-- 添加新地址 -->
+						<div class="new-address ">
+							<div class="address-list__content">
+								<form onsubmit="return false;" novalidate="novalidate">
+									<input type="hidden" name="type" value="0"><input type="hidden" name="isdefault" value="1">
+									<div class="form-group">
+										<label for="SendFirstName" class="control-label"><span class="control-label-required">*</span>
+											付款方式:
+										</label>
+										<span class="payment">
+											<input type="radio" name="payment" value="radio1" id="payment1" checked="">
+											<label for="payment1" class="radio-box">貨到付款</label>
+											<input type="radio" name="payment" value="radio2" id="payment2">
+											<label for="payment2" class="radio-box">711超商取貨</label>
+											<input type="radio" name="payment" value="radio3" id="payment3">
+											<label for="payment3" class="radio-box">全家超商取貨</label>
+										</span>
+									</div>
+									<div class="form-group">
+										<label for="SendFirstName" class="control-label"><span class="control-label-required">*</span>
+											收货地址:
+										</label>
+										<label class="location" style=" background-color: rgb(221, 221, 221); ">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">请选择收貨地址+ </font>
+											</font>
+										</label>
+										<label id="SendAddress-error" class="error hidden" for="SendAddress">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">請輸入您的收貨地址。</font>
+											</font>
+										</label>
+									</div>
+									<div class="form-group">
+										<label for="SendFirstName" class="control-label"><span class="control-label-required">*</span>
+											姓名:
+										</label>
+										<input class="form-control" name="name" placeholder="請輸入姓名...">
+										<label id="SendName-error" class="error hidden" for="SendName">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">請輸入您的名字。</font>
+											</font>
+										</label>
+									</div>
+									<div class="form-group">
+										<label for="SendFirstName" class="control-label"><span class="control-label-required">*</span>
+											手機號碼:
+										</label>
+										<input class="form-control" name="telphone" placeholder="請輸入手機號碼...">
+										<label id="SendCode-error" class="error hidden" for="SendCode">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">請輸入您的手機號碼。</font>
+											</font>
+										</label>
+									</div>
+
+									<div class="form-group">
+										<label for="SendFirstName" class="control-label">
+											Line ID:
+										</label>
+										<input class="form-control" type="text" name="lineid" placeholder="請輸入Line ID...">
+									</div>
+									<div class="form-group">
+										<label for="SendFirstName" class="control-label"><span class="control-label-required">*</span>E-mail: </label>
+										<input class="form-control" type="email" name="email" placeholder="請輸入E-mail...">
+										<label id="SendEmail-error" class="error hidden" for="SendEmail">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">請輸入您的電子郵件。</font>
+											</font>
+										</label>
+									</div>
+
+									<div class="form-group">
+										<label for="SendAddress1" class="control-label">
+											留言:
+										</label>
+										<textarea placeholder="請輸入您的留言..." name="message"></textarea>
+									</div>
+
+									<div class="form-group address-btns">
+										<input type="hidden" name="address_id" value="">
+										<button type="submit" class="btn btn-purple btn-address-submit disabled-save">Save</button>
+									</div>
+									<input type="hidden" name="__hash__" value="2a65fda8a12f3cfb742eb90a7982b75c_cad4ad493387d2e2c1d5b500343f3342">
+								</form>
+							</div>
+						</div>
+					</div>
+
+					<div class="coupon" data-name="">
+						<h3 class="coupon__title">COUPON CODE</h3>
+						<div class="coupon__content">
+							<h4 class="coupon__have hidden">
+								You have a coupon <em>me15</em> for <em>15%</em> off available for your first order.
+							</h4>
+							<div class="coupon__wrap"><input type="text" class="coupon__input" value="">
+								<button class="coupon__button trans">Apply</button>
+							</div>
+							<div class="coupon__msg" style=""></div>
+						</div>
+					</div>
+					<div class="order-view mt30">
+						<h3 class="order-view__title">
+							<font style="vertical-align: inherit;">
+								<font style="vertical-align: inherit;">订单预览</font>
+							</font>
+						</h3>
+						<div class="order-view__list">
+							<table class="cart-list" width="100%">
+								<tbody>
+									<tr>
+										<th width="420">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">物品</font>
+											</font>
+										</th>
+										<th>
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">单价</font>
+											</font>
+										</th>
+										<th>
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">数量</font>
+											</font>
+										</th>
+										<th>
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">量</font>
+											</font>
+										</th>
+									</tr>
+								</tbody>
+								<tbody>
+									<tr>
+										<td>
+											<div class="cart-item__pic pr l" cartinfo="{&quot;id&quot;:&quot;7409570&quot;,&quot;sku&quot;:&quot;MY18102902&quot;,&quot;size&quot;:&quot;Girl-80&quot;,&quot;color&quot;:&quot;red&quot;}"><a
+												 href="/Products/mom-girl-solid-color-bowknot-decorate-matching-dress-24872.html?color=red/"><img src="//pr.aopcdn.com/goods/MY18102902/3269457_898f9c3575.jpg@!h320-w320"
+													 alt=""></a>
+												<div class="countdown"><i class="iconfont icon-clock"></i><span class="timer" endtime="2019-12-05 15:59:59"><span
+														 class="day_count ">
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">3</font>
+															</font>
+														</span><span class="day">
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">天</font>
+															</font>
+														</span><span class="day_seconds ">
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">01</font>
+															</font><span></span>
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">：</font>
+															</font><span></span>
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">39:25</font>
+															</font>
+														</span></span></div>
+											</div>
+											<div class="cart-item__info"><a href="/Products/mom-girl-solid-color-bowknot-decorate-matching-dress-24872.html?color=red/">
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">妈妈女孩纯色蝴蝶结装饰搭配连衣裙</font>
+													</font>
+												</a>
+												<p>
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">颜色：红色</font>
+													</font><br>
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">尺寸：GIRL-80</font>
+													</font>
+												</p>
+												<p class="mt10"><span class="cart-tag_flash">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">闪购</font>
+														</font>
+													</span></p>
+											</div>
+										</td>
+										<td>
+											<div style="position:relative; top: 40px;">
+												<p class="font-red lang-price" data-price="12.70">
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">US $ 12.70</font>
+													</font>
+												</p>
+												<p class="cart-maiket-price lang-price" data-price="25.40">
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">US $ 25.40</font>
+													</font>
+												</p>
+											</div>
+										</td>
+										<td>
+											<font style="vertical-align: inherit;position:relative; top: 40px;">
+												<font style="vertical-align: inherit;">1个</font>
+											</font>
+										</td>
+										<td>
+											<span class="font-red lang-price" data-price="12.70" style="position:relative; top: 40px;">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">US $ 12.70</font>
+												</font>
+											</span>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="aside-total">
+					<div class="checkout-order-wrap fix">
+						<h3>订单摘要</h3>
+						<div class="checkout-order asideBox">
+							<p><span>总价:</span><b class="sub-total font-red lang-price" data-price="12.70">US$12.70</b></p>
+							<p><span>满减优惠:</span>
+								<strong>
+									<font style="vertical-align: inherit;">
+										<font style="vertical-align: inherit;">再买200减50</font>
+									</font>
+								</strong>
+								<b class="grand-total lang-price" data-price="12.70">US$12.70</b>
+							</p>
+							<p><span>折扣码减免:</span><b class="shipping-amount font-red lang-price" data-price="0.00">US$0.00</b></p>
+							<p><span>运费:</span>
+								<strong>
+									<font style="vertical-align: inherit;">
+										<font style="vertical-align: inherit;">满NT＄299免运费</font>
+									</font>
+								</strong>
+								<b class="grand-total lang-price" data-price="12.70">US$12.70</b>
+							</p>
+							<p><span>最终应付:</span><b class="grand-total lang-price" data-price="12.70">US$12.70</b></p>
+							<div class="checkout-order__btn">
+								<button class="btn btn-purple btn-checkout">
+									确认下单
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="mobileSelect">
+			<div class="grayLayer"></div>
+			<div class="content">
+				<div class="btnBar">
+					<div class="fixWidth">
+						<div class="cancel" style="color: blue;">取消</div>
+						<div class="title">選擇地址</div>
+						<div class="ensure" style="color: red;">確認</div>
+					</div>
+				</div>
+				<div class="panel">
+					<div class="fixWidth">
+						<div class="wheels">
+							<div class="wheel" style="width: 15%;">
+								<ul class="selectContainer" style="transform: translate3d(0px, 80px, 0px);">
+									<li data-id="0">基隆市</li>
+									<li data-id="1">台北市</li>
+									<li data-id="2">新北市</li>
+									<li data-id="3">宜蘭縣</li>
+									<li data-id="4">新竹市</li>
+									<li data-id="5">新竹縣</li>
+									<li data-id="6">桃園市</li>
+									<li data-id="7">苗栗縣</li>
+									<li data-id="8">台中市</li>
+									<li data-id="9">彰化縣</li>
+									<li data-id="10">南投縣</li>
+									<li data-id="11">嘉義市</li>
+									<li data-id="12">嘉義縣</li>
+									<li data-id="13">雲林縣</li>
+									<li data-id="14">台南市</li>
+									<li data-id="15">高雄市</li>
+									<li data-id="16">屏東縣</li>
+									<li data-id="17">台東縣</li>
+									<li data-id="18">花蓮縣</li>
+								</ul>
+							</div>
+							<div class="wheel" style="width: 15%;">
+								<ul class="selectContainer" style="transform: translate3d(0px, 80px, 0px);">
+									<li data-id="0">七堵區</li>
+									<li data-id="1">中山區</li>
+									<li data-id="2">中正區</li>
+									<li data-id="3">仁愛區</li>
+									<li data-id="4">安樂區</li>
+									<li data-id="5">信義區</li>
+									<li data-id="6">暖暖區</li>
+								</ul>
+							</div>
+							<div class="wheel" style="width: 70%;">
+								<ul class="selectContainer" style="transform: translate3d(0px, 80px, 0px);">
+									<li data-id="0">基隆市七堵區工建路1之22號1之23號1樓</li>
+									<li data-id="1">基隆市七堵區永富路99號101號103號1樓</li>
+									<li data-id="2">基隆市七堵區百三街61號</li>
+									<li data-id="3">基隆市七堵區自治街9號11號</li>
+									<li data-id="4">基隆市七堵區明德一路174號</li>
+									<li data-id="5">基隆市七堵區堵南街22-1號1樓</li>
+									<li data-id="6">基隆市七堵區華新一路22號26號1樓</li>
+									<li data-id="7">基隆市七堵區實踐路286號福二街229號1樓</li>
+									<li data-id="8">基隆市七堵區福五街80號82號1樓</li>
+								</ul>
+							</div>
+						</div>
+						<div class="selectLine"></div>
+						<div class="shadowMask"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 底部 -->
+		<footer>
+			<div class="footer-top">
+				<div class="container fix">
+					<div class="footer-top__menu fix">
+						<ul>
+							<li>
+								<h3>COMPANY</h3>
+							</li>
+							<li><a href=" " rel="nofollow" target="_top">About Us</a></li>
+							<li><a href="" rel="nofollow" target="_top">Terms &amp; Conditions</a></li>
+							<li><a href="" rel="nofollow" target="_top">Privacy Policy</a></li>
+							<li><a href="" rel="nofollow" target="_top" title="Intellectual Property Rights">
+									Intellectual Property Rights
+								</a></li>
+						</ul>
+						<ul>
+							<li>
+								<h3>CUSTOMER SERVICE</h3>
+							</li>
+							<li><a href="" rel="nofollow" target="_top">Contact Us</a></li>
+							<li><a href="" rel="nofollow" target="_top">My Account</a></li>
+							<li><a href="" rel="nofollow" title="Track Order">Track Order</a></li>
+							<li><a href="" rel="nofollow" title="Cancel Order">Cancel Order</a></li>
+							<li><a href="" rel="nofollow" title="Edit Shipping Address">Edit Shipping Address</a></li>
+						</ul>
+						<ul>
+							<li>
+								<h3>HELP CENTER</h3>
+							</li>
+							<li><a href="" rel="nofollow" target="_top">Q&amp;A</a></li>
+							<li><a href="" rel="nofollow" target="_top">Payment Methods</a></li>
+							<li><a href="" rel="nofollow" target="_top">Delivery</a></li>
+							<li><a href="" rel="nofollow" target="_top">Returns &amp; Exchanges</a></li>
+							<li><a href="" rel="nofollow" target="_top">
+									App Download
+								</a></li>
+						</ul>
+					</div>
+					<div class="footer-top__social">
+						<p class="s-title">HELP &amp; SUPPORT</p>
+						<div class="footer-top__social-list">
+							<a href="" target="_top">
+								<img src="img/social_facebook.webp" alt=""></a>
+							<a href="" target="_top">
+								<img src="img/social_twitter.webp" alt=""></a>
+							<a href="" target="_top">
+								<img src="img/social_pinterest.webp" alt=""></a>
+							<a href="" target="_top">
+								<img src="img/social_instagram.webp" alt=""></a>
+						</div>
+						<p class="s-title">SIGN UP FOR POPREAL NEWS</p>
+						<form class="subscribe-form mt20"><input type="text" placeholder="Enter Email Address" class="subscribe-form__input">
+							<div class="subscribe-form__button">SUBSCRIBE</div><input type="hidden" name="__hash__" value="6666cd76f96956469e7be39d750cc7d9_a8fa1af4e328c520d02eee3e50db08c2">
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="footer-bottom">
+				<div class="container">
+					<p class="footer-bottom__friend-img">
+						<img src="img/ft_friendlink.webp" alt="">
+						<a href="" title="DMCA.com Protection Status" class="dmca-badge">
+							<img src="img/dmca_protected_sml_120af.png" style="width: 47px;margin-left: 16px;border: 1px solid #dcdcdc;border-radius: 3px;"
+							 alt="DMCA.com Protection Status"></a>
+					</p>
+					<p>2018 © popreal, Orderplus Hong Kong</p>
+				</div>
+			</div>
+		</footer>
+		<!-- 返回顶部 -->
+		<div class="return-top" style="display: none;"><i class="iconfont icon-xiaohuojian"></i></div>
+		<script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
+		<script src="js/browser-polyfill.min.js"></script>
+		<script src="js/browser.min.js"></script>
+		<script src="js/common.js" type="text/babel"></script>
+		<script src="js/address.js" type="text/babel"></script>
+	</body>
+</html>

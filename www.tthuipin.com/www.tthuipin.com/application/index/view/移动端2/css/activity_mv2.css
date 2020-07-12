@@ -1,0 +1,178 @@
+header {
+	width: 100%;
+	height: 19.41rem;
+	padding: 1rem;
+	position: relative;
+	background: url(../img/activity_01.jpg) no-repeat;
+	background-size: 100% 100%;
+}
+
+#head_icon {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	margin-top: 2%;
+}
+
+#head_icon img {
+	height: 1.83rem;
+}
+
+section {
+	width: 100%;
+	height: auto;
+	padding: 0 1rem;
+	background: #5E0D98;
+}
+
+.list_wrap {
+	width: 100%;
+}
+
+.list_items {
+	width: 100%;
+	height: 11.66rem;
+	padding: 1rem;
+	margin-bottom: 1.2rem;
+	background: #FEFCFF;
+	border-radius: 0.5rem;
+	display: flex;
+	position: relative;
+}
+
+.items_icon {
+	width: 36px;
+	position: absolute;
+	left: 2%;
+	top: -4%;
+}
+
+.items_icon span {
+	color: white;
+	font-size: 12px;
+	position: absolute;
+	left: 18%;
+	top: 28%;
+}
+
+#items_num{
+	font-size: 15px;
+	font-weight: 600;
+	position: absolute;
+	left: 26%;
+	top: 38%;
+}
+
+#item_shape_num{
+	font-size: 16px;
+	font-weight: 600;
+	position: absolute;
+	left: 22%;
+	top: 22%;
+}
+
+.items_img {
+	width: 35%;
+	height: 9.5rem;
+	border-radius: 0.5rem;
+	overflow: hidden;
+}
+
+.items_main {
+	width: 60%;
+	height: auto;
+	padding-left: 1rem;
+}
+
+.items_main a {
+	width: 100%;
+
+}
+
+.list_item_name {
+	color: #0E0E0E;
+	font-size: 1.3rem;
+	font-weight: 500;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+
+}
+
+.list_item_details {
+	color: #8b6750;
+	font-size: 1.08rem;
+	font-weight: 500;
+}
+
+.list_item_discount {
+	display: inline-block;
+	color: #E759A3;
+	border: 1px solid #E759A3;
+	border-radius: 3px;
+	padding: 0 0.2rem;
+	margin: 2px;
+	font-weight: 600;
+}
+
+.list_item_price {
+	position: relative;
+	color: #e7439a;
+	font-weight: 700;
+	font-size: 1.3rem;
+	overflow: hidden;
+}
+
+#festival {
+	/* width: 3.33rem;
+	height: 1.5rem; */
+	padding: 0 0.2rem;
+	text-align: center;
+	font-size: 1rem;
+	font-weight: 200;
+	background: #AA86FA;
+	border-radius: 3px;
+	color: white;
+	margin-right: 2%;
+	display: inline-block;
+}
+
+.list_item_buy {
+	width: 100%;
+	height: 2.16rem;
+	line-height: 2.16rem;
+	text-align: center;
+	color: white;
+	margin-top: 2%;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.sales_buy {
+	width: 60%;
+	height: 100%;
+	background: #E74A9B;
+	border-radius: 30px 0 0 30px;
+
+}
+
+.rush_to_buy {
+	width: 40%;
+	height: 100%;
+	background: #AB86FA;
+	border-radius: 0 30px 30px 0;
+}
+
+.shape {
+	position: absolute;
+	top: 0;
+	right: 32%;
+}
+
+.shape img {
+	width: 56%;
+	height: 100%;
+	vertical-align: top;
+}

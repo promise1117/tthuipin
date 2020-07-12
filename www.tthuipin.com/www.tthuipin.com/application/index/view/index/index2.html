@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>開心樂購</title>
+<!--		<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">-->
+		<link rel="stylesheet" href="__PUBLIC__/static/mobile1/css/iconfont.css">
+		<link rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/Swiper/4.5.1/css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/mobile1/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/mobile1/css/indexMobile.css" />
+		<link rel="apple-touch-icon-precomposed" sizes="57x57" href="__IMG__/icon-desktop.png">
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="__IMG__/icon-desktop.png">
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="__IMG__/icon-desktop.png">
+		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="__IMG__/icon-desktop.png">
+
+		<style>
+
+			.mdui-depletion > a::after {
+				content: '+';
+				color: #BCBCBC;
+				display: block;
+				font-size: 12px;
+				position: absolute;
+				left: 0.36rem;
+				top: -2.6rem;
+				transform: rotateZ(45deg);
+			}
+		</style>
+		<script type="text/javascript">
+			var sUserAgent = navigator.userAgent;
+			if(!/Android|webOS|iPhone|iPod|BlackBerry/i.test(sUserAgent)){
+				window.location.href="/pc_index";
+			}
+		</script>
+	</head>
+	<body>
+	<!-- Header -->
+
+	<div class="header-wrap  header-fixed" style="height: 10.08rem !important;">
+
+		<div class="nav-bar-top" style="flex-direction: column;padding:0rem;height: 5.5rem;line-height:2.5rem; ">
+			<div class="mdui-toolbar mdui-appbar-depletion" style="display: flex;width:100%;height:5.5rem;">
+				<div class="mdui-depletion" style="position: relative;margin: 0;text-overflow: ellipsis;
+    white-space: nowrap;overflow: hidden;width:100%;">
+					<div class="mdui-depletion-box" onclick="openTech()" style="display: flex;height: 50px;line-height: 50px;align-items: center;background: #4C4C4C;color: #fff;padding:7px 15px 7px 20px;justify-content: space-between;box-sizing: border-box;position: relative;">
+						<img src="__IMG__/icon-desktop.png" alt="" srcset="" style="height: 36px;border-radius: 2px !important;border-style: none;">
+						<div style="display: flex;flex-direction: column;color: #fff;flex: 1;padding-left: 8px;">
+							<span style="line-height: 14px;font-size: 14px;margin: 1px 0 6px;">開心樂購</span>
+							<span style="line-height: 12px;font-size: 12px;">直通工廠 限時出清</span>
+						</div>
+						<span class="iosShow" style="background: #B4272D;border-radius: 4px;padding: 7px 8px;font-size: 12px;line-height: 12px;color: #fff">下載</span>
+					</div>
+					<a href="javascript:void(0)" onclick="closeTech()" style="position: absolute;top: 0;left: 0;display: block;height: 0;width: 0;font-size: 0;border-top: 20px solid #575757;border-right: 20px solid transparent;"></a>
+				</div>
+			</div>
+		</div>
+		<div class="header">
+
+			<div class="header__left">
+
+				<div class="header__aside-switch"><i class="iconfont icon-menu"></i></div>
+
+			</div>
+
+			<div class="header__center">
+
+				<div class="header__logo">
+
+					<a href="/">
+
+						<img src="__IMG__/logo.jpg" alt="">
+
+					</a>
+
+				</div>
+
+			</div>
+
+			<div class="header__right">
+
+				<div class="search-btn"><i class="iconfont icon-search"></i></div>
+
+				<a class="cart-btn"  target="_self" href="/sure" rel="nofollow""><i class=" iconfont icon-bag"></i><span class="cart-point" style="display: inline;">{$shop_car|count}</span></a>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<!-- 搜索弹窗 -->
+	<form action="search">
+		<div class="search-layer">
+			<div class="close-btn"><i class="iconfont icon-close"></i></div>
+			<div class="search-box">
+				<button class="search-icon iconfont icon-search" type="submit"></button>
+
+				<input type="text" name="search" id="search-input" maxlength="64" placeholder="請輸入商品名或貨號...">
+				<div class="search-input-clear-btn">
+					<div class="search-input-clear-icon iconfont icon-deletepicdefaultpicicon"></div>
+				</div>
+			</div>
+		</div>
+	</form>
+	<!-- 侧边栏 -->
+
+	<div class="slide slide-send" style= 'transform: translateX(-100%)'>
+
+		<div class="slide__wrap">
+
+			<div class="slide-close trans"><i class="iconfont icon-close"></i></div>
+
+			<div style="padding:2rem;border-bottom: 1px solid #f2f2f2;"></div>
+
+
+
+			{volist name="catlist" id="vo" key="k"}
+
+			<div class="slide__menu-item"><a href="javascript:;">{$vo.cat_name}<span class="iconfont icon-arrows_down"></span></a>
+
+				<div class="slide__menu-children">
+
+					<ul>
+
+
+
+						{volist name="$vo.cat_two" id="v"}
+
+						<li><a href="/categorylist?cat_id={$v.cat_id}&cat_name={$v.cat_name}&parent_id={$v.parent_id}&nav_id={$k+3}">{$v.cat_name}</a></li>
+
+						{/volist}
+
+
+
+					</ul>
+
+				</div>
+
+			</div>
+
+			{/volist}
+
+			<!--        <div class="slide__menu-item"><a href="javascript:;">Matching Outfits-->
+
+			<!--            &lt;!&ndash; 悬浮标 &ndash;&gt;<span class="iconfont icon-arrows_down"></span></a>-->
+
+			<!--            <div class="slide__menu-children">-->
+
+			<!--                <ul>-->
+
+			<!--                    <li><a href="/matching-outfits-251/" title="Dresses">View All</a></li>-->
+
+			<!--                    <li><a href="/mommy-me-257/" title="Mommy &amp; Me">Mommy &amp; Me</a></li>-->
+
+			<!--                    <li><a href="/brothers-sisters-258/" title="Sisters &amp; Brothers">Sisters &amp; Brothers</a></li>-->
+
+			<!--                    <li><a href="/matching-swimwear-261/" title="Matching Swimwear">Matching Swimwear</a></li>-->
+
+			<!--                    <li><a href="/family-outfits-260/" title="Family Outfits">Family Outfits</a></li>-->
+
+			<!--                </ul>-->
+
+			<!--            </div>-->
+
+			<!--        </div>-->
+
+			<!--        <div class="slide__menu-item"><a href="javascript:;">Infants&amp;Toddler-->
+
+			<!--            &lt;!&ndash; 悬浮标 &ndash;&gt;<span class="iconfont icon-arrows_down"></span></a>-->
+
+			<!--            <div class="slide__menu-children">-->
+
+			<!--                <ul>-->
+
+			<!--                    <li><a href="/toddler-254/" title="Dresses">View All</a></li>-->
+
+			<!--                    <li><a href="/jackets-outerwear-281/" title="Jackets / Outerwear">Jackets / Outerwear</a></li>-->
+
+			<!--                    <li><a href="/toddleronepiece-rompers-286/" title="One Piece / Rompers">One Piece / Rompers</a></li>-->
+
+			<!--                    <li><a href="/toddler-tops-280/" title="Infants&amp;Toddler Tops">Infants&amp;Toddler Tops</a></li>-->
+
+			<!--                    <li><a href="/toddler-swimwear-284/" title="Infants&amp;Toddler Swimwear">Infants&amp;Toddler Swimwear</a></li>-->
+
+			<!--                    <li><a href="/toddler-dress-skirt-283/" title="Infants&amp;Toddler Dress / Skirt">Infants&amp;Toddler Dress /-->
+
+			<!--                        Skirt</a></li>-->
+
+			<!--                    <li><a href="/daily-dress-306/" title="Daily Dress">Daily Dress</a></li>-->
+
+			<!--                    <li><a href="/princess-dress-304/" title="Princess Dress">Princess Dress</a></li>-->
+
+			<!--                    <li><a href="/tutu-307/" title="Tutu">Tutu</a></li>-->
+
+			<!--                    <li><a href="/toddler-sets-282/" title="Infants&amp;Toddler Sets">Infants&amp;Toddler Sets</a></li>-->
+
+			<!--                    <li><a href="/toddler-bottoms-285/" title="Infants&amp;Toddler Bottoms">Infants&amp;Toddler Bottoms</a></li>-->
+
+			<!--                </ul>-->
+
+			<!--            </div>-->
+
+			<!--        </div>-->
+
+			<!--        <div class="slide__menu-item"><a href="javascript:;">Kids-->
+
+			<!--            &lt;!&ndash; 悬浮标 &ndash;&gt;<span class="iconNum" style="color:#999;">-->
+
+			<!--						</span><span class="iconfont icon-arrows_down"></span></a>-->
+
+			<!--            <div class="slide__menu-children">-->
+
+			<!--                <ul>-->
+
+			<!--                    <li><a href="/kids-255/" title="Dresses">View All</a></li>-->
+
+			<!--                    <li><a href="/kids-tops-287/" title="Kids Tops">Kids Tops</a></li>-->
+
+			<!--                    <li><a href="/kids-sets-289/" title="Kids Sets">Kids Sets</a></li>-->
+
+			<!--                    <li><a href="/jackets-outerwear-288/" title="Jackets / Outerwear">Jackets / Outerwear</a></li>-->
+
+			<!--                    <li><a href="/kids-bottoms-292/" title="Kids Bottoms">Kids Bottoms</a></li>-->
+
+			<!--                    <li><a href="/kids-dress-skirt-290/" title="Kids Dress / Skirt">Kids Dress / Skirt</a></li>-->
+
+			<!--                    <li><a href="/daily-dress-296/" title="Daily Dress">Daily Dress</a></li>-->
+
+			<!--                    <li><a href="/princess-dress-294/" title="Princess Dress">Princess Dress</a></li>-->
+
+			<!--                    <li><a href="/tutu-297/" title="Tutu">Tutu</a></li>-->
+
+			<!--                    <li><a href="/kids-swimwear-291/" title="Kids Swimwear">Kids Swimwear</a></li>-->
+
+			<!--                    <li><a href="/kids-one-piece-bodysuits-293/" title="Kids One Piece/Bodysuits">Kids One Piece/Bodysuits</a></li>-->
+
+			<!--                </ul>-->
+
+			<!--            </div>-->
+
+			<!--        </div>-->
+
+			<!--        <div class="slide__menu-item"><a href="javascript:;">Accessories-->
+
+			<!--            &lt;!&ndash; 悬浮标 &ndash;&gt;<span class="iconfont icon-arrows_down"></span></a>-->
+
+			<!--            <div class="slide__menu-children">-->
+
+			<!--                <ul>-->
+
+			<!--                    <li><a href="/accessories-256/" title="Dresses">View All</a></li>-->
+
+			<!--                    <li><a href="/socks-298/" title="Socks">Socks</a></li>-->
+
+			<!--                    <li><a href="/shoes-299/" title="Shoes">Shoes</a></li>-->
+
+			<!--                    <li><a href="/hats-caps-300/" title="Hats/Caps">Hats/Caps</a></li>-->
+
+			<!--                    <li><a href="/baby-photo-props-309/" title="Baby Photo Props">Baby Photo Props</a></li>-->
+
+			<!--                    <li><a href="/hair-accessories-301/" title="Hair Accessories">Hair Accessories</a></li>-->
+
+			<!--                    <li><a href="/bags-302/" title="Bags">Bags</a></li>-->
+
+			<!--                </ul>-->
+
+			<!--            </div>-->
+
+			<!--        </div>-->
+
+
+
+			<!--        <div class="slide__menu-item"><a href="javascript:;">Matching Swimwear-->
+
+			<!--            &lt;!&ndash; 悬浮标 &ndash;&gt;<span class="iconfont icon-arrows_down"></span></a>-->
+
+			<!--            <div class="slide__menu-children">-->
+
+			<!--                <ul>-->
+
+			<!--                    <li><a href="/matching-swimwear-261/" title="Dresses">View All</a></li>-->
+
+			<!--                </ul>-->
+
+			<!--            </div>-->
+
+			<!--        </div>-->
+
+		</div>
+
+	</div>
+
+
+
+	<div class="home-nav header-fixed" style="top:10rem !important;">
+
+		<div class="swiper-container">
+
+			<div class="nav-bar swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
+
+				<a  target="_self" class="swiper-slide active" href="/?nav_id=0" style="width: auto;">首頁<span></span></a>
+
+				<a  target="_self" class="swiper-slide" href="/hot?nav_id=1" style="width: auto;">推薦<span></span></a>
+
+				<a  target="_self" class="swiper-slide" href="/new?nav_id=2" style="width: auto;">新品<span></span></a>
+
+				<a  target="_self" class="swiper-slide" href="/special?nav_id=3" style="width: auto;">特賣<span></span></a>
+
+				{volist name="catlist" id="vo"}
+
+				<a  target="_self" class="swiper-slide" href="/categorylist?cat_id={$vo.cat_id}&cat_name={$vo.cat_name}&parent_id={$vo.parent_id}&nav_id={$key+4}">{$vo.cat_name}<span></span></a>
+
+				{/volist}
+
+				<!--            <a class="swiper-slide" href="">女鞋<span></span></a>-->
+
+				<!--            <a class="swiper-slide" href="">包包<span></span></a>-->
+
+				<!--            <a class="swiper-slide" href="">配飾 <span></span></a>-->
+
+				<!--            <a class="swiper-slide" href="">童裝<span></span></a>-->
+
+				<!--            <a class="swiper-slide" href="">美妝<span></span></a>-->
+
+				<!--            <a class="swiper-slide" href="">家居<span></span></a>-->
+
+				<!--            <a class="swiper-slide" href="">電子 <span></span></a>-->
+
+				<!--            <a class="swiper-slide" href="">寵物<span></span></a>-->
+
+			</div>
+
+		</div>
+
+	</div>
+
+		<!-- 焦点图 -->
+		<section style="margin-top:13.75rem !important;">
+			<div class="swiper-container">
+				<div class="swiper-wrapper"></div>
+				<!-- 分页器 -->
+				<div class="swiper-pagination"></div>
+			</div>
+		</section>
+		
+		<!-- 分类模块 -->
+		<div class="content-box">
+			<div class="bride-grid">
+				<div class="content-grid">
+					<a href="/categorylist?cat_id=18&cat_name=女裝&parent_id=0&nav_id=4">
+						<img src="__PUBLIC__/static/mobile1/img/fl_03.jpg" alt="" data-selector="img">
+					</a>
+				</div>
+				<div class="content-grid2">
+					<figure>
+						<a href="/categorylist?cat_id=56&cat_name=創意生活&parent_id=44">
+							<img src="__PUBLIC__/static/mobile1/img/fl_05.jpg" alt="" data-selector="img">
+						</a>
+					</figure>
+					<figure class="effect-bubba">
+						<a href="/categorylist?cat_id=88&cat_name=童裝&parent_id=0">
+							<img src="__PUBLIC__/static/mobile1/img/fl_08.jpg" alt="" data-selector="img">
+						</a>
+					</figure>
+				</div>
+			</div>
+		</div>
+		
+		<!-- TOP & NEW -->
+		<div class="content-box">
+			<div class="navigation-tab">
+				<a class="navigation-tab__item active" href="javascript:;">限時特賣</a>
+				<a class="navigation-tab__item" href="javascript:;">最新產品</a>
+			</div>
+			<div class="navigation-content">
+				<ul class="list-wrap fix">
+					{volist name="hotgoods" id="vo" offset="0" length="23"}
+
+
+					<form  name="order" action="/sure" method="post">
+						<input type="hidden" name="goods_no" value="{$vo.goods_no}">
+						<input type="hidden" name="img" value="{$vo.img}">
+
+						<input type="hidden" name="sell_price" value="{$vo['sell_price']}">
+						<input type="hidden" name="market_price" value="{$vo['market_price']}">
+						<input type="hidden" name="cost_price" value="{$vo['market_price']-$vo['sell_price']}">
+
+						{volist name="vo" id="voo" offset="0" length='1'}
+						<input type="hidden" name="taocan_id" value="{$voo.id}">
+						{/volist}
+					<li class="list__item">
+						<div class="list__item-inner"><a class="list_item-img" href="/goodsinfo?goodsid={$vo.id}">
+								<img class="lazy" src="{$vo.img}" style="display: block;"></a>
+						</div>
+						<div class="list__item-price"><span class="lang-price"  data-price="{$vo.sell_price}">NT${$vo.sell_price}</span>
+							<div class="list__item-price-old lang-price" data-price="{$vo.market_price}">NT${$vo.market_price}</div>
+							<a class="list-add-wish" data-action="add-wishlist" data-sku="MY18102902" href="javascript:;">
+								<i class="iconfont icon-like"></i>
+							</a>
+						</div>
+						<div class="list__item-name">
+							<a href="/goodsinfo?goodsid={$vo.id}" title="{$vo.name}">{$vo.name}</a>
+						</div>
+						<div class="tag__flashsale mobile" style="background-image : url(__PUBLIC__/static/mobile1/img/fs.webp)">
+							<span class="tag__val">70</span>
+						</div>
+					</li>
+					</form>
+
+					{/volist}
+					<li class="list__item">
+						<div class="list__item-inner"><a class="link__view-more" href="/hot"></a></div>
+					</li>
+
+
+				</ul>
+			</div>
+			<div class="navigation-content hidden">
+				<ul class="list-wrap fix">
+					{volist name="newgoods" id="vo" offset="0" length="23"}
+
+
+					<form  name="order" action="/sure" method="post">
+						<input type="hidden" name="goods_no" value="{$vo.goods_no}">
+						<input type="hidden" name="img" value="{$vo.img}">
+
+						<input type="hidden" name="sell_price" value="{$vo['sell_price']}">
+						<input type="hidden" name="market_price" value="{$vo['market_price']}">
+						<input type="hidden" name="cost_price" value="{$vo['market_price']-$vo['sell_price']}">
+
+						{volist name="vo" id="voo" offset="0" length='1'}
+						<input type="hidden" name="taocan_id" value="{$voo.id}">
+						{/volist}
+						<li class="list__item">
+							<div class="list__item-inner"><a class="list_item-img" href="/goodsinfo?goodsid={$vo.id}">
+								<img class="lazy" src="{$vo.img}" style="display: block;"></a>
+							</div>
+							<div class="list__item-price"><span class="lang-price"  data-price="{$vo.sell_price}">NT${$vo.sell_price}</span>
+								<div class="list__item-price-old lang-price" data-price="{$vo.market_price}">NT${$vo.market_price}</div>
+								<a class="list-add-wish" data-action="add-wishlist" data-sku="MY18102902" href="javascript:;">
+									<i class="iconfont icon-like"></i>
+								</a>
+							</div>
+							<div class="list__item-name">
+								<a href="/goodsinfo?goodsid={$vo.id}" title="{$vo.name}">{$vo.name}</a>
+							</div>
+							<div class="tag__flashsale mobile" style="background-image : url(__PUBLIC__/static/mobile1/img/fs.webp)">
+								<span class="tag__val">70</span>
+							</div>
+						</li>
+					</form>
+
+					{/volist}
+					<li class="list__item">
+						<div class="list__item-inner"><a class="link__view-more" href="/new"></a></div>
+					</li>
+
+
+				</ul>
+			</div>
+		</div>
+
+		<!--comment show-->
+		<div class="content-box tc">
+			<div class="show-title">
+				<div class="show-line"></div>
+				<div class="show-text">限時特價</div>
+			</div>
+<!--			<a href=""><img class="mt10" src="__PUBLIC__/static/mobile1/img/popreal.jpg" alt=""></a>-->
+			<ul class="list-wrap fix">
+				{volist name="newgoods" id="vo" offset="0" length="2"}
+
+
+				<form  name="order" action="/sure" method="post">
+					<input type="hidden" name="goods_no" value="{$vo.goods_no}">
+					<input type="hidden" name="img" value="{$vo.img}">
+
+					<input type="hidden" name="sell_price" value="{$vo['sell_price']}">
+					<input type="hidden" name="market_price" value="{$vo['market_price']}">
+					<input type="hidden" name="cost_price" value="{$vo['market_price']-$vo['sell_price']}">
+
+					{volist name="vo" id="voo" offset="0" length='1'}
+					<input type="hidden" name="taocan_id" value="{$voo.id}">
+					{/volist}
+					<li class="list__item">
+						<div class="list__item-inner"><a class="list_item-img" href="/goodsinfo?goodsid={$vo.id}">
+							<img class="lazy" src="{$vo.img}" style="display: block;"></a>
+						
+						</div>
+						<div class="list__item-price"><span class="lang-price"  data-price="{$vo.sell_price}">NT${$vo.sell_price}</span>
+							<div class="list__item-price-old lang-price" data-price="{$vo.market_price}">NT${$vo.market_price}</div>
+							<a class="list-add-wish" data-action="add-wishlist" data-sku="MY18102902" href="javascript:;">
+								<i class="iconfont icon-like"></i>
+							</a>
+						</div>
+						<div class="list__item-name">
+							<a href="/goodsinfo?goodsid={$vo.id}" title="{$vo.name}">{$vo.name}</a>
+						</div>
+						<div class="tag__flashsale mobile" style="background-image : url(__PUBLIC__/static/mobile1/img/fs.webp)">
+							<span class="tag__val">70</span>
+						</div>
+					</li>
+				</form>
+
+				{/volist}
+<!--				<li class="list__item">-->
+<!--					<div class="list__item-inner"><a class="link__view-more" href="/new"></a></div>-->
+<!--				</li>-->
+
+
+			</ul>
+			<ul data-name="reviewShow" class="list-wrap fix">
+				<!-- model填充 -->
+			</ul>
+		</div>
+
+
+		{include file="public/footer" /}
+
+		<script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
+		<script src="__PUBLIC__/static/mobile1/js/remstyle.js"></script>
+		<script src="https://cdn.staticfile.org/Swiper/4.5.1/js/swiper.min.js"></script>
+		<script src="__PUBLIC__/static/mobile1/js/common.js"></script>
+		<script src="__PUBLIC__/static/mobile1/js/indexMobile.js"></script>
+
+	<!-- 关闭角标按钮事件 -->
+	<script>
+
+		function closeTech(){
+			$('.nav-bar-top').hide('slow');
+			$('.header-wrap').animate({'height':'-=5.5rem'},'slow');
+			$('.home-nav').animate({'top':'-=5.5rem'},'slow');
+			$('section').animate({'marginTop':'-=5.5rem'},'slow');
+			//
+		}
+		function openTech(){
+			window.location.href = '/shortcut';
+		}
+
+	</script>
+	</body>
+</html>

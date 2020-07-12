@@ -1,0 +1,74 @@
+<div class="menubox" id="menubox">
+    <div class="menu-header">
+        <div class="header-content">
+            <a class="menu-close" id="close2"></a>
+            <a class="menu-service"></a>
+        </div>
+    </div>
+    <div class="nav-box" class="wrap">
+        <ul class="levelA ">
+            <li class="active"><a href="/">热门</a></li>
+            {volist name="catlist" id="vo"}
+                <li class="tab2-box"><a href="javascript:;" onclick="findTwo({$vo.cat_id})"><span>{$vo.cat_name}</span></a></li>
+            {/volist}
+        </ul>
+        <ul class="levelB on">
+
+            {volist name="hotlist" id="hot"}
+                <li>
+                    <a href="javascript:;">
+                        <div class="level_img_box">
+                            <img src="{$hot.image}">
+                        </div>
+                        <span>{$hot.cat_name}</span>
+                    </a>
+                </li>
+            {/volist}
+        </ul>
+        <ul class="levelB">
+        </ul>
+    </div>
+</div>
+<script>
+    //获取二级分类和全部商品图片
+    function findTwo(obj){
+        str = '';
+        $.ajax({
+            type:'post',
+            url:'/catlevel',
+            data:{catid:obj},
+            success:function(data){
+                if(data.code == 200){
+                    str += "<li><a href='#goodslist"+ obj +"'><div class='level_img_box'><img src='"+ data.data.image +"'></div><span>全部商品</span></a></li>";
+                }else{
+                    alert(data.message);
+                }
+            },
+            error:function(){
+                alert('網絡异常，請稍後再試...');
+            },
+        });
+        $.ajax({
+            type:'post',
+            url:'/cattwo',
+            data:{catid:obj},
+            success:function(data){
+                if(data.code == 200){
+                    // for(kk=0;kk<data.data[0].length;kk++) {
+                    //     strb += "<li><a href='##'><div class='level_img_box'><img src='" + data.data[0][kk].image + "'></div><span>" +  data.data[0][kk].cat_name + "</span></a></li>";
+                    // }
+                    // $(".levelB").append(strb);
+                    $.each(data.data[0],function(i,val){
+                         str += "<li><a href='javascript:;'><div class='level_img_box'><img src='"+ val.image +"'></div><span>"+ val.cat_name +"</span></a></li>";
+                        $(".levelB").html(str);
+                    });
+                }else{
+                    alert(data.message);
+                }
+            },
+            error:function(){
+                alert('網絡异常，請稍後再試...');
+            },
+        })
+    }
+</script>

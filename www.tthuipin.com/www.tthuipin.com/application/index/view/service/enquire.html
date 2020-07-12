@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<link rel="stylesheet" href="__MOBILE2__/css/iconfont.css">
+	<link rel="stylesheet" type="text/css" href="https://www.layuicdn.com/layui/css/layui.css">
+	<link rel="stylesheet" type="text/css" href="__MOBILE2__/lib/swiper.min.css" />
+	<link rel="stylesheet" type="text/css" href="__MOBILE2__/css/common.css" />
+	<link rel="stylesheet" type="text/css" href="__MOBILE2__/css/enquire_mv2.css" />
+	<title>開心樂購</title>
+</head>
+<body>
+
+{include file="public/heads" /}
+<!-- 侧边栏 -->
+{include file="public/left" /}
+
+
+{include file="public/nav" /}
+
+<main>
+	<div id="services">
+		<div class="service_top">
+			<h1 class="head_title">訂單流程</h1>
+		</div>
+		<div class="service_bottom">
+			<div class="service_item">
+				<img src="public/static/mobile2/img/image/order_01.jpg">
+				<p>用戶下單</p>
+			</div>
+			<div class="arrow">
+				<img src="public/static/mobile2/img/arrow.jpg">
+			</div>
+			<div class="service_item">
+				<img src="public/static/mobile2/img/image/order_02.jpg">
+				<p>運輸中</p>
+			</div>
+			<div class="arrow">
+				<img src="public/static/mobile2/img/arrow.jpg">
+			</div>
+			<div class="service_item">
+				<img src="public/static/mobile2/img/image/order_03.jpg">
+				<p>清關中</p>
+			</div>
+			<div class="arrow">
+				<img src="public/static/mobile2/img/arrow.jpg">
+			</div>
+			<div class="service_item">
+				<img src="public/static/mobile2/img/image/order_04.jpg">
+				<p>抵台待取</p>
+			</div>
+		</div>
+	</div>
+	<div class="feat-grid">
+
+		<h1 class="head_title">訂單查詢</h1>
+		<form id="form" method="post" onsubmit="return search();" novalidate="novalidate">
+			<div class="login-content">
+				<div class="form-item">
+					<input name="email" type="text" class="form-input" placeholder="請輸入訂單編號/手機號/姓名">
+					<label class="form-title">*訂單號/手機號/姓名必須填寫準確才能査詢</label>
+					<p class="line"></p>
+					<button id="loginBtn" type="submit" class="btn-a">
+						<input id="sitename" type="hidden" name="sitename" value="newpopreal">
+						<span>立即査詢</span>
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</main>
+
+
+
+
+
+
+<script src="__MOBILE2__/lib/jquery.min.js"></script>
+<script src="__MOBILE2__/lib/rem.js"></script>
+<script src="__MOBILE2__/lib/swiper.min.js"></script>
+<script src="https://www.layuicdn.com/layer-v3.1.1/layer.js"></script>
+<script src="__MOBILE2__/js/common.js"></script>
+<script src="https://www.layuicdn.com/layui-v2.5.5/layui.js"></script>
+
+<script>
+	layui.use(['layer'],function () {
+		var layer = layui.layer;
+
+	});
+	$('.form-input').focus(function () {
+		$(this).select();
+
+	});
+
+	function search() {
+		layer.load();
+		var search_msg = $('input[name="email"]').val();
+		$.ajax({
+			type:'post',
+			url : '{:url("pc/Service/orderSearch")}',
+			data : {
+				'order_no':search_msg
+			},
+			success:function (data) {
+				console.log(data);
+				$('.order').show();
+				$('.layui-quote-nm').remove();
+				$('section').remove();
+
+				if(data.length == 0){
+					$('#form').append(function () {
+						return `<blockquote class="layui-elem-quote layui-quote-nm">
+                                    <ul>
+                                        <li>
+                                            <span style="margin-right: 200px">暫無訂單</span>
+                                        </li>
+                                    </ul>
+                                </blockquote>`;
+					})
+				}else {
+					$.each(data,function (key,value) {
+						var order_info =JSON.parse(value.order_info)[0];
+						switch (value.status) {
+							case 1:
+								value.status = '下單成功';
+
+								$('#form').append(function () {
+									return `<section>
+									<div class="order_inquiry">
+										<div class="order_info">
+											<p class="order_number">
+												<b>訂單號:</b> ${value.order_no}
+											</p>
+											<p class="am-text">
+												<b>商品名稱:</b>
+												<p class="am-text head_title">${order_info.taocan}</p>
+											</p>
+											<p class="am-text">[規格：<span class="attr1">${order_info.color[1]}</span> ] </p>
+											<p class="am-text"><b>郵寄地址:</b><span class="address">${value.country}/${value.city}</span></p>
+											<p class="am-text"><b>數量價格:</b><span class="num">${order_info.num}/</span><span class="price">${order_info.sell_price}</span></p>
+											<p class="am-text"><b>訂單狀態:</b><span class="address">${value.status}</span></p>
+											<p class="am-text"><b>下單時間:</b><span class="time">${new Date(Number(value.create_time) * 1000).toLocaleString()}</span></p>
+											<button type="button" class="border-btn" onclick="location.href='https://lin.ee/dfiqlrm'">聯系客服</button>
+										</div>
+										<div class="order_title">
+											<h2 class="order_status">
+												訂單狀態
+											</h2>
+										</div>
+										<div class="order_logistics">
+											<div class="order_icon">
+
+											<div class="order_icon_item">
+											<i class="layui-icon" style="font-size:30px;margin-left: -4px;color: #E74E9E;">&#x1005;</i>
+											<div class="line5"></div>
+											</div>
+											<div class="order_icon_item">
+											<i class="layui-icon" style="font-size:30px;margin-left: -4px;color: #999;">&#xe609;</i>
+											<div class="line5"></div>
+											</div>
+											<div class="order_icon_item">
+											<i class="layui-icon" style="font-size:30px;margin-left: -4px;color: #999;">&#xe610;</i>
+											<div class="line5"></div>
+											</div>
+
+											<div class="order_icon_item">
+											<i class="layui-icon" style="margin-top:12px;font-size:30px;margin-left: -4px;color: #999;">&#xe60c;</i>
+											</div>
+											</div>
+											<div class="order_main">
+											<div class="order_item">
+											<p>`+new Date(Number(value.create_time)*1000).toLocaleString()+`</p>
+											<h2>物流狀態：下單成功</h2>
+									</div>
+									<div class="order_item">
+											<p>待定</p>
+											<h4>物流状态：運輸中</h4>
+									</div>
+									<div class="order_item">
+											<p>待定</p>
+											<h4>物流状态：到達待取</h4>
+									</div>
+
+									<div class="order_item">
+											<p>待定</p>
+											<h4>物流状态：訂單完成</h4>
+									</div>
+									</div>
+									</div>
+									</div>
+								</section>`;
+								});
+								break;
+							case 2:
+								value.status = '運輸中';
+								$('#form').append(function () {
+									return `<section>
+									<div class="order_inquiry">
+										<div class="order_info">
+											<p class="order_number">
+												<b>訂單號:</b> ${value.order_no}
+											</p>
+											<p class="am-text">
+												<b>商品名稱:</b>
+												<p class="am-text head_title">${order_info.taocan}</p>
+											</p>
+											<p class="am-text">[規格：<span class="attr1">${order_info.color[1]}</span> ] </p>
+											<p class="am-text"><b>郵寄地址:</b><span class="address">${value.country}/${value.city}</span></p>
+											<p class="am-text"><b>數量價格:</b><span class="num">${order_info.num}/</span><span class="price">${order_info.sell_price}</span></p>
+											<p class="am-text"><b>訂單狀態:</b><span class="address">${value.status}</span></p>
+											<p class="am-text"><b>下單時間:</b><span class="time">${new Date(Number(value.create_time) * 1000).toLocaleString()}</span></p>
+											<button type="button" class="border-btn" onclick="location.href='https://lin.ee/dfiqlrm'">聯系客服</button>
+										</div>
+										<div class="order_title">
+											<h2 class="order_status">
+												訂單狀態
+											</h2>
+										</div>
+										<div class="order_logistics">
+											<div class="order_icon">
+
+											<div class="order_icon_item">
+											<i class="layui-icon" style="font-size:30px;margin-left: -4px;color: #E74E9E;">&#x1005;</i>
+											<div class="line5 active"></div>
+											</div>
+											<div class="order_icon_item">
+											<i class="layui-icon" style="font-size:30px;margin-left: -4px;color: #E74E9E;">&#xe609;</i>
+											<div class="line5"></div>
+											</div>
+											<div class="order_icon_item">
+											<i class="layui-icon" style="font-size:30px;margin-left: -4px;color: #999;">&#xe610;</i>
+											<div class="line5"></div>
+											</div>
+
+											<div class="order_icon_item">
+											<i class="layui-icon" style="margin-top:12px;font-size:30px;margin-left: -4px;color: #999;">&#xe60c;</i>
+											</div>
+											</div>
+											<div class="order_main">
+											<div class="order_item">
+											<p>`+new Date(Number(value.create_time)*1000).toLocaleString()+`</p>
+											<h2>物流狀態：下單成功</h2>
+									</div>
+									<div class="order_item">
+											<p>`+new Date(Number(value.cargo_time)*1000).toLocaleString()+`</p>
+											<h2>物流状态：運輸中</h2>
+									</div>
+									<div class="order_item">
+											<p>待定</p>
+											<h4>物流状态：到達待取</h4>
+									</div>
+
+									<div class="order_item">
+											<p>待定</p>
+											<h4>物流状态：訂單完成</h4>
+									</div>
+									</div>
+									</div>
+									</div>
+								</section>`;
+								});
+								break;
+							case 3:
+								value.status = '到達待取';
+								$('#form').append(function () {
+									return `<section>
+									<div class="order_inquiry">
+										<div class="order_info">
+											<p class="order_number">
+												<b>訂單號:</b> ${value.order_no}
+											</p>
+											<p class="am-text">
+												<b>商品名稱:</b>
+												<p class="am-text head_title">${order_info.taocan}</p>
+											</p>
+											<p class="am-text">[規格：<span class="attr1">${order_info.color[1]}</span> ] </p>
+											<p class="am-text"><b>郵寄地址:</b><span class="address">${value.country}/${value.city}</span></p>
+											<p class="am-text"><b>數量價格:</b><span class="num">${order_info.num}/</span><span class="price">${order_info.sell_price}</span></p>
+											<p class="am-text"><b>訂單狀態:</b><span class="address">${value.status}</span></p>
+											<p class="am-text"><b>下單時間:</b><span class="time">${new Date(Number(value.create_time) * 1000).toLocaleString()}</span></p>
+											<button type="button" class="border-btn" onclick="location.href='https://lin.ee/dfiqlrm'">聯系客服</button>
+										</div>
+										<div class="order_title">
+											<h2 class="order_status">
+												訂單狀態
+											</h2>
+										</div>
+										<div class="order_logistics">
+											<div class="order_icon">
+
+											<div class="order_icon_item">
+											<i class="layui-icon" style="font-size:30px;margin-left: -4px;color: #E74E9E;">&#x1005;</i>
+											<div class="line5 active"></div>
+											</div>
+											<div class="order_icon_item">
+											<i class="layui-icon" style="font-size:30px;margin-left: -4px;color: #E74E9E;">&#xe609;</i>
+											<div class="line5 active"></div>
+											</div>
+											<div class="order_icon_item">
+											<i class="layui-icon" style="font-size:30px;margin-left: -4px;color: #E74E9E;">&#xe610;</i>
+											<div class="line5"></div>
+											</div>
+
+											<div class="order_icon_item">
+											<i class="layui-icon" style="margin-top:12px;font-size:30px;margin-left: -4px;color: #999;">&#xe60c;</i>
+											</div>
+											</div>
+											<div class="order_main">
+											<div class="order_item">
+											<p>`+new Date(Number(value.create_time)*1000).toLocaleString()+`</p>
+											<h2>物流狀態：下單成功</h2>
+									</div>
+									<div class="order_item">
+											<p>`+new Date(Number(value.cargo_time)*1000).toLocaleString()+`</p>
+											<h2>物流状态：運輸中</h2>
+									</div>
+									<div class="order_item">
+											<p>`+new Date(Number(value.arrive_time)*1000).toLocaleString()+`</p>
+											<h2>物流状态：到達待取</h2>
+									</div>
+
+									<div class="order_item">
+											<p>待定</p>
+											<h4>物流状态：訂單完成</h4>
+									</div>
+									</div>
+									</div>
+									</div>
+								</section>`;
+								});
+								break;
+							default:
+								value.status = '訂單完成';
+								$('#form').append(function () {
+									return `<section>
+									<div class="order_inquiry">
+										<div class="order_info">
+											<p class="order_number">
+												<b>訂單號:</b> ${value.order_no}
+											</p>
+											<p class="am-text">
+												<b>商品名稱:</b>
+												<p class="am-text head_title">${order_info.taocan}</p>
+											</p>
+											<p class="am-text">[規格：<span class="attr1">${order_info.color[1]}</span> ] </p>
+											<p class="am-text"><b>郵寄地址:</b><span class="address">${value.country}/${value.city}</span></p>
+											<p class="am-text"><b>數量價格:</b><span class="num">${order_info.num}/</span><span class="price">${order_info.sell_price}</span></p>
+											<p class="am-text"><b>訂單狀態:</b><span class="address">${value.status}</span></p>
+											<p class="am-text"><b>下單時間:</b><span class="time">${new Date(Number(value.create_time) * 1000).toLocaleString()}</span></p>
+											<button type="button" class="border-btn" onclick="location.href='https://lin.ee/dfiqlrm'">聯系客服</button>
+										</div>
+										<div class="order_title">
+											<h2 class="order_status">
+												訂單狀態
+											</h2>
+										</div>
+										<div class="order_logistics">
+											<div class="order_icon">
+
+											<div class="order_icon_item">
+											<i class="layui-icon" style="font-size:30px;margin-left: -4px;color: #E74E9E;">&#x1005;</i>
+											<div class="line5 active"></div>
+											</div>
+											<div class="order_icon_item">
+											<i class="layui-icon" style="font-size:30px;margin-left: -4px;color: #E74E9E;">&#xe609;</i>
+											<div class="line5 active"></div>
+											</div>
+											<div class="order_icon_item">
+											<i class="layui-icon" style="font-size:30px;margin-left: -4px;color: #E74E9E;">&#xe610;</i>
+											<div class="line5"></div>
+											</div>
+
+											<div class="order_icon_item">
+											<i class="layui-icon" style="margin-top:12px;font-size:30px;margin-left: -4px;color: #E74E9E;">&#xe60c;</i>
+											</div>
+											</div>
+											<div class="order_main">
+											<div class="order_item">
+											<p>`+new Date(Number(value.create_time)*1000).toLocaleString()+`</p>
+											<h2>物流狀態：下單成功</h2>
+									</div>
+									<div class="order_item">
+											<p>`+new Date(Number(value.cargo_time)*1000).toLocaleString()+`</p>
+											<h2>物流状态：運輸中</h2>
+									</div>
+									<div class="order_item">
+											<p>`+new Date(Number(value.arrive_time)*1000).toLocaleString()+`</p>
+											<h2>物流状态：到達待取</h2>
+									</div>
+
+									<div class="order_item">
+											<p>`+new Date(Number(value.over_time)*1000).toLocaleString()+`</p>
+											<h2>物流状态：訂單完成</h2>
+									</div>
+									</div>
+									</div>
+									</div>
+								</section>`;
+								});
+								break;
+
+
+						}
+
+
+						// $('#form').append(function () {
+						// 	return `<blockquote class="layui-elem-quote layui-quote-nm">
+						//                 <ul>
+						//                     <li>
+						//                         <span style="margin-right: 200px">訂單號: <font class="order_no">`+value.order_no+`</font> </span><span>物流狀態: <font class="transport">`+value.status+`</font></span>
+						//                     </li>
+						//                 </ul>
+						//             </blockquote>`;
+						// })
+
+
+					});
+				}
+
+
+				layer.close(layer.index);
+			},
+			error:function () {
+
+			}
+		})
+
+
+		return false;
+	}
+</script>
+{include file="public/statistical_code" /}
+</body>
+</html>

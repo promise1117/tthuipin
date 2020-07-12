@@ -1,0 +1,1088 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=yes,email=yes" name="format-detection">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+    <!-- <script src="__JS__/flexible.js"></script> -->
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        var sUserAgent = navigator.userAgent;
+        if(!/Android|webOS|iPhone|iPod|BlackBerry/i.test(sUserAgent)){
+
+            var href = window.location.protocol+'//'+window.location.host+'/pc_goodsinfo'+window.location.search;
+
+            window.location.href=href;
+        }
+    </script>
+
+    <script src="__JS__/bootstrap.min.js"></script>
+    <script src="__JS__/rem.js"></script>
+    <title>開心樂購-{$info.name}-詳情</title>
+    <link rel="stylesheet" type="text/css" href="__PLUGIN__/swiper/dist/css/swiper.css">
+    <link rel="stylesheet" href="__CSS__/base.css">
+    <link rel="stylesheet" href="__CSS__/leo.css">
+
+</head>
+<body class="gray">
+<div class="container">
+<div class="nav-bar border0">
+    <div class="left-nav">
+        <a class="back"></a>
+    </div>
+    <div class="right-nav">
+        <a href="/" class="homepage" ></a>
+        <a class="share" id="share-btn"></a>
+    </div>
+</div>
+<div class="new-header">
+    <input type="hidden" id="PrdID" value="{$info.id}" />
+<!--    {$info.title}-->
+</div>
+<div class="white">
+    <div class="swiper-container swiper3">
+        <div class="swiper-wrapper" onload="HistoryRecord()">
+            {php}
+              $banner = json_decode($info['ad_img']);
+            {/php}
+            {volist name="banner" id="v"}
+            <div class="swiper-slide">
+                <img src="{$v}" alt=" {$info['name']} " />
+
+            </div>
+            {/volist}
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+    <div class="main-titlebox">
+        <div class="main-title">
+            <div class="product-title-text">{$info.name}</div>
+            <div class="part1">
+                <span class="price-new">NT＄<span>{$info.sell_price}</span></span>
+                <span class="product-id-tag">已售數量:<span style="color: #B4272D;">{$info.sale}</span></span>
+            </div>
+            <div class="part2">NT＄{$info.market_price}</div>
+            <div class="part3">
+                {$info.content}
+            </div>
+            <div class="part4">
+                {php}
+                    $onoff = explode(',',$info['onoff']);
+                {/php}
+                {volist name="onoff" id="vo"}
+                    {switch $vo}
+                        {case 1}<span>免運費</span>{/case}
+                        {case 2}<span>貨到付款</span>{/case}
+                        {case 3}<span>7天鑒賞期</span>{/case}
+                        {case 4}<span>全家商超取貨</span>{/case}
+                    {/switch}
+                {/volist}
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="supplybox">
+        <div class="supply-mes">
+            <ul>
+                <li><img src="__IMG__/supply-1.png"></li>
+                <li></li>
+                <li><img src="__IMG__/supply-2.png"></li>
+                <li></li>
+                <li><img src="__IMG__/supply-3.png"></li>
+                <li></li>
+                <li><img src="__IMG__/supply-4.png"></li>
+            </ul>
+            <ul>
+                <li><span>用戶下單</span></li>
+                <li><span>工廠備貨</span></li>
+                <li><span>國際運輸</span></li>
+                <li><span>直達用戶</span></li>
+            </ul>
+        </div>
+        <!-- <p>香港发出，10-15天内送达</p> -->
+    </div>
+
+    <div class="photobox">
+        <div class="photo-header">
+            商品詳情
+        </div>
+        {php}
+            $goinfo = json_decode($info['iamge_info']);
+        {/php}
+        <div class="photos">
+            {volist name="goinfo" id="vo"}
+                <p><img src="{$vo}"></p>
+                {php}
+                    file_exists($vo) == true ? "<p><img src='".$vo."'></p>" : '';
+                {/php}
+            {/volist}
+        </div>
+    </div>
+	{if $comments == array()}
+
+    {else /}
+    <div class="commentbox">
+        <div class="comment-header">
+            客戶評價
+        </div>
+        <div class="comments" id="comsbox">
+            <ul class="coms" id="coms1">
+                {volist name="comments" id="vo"}
+                    <li>
+                        <div class="line1">
+                            <span class="client">{$vo.username}</span>
+                            <span class="points">
+                                {switch $vo['point']}
+                                    {case 1}<span class="star-1"></span>{/case}
+                                    {case 2}<span class="star-2"></span>{/case}
+                                    {case 3}<span class="star-3"></span>{/case}
+                                    {case 4}<span class="star-4"></span>{/case}
+                                    {case 5}<span class="star-5"></span>{/case}
+                                {/switch}
+                            </span>
+                        </div>
+                        <div class="line2">
+                            <p>{$vo.contents}</p>
+                            <p>
+                               {if $vo.img_list !== ''} <img src="{$vo.img_list}" /> {/if}
+                               {if $vo.one !== ''}      <img src="{$vo.one}" />      {/if}
+                               {if $vo.two !== ''}      <img src="{$vo.two}" />      {/if}
+                               {if $vo.three !== ''}    <img src="{$vo.three}" />    {/if}
+                            </p>
+                        </div>
+                    </li>
+                {/volist}
+            </ul>
+            <ul class="coms" id="coms2">
+                {volist name="comments" id="vo"}
+                <li>
+                    <div class="line1">
+                        <span class="client">{$vo.username}</span>
+                        <span class="points">
+                                {switch $vo['point']}
+                                    {case 1}<span class="star-1"></span>{/case}
+                                    {case 2}<span class="star-2"></span>{/case}
+                                    {case 3}<span class="star-3"></span>{/case}
+                                    {case 4}<span class="star-4"></span>{/case}
+                                    {case 5}<span class="star-5"></span>{/case}
+                                {/switch}
+                            </span>
+                    </div>
+                    <div class="line2">
+                        <p>{$vo.contents}</p>
+                        <p>
+                            {if $vo.img_list !== ''} <img src="{$vo.img_list}" /> {/if}
+                            {if $vo.one !== ''}      <img src="{$vo.one}" />      {/if}
+                            {if $vo.two !== ''}      <img src="{$vo.two}" />      {/if}
+                            {if $vo.three !== ''}    <img src="{$vo.three}" />    {/if}
+                        </p>
+                    </div>
+                </li>
+                {/volist}
+            </ul>
+        </div>
+    </div>
+    {/if}
+    {if $likegoods == array()}{else /}
+
+    <div class="pro-box2 pad">
+        <div class="pro-box-header">猜妳喜歡</div>
+        {volist name="likegoods" id="vo"}
+            <a class="pro-item2 border1" href="/goodsinfo?goodsid={$vo.id}">
+                <div class="pic-img">
+                    <img src="{$vo.img}" alt="" />
+                </div>
+                <div class="pro-txt">
+                    <div class="title">{$vo.name}</div>
+                    {php}
+                        $keywords = explode(',',$vo['keywords']);
+                    {/php}
+                    <div class="tag">
+                        {volist name="keywords" id="v" offset="0" length='3'}
+                        <span>{$v}</span>
+                        {/volist}
+                    </div>
+                    <div class="bottom2">
+                        <div class="price">
+                            <span class="discount">{$vo.sell_price}</span>
+                            <span class="orignal">NT${$vo.market_price}</span>
+                        </div>
+                        <div class="btn">
+                            <button>限時出清</button>
+                            <span>{$vo.sale}件已出</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        {/volist}
+    </div>
+    {/if}
+    <div class="photobox">
+        <div class="photo-header">
+            客戶須知
+        </div>
+        <div class="notify">
+            <p>註：應台灣海關要求，顧客須填寫真實姓名，以便部分海外商品順利過關。</p>
+            <p>本產品的實際使用效果根據個人情況決定，不保證每位用戶都能享受到所宣傳的效果。若有疑問請諮詢在線客服或通過電子郵箱聯絡我們，本公司享有最終解釋權。</p>
+
+            <dl>
+                <dt>•關於發貨方式</dt>
+                <dd>支援貨到付款+免運費+質量問題無理由退換貨！收到商品後如有任何疑問請聯繫我們：vip8service@gmail.com.同時，請附上您的姓名和聯繫方式及訂單編號在郵件當中，以便我們能快速的給您及時處理，祝您購物愉快！！！</dd>
+            </dl>
+
+            <dl>
+                <dt>•關於配送時間</dt>
+                <dd>下單成功後，我們會按照下單先後順序進行配貨，配貨週期為3個工作日，一般送達時間為7個工作日左右</dd>
+            </dl>
+
+        </div>
+    </div>
+
+</div>
+
+<div id="toTop"><img src="__IMG__/icon-to-top.png"></div>
+
+<div class="bottom-bar">
+    <a class="bottom-service"></a>
+    <a class="bottom-purch on" href="/sure">
+        <!-- <label class="num">1</label> -->
+    </a>
+    <button class="bottom-1" id="bottom-btn1">加入購物車</button>
+    <button class="bottom-2" id="bottom-btn2">立即購買</button>
+</div>
+
+<!-- 分享弹出层 -->
+<div class="sharebox" id="sharebox">
+    <div class="share-content">
+        <div class="share-items">
+            <h3>分享到</h3>
+            <ul>
+                <li>
+                    <a target="_blank" href="#">
+                        <img src="__IMG__/icon-facebook.png">
+                        <span>Facebook</span>
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank" href="#">
+                        <img src="__IMG__/icon-line.png">
+                        <span>Line</span>
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank" href="#">
+                        <img src="__IMG__/icon-messenger.png">
+                        <span>Messenger</span>
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank" href="#">
+                        <img src="__IMG__/icon-message.png">
+                        <span>訊息</span>
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank" href="#">
+                        <img src="__IMG__/icon-Mail.png">
+                        <span>郵件</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;" class="copygoodsinfo btnss">
+                        <img src="__IMG__/icon-copy.png">
+                        <input type="hidden" class="copygoodsinfos" name="currentUrl" value="">
+                        <span>復制鏈接</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="share-close" id="share-close">
+            取消
+        </div>
+    </div>
+</div>
+<!-- 分享弹出层 -->
+
+<!-- 选择参数弹出层 -->
+<!--
+<form name="order" action="/sure" method="post">
+<input type="hidden" name="goods_no" value="{$info.goods_no}">
+<div class="parapop" id="parapop">
+    <div class="overlay" id="overlay"></div>
+    <div class="parapop-content">
+        <div class="para-header">
+            {volist name="taocan" id="vo" offset="1" length='1'}
+            <div class="para-title">
+                <h2 class="title1">{$vo['taocan']}</h2>
+
+                <div class="title2box">
+    							<span class="totalprice">
+    								NT$
+    								<span class="price" id="spsellprice">{$vo['sell_price']}</span>
+    							</span>
+                        <span class="originprice" id="origin_price">
+    								$
+    								<span class="original_price">{$vo['market_price']}</span>
+    							</span>
+                        <span class="slogan" id="suite_cut_slogan">
+    								已優惠$
+    								<span class="discounts_price">{$vo['market_price'] - $vo['sell_price']}</span>
+    							</span>
+                </div>
+            </div>
+            {/volist}
+            <div class="para-tabs">
+                <div class="para1">
+                    <span>套餐選擇</span>
+                    <div class="options-tabs">
+                        {volist name="taocan" id="tc"}
+                            {php}
+                                $join = explode(',',$tc['join']);
+                            {/php}
+                            {if $tc.join == ''}
+                                <label class="option-tab {eq name="key" value="0"}on{/eq}" id="tab{$key+1}" onclick="getprice({$i})">{$tc.taocan}</label>
+                            {else /}
+                                {php}
+                                    $taocanjoin ='';
+                                    foreach($join as $joinv){
+                                        $jointc = Db('Goodsinfo')->field('id,taocan')->where(['pid'=>'0','status'=>'0','id'=>$joinv])->find();
+                                        $taocanjoin .= $jointc['taocan'].'+';
+                                    }
+                                    //$taocanjoinname = substr($taocanjoin,0,strlen($taocanjoin)-1);
+                                    $tcid = Db('Goodsinfo')->field('id')->where('join',$tc['join'])->find();
+                                {/php}
+                            {if $tcid['id'] == $tc.id}
+                            <label class="option-tab" id="tab{$key+1}" onclick="getprice({$i})">{$taocanjoin}{$tc.taocan}</label>
+                            {/if}
+                        {/if}
+                        {/volist}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        {volist name="taocan" id="tc"}
+            <div class="wrap {eq name="key" value="0"}on{/eq}">
+                {php}
+                    $index = 1;
+                {/php}
+                {volist name="goodsinfo" id="v"}
+                    {if $v.pid == $tc.id}
+                        <input type="hidden"calss="spsell" id="spsell{$v.id}" onload="getprice({$v.id})" value="{$v.sell_price}" />
+                        <input type="hidden"calss="spmarket" id="spmarket{$v.id}" onload="getprice({$v.id})"  value="{$v.market_price}" />
+                        <input type="hidden"calss="sppoor" id="sppoor{$v.id}" onload="getprice({$v.id})"  value="{$v.market_price}" />
+                        <div class="para-rows">
+                            <div class="para-item">
+                                <div class="para-img">
+                                    <img src="{$v.image}" />
+                                </div>
+                                <div class="para-prices">
+                                    <div class="price">
+                                        {$v.title}<br>
+                                        <span class="p1">{$v.name}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="para1">
+                                <span>顏色</span>
+                                <div class="options">
+                                    {php}
+                                        $colorArr = explode(',',$v['color']);
+                                    {/php}
+                                    {if $index == $i}
+                                    {volist name="colorArr" id="cv"}
+                                        <input type="radio" name="color" value="颜色:{$cv}" id="color{$i}{$index-1}">
+                                        <label for="color{$i}{$index-1}" class="option1">{$cv}色</label>
+                                    {/volist}
+                                    {/if}
+                                </div>
+                            </div>
+                            <div class="para1">
+                                <span>尺寸</span>
+                                <div class="options">
+                                    {php}
+                                        $sizeArr = explode(',',$v['size']);
+                                    {/php}
+                                    {if $index !== $i}
+                                        {volist name="sizeArr" id="sv"}
+                                            <input type="radio" name="size[]" value="尺码:{$sv}" id="size{$i}{$index+1}">
+                                            <label for="size{$i}{$index+1}" class="option1">{$sv}</label>
+                                        {/volist}
+                                    {/if}
+
+                                </div>
+                            </div>
+                        </div>
+                    {/if}
+                    {php}
+                        $joinpid = Db('Goodsinfo')->field('join')->where('id',$v['pid'])->find();
+                        $zjoin = explode(',',$joinpid['join']);
+                        //print_r($joinpid['join']);
+                        in_array($v['pid'],$zjoin)? $noarr=0 :$noarr=1;
+                    {/php}
+                    {if $joinpid['join'] != ''}
+                        {volist name="zjoin" id="vj"}
+                            {php}
+                                $zjoininfo = Db('Goodsinfo')->where('pid',$vj)->find();
+                            {/php}
+                            {if $tc.id != $vj && $v.pid != $vj}
+                                <input type="hidden" class="spsell" id="spsell{$zjoininfo.id}" onload="getprice({$zjoininfo.id})" value="{$zjoininfo.sell_price}" />
+                                <input type="hidden" class="spmarket" id="spmarket{$zjoininfo.id}" onload="getprice({$zjoininfo.id})"  value="{$zjoininfo.sell_price}" />
+                                <input type="hidden" class="sppoor" id="sppoor{$zjoininfo.id}" onload="getprice({$zjoininfo.id})"  value="{$zjoininfo.sell_price}" />
+                                <div class="para-rows">
+                                <div class="para-item">
+                                    <div class="para-img">
+                                        <img src="{$zjoininfo.image}" />
+                                    </div>
+                                    <div class="para-prices">
+                                        <div class="price">
+                                            {$zjoininfo.title}<br>
+                                            <span class="p1">{$zjoininfo.name}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="para1">
+                                    <span>顏色</span>
+                                    <div class="options">
+                                        {php}
+                                        $colorArrs = explode(',',$zjoininfo['color']);
+                                        {/php}
+                                        {if $index-1 == $i}
+                                        {volist name="colorArrs" id="cev"}
+                                            <input type="radio" name="color[]" value="顏色:{$cev}" id="color{$i}{$index+2}">
+                                            <label for="color{$i}{$index+2}" class="option1">{$cev}色</label>
+                                        {/volist}
+                                        {/if}
+                                    </div>
+                                </div>
+                                <div class="para1">
+                                    <span>尺寸</span>
+                                    <div class="options">
+                                        {php}
+                                        $sizeArr = explode(',',$zjoininfo['size']);
+                                        {/php}
+                                        {if $index-2 !== $i}
+                                        {volist name="sizeArr" id="sv"}
+                                        <input type="radio" name="size[]" value="尺碼:{$sv}" id="size{$i}{$index+3}">
+                                        <label for="size{$i}{$index+3}" class="option1">{$sv}</label>
+                                        {/volist}
+                                        {/if}
+                                    </div>
+                                </div>
+                            </div>
+                            {/if}
+                        {/volist}
+                    {/if}
+                    {php}$index++;{/php}
+                {/volist}
+            </div>
+        {/volist}
+        <button class="submit" id="submit-btn" onclick="sure()">確認</button>
+    </div>
+</div>
+</form>
+</div> -->
+<!-- 选择参数弹出层 -->
+
+<!-- 选择参数弹出层 -->
+<form name="order" action="/sure" method="post">
+<input type="hidden" name="goods_no" value="{$info.goods_no}">
+<input type="hidden" name="img" value="{$info.img}">
+
+
+
+
+
+<div class="parapop" id="parapop">
+  <div class="overlay" id="overlay"></div>
+  <div class="parapop-content">
+    <div class="para-header">
+      {volist name="taocan" id="vo" offset="0" length='1'}
+      <div class="para-title">
+          <h2 class="title1">{$vo['taocan']}</h2>
+
+          <div class="title2box">
+            <span class="totalprice">
+              NT$
+              <span class="price" id="spsellprice">{$vo['sell_price']}</span>
+                <input type="hidden" name="sell_price" value="{$vo['sell_price']}">
+            </span>
+                  <span class="originprice" id="origin_price">
+              $
+              <span class="original_price">{$vo['market_price']}</span>
+                      <input type="hidden" name="market_price" value="{$vo['market_price']}">
+            </span>
+                  <span class="slogan" id="suite_cut_slogan">
+              已優惠$
+              <span class="discounts_price">{$vo.cost_price}</span>
+                      <input type="hidden" name="cost_price" value="{$vo.cost_price}">
+            </span>
+              <input type="hidden" name="taocan_id" value="{$vo.id}">
+          </div>
+      </div>
+      {/volist}
+
+      <div class="para-tabs">
+        <div class="para1">
+          <span>套餐選擇</span>
+          <div class="options-tabs">
+
+            <div class="para1">
+
+              <div class="options">
+                {volist name="taocan" id="vo"}
+                <input type="radio" name="taocan" value="{$vo['taocan']}" id="taocan{$vo.id}">
+                <label for="taocan{$vo.id}" class="option1 option-tab" sell-price="{$vo.sell_price}" market-price="{$vo.market_price}" cost-price="{$vo.cost_price}" taocan-id="{$vo.id}">{$vo['taocan']}</label>
+
+
+                {/volist}
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {volist name="taocan" id="vo"}
+
+
+    <div class="wrap">
+    	{php}
+			$join = $vo['join'];
+			$listcolor = Db('Goodsinfo')->where('pid',$vo['id'])->select();
+    	{/php}
+      {volist name="vo.goodstc_bind" id="v"}
+      <div class="para-rows">
+        <div class="para-item">
+          <div class="para-img">
+            <img src="{$v.image}" />
+          </div>
+          <div class="para-prices">
+            <div class="price">
+              	顏色：<span class="p2 p2_color">{$v.color}</span><br><br>
+	      	{php}
+            $size = explode(',',$v['size']);
+            $size = $size['0'];
+            {/php}
+                {if $size!=''}
+                尺碼：<span class="p2 p2_size">{$size}</span>
+                {/if}
+	    </div>
+          </div>
+        </div>
+        <div class="para1">
+          <span>顏色（單選）</span>
+          <div class="options">
+          {volist name="listcolor" id="co"}
+            <input type="radio" name="color[{$v.id}]" value="{$co.color}" data-color="{$co.image}" id="color_{$v.id}_{$key}">
+            <label for="color_{$v.id}_{$key}" class="option1 option-tab1">{$co.color}</label>
+            {php}
+				$sizeArr = explode(',',$co['size']);
+
+            {/php}
+		  {/volist}
+          </div>
+
+        </div>
+
+          {if $sizeArr[0]!=''}
+        <div class="para1">
+          <span>尺寸（單選）</span>
+          <div class="options">
+          	{volist name="sizeArr" id="sz"}
+            <input type="radio" name="size[{$v.id}]" value="{$sz}" id="size_{$v.id}_{$key}">
+            <label for="size_{$v.id}_{$key}" class="option1 option-tab2">{$sz}</label>
+			{/volist}
+          </div>
+        </div>
+
+          {/if}
+      </div>
+    {/volist}
+    </div>
+
+    {/volist}
+    <!-- <div class="wrap">
+      <div class="para-rows">
+        <div class="para-item">
+          <div class="para-img">
+            <img src="images/pro1.jpg" />
+          </div>
+          <div class="para-prices">
+            <div class="price">
+              韩版拼色宽松条纹长袖打底衫多色可选<br>
+              <span class="p1">S</span>
+            </div>
+          </div>
+        </div>
+        <div class="para1">
+          <span>颜色</span>
+          <div class="options">
+            <input type="radio" name="color" value="13" id="color13">
+            <label for="color13" class="option1">红色</label>
+            <input type="radio" name="color" value="23" id="color23">
+            <label for="color23" class="option1">蓝色</label>
+            <input type="radio" name="color" value="33" id="color33">
+            <label for="color33" class="option1">黑色</label>
+            <input type="radio" name="color" value="43" id="color43">
+            <label for="color43" class="option1">白色</label>
+            <input type="radio" name="color" value="53" id="color53">
+            <label for="color53" class="option1">橙色</label>
+            <input type="radio" name="color" value="53" id="color63">
+            <label for="color63" class="option1">橙色</label>
+          </div>
+        </div>
+        <div class="para1">
+          <span>尺寸</span>
+          <div class="options">
+            <input type="radio" name="size" value="13" id="size13">
+            <label for="size13" class="option1">红色</label>
+            <input type="radio" name="size" value="23" id="size23">
+            <label for="size23" class="option1">蓝色</label>
+            <input type="radio" name="size" value="33" id="size33">
+            <label for="size33" class="option1">黑色</label>
+            <input type="radio" name="size" value="43" id="size43">
+            <label for="size43" class="option1">白色</label>
+          </div>
+        </div>
+      </div>
+      <div class="para-rows">
+        <div class="para-item">
+          <div class="para-img">
+            <img src="images/pro1.jpg" />
+          </div>
+          <div class="para-prices">
+            <div class="price">
+              韩版拼色宽松条纹长袖打底衫多色可选<br>
+              <span class="p1">S</span>
+            </div>
+          </div>
+        </div>
+        <div class="para1">
+          <span>颜色</span>
+          <div class="options">
+            <input type="radio" name="color" value="12" id="color12">
+            <label for="color12" class="option1">红色</label>
+            <input type="radio" name="color" value="22" id="color22">
+            <label for="color22" class="option1">蓝色</label>
+            <input type="radio" name="color" value="32" id="color32">
+            <label for="color32" class="option1">黑色</label>
+            <input type="radio" name="color" value="42" id="color42">
+            <label for="color42" class="option1">白色</label>
+            <input type="radio" name="color" value="52" id="color52">
+            <label for="color52" class="option1">橙色</label>
+            <input type="radio" name="color" value="62" id="color62">
+            <label for="color62" class="option1">橙色</label>
+          </div>
+        </div>
+        <div class="para1">
+          <span>尺寸</span>
+          <div class="options">
+            <input type="radio" name="size" value="12" id="size12">
+            <label for="size12" class="option1">红色</label>
+            <input type="radio" name="size" value="22" id="size22">
+            <label for="size22" class="option1">蓝色</label>
+            <input type="radio" name="size" value="32" id="size32">
+            <label for="size32" class="option1">黑色</label>
+            <input type="radio" name="size" value="42" id="size42">
+            <label for="size42" class="option1">白色</label>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="wrap">
+      <div class="para-rows">
+        <div class="para-item">
+          <div class="para-img">
+            <img src="images/pro1.jpg" />
+          </div>
+          <div class="para-prices">
+            <div class="price">
+              韩版拼色宽松条纹长袖打底衫多色可选<br>
+              <span class="p1">S</span>
+            </div>
+          </div>
+        </div>
+        <div class="para1">
+          <span>颜色（多选）</span>
+          <div class="options">
+            <input type="checkbox" name="color" value="11" id="color11">
+            <label for="color11" class="option1">红色</label>
+            <input type="checkbox" name="color" value="21" id="color21">
+            <label for="color21" class="option1">蓝色</label>
+            <input type="checkbox" name="color" value="31" id="color31">
+            <label for="color31" class="option1">黑色</label>
+            <input type="checkbox" name="color" value="41" id="color41">
+            <label for="color41" class="option1">白色</label>
+            <input type="checkbox" name="color" value="51" id="color51">
+            <label for="color51" class="option1">橙色</label>
+            <input type="checkbox" name="color" value="61" id="color61">
+            <label for="color61" class="option1">橙色</label>
+          </div>
+        </div>
+        <div class="para1">
+          <span>尺寸(单选)</span>
+          <div class="options">
+            <input type="radio" name="size" value="11" id="size11">
+            <label for="size11" class="option1">红色</label>
+            <input type="radio" name="size" value="21" id="size21">
+            <label for="size21" class="option1">蓝色</label>
+            <input type="radio" name="size" value="31" id="size31">
+            <label for="size31" class="option1">黑色</label>
+            <input type="radio" name="size" value="41" id="size41">
+            <label for="size41" class="option1">白色</label>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="wrap">
+      <div class="para-rows">
+        <div class="para-item">
+          <div class="para-img">
+            <img src="images/pro1.jpg" />
+          </div>
+          <div class="para-prices">
+            <div class="price">
+              韩版拼色宽松条纹长袖打底衫多色可选<br>
+              <span class="p1">S</span>
+            </div>
+          </div>
+        </div>
+        <div class="para1">
+          <span>颜色（多选）</span>
+          <div class="options">
+            <input type="checkbox" name="color" value="11" id="color11">
+            <label for="color11" class="option1">红色</label>
+            <input type="checkbox" name="color" value="21" id="color21">
+            <label for="color21" class="option1">蓝色</label>
+            <input type="checkbox" name="color" value="31" id="color31">
+            <label for="color31" class="option1">黑色</label>
+            <input type="checkbox" name="color" value="41" id="color41">
+            <label for="color41" class="option1">白色</label>
+            <input type="checkbox" name="color" value="51" id="color51">
+            <label for="color51" class="option1">橙色</label>
+            <input type="checkbox" name="color" value="61" id="color61">
+            <label for="color61" class="option1">橙色</label>
+          </div>
+        </div>
+        <div class="para1">
+          <span>尺寸(单选)</span>
+          <div class="options">
+            <input type="radio" name="size" value="11" id="size11">
+            <label for="size11" class="option1">红色</label>
+            <input type="radio" name="size" value="21" id="size21">
+            <label for="size21" class="option1">蓝色</label>
+            <input type="radio" name="size" value="31" id="size31">
+            <label for="size31" class="option1">黑色</label>
+            <input type="radio" name="size" value="41" id="size41">
+            <label for="size41" class="option1">白色</label>
+          </div>
+        </div>
+      </div>
+
+    </div> -->
+    <button class="submit" id="submit-btn">確認</button>
+  </div>
+</div>
+</form>
+<!-- 选择参数弹出层 -->
+
+<script src="__PLUGIN__/jquery/jquery-3.2.1.min.js"></script>
+<script src="__PLUGIN__/swiper/dist/js/swiper.js"></script>
+<script src="__JS__/slide.js"></script>
+<script src="__JS__/time.js"></script>
+<script src="__JS__/base.js"></script>
+<script src="__PLUGIN__/copy/clipboard.min.js"></script> <!--复制-->
+<script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script type="text/javascript">
+    url = window.location.href;
+    $('.copygoodsinfos').val(url);
+    $('.copygoodsinfo').click(function(){
+        var clipboard = new Clipboard('.btnss');
+//优雅降级:safari 版本号>=10,提示复制成功;否则提示需在文字选中后，手动选择“拷贝”进行复制
+        clipboard.on('success', function(e) {
+            alert('复制成功!')
+            e.clearSelection();
+        });
+    })
+
+</script>
+<!--加入购物车-->
+<script>
+
+</script>
+<script>
+    // 轮播图
+    var swiper3 = new Swiper('.swiper3', {
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
+
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        }
+    })
+
+</script>
+<script>
+    // 弹出层
+    var modal4 = document.getElementById("sharebox");
+    var modal6 = document.getElementById("parapop");
+    var btn7 = document.getElementById("share-btn");
+    var btn8 = document.getElementById("share-close");
+    var btn9 = document.getElementById("bottom-btn2");
+    var btn10 = document.getElementById("toTop");
+    var btn11 = document.getElementById("bottom-btn1");
+    var btn12 = document.getElementById("submit-btn");
+    var btn13 = document.getElementById("overlay");
+    btn7.onclick = function() {
+        modal4.style.display = "block";
+    }
+    btn8.onclick = function() {
+        modal4.style.display = "none";
+    }
+    btn9.onclick = function() {
+        modal6.style.display = "block";
+    }
+    btn10.onclick = function() {
+        window.scrollTo(0, 0);
+    }
+    btn11.onclick = function() {
+        modal6.style.display = "block";
+    }
+    btn12.onclick = function() {
+        modal6.style.display = "none";
+    }
+    btn13.onclick = function() {
+        modal6.style.display = "none";
+    }
+</script>
+<script>
+    // 数量框数值加减
+    function add(){
+        var txt=document.getElementById("txt");
+        var a=txt.value;
+        a++;
+        txt.value=a;
+    }
+    function sub(){
+        var txt=document.getElementById("txt");
+        var a=txt.value;
+        if(a>1){
+            a--;
+            txt.value=a;
+        }else{
+            txt.value=1;
+        }
+
+    }
+</script>
+<script>
+    //列表滚动
+    window.onload = roll(50);
+    function roll(t) {
+        var ul1 = document.getElementById("coms1");
+        var ul2 = document.getElementById("coms2");
+        var ulbox = document.getElementById("comsbox");
+        ul2.innerHTML = ul1.innerHTML;
+        ulbox.scrollTop = 0; // 开始无滚动时设为0
+        var timer = setInterval(rollStart, 20); // 设置定时器，参数t用在这为间隔时间（单位毫秒），参数t越小，滚动速度越快
+        // 鼠标移入div时暂停滚动
+        ulbox.onmouseover = function () {
+            clearInterval(timer);
+        }
+        // 鼠标移出div后继续滚动
+        ulbox.onmouseout = function () {
+            timer = setInterval(rollStart, t);
+        }
+    }
+    // 开始滚动函数
+    function rollStart() {
+        // 上面声明的DOM对象为局部对象需要再次声明
+        var ul1 = document.getElementById("coms1");
+        var ul2 = document.getElementById("coms2");
+        var ulbox = document.getElementById("comsbox");
+        // 正常滚动不断给scrollTop的值+1,当滚动高度大于列表内容高度时恢复为0
+        if (ulbox.scrollTop >= ul1.scrollHeight) {
+            ulbox.scrollTop = 0;
+        } else {
+            ulbox.scrollTop++;
+        }
+    }
+</script>
+<script>
+    $('.wrap').first().addClass('on');
+    $.each($('.options'),function(){
+        $(this).find('input').first().attr('checked',true);
+        $(this).find('label').first().addClass('on');
+    })
+
+
+    $('.option-tab1').on('click', function() {
+
+        $(this).addClass('on').siblings().removeClass('on');
+        $(this).prev().attr('checked',true).siblings('input').attr('checked',false);
+        $(this).css({'border': '1px solid #B4272D','color': '#B4272D'});
+        $(this).siblings('label').css({'border': '1px solid #DDD','color': '#7b7b7b'});
+        var data_color = $(this).prev().attr('data-color');
+	$('input[name="img"]').val(data_color);
+        $(this).parents('.para-rows').find('.para-img').find('img').attr('src',data_color);
+	$(this).parents('.para-rows').find('.p2_color').text($(this).prev().val());
+
+
+
+    });
+
+    $('.option-tab2').on('click', function() {
+
+        $(this).addClass('on').siblings().removeClass('on');
+        $(this).prev().attr('checked',true).siblings('input').attr('checked',false);
+        $(this).css({'border': '1px solid #B4272D','color': '#B4272D'});
+        $(this).siblings('label').css({'border': '1px solid #DDD','color': '#7b7b7b'});
+	$(this).parents('.para-rows').find('.p2_size').text($(this).prev().val());
+
+    });
+
+
+
+
+
+    $('.options-tabs .option-tab').on('click', function() {
+        var index = $(this).index();
+
+        // 切换套餐改变标题价格
+        $('#spsellprice').text($(this).attr('sell-price'));
+        $('input[name="sell_price"]').val($(this).attr('sell-price'));
+        $('.original_price').text($(this).attr('market-price'));
+        $('input[name="market_price"]').val($(this).attr('market-price'));
+        $('.discounts_price').text($(this).attr('cost-price'));
+        $('input[name="cost_price"]').val($(this).attr('cost-price'));
+        $('input[name="taocan_id"]').val($(this).attr('taocan-id'));
+
+
+        $('.title1').html($(this).html());
+
+        $(this).addClass('on').siblings().removeClass('on');
+        $(this).prev().attr('checked',true).siblings('input').attr('checked',false);
+
+        $('.wrap').eq(index).addClass('on').siblings('.wrap').removeClass('on')
+    });
+</script>
+<!--返回上一页-->
+<script>
+$(".back").click(function(){
+    history.back(-1);
+})
+</script>
+<!--最近浏览的商品-->
+<script>
+
+    var cookieName = "PrdIDCookie";  //cookie名称
+    var nid;             //最新访问的商品ID
+    var N = 50;            //设置cookie保存的浏览记录的条数
+    //记录最近浏览过的商品
+    $(document).ready(function(){
+       HistoryRecord();
+    });
+    function HistoryRecord() {
+        var historyp;
+        nid = $("#PrdID").val();
+        if (nid == null || nid == "") {
+            return;
+        }
+        //判断是否存在cookie
+        if ($.cookie(cookieName) == null) //cookie 不存在
+        {
+            //创建新的cookie,保存浏览记录
+            $.cookie(cookieName, nid, { expires: 7, path: '/' });
+        }
+        else //cookies已经存在
+        {
+            //获取浏览过的商品编号ID
+            historyp = $.cookie(cookieName);
+        };
+        //分解字符串为数组
+        var pArray = historyp.split(',');
+        //最新访问的商品编号放置载最前面
+        historyp = nid;
+        //判断是该商品编号是否存在于最近访问的记录里面
+        var count = 0;
+        for (var i = 0; i < pArray.length; i++) {
+            if (pArray[i] != nid) {
+                historyp = historyp + "," + pArray[i];
+                count++;
+                if (count == N - 1) {
+                    break;
+                }
+            }
+        }
+        //修改cookie的值
+        $.cookie(cookieName, historyp);
+    }
+
+</script>
+<!--更改商品价格-->
+<script>
+    function getprice(obj) {
+        var taocantitle = $('.options-tabs #tab' + obj).text();
+
+        $('.para-title .title1').text(taocantitle);
+
+        var sellprice = $('#spsell'+obj).text();
+        $('#spsellprice').text(sellprice);
+
+
+        var marketprice = $('#spmarket'+obj).text();
+        $('.original_price').text(marketprice);
+
+
+        var poor = marketprice-sellprice;
+        $('.discounts_price').text(poor);
+
+    }
+</script>
+
+
+<!-- Load Facebook SDK for JavaScript -->
+      <div id="fb-root"></div>
+      <script>
+        window.fbAsyncInit = function() {
+          FB.init({
+            xfbml            : true,
+            version          : 'v5.0'
+          });
+        };
+
+        (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/zh_TW/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+
+      <!-- Your customer chat code -->
+      <div class="fb-customerchat"
+        attribution=setup_tool
+        page_id="116332536481393"
+  logged_in_greeting="Hi! How can we help you?"
+  logged_out_greeting="Hi! How can we help you?">
+      </div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!-- Facebook Pixel Code -->
+<script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+
+    if(/youmeistore|yougouchaopin|qiboshop\.store/.test(location.href)){
+        // 西安天机英策像素代码
+        fbq('init', '994674294326206');
+        console.log('pixel_code:'+994674294326206);
+    }else if(/chaolgw\.shop|lovexiaoshi\.shop|youpinxuanwu\.shop/.test(location.href)){
+        fbq('init', '867614080315189');
+        console.log('pixel_code:'+867614080315189);
+    }else if(/qiboshop\.shop|youxuanjingpin\.shop|likegouwu\.shop|youxuanjingpin\.store|daydayshop\.shop|meiriyigou\.shop/.test(location.href)){
+        fbq('init', '298292088016388');
+        console.log('pixel_code:'+298292088016388);
+    }else if(/jingwyd\.shop|psion\.shop|bigonestore\.shop/.test(location.href)){
+        fbq('init', '869254980231211');
+        console.log('pixel_code:'+869254980231211);
+    }else{
+        fbq('init', '702249683865857');
+        console.log('pixel_code:'+702249683865857);
+    }
+    fbq('track', 'PageView');
+
+</script>
+<noscript><img height="1" width="1" style="display:none"
+               src="https://www.facebook.com/tr?id=702249683865857&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->

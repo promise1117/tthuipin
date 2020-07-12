@@ -1,0 +1,49 @@
+.swiper-container {
+	width: 100%;
+	height: 100%;
+	/* position: absolute; 
+	left: 0;*/
+}
+
+.swiper-wrapper {
+	width: 100%;
+	height: 100%;
+}
+
+.swiper-slide a {
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+
+.swiper-slide img {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.swiper-pagination-bullet-active {
+	background-color: rgb(240, 42, 12);
+}
+
+.xjTel {
+	max-width: 4.8rem;
+	height: 0.64rem;
+	padding-left: 0.2rem;
+	flex: 1 1 0%;
+	border: 1px solid rgb(164, 164, 164);
+}
+
+.confirm {
+	width: 100%;
+	height: 0.8rem;
+	color: rgb(255, 255, 255);
+	background-color: rgb(219, 59, 46);
+	border: none;
+	border-radius: 0.53rem;
+	margin-top: 0.53rem;
+}
+.van-tabbar{
+	max-width:750px;
+	left: auto;
+}

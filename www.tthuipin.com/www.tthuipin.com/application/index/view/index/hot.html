@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <link rel="stylesheet" href="__MOBILE2__/css/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="__MOBILE2__/lib/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="__MOBILE2__/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="__MOBILE2__/css/categorylist_mv2.css" />
+    <title>開心樂購</title>
+</head>
+<body>
+{include file="public/head_list" /}
+{include file="public/nav" /}
+<!-- 侧边栏 -->
+{include file="public/left" /}
+<section>
+    <div class="swiper-container">
+        <!--        <div class="prudocts swiper-wrapper">-->
+        <!--            {volist name="$hotGoods" id="vo" offset="0" length=5}-->
+        <!--            <div class="prudocts_items swiper-slide">-->
+        <!--                <div class="prudocts_img">-->
+        <!--                    <img src="{$vo.img}" class="lazy" style="display: block;">-->
+        <!--                </div>-->
+        <!--                <p>{$vo.name}</p>-->
+        <!--            </div>-->
+        <!--            {/volist}-->
+
+        <!--        </div>-->
+    </div>
+</section>
+<div id="app">
+<main>
+    <ul class="list-wrap">
+        {volist name="hotgoods" id="vo" offset="0" length="24"}
+
+
+        <li class="list__item">
+            <div class="list__item-inner">
+                <a href="/goodsinfo?goodsid={$vo.id}" class="list_item-img">
+                    <img  src="__MOBILE2__/img/pseudo_graph.jpg" data-original="{$vo.img}" class="lazy" style="display: block;">
+                </a>
+            </div>
+            <div class="list_item_main">
+                <a href="" title="">
+                    <div class="list__item-price">
+                        <span class="price_new lang-price" data-price="{$vo.sell_price}">NT${$vo.sell_price}</span>
+                        <span class="price_old lang-price hide" data-price="{$vo.market_price}">NT＄<span class="market_price">{$vo.market_price}</span></span>
+                    </div>
+                    <div class="list__item-name">
+                        {$vo.name}
+                    </div>
+                </a>
+            </div>
+        </li>
+
+
+        {/volist}
+
+      <li class="list__item" v-for="item in goods">
+			<div class="list__item-inner">
+				<a :href="'/goodsinfo?goodsid='+item.id" class="list_item-img">
+					<img v-lazy="item.img" class="lazy" style="display: block;">
+				</a>
+			</div>
+			<div class="list_item_main">
+				<a :href="'/goodsinfo?goodsid='+item.id" title="">
+					<div class="list__item-price">
+						<span class="price_new lang-price" :data-price="item.sell_price">NT{{item.sell_price}}</span>
+					</div>
+					<div class="list__item-name" :title="item.name">
+						{{item.name}}
+					</div>
+				</a>
+			</div>
+		</li>
+    </ul>
+</main>
+</div>
+{include file="public/footer" /}
+<script src="__MOBILE2__/lib/jquery.min.js"></script>
+<script src="__MOBILE2__/lib/rem.js"></script>
+<script src="__MOBILE2__/lib/vue.min.js"></script>
+<script src="__MOBILE2__/lib/swiper.min.js"></script>
+<script src="__MOBILE2__/lib/jquery.lazyload.min.js"></script>
+<script src="https://unpkg.com/vue-lazyload/vue-lazyload.js"></script>
+<script src="__MOBILE2__/js/common.js"></script>
+<script>
+    $(function() {
+	
+		Vue.use(VueLazyload, {
+			preLoad: 1.3,
+			error: '__MOBILE2__/img/pseudo_graph.jpg',
+			loading: '__MOBILE2__/img/pseudo_graph.jpg',
+			attempt: 1
+		})
+		const vm = new Vue({
+			el: '#app',
+			data: {
+				goods: [] 
+			},
+			methods: {
+				lazyload() {
+					$(".lazy").lazyload({
+						threshold: 200, //设置临界点
+						effect: "fadeIn", //使用特效
+						failure_limit: 20, //当图片不连续时,通过 failurelimit 选项来控制加载行为.
+						skip_invisible: false //加载隐藏图片
+					});
+				}
+			},
+			created() {
+
+
+			},
+			mounted() {
+				this.lazyload();
+			},
+			watch:{
+				 
+			}
+		})
+		
+
+		let page = 2;
+		let page_all = 20;
+		let initTop = 0;
+		// 函数节流		
+		var throttle = function(func, delay) {            
+				var timer = null;            
+				return function() {                
+					var context = this;               
+					var args = arguments;                
+					if (!timer) {                    
+						timer = setTimeout(function() {                        
+							func.apply(context, args);                        
+							timer = null;                    
+						}, delay);                
+					}            
+				}        
+		} 
+			
+		function getGoods() {   
+			let scrollTop = $(document).scrollTop();
+			// 判断鼠标向下滑动
+			if (scrollTop > initTop) {
+							
+				if (page <= page_all) {
+					
+					$.ajax({
+						url: "/hotApi",
+						type: 'post',
+						data: {'page':page},
+						dataType: 'json',
+						success: function(data) {
+							page_all = data.page_all;
+							vm.goods.push.apply(vm.goods, data.hotgoods);
+							console.log(page_all)
+							console.log(vm.goods.length)
+						}
+					})
+					page++;
+				}
+
+
+			}
+		
+		}
+
+		window.addEventListener('scroll', throttle(getGoods, 2000));
+
+
+    })
+</script>
+{include file="public/statistical_code" /}
+</body>
+</html>

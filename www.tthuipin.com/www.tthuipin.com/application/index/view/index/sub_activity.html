@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <link rel="stylesheet" href="__MOBILE2__/css/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="https://www.layuicdn.com/layui/css/layui.css">
+    <link rel="stylesheet" type="text/css" href="__MOBILE2__/lib/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="__MOBILE2__/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="__MOBILE2__/css/activity_mv2.css" />
+    <title>開心樂購</title>
+</head>
+<body>
+{include file="public/header" /}
+
+{include file="public/left" /}
+
+{include file="public/nav" /}
+
+<main>
+   <div class="list_name"> </div>
+</main>
+<section>
+    <div class="list_wrap">
+        <!--        <div class="list_items">-->
+        <!--            <div class="items_icon">-->
+        <!--                <img src="__MOBILE2__/img/recommond_03.png">-->
+        <!--                <span>-->
+        <!--							為你推薦-->
+        <!--						</span>-->
+        <!--            </div>-->
+        <!--            <div class="items_img">-->
+        <!--                <a href="" title="">-->
+        <!--                    <img src="http://shop.tthuipin.com/uploads/20191201/edde05bfc78c6197dc70149497aa64bb.jpg" class="lazy" style="display: block;">-->
+        <!--                </a>-->
+        <!--            </div>-->
+        <!--            <div class="items_main">-->
+        <!--                <a href="" title="">-->
+        <!--                    <div class="list_item_name">-->
+        <!--                        女装2020新款法式純棉打底長袖t恤-->
+        <!--                    </div>-->
+        <!--                    <div class="list_item_details">-->
+        <!--                        外观漂亮|尺码不错-->
+        <!--                    </div>-->
+        <!--                    <div class="list_item_discount">-->
+        <!--                        满300减30-->
+        <!--                    </div>-->
+        <!--                    <div class="list_item_price">-->
+        <!--								<span id="festival">-->
+        <!--									年货节-->
+        <!--								</span>-->
+        <!--                        <span data-price="" class="lang-price">￥99.00</span>-->
+        <!--                    </div>-->
+        <!--                    <div class="list_item_buy">-->
+        <!--                        <div class="sales_buy">-->
+        <!--                            月销209件-->
+        <!--                        </div>-->
+        <!--                        <div class="rush_to_buy">-->
+        <!--                            马上抢-->
+        <!--                        </div>-->
+        <!--                        <div class="shape">-->
+        <!--                            <img src="__MOBILE2__/img/shape_10.jpg">-->
+        <!--                        </div>-->
+        <!--                    </div>-->
+        <!--                </a>-->
+        <!--            </div>-->
+        <!--        </div>-->
+        {volist name="sub_activity" id="vo" offset="0" length="4"}
+        <div class="list_items">
+            {if $key==0}
+            <div class="items_icon">
+                <img src="__MOBILE2__/img/recommond_03.png">
+                <span>
+                            為你推薦
+                        </span>
+            </div>
+            {else /}
+            <div class="items_icon">
+                <img src="__MOBILE2__/img/top_0{$key}.png">
+
+                <span class="items_num">
+							0{$key}
+				</span>
+            </div>
+            {/if}
+            <div class="items_img">
+                <a href="/goodsinfo?goodsid={$vo.id}" title="">
+                    <img src="__MOBILE2__/img/pseudo_graph.jpg" data-original="{$vo.img}" class="lazy" style="display: block;">
+                </a>
+            </div>
+            <div class="items_main">
+                <a href="/goodsinfo?goodsid={$vo.id}" title="">
+                    <div class="list_item_name">
+                        {$vo.name}
+                    </div>
+                    <div class="list_item_details">
+                        外觀漂亮|尺碼不錯
+                    </div>
+                    <div class="list_item_discount">
+                        滿1899減200
+                    </div>
+                    <div class="list_item_price">
+								<span class="festival">
+									夏季熱銷
+								</span>
+                        <span data-price="" class="lang-price">NT${$vo.sell_price}</span>
+                    </div>
+                    <div class="list_item_buy">
+                        <div class="sales_buy">
+                            月銷{$vo.sale}件
+                        </div>
+                        <div class="rush_to_buy">
+                            馬上搶
+                        </div>
+                        <div class="shape">
+                            <img src="__MOBILE2__/img/shape_10.jpg">
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        {/volist}
+        {volist name="sub_activity" id="vo" offset="4" length="12"}
+        <div class="list_items">
+
+            <div class="items_icon">
+                <img src="__MOBILE2__/img/top_03.png">
+
+                <span class="items_num">
+							0{$key}
+						</span>
+            </div>
+
+            <div class="items_img">
+                <a href="/goodsinfo?goodsid={$vo.id}" title="">
+                    <img src="__MOBILE2__/img/pseudo_graph.jpg" data-original="{$vo.img}" class="lazy" style="display: block;">
+                </a>
+            </div>
+            <div class="items_main">
+                <a href="/goodsinfo?goodsid={$vo.id}" title="">
+                    <div class="list_item_name">
+                        {$vo.name}
+                    </div>
+                    <div class="list_item_details">
+                        外觀漂亮|尺碼不錯
+                    </div>
+                    <div class="list_item_discount">
+                        滿1899減200
+                    </div>
+                    <div class="list_item_price">
+								<span class="festival">
+									夏季熱銷
+								</span>
+                        <span data-price="" class="lang-price">NT${$vo.sell_price}</span>
+                    </div>
+                    <div class="list_item_buy">
+                        <div class="sales_buy">
+                            月銷{$vo.sale}件
+                        </div>
+                        <div class="rush_to_buy">
+                            馬上搶
+                        </div>
+                        <div class="shape">
+                            <img src="__MOBILE2__/img/shape_10.jpg">
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        {/volist}
+    </div>
+    <ul class="list-wrap">
+
+
+        {volist name="hotgoods" id="vo"}
+
+
+        <li class="list__item">
+            <div class="list__item-inner">
+                <a href="/goodsinfo?goodsid={$vo.id}" class="list_item-img">
+                    <img src="__MOBILE2__/img/pseudo_graph.jpg" data-original="{$vo.img}" class="lazy" style="display: block;">
+                </a>
+            </div>
+            <div class="list_item_main">
+                <a href="" title="">
+                    <div class="list__item-price">
+                        <span class="price_new lang-price" data-price="{$vo.sell_price}">NT${$vo.sell_price}</span>
+                        <span class="price_old lang-price hidden" data-price="{$vo.market_price}">NT＄<span class="market_price">{$vo.market_price}</span></span>
+                    </div>
+                    <div class="list__item-name">
+                        {$vo.name|mb_substr=0,18}...
+                    </div>
+                </a>
+            </div>
+        </li>
+
+
+        {/volist}
+    </ul>
+    <div style="width: 100%; height: 2rem; opacity: 0;">占位符</div>
+</section>
+{include file="public/footer" /}
+
+
+<script src="__MOBILE2__/lib/jquery.min.js"></script>
+<script src="__MOBILE2__/lib/rem.js"></script>
+<script src="__MOBILE2__/lib/swiper.min.js"></script>
+<script src="__MOBILE2__/lib/jquery.lazyload.min.js"></script>
+<script src="https://www.layuicdn.com/layer-v3.1.1/layer.js"></script>
+<script src="__MOBILE2__/js/common.js"></script>
+<script>
+	$(function() {
+		$(".lazy").lazyload({
+			threshold: 200, //设置临界点
+			effect: "fadeIn", //使用特效
+			failure_limit: 20, //当图片不连续时,通过 failurelimit 选项来控制加载行为.
+			skip_invisible: false //加载隐藏图片
+		});
+	
+		$('.items_num').each(function(){
+			if($(this).text().trim().length >2){
+				$(this).html($(this).text().trim().substr(1));
+			}
+		})
+		<!-- 获取地址栏参数 -->
+		function getQueryVariable(variable) {
+
+			var query = window.location.search.substring(1);
+			
+
+			var vars = query.split("&");
+
+			for (var i = vars.length;i > 0;  i--) {
+
+				var pair = vars[i-1].split("=");
+
+				if (pair[0] == variable) {
+
+					return pair[1];
+
+				}
+
+			}
+	
+		}
+		 
+		const list_name  = decodeURI(getQueryVariable("list_name"));
+		$('.list_name').text(list_name);
+	
+	})
+</script>
+{include file="public/statistical_code" /}
+</body>
+</html>
