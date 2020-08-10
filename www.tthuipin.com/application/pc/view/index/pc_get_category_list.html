@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title></title>
+<!--    <link rel="shortcut icon" href="__PUBLIC__/static/pc/images/favicon.png" type="image/x-icon">-->
+    <link rel="stylesheet" href="__PUBLIC__/static/pc1/css/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/pc1/css/common.css" />
+
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/pc1/css/hot_deal.css" />
+</head>
+<body>
+<!-- 公用頭部 -->
+
+{include file="public/header" /}
+
+<!-- 面包屑导航 -->
+<div class="wrap-box">
+    <div class="container">
+        <ul class="breadcrumb fix">
+            <li><a href="/pc_index">首頁</a></li>
+            {if $bread !== ''}
+            <li><a href="/pc_categorylist?cat_id={$bread.cat_id}&cat_name={$bread.cat_name}&parent_id={$bread.parent_id}">{$bread.cat_name}</a></li>
+            {/if}
+            <li><a href="">{$cat_name}</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="wrap-box mt20 main-content">
+    <div class="container">
+        <div class="navigation-content">
+            <ul class="list-wrap fix">
+
+
+                {volist name="goods" id="vo" offset="0" length="100"}
+
+                <form  name="order" action="/pc_sure" method="post">
+                    <input type="hidden" name="goods_no" value="{$vo.goods_no}">
+                    <input type="hidden" name="img" value="{$vo.img}">
+
+                    <input type="hidden" name="sell_price" value="{$vo['sell_price']}">
+                    <input type="hidden" name="market_price" value="{$vo['market_price']}">
+                    <input type="hidden" name="cost_price" value="{$vo['market_price']-$vo['sell_price']}">
+
+                    {volist name="vo.bind_goods" id="voo" offset="0" length='1'}
+                    <input type="hidden" name="taocan_id" value="{$voo.id}">
+                    {/volist}
+
+                    <li class="list__item">
+                        <div class="list__item-inner"><a class="list_item-img" href="/pc_goodsinfo?goodsid={$vo.id}">
+                            <img class="lazy" src="{$vo.img|str_replace='http','https',###}" data-original="//pr.aopcdn.com/goods/MY18102902/3269457_898f9c3575.jpg@!h320-w320"
+                                 alt="Mom Girl Solid Color Bowknot Decorate Matching Dress" style="display: block;"></a>
+                         </div>
+                        <div class="list__item-name">
+                            <a href="/pc_goodsinfo?goodsid={$vo.id}" title="{$vo.name}">{$vo.name}</a>
+                            <a class="list-add-wish" data-action="add-wishlist" data-sku="MY18102902" href="javascript:;">
+                                <i class="iconfont icon-like"></i>
+                            </a>
+                        </div>
+                        <div class="list__item-price"><span class="lang-price" data-price="{$vo.sell_price}">NT${$vo.sell_price}</span><span class="list__item-price-old lang-price"
+                                                                                                                                             data-price="{$vo.market_price}">NT${$vo.market_price}</span>
+                        </div>
+
+                        <div class="tag__flashsale" style="background-image : url(//pr.aopcdn.com//banner/1516693366458.jpg?ver=15166950)">
+                            <span class="tag__val">50</span>
+                        </div>
+                    </li>
+
+                   
+                </form>
+                {/volist}
+
+<!--                -->
+<!--                {volist name="goods" id="vo"}-->
+<!--                <li class="list__item">-->
+<!--                    <div class="list__item-inner">-->
+<!--                        <a class="list_item-img" href="/pc_goodsinfo?goodsid={$vo.id}">-->
+<!--                        <img class="lazy" src="{$vo.img}" data-original="//pr.aopcdn.com/goods/MY18102902/3269457_898f9c3575.jpg@!h320-w320"-->
+<!--                             alt="{$vo.name}" style="display: block;">-->
+<!--                        </a>-->
+<!--                        <a href="javascript:;" class="list__btn-addcart" data-id="24872"><i class="iconfont icon-plus"></i>查看商品</a></div>-->
+<!--                    <div class="list__item-name">-->
+<!--                        <a href="/pc_goodsinfo?goodsid={$vo.id}" title="{$vo.name}">{$vo.name}</a>-->
+<!--                        <a class="list-add-wish" data-action="add-wishlist" data-sku="MY18102902" href="javascript:;">-->
+<!--                            <i class="iconfont icon-like"></i>-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                    <div class="list__item-price"><span class="lang-price" data-price="{$vo.sell_price}">NT${$vo.sell_price}</span><span class="list__item-price-old lang-price"-->
+<!--                                                                                                                   data-price="{$vo.market_price}">NT${$vo.market_price}</span>-->
+<!--                    </div>-->
+
+<!--                    <div class="tag__flashsale" style="background-image : url(//pr.aopcdn.com//banner/1516693366458.jpg?ver=15166950)">-->
+<!--                        <span class="tag__val">50</span>-->
+<!--                    </div>-->
+<!--                </li>-->
+
+
+<!--                &lt;!&ndash; 加入購物車懸浮窗口 &ndash;&gt;-->
+<!--                <div class="dialog-wrap">-->
+<!--                    <div class="dialog-bg"></div>-->
+<!--                    <div class="dialog-content">-->
+<!--                        <div class="dialog-content__mask"></div>-->
+<!--                        <div class="dialog-content__inner">-->
+<!--                            <div class="dialog-add-cart">-->
+<!--                                <form onsubmit="return false;">-->
+<!--                                    <div class="dialog-header">-->
+<!--                                        <h3>查看商品</h3>-->
+<!--                                        <div class="dialog-header__close trans"><i class="iconfont icon-close"></i></div>-->
+<!--                                    </div>-->
+<!--                                    <div class="dialog-body">-->
+<!--                                        <div class="pop-goods-top fix">-->
+<!--                                            <div class="pop-goods-top__left"><img src="{$vo.img}"-->
+<!--                                                                                  alt=""></div>-->
+<!--                                            <div class="pop-goods-top__right">-->
+<!--                                                <h3 class="goods-name">{$vo.name}</h3>-->
+<!--                                                <p class="goods-sku">{$vo.keywords}</p>-->
+<!--                                                <div class="goods-attr mt15">-->
+<!--                                                    <div class="goods-price"><span class="price lang-price" data-price="{$vo.sell_price}">NT${$vo.sell_price}</span><span class="market-price lang-price"-->
+<!--                                                                                                                                                                          data-price="{$vo.market_price}">NT${$vo.market_price}</span></div>-->
+<!--                                                    &lt;!&ndash;                                                    <div class="goods-color mt20">&ndash;&gt;-->
+<!--                                                    &lt;!&ndash;                                                        <h4 class="goods-color__title">Color: <span data-value="color">claret</span></h4>&ndash;&gt;-->
+<!--                                                    &lt;!&ndash;                                                        <div class="goods-color__list mt15 fix" target="color"><span data-val="//pr.aopcdn.com/goods/MY18102409/3266010_4f25ba23fb.jpg@!h320-w320"&ndash;&gt;-->
+<!--                                                    &lt;!&ndash;                                                                                                                     class="active" data-value="claret"><img src="//pr.aopcdn.com/goods/MY18102409/3266010_4f25ba23fb.jpg@!h180-w180"></span></div>&ndash;&gt;-->
+<!--                                                    &lt;!&ndash;                                                    </div>&ndash;&gt;-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        &lt;!&ndash;                                        <div class="goods-size mt20">&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                                            <h4 class="goods-size__title">Size: </h4>&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                                            <div class="goods-size__list mt15 fix" target="size"><span data-value="Girl-90" class="active">girl-90</span><span&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                                                    data-value="Girl-100">girl-100</span><span data-value="Girl-110">girl-110</span><span data-value="Girl-120">girl-120</span><span&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                                                    data-value="Girl-130">girl-130</span><span data-value="Mom-s">mom-s</span><span data-value="Mom-m">mom-m</span><span&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                                                    data-value="Mom-l">mom-l</span><span data-value="Mom-xl">mom-xl</span></div>&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                                            <div class="goods-size__tips hidden" style="display: inline-block;"><span style="text-transform: capitalize;">clothes&ndash;&gt;-->
+<!--                                        &lt;!&ndash;											length</span>: <b style="color:#AB85F7;">12</b>, <span style="text-transform: capitalize;">bust</span>: <b&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                                                    style="color:#AB85F7;">24</b> (in inches)</div>&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                                        </div>&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                                        <div class="qty mt15 fix">&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                                            <div class="qty__title">Quantity:</div>&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                                            <div class="qty__content fix">&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                                                <div class="quantity fix"><a href="javascript:;" class="l minus J-NumBtn" name="plus"><span class="iconfont icon-minus"></span></a><input&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                                                        type="text" class="num l J-NumInput" name="qty" value="1"><a href="javascript:;" class="l plus J-NumBtn"&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                                                                                                                     name="add"><span class="iconfont icon-plus"></span></a></div>&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                                            </div><span class="lowStock" style="display: none;">low Stock</span>&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                                        </div><input type="hidden" name="attributes[9]" value="Girl-90" data-value="size" id="size-attr"><input type="hidden"&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                                                                                                                                                name="attributes[8]" value="claret" data-value="color" id="color-attr"><input type="hidden" name="id" value="24732"&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                                                                                                                                                                                                                              id="goods_id"><input type="hidden" name="goods_sn" value="MY18102409" id="goods_sn"><input type="hidden" name="goodsInfo"&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                                                                                                                                                                                                                                                                                                                         value="{&quot;claret&quot;:{&quot;girl-90&quot;:{&quot;sale_price&quot;:8.81,&quot;market_price&quot;:17.63,&quot;preflash&quot;:&quot;1&quot;,&quot;end_time&quot;:1575532799,&quot;stock&quot;:99955,&quot;size&quot;:&quot;girl-90&quot;,&quot;color&quot;:&quot;claret&quot;,&quot;sort&quot;:0},&quot;girl-100&quot;:{&quot;sale_price&quot;:8.81,&quot;market_price&quot;:17.63,&quot;preflash&quot;:&quot;1&quot;,&quot;end_time&quot;:1575532799,&quot;stock&quot;:99977,&quot;size&quot;:&quot;girl-100&quot;,&quot;color&quot;:&quot;claret&quot;,&quot;sort&quot;:1},&quot;girl-110&quot;:{&quot;sale_price&quot;:8.81,&quot;market_price&quot;:17.63,&quot;preflash&quot;:&quot;1&quot;,&quot;end_time&quot;:1575532799,&quot;stock&quot;:99971,&quot;size&quot;:&quot;girl-110&quot;,&quot;color&quot;:&quot;claret&quot;,&quot;sort&quot;:2},&quot;girl-120&quot;:{&quot;sale_price&quot;:8.81,&quot;market_price&quot;:17.63,&quot;preflash&quot;:&quot;1&quot;,&quot;end_time&quot;:1575532799,&quot;stock&quot;:99963,&quot;size&quot;:&quot;girl-120&quot;,&quot;color&quot;:&quot;claret&quot;,&quot;sort&quot;:3},&quot;girl-130&quot;:{&quot;sale_price&quot;:8.81,&quot;market_price&quot;:17.63,&quot;preflash&quot;:&quot;1&quot;,&quot;end_time&quot;:1575532799,&quot;stock&quot;:99949,&quot;size&quot;:&quot;girl-130&quot;,&quot;color&quot;:&quot;claret&quot;,&quot;sort&quot;:4},&quot;mom-s&quot;:{&quot;sale_price&quot;:9.11,&quot;market_price&quot;:18.23,&quot;preflash&quot;:&quot;1&quot;,&quot;end_time&quot;:1575532799,&quot;stock&quot;:99965,&quot;size&quot;:&quot;mom-s&quot;,&quot;color&quot;:&quot;claret&quot;,&quot;sort&quot;:5},&quot;mom-m&quot;:{&quot;sale_price&quot;:9.11,&quot;market_price&quot;:18.23,&quot;preflash&quot;:&quot;1&quot;,&quot;end_time&quot;:1575532799,&quot;stock&quot;:99950,&quot;size&quot;:&quot;mom-m&quot;,&quot;color&quot;:&quot;claret&quot;,&quot;sort&quot;:6},&quot;mom-l&quot;:{&quot;sale_price&quot;:9.11,&quot;market_price&quot;:18.23,&quot;preflash&quot;:&quot;1&quot;,&quot;end_time&quot;:1575532799,&quot;stock&quot;:99959,&quot;size&quot;:&quot;mom-l&quot;,&quot;color&quot;:&quot;claret&quot;,&quot;sort&quot;:7},&quot;mom-xl&quot;:{&quot;sale_price&quot;:9.11,&quot;market_price&quot;:18.23,&quot;preflash&quot;:&quot;1&quot;,&quot;end_time&quot;:1575532799,&quot;stock&quot;:99948,&quot;size&quot;:&quot;mom-xl&quot;,&quot;color&quot;:&quot;claret&quot;,&quot;sort&quot;:8}}}"&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                                                                                                                                                                                                                                                                                                                         id="goodsInfo">&ndash;&gt;-->
+<!--                                    </div>-->
+<!--                                    <div class="dialog-footer">-->
+<!--                                        <p class="tips-success">Add shopping bags successfully.</p>-->
+<!--                                        <div class="goods-btns"><a href="/pc_goodsinfo?goodsid={$vo.id}"><input type="button" class="btn-addBag submitbtn trans" value="查看詳情"></a> </div>-->
+<!--                                    </div>-->
+<!--                                </form>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                {/volist}-->
+
+
+            </ul>
+        </div>
+        <div class="navigation-content hidden">
+            <ul class="list-wrap fix">
+                <li class="list__item">
+                    <div class="list__item-inner"><a class="link__view-more" href="hot_deal.html"></a></div>
+                </li>
+                <li class="list__item">
+                    <div class="list__item-inner"><a class="list_item-img" href="">
+                        <img class="lazy" src="__PUBLIC__/static/pc1/img/3269457_e49beed12a.jpg" data-original="//pr.aopcdn.com/goods/MY18102902/3269457_898f9c3575.jpg@!h320-w320"
+                             alt="Mom Girl Solid Color Bowknot Decorate Matching Dress" style="display: block;"></a>
+                    </div>
+                    <div class="list__item-name">
+                        <a href="" title="Mom Girl Solid Color Bowknot Decorate Matching Dress">Mom Girl Solid Color Bowknot Decorate
+                            Matching Dress</a>
+                        <a class="list-add-wish" data-action="add-wishlist" data-sku="MY18102902" href="javascript:;">
+                            <i class="iconfont icon-like"></i>
+                        </a>
+                    </div>
+                    <div class="list__item-price"><span class="lang-price" data-price="12.70">NT$12.70</span><span class="list__item-price-old lang-price"
+                                                                                                                   data-price="25.40">NT$25.40</span>
+                    </div>
+
+                    <div class="tag__flashsale" style="background-image : url(//pr.aopcdn.com//banner/1516693366458.jpg?ver=15166950)">
+                        <span class="tag__val">50</span>
+                    </div>
+                </li>
+                <li class="list__item">
+                    <div class="list__item-inner"><a class="list_item-img" href=""><img class="lazy" src="__PUBLIC__/static/pc1/img/3266010_4f25ba23fb.jpg"
+                                                                                        data-original="img/3266010_4f25ba23fb.jpg" alt="Mom Girl Mickey Pattern Matching T-Shirt" style="display: block;"></a>
+                       
+                    </div>
+                    <div class="list__item-name">
+                        <a href="" title="Mom Girl Mickey Pattern Matching T-Shirt">Mom Girl Mickey Pattern Matching T-Shirt</a>
+                        <a class="list-add-wish" data-action="add-wishlist" data-sku="MY18102409" href="javascript:;"><i class="iconfont icon-like"></i></a></div>
+                    <div class="list__item-price"><span class="lang-price" data-price="8.81">NT$8.81</span><span class="list__item-price-old lang-price"
+                                                                                                                 data-price="17.63">NT$17.63</span></div>
+                    <div class="list__item-color">
+                        <ul class="color-item"></ul>
+                    </div>
+                    <div class="tag__flashsale" style="background-image : url(//pr.aopcdn.com//banner/1516693366458.jpg?ver=15166950)"><span
+                            class="tag__val">50</span></div>
+                </li>
+                <li class="list__item">
+                    <div class="list__item-inner">
+                        <a class="list_item-img" href="">
+                            <img class="lazy" src="__PUBLIC__/static/pc1/img/3100442_04b79215ac.jpg" data-original="img/3100442_04b79215ac.jpg" alt="Mom Girl Stripes Round Neck Dress"
+                                 style="display: block;"></a>
+           
+                    </div>
+                    <div class="list__item-name">
+                        <a href="" title="Mom Girl Stripes Round Neck Dress">
+                            Mom Girl Stripes Round Neck Dress</a>
+                        <a class="list-add-wish" data-action="add-wishlist" data-sku="MG17081020" href="javascript:;"><i class="iconfont icon-like"></i></a></div>
+                    <div class="list__item-price"><span class="lang-price" data-price="9.00">NT$9.00</span><span class="list__item-price-old lang-price"
+                                                                                                                 data-price="12.86">NT$12.86</span>
+                    </div>
+                    <div class="list__item-color">
+                        <ul class="color-item"></ul>
+                    </div>
+                    <div class="tag__flashsale" style="background-image : url(//pr.aopcdn.com//banner/1516693366458.jpg?ver=15166950)">
+                        <span class="tag__val">30</span></div>
+                </li>
+            </ul>
+        </div>
+
+<!--         分页 -->
+
+
+        <div class="pagination">
+            <a rel="nofollow" href="/pc_categorylist?cat_id={$cat_id}&cat_name={$cat_name}&parent_id={$parent_id}&page=1">« 首頁</a>
+            <a rel="nofollow" href="/pc_categorylist?cat_id={$cat_id}&cat_name={$cat_name}&parent_id={$parent_id}&page={$page==1?1:$page-1}">&lt; 上一頁</a>
+<!--            <span class="current">1</span>-->
+            {for start="1" end="$page_all"}
+            <a rel="nofollow" class="page" style="display: none;" href="/pc_categorylist?cat_id={$cat_id}&cat_name={$cat_name}&parent_id={$parent_id}&page={$i}">{$i}</a>
+            {/for}
+            ...
+            <a rel="nofollow" class="page"  href="/pc_categorylist?cat_id={$cat_id}&cat_name={$cat_name}&parent_id={$parent_id}&page={$page_all==0?1:$page_all}">{$page_all==0?1:$page_all}</a>
+<!--            <a rel="nofollow" href="__PUBLIC__/static/pc1//matching-outfits-251/?&amp;p=3">3</a><a rel="nofollow" href="/matching-outfits-251/?&amp;p=4">4</a><a-->
+<!--                rel="nofollow" href="__PUBLIC__/static/pc1//matching-outfits-251/?&amp;p=5">5</a>-->
+<!--            <a rel="nofollow" href="__PUBLIC__/static/pc1//matching-outfits-251/?&amp;p=6">...</a>-->
+<!--            <a rel="nofollow" href="__PUBLIC__/static/pc1//matching-outfits-251/?&amp;p=17">17</a>-->
+            <a rel="nofollow" href="/pc_categorylist?cat_id={$cat_id}&cat_name={$cat_name}&parent_id={$parent_id}&page={$page>=$page_all?$page:$page+1}">下一頁 &gt;</a>
+        </div>
+    </div>
+</div>
+
+
+<!-- 公用底部 -->
+{include file="public/footer" /}
+
+
+<script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
+<script src="__PUBLIC__/static/pc1/js/browser-polyfill.min.js"></script>
+<script src="__PUBLIC__/static/pc1/js/browser.min.js"></script>
+<script src="__PUBLIC__/static/pc1/js/common.js" type="text/babel"></script>
+
+<script>
+    $(function() {
+
+
+        // 分頁顯示當前頁以及前兩頁和後兩頁
+        $('.page').eq({$page-1}).prev().show();
+        $('.page').eq({$page-1}).prev().prev().show();
+
+        $('.page').eq({$page-1}).css({'color':'#bfa2fa','textDecoration':'underline','opacity':1}).show();
+
+        $('.page').eq({$page-1}).next().show();
+        $('.page').eq({$page-1}).next().next().show();
+
+
+
+        // 添加购物车
+	$('.goods-size__list span').click(function() {
+		$(this).addClass('active').siblings().removeClass('active');
+	});
+	$('.list__btn-addcart').click(function() {
+		$(this).parents('.list__item').next().show();
+		add_checked();
+	});
+	$('.dialog-header__close').click(function() {
+		$(this).parents('.dialog-wrap').hide();
+	});
+
+	function add_checked() {
+				$('.dialog-wrap').each(function(i, v) {
+					$(this).find('input').attr('checked', false).prop('checked', false);
+					$(this).find('label').removeClass('active');
+					$(this).find('.taocan').hide().eq(0).show();
+					$(this).find('.goods-meal__list label').eq(0).addClass('active');
+					$(this).find('.goods-meal__list input').eq(0).attr('checked', true).prop('checked', true);
+
+					$(this).find('.taocan').first().find('.specifications').each(function(i) {
+						$(this).find('.goods-color__list').find('label').first().addClass('active');
+						$(this).find('.goods-color-radio').find('input').first()
+							.attr('checked', true).prop('checked', true).siblings()
+							.attr('checked', false).prop("checked", false);
+						$(this).find('.goods-size__list input').eq(0).attr('checked', true).prop('checked', true);
+						$(this).find('.goods-size__list label').eq(0).addClass('active');
+					})
+				})
+				$('.specifications').each(function() {
+					$(this).find('.goods-size').eq(0).show().siblings('.goods-size').hide();
+				})
+	}
+	add_checked();
+
+
+	// 套餐选择
+	$('.goods-meal__list label').click(function() {
+		const i = $(this).attr('data-key');
+		console.log(i)
+		$(this).parents('.pop-goods-top').find('.taocan').eq(i).show().siblings('.taocan').hide();
+		$(this).addClass('active').siblings().removeClass('active');
+		$(this).prev().attr('checked', true).prop('checked', true).siblings().removeAttr('checked').removeProp('checked');
+
+		// 傳遞套餐價格給隱藏input
+		$(this).parents('form').find('input[name="sell_price"]').val($(this).attr('sell-price'));
+		$(this).parents('form').find('input[name="market_price"]').val($(this).attr('market-price'));
+		$(this).parents('form').find('input[name="cost_price"]').val($(this).attr('cost-price'));
+
+		// 赋值img隐藏域提交src
+		$(this).parents('.pop-goods-top').find('.pop-goods-top__left img').attr('src', $(this).attr('data-src'));
+		var img = $(this).parents('.pop-goods-top').find('.pop-goods-top__left img').attr('src');
+		$(this).parents('form').find('input[name="img"]').val(img);
+
+
+		$(this).parents('.pop-goods-top').find('.taocan').eq(i).find('.goods-color').each(function() {
+			$(this).find('label').eq(0).addClass('active').siblings().removeClass('active');
+			$(this).find('.color').html($(this).find('label.active').text())
+
+		})
+
+		$(this).parents('.pop-goods-top').find('.taocan').eq(i).find('.goods-color-radio').each(function() {
+			$(this).find('input').eq(0).attr('checked', true).prop('checked', true).siblings()
+				.attr('checked', false).prop('checked', false);
+
+		})
+		$(this).parents('.pop-goods-top').find('.taocan').eq(i).find('.specifications').each(function() {
+			$(this).find('.goods-size__list').eq(0).find('input').eq(0).attr('checked', true).prop('checked', true).siblings()
+				.attr('checked', false).prop("checked", false);
+			$(this).find('.goods-size__list').eq(0).find('label').eq(0).addClass('active').siblings().removeClass('active');
+		})
+		$(this).parents('.pop-goods-top').find('.taocan').eq(i).siblings('.taocan').find('input').attr('checked', false).prop(
+			'checked', false);
+	});
+	// 颜色
+
+	$('.goods-color__list label').click(function() {
+		const i = $(this).attr('key');
+		const index = $('.goods-meal__list label.active').attr('data-key');
+
+		$(this).addClass('active').siblings().removeClass('active');
+		$(this).parents('.specifications').find('.goods-size').eq(i).show().siblings('.goods-size').hide();
+		$(this).parents('.specifications').find('.goods-size').eq(i).find('label').first().addClass('active').siblings()
+			.removeClass('active');
+		$(this).parents('.specifications').find('.goods-size').eq(i).find('.size').html($(this).parents('.specifications')
+			.find('.goods-size').eq(i).find('label').first().text());
+
+		$(this).parents('.goods-color').find('.goods-color-radio input').eq(i).attr('checked', true).prop('checked', true)
+			.siblings().attr('checked', false).prop('checked', false);
+		$(this).parents('.specifications').find('.goods-size').eq(i).find('input').first()
+			.attr('checked', true).prop('checked', true).parents('.goods-size').siblings('.goods-size').find('input')
+			.attr('checked', false).prop('checked', false);
+
+		const src = $(this).parents('.goods-color').find('.goods-color-radio input').eq(i).attr('data-color');
+		console.log(i)
+
+		$(this).parents('.pop-goods-top').find('.pop-goods-top__left img').attr('src', src);
+		$(this).parents('.goods-color').find('.color').html($(this).text());
+
+		// 赋值img隐藏域提交src
+		var img = $(this).parents('.pop-goods-top').find('.pop-goods-top__left img').attr('src');
+
+		$(this).parents('form').find('input[name="img"]').val(img);
+
+	});
+	// 尺寸
+	$('.goods-size__list label').click(function() {
+		$(this).addClass('active').siblings().removeClass('active');
+		$(this).parents('.goods-size').find('.size').html($(this).text());
+		$(this).prev().attr('checked', true).prop('checked', true).siblings()
+			.attr('checked', false).prop('checked', false);
+		$(this).parents('.goods-size').siblings('.goods-size').find('input').attr('checked', false).prop('checked', false);
+	});
+
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <title></title>
+    <!-- <link rel="stylesheet" href="__MOBILE2__/css/iconfont.css"> -->
+	<link rel="stylesheet" href="https://cdn.staticfile.org/Swiper/4.5.0/css/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="__MOBILE2__/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="__MOBILE2__/css/prudocts_mv2.css" />
+	<script src="https://cdn.staticfile.org/jquery/3.5.0/jquery.min.js"></script>
+	<script src="__MOBILE2__/js/common.js"></script>
+    <script type="text/javascript">
+
+        var sUserAgent = navigator.userAgent;
+
+        if(!/Android|webOS|iPhone|iPod|BlackBerry/i.test(sUserAgent)){
+
+
+
+            var href = window.location.protocol+'//'+window.location.host+'/pc_goodsinfo'+window.location.search;
+
+
+            // console.log(href);
+            window.location.href=href;
+
+        }
+
+
+    </script>
+</head>
+<body>
+<div class="nav-bar hide" style="padding:0rem;height: 3.5rem;line-height:3.5rem;">
+    <div class="mdui-toolbar mdui-appbar-depletion" style="display: flex;width:100%;height:3.5rem;">
+        <div class="mdui-depletion" style="position: relative;margin: 0;text-overflow: ellipsis;
+        white-space: nowrap;overflow: hidden;width:100%;">
+            <div class="mdui-depletion-box" onclick="openTech()" style="display: flex;height: 3.5rem;line-height: 50px;align-items: center;background: #4C4C4C;color: #fff;padding:7px 15px 7px 20px;justify-content: space-between;box-sizing: border-box;position: relative;">
+                <img src="__MOBILE2__/img/icon-desktop.png" alt="" srcset="" style="width: 3rem;height: 3rem;border-radius: 2px !important;border-style: none;">
+                <div style="display: flex;flex-direction: column;color: #fff;flex: 1;padding-left: 8px;">
+                    <span style="line-height: 12px;font-size: 12px;margin: 1px 0 6px;">開心樂購</span>
+                    <span style="line-height: 10px;font-size: 10px;">直通廠商 限時出清</span>
+                </div>
+                <span class="iosShow" style="background: #945EF9;border-radius: 4px;padding: 7px 8px;font-size: 12px;line-height: 12px;color: #fff">下載</span>
+            </div>
+            <a href="javascript:void(0)" onclick="closeTech()" style="position: absolute;top: 0;left: 0;display: block;height: 0;width: 0;font-size: 0;border-top: 20px solid #575757;border-right: 20px solid transparent;">+</a>
+        </div>
+    </div>
+</div>
+<!-- Header -->
+
+{include file="public/header" /}
+
+{include file="public/left" /}
+
+{include file="public/nav" /}
+
+
+<section class="switch_section">
+	<div class="goods_close play_stop hide">
+		<i style="display:flex;justify-content:center;align-items:center;">
+			<svg t="1591353796888" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="23787"
+			 width="18" height="18">
+				<path d="M940.8 83.2c25.6 25.6 25.6 64 0 83.2L595.2 512l345.6 345.6c25.6 25.6 25.6 64 0 83.2-25.6 25.6-64 25.6-83.2 0L512 595.2l-345.6 345.6c-25.6 25.6-64 25.6-83.2 0-25.6-25.6-25.6-64 0-83.2L428.8 512 83.2 166.4c-25.6-25.6-25.6-64 0-83.2s64-25.6 83.2 0L512 428.8l345.6-345.6C876.8 57.6 921.6 57.6 940.8 83.2z"
+				 p-id="23788" fill="#ffffff"></path>
+			</svg>
+		</i>
+	</div>
+	<div class="play hide">
+		<svg t="1592192884523" class="icon " viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+		 p-id="4347" width="36" height="36">
+			<path d="M512 85.333333c235.264 0 426.666667 191.402667 426.666667 426.666667s-191.402667 426.666667-426.666667 426.666667S85.333333 747.264 85.333333 512 276.736 85.333333 512 85.333333z m0-85.333333C229.248 0 0 229.248 0 512s229.248 512 512 512 512-229.248 512-512S794.752 0 512 0z m-85.333333 298.666667v426.666666l298.666666-213.333333-298.666666-213.333333z"
+			 p-id="4348" fill="#ffffff"></path>
+		</svg>
+	</div>
+	
+	<div class="playerbox hide">
+		<video controls class="video"></video>
+	</div>
+
+    <div class="swiper-container swiper3">
+        <div class="swiper-wrapper" onload="HistoryRecord()" style="transition-duration: 0ms; transform: translate3d(-1035px, 0px, 0px);">
+            {php}
+
+            $banner = json_decode($info['ad_img']);
+
+            {/php}
+
+            {volist name="banner" id="v"}
+            <div class="swiper-slide" style="width: 345px;">
+                <img alt=" {$info['name']} " src="{$v|str_replace='http','https',###}" class="lazy">
+				
+            </div>
+            {/volist}
+
+        </div>
+        <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets"><span class="swiper-pagination-bullet"
+                                                                                                   tabindex="0" role="button" aria-label="Go to slide 1"></span><span class="swiper-pagination-bullet" tabindex="0"
+                                                                                                                                                                      role="button" aria-label="Go to slide 2"></span><span class="swiper-pagination-bullet" tabindex="0" role="button"
+                                                                                                                                                                                                                            aria-label="Go to slide 3"></span><span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0"
+                                                                                                                                                                                                                                                                    role="button" aria-label="Go to slide 4"></span></div>
+        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+    </div>
+
+    <form id="details-form" name="order" action="/sure?type=symbol" method="post">
+        <input type="hidden" name="goods_no" value="{$info.goods_no}">
+
+
+
+        <input type="hidden" name="img" value="{$info.img}">
+
+
+
+
+
+
+        {volist name="taocan" id="vo" offset="0" length="1"}
+        <input type="hidden" name="sell_price" value="{$vo.goodstc_bind.0.0.sell_price}">
+
+
+
+        <input type="hidden" name="market_price" value="{$vo.goodstc_bind.0.0.market_price}">
+
+
+
+        <input type="hidden" name="cost_price" value="{$vo.goodstc_bind.0.0.cost_price}">
+
+
+
+
+        <input type="hidden" name="taocan_id" value="{$vo.id}">
+
+
+
+        {/volist}
+        <div class="content-box" style='padding: 1rem 0.83rem;'>
+            <!-- 产品标题价格 -->
+            <div class="title fix">
+                <p>{$info.name}</p>
+            </div>
+            <p class="goods-sku">
+                <font style="vertical-align: inherit;">
+                    <font style="vertical-align: inherit;">貨號:{$info.goods_no}</font>
+                </font>
+                <span class="sold">已售數量: <b class="soldNum2">{$info.sale}</b></span>
+            </p>
+            <!-- 价格 -->
+            {volist name="taocan" id="vo" offset="0" length="1"}
+            <div class="detail-price">
+
+                <p>
+
+                    <span data-name="priceModel" data-initval="33.71" data-price="33.71" class="lang-price">NT$<span class="sell_price2">{$info.sell_price}</span></span>
+
+                    <span style="" data-initval="37.45" data-price="37.45" class="detail-price-old lang-price">NT$<span class="market_price2">{$vo.goodstc_bind.0.0.market_price}</span></span>
+
+                </p>
+
+            </div>
+            {/volist}
+
+            <div class="title" style="color: #ACACAE;font-size:1.1rem">
+                <p>{$info.content}</p>
+            </div>
+
+
+
+            <div class="goods_buy" style="top: 120%;">
+
+                <!-- 产品标题价格 -->
+
+                <div class="title fix">
+
+                    <p>{$info.name}</p>
+
+                </div>
+
+                <!-- 价格 -->
+                {volist name="taocan" id="vo" offset="0" length="1"}
+
+                <div class="detail-price fix goods-price hidden" style="display: block;">
+
+                    <p>
+
+                        <span data-name="priceModel" data-initval="33.71" data-price="33.71" class="lang-price">NT$<span class="sell_price">{$vo.goodstc_bind.0.0.sell_price}</span></span>
+
+                        <span style="" data-initval="37.45" data-price="37.45" class="detail-price-old lang-price">NT$<span class="market_price">{$vo.goodstc_bind.0.0.market_price}</span></span>
+
+                       <span class="combination-slogan hidden" id="suite_cut_slogan">已優惠$<span class="discounts_price">{$vo.goodstc_bind.0.0.cost_price}</span></span>
+
+                    </p>
+
+                </div>
+                {/volist}
+				
+				<div class="line"></div>
+				
+                <div class="goods-meal mt10">
+
+                    <h4 class="goods-meal__title">
+
+                        <font style="vertical-align: inherit;">
+
+                            <font style="vertical-align: inherit;">套餐選擇：</font>
+
+                        </font>
+
+                    </h4>
+
+                    <div class="goods-meal__list mt10 fix" target="meal">
+
+
+                        {volist name="taocan" id="vo"}
+                        <input type="radio" name="taocan" id="taocan{$vo.id}" class="hidden" value="{$vo['taocan']}">
+
+                        <label for="taocan{$vo.id}" data-key="{$key}" sell-price="{$vo.goodstc_bind.0.0.sell_price}" market-price="{$vo.goodstc_bind.0.0.market_price}" cost-price="{$vo.goodstc_bind.0.0.cost_price}" taocan-id="{$vo.id}"
+                               >{$vo['taocan']}</label>
+                        {/volist}
+
+
+                    </div>
+
+                </div>
+
+                <!-- 套餐 1 -->
+
+
+                <!--    不同的套餐對應不同的顏色尺寸     -->
+                {volist name="taocan" id="vo"}
+                <div class="taocan hidden" style="">
+
+
+                   
+
+                    {volist name="vo.goodstc_bind" key="k" id="v"}
+					
+					
+					
+                    <div class="specifications">
+						
+						 {volist name="vo.goodstc_bind" id="co" offset="0" length="1"}
+						<div class="goods_color_imgs">
+
+							<div class="goods-color-img mt10">
+								<img class="lazy" src="public/static/mobile2/img/pseudo_graph.jpg">
+							</div>
+							<div class="goods-details-attr">
+								<h1 class="goods_title">{$vo.taocan}</h1>
+								<div class="goods_main">
+								   已选: {if $co.0.color}"<span class="attr1">{$co.0.color}</span>"{/if} {if $co.0.size}"<span class="attr2">{$co.0.size}</span>"{/if}
+								</div>
+							</div>
+						</div>
+						{/volist}
+					
+                        <div class="goods-color mt5">
+
+                            <h4 class="goods-color__title">
+
+                                <font style="vertical-align: inherit;">
+                                    {volist name="v" id="co" offset="0" length="1"}
+                                    <font style="vertical-align: inherit;">{$co.attribute_name}分類：</font>
+                                    {/volist}
+                                </font>
+
+                            </h4>
+
+                            <div class="goods-color__list mt10" target="color">
+
+
+
+                                {volist name="v" id="co"}
+                                <input type="radio" name="color[{$k}]" id="color_{$co.id}_{$key}" class="hidden color_list" value="{$co.color}_{$co.id}" data-color="{$co.image}">
+
+                                <label for="color_{$co.id}_{$key}" sell-price="{$co.sell_price}" market-price="{$co.market_price}" cost-price="{$co.cost_price}" key="{$key}" data-color="{$co.image}">
+									  <img class="lazy" src="public/static/mobile2/img/pseudo_graph.jpg" data-src="{$co.image|str_replace='http','https',###}"> {$co.color}
+							    </label>
+
+                                {/volist}
+
+
+
+
+
+                            </div>
+
+                        </div>
+
+
+
+                        {volist name="v" id="co"}
+                        {if $co.size!=""}
+
+                        {php}
+
+                        $sizeArr = explode(',',$co['size']);
+                        $size = $sizeArr[0];
+
+                        {/php}
+
+
+                        <div class="goods-size mt5">
+
+                            <h4 class="goods-size__title">
+
+                                <font style="vertical-align: inherit;">
+
+                                    <font style="vertical-align: inherit;">{$co.sub_attribute_name}</font>
+
+                                </font>
+
+
+                            </h4>
+
+                            <div class="goods-size__list mt10 fix" target="size">
+
+
+                                {volist name="sizeArr" id="sz"}
+
+                                <input type="radio" name="size[{$co.id}]" value="{$sz}" id="size_{$co.id}_{$key}" class="hidden">
+
+                                <label for="size_{$co.id}_{$key}">{$sz}</label>
+                                {/volist}
+
+
+                            </div>
+
+                            <font style="vertical-align: inherit;"> </font>
+
+                        </div>
+
+                        {/if}
+                        {/volist}
+
+
+                    </div>
+                    {/volist}
+
+
+                </div>
+                {/volist}
+
+
+
+                <div style="width: 100%; height: 8.32rem;color: #e0e0e0;"></div>
+                <div class="goods-btns pr mt10">
+                    <input type="button" class="btn-addBag2" value="確認加入" onclick="AddCart()" style="bottom: -120%;">
+                    <input type="submit" class="btn-buy2" value="確認購買" style="background-color: rgb(231, 67, 154); bottom: -120%;">
+                </div>
+            </div>
+            <div class="goods-btns pr mt10" style="z-index: 100;">
+                <a rel="nofollow" href="https://lin.ee/dfiqlrm"
+                   id="comment_box_footer">
+                    <img src="__MOBILE2__/img/service_07.png">
+                    <span class="exposure-icon-name">客服</span>
+                </a>
+                <input id="UPTRE_AddCart" type="button" class="btn-addBag trans" value="加入購物車">
+                <input id="UPTRE_Buy" type="button" class="btn-buy trans" value="立即購買" style="background-color: rgb(231,67,154);">
+            </div>
+        </div>
+
+
+       <input type="hidden" name="__hash__" value="dedaaf997908a0d6b0cd524e2ad5329e_3189c9dc53ed7c0a934acbed3da0e055">
+    </form>
+</section>
+
+<!-- 最新特卖 -->
+<!--<main class="time_sale">-->
+
+<!--    <div class="menu-header">-->
+<!--        <h3>-->
+<!--            好物推薦-->
+<!--            <div class="another" onclick="location.href='/hot?nav_id=1'">-->
+<!--                <h4 style="margin-left: 1rem;">更多</h4>-->
+<!--				<svg t="1591353737995" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="22940"-->
+<!--				 width="16" height="16">-->
+<!--					<path d="M256.045025 132.573411l61.349253-61.350277c8.94165-8.94165 23.146163-9.156544 31.787984-0.514723l419.291528 426.585655c8.640798 8.630564 8.405437 22.877033-0.493234 31.797194l-61.391209 61.372789c-3.551896 3.539616-8.001231 5.326309-12.536524 6.096858l-343.330486 356.806405c-8.535397 8.54563-22.63144 8.321526-31.444153-0.5137l-60.774155-60.750619c-8.834202-8.823969-9.05012-22.921036-0.49221-31.476899l337.298096-350.551958-339.77859-345.701486C246.890528 155.717528 247.103376 141.515061 256.045025 132.573411z"-->
+<!--					 p-id="22941" fill="#777777"></path>-->
+<!--				</svg>-->
+<!--            </div>-->
+<!--        </h3>-->
+<!--    </div>-->
+<!--	<div class="swiper-container">-->
+<!--		<ul class="list-wrap swiper-wrapper">-->
+<!--					-->
+<!--			-->
+<!--			{volist name="hotgoods" id="vo"}-->
+<!--			<li class="list__item swiper-slide">-->
+<!--				<div class="list__item-inner">-->
+<!--					<a href="/goodsinfo?goodsid={$vo.id}" class="list_item-img">-->
+<!--						<img class="lazy"  src="public/static/mobile2/img/image/loading.gif" data-original="{$vo.img|str_replace='http','https',###}"style="display: block;">-->
+<!--					</a>-->
+<!--				</div>-->
+<!--				<div class="list_item_main">-->
+<!--					<div class="list__item-name">-->
+<!--						<a href="/goodsinfo?goodsid={$vo.id}" title="{$vo.name}">{$vo.name}</a>-->
+<!--					</div>-->
+<!--					<div class="list__item-price">-->
+<!--						<span data-price="" class="lang-price">NT${$vo.sell_price}</span>-->
+<!--					</div>-->
+<!--				</div>-->
+<!--			</li>-->
+
+<!--			{/volist}-->
+
+
+<!--		</ul>-->
+<!--	</div>-->
+<!--</main>-->
+
+<!--服务start-->
+<div id="services">
+    <div class="service_top">
+        <span class=""><img src="__MOBILE2__/img/check_15.png">全臺免運</span>
+        <span class=""><img src="__MOBILE2__/img/check_15.png">貨到付款</span>
+        <span class=""><img src="__MOBILE2__/img/check_15.png">商超取貨</span>
+		<span class=""><img src="__MOBILE2__/img/check_15.png">品牌保障</span>
+        <span class=""><img src="__MOBILE2__/img/check_15.png">無憂購物</span>
+    </div>
+    <div class="service_bottom">
+        <div class="service_item">
+            <img src="__MOBILE2__/img/order_19.jpg">
+            <p>用戶下單</p>
+        </div>
+        <div class="arrow">
+            <img src="__MOBILE2__/img/arrow.jpg">
+        </div>
+        <div class="service_item">
+            <img src="__MOBILE2__/img/order_21.jpg">
+            <p>商家配貨</p>
+        </div>
+        <div class="arrow">
+            <img src="__MOBILE2__/img/arrow.jpg">
+        </div>
+        <div class="service_item">
+            <img src="__MOBILE2__/img/order_24.jpg">
+            <p>國際運輸</p>
+        </div>
+        <div class="arrow">
+            <img src="__MOBILE2__/img/arrow.jpg">
+        </div>
+        <div class="service_item">
+            <img src="__MOBILE2__/img/order_26.jpg">
+            <p>7天送達</p>
+        </div>
+    </div>
+</div>
+
+<div class="menu-list">
+    <h2>
+        商品詳情
+    </h2>
+    <div class="menu-content">
+        <div class="menu-content__inner">
+
+            {php}
+
+            $goinfo = json_decode($info['iamge_info']);
+
+            {/php}
+            <div class="menu-body">
+			
+                {volist name="goinfo" id="vo"}
+
+                <p><img  src="public/static/mobile2/img/image/loading.gif" data-original="{$vo|str_replace='http','https',###}" class="lazy" data-key="{$key}"></p>
+
+                {php}
+
+                file_exists($vo) == true ? "<p><img src='".$vo."'></p>" : '';
+
+                {/php}
+
+                {/volist}
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+{if $comments == array()}
+
+{else /}
+<main>
+    <div class="commentbox">
+        <div class="menu-header">
+            <h3>
+                客戶評價
+            </h3>
+        </div>
+        <div class="comments" id="comsbox" style="overflow: hidden;height: 500px;">
+            <ul class="coms" id="coms1">
+                {volist name="comments" id="vo"}
+                <li>
+                    <div class="coms_line">
+<!--                        <div class="points">-->
+<!--                            <img src="http://shop.tthuipin.com/uploads/20191110/67c4499c94aa9fc793ee350f3c1bf128.jpg">-->
+<!--                        </div>-->
+                        <span class="client">{$vo.username}</span>
+                    </div>
+                    <div class="coms_body">
+                        <p>{$vo.contents}</p>
+                        <ul class="coms_img">
+                            {if $vo.img_list !== ''}<li><img  class="lazy" src="public/static/mobile2/img/image/loading.gif" data-original="{$vo.img_list}"></li>{/if}
+                            {if $vo.one !== ''}     <li><img  class="lazy" src="public/static/mobile2/img/image/loading.gif" data-original="{$vo.one}" /></li>      {/if}
+                            {if $vo.two !== ''}     <li> <img  class="lazy" src="public/static/mobile2/img/image/loading.gif" data-original="{$vo.two}" /></li> {/if}
+                            {if $vo.three !== ''}   <li> <img  class="lazy" src="public/static/mobile2/img/image/loading.gif" data-original="{$vo.three}" /></li> {/if}
+                        </ul>
+                    </div>
+                </li>
+                {/volist}
+
+
+            </ul>
+
+            <ul class="coms" id="coms2">
+
+
+
+            </ul>
+
+        </div>
+    </div>
+</main>
+{/if}
+<!-- 最新特卖 -->
+<!--<main class="time_sale">-->
+<!--    {if $likegoods !== array()}-->
+<!--    <div class="menu-header">-->
+<!--        <h3>-->
+<!--            猜你喜歡-->
+<!--            <div class="another" style="cursor: pointer;" onclick="another({$cid},this)">-->
+<!--                <h4>換一批</h4>-->
+<!--                -->
+<!--				<svg t="1591353659086" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="22047"-->
+<!--				 width="16" height="16">-->
+<!--					<path d="M976 384 784 384c-26.4 0-48-21.6-48-48 0-26.4 21.6-48 48-48l78.4 0C788.8 172.8 659.2 96 512 96c-229.6 0-416 186.4-416 416 0 229.6 186.4 416 416 416 224 0 407.2-177.6 415.2-400l0.8 0c0-26.4 21.6-48 48-48 26.4 0 48 21.6 48 48 0 3.2 0 6.4-0.8 8.8C1010.4 808 786.4 1024 512 1024 229.6 1024 0 794.4 0 512 0 229.6 229.6 0 512 0c171.2 0 323.2 84 416 213.6L928 144c0-26.4 21.6-48 48-48 26.4 0 48 21.6 48 48l0 192C1024 362.4 1002.4 384 976 384z"-->
+<!--					 p-id="22048" fill="#777777"></path>-->
+<!--				</svg>-->
+<!--				-->
+<!--            </div>-->
+<!--        </h3>-->
+<!--    </div>-->
+<!--&lt;!&ndash;    <div class="swiper-container">&ndash;&gt;-->
+<!--        <ul id="goodslike" class="list-wrap" style=" flex-wrap: wrap;">-->
+
+
+<!--            {volist name="likegoods" id="vo" offset="0" length="9"}-->
+<!--            <li class="list__item">-->
+<!--                <div class="list__item-inner">-->
+<!--                    <a href="/goodsinfo?goodsid={$vo.id}" class="list_item-img">-->
+<!--                        <img class="lazy" src="public/static/mobile2/img/image/loading.gif" data-original="{$vo.img|str_replace='http','https',###}" style="display: block;">-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--                <div class="list_item_main">-->
+<!--                    <div class="list__item-name">-->
+<!--                        <a href="/goodsinfo?goodsid={$vo.id}" title="{$vo.name}">{$vo.name}</a>-->
+<!--                    </div>-->
+<!--                    <div class="list__item-price">-->
+<!--                        <span data-price="" class="lang-price">NT${$vo.sell_price}</span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </li>-->
+
+<!--            {/volist}-->
+
+
+<!--        </ul>-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+<!--    {/if}-->
+<!--</main>-->
+
+<main>
+
+   <div class="photobox">
+        <div class="menu-header">
+            <h3>
+                客戶須知
+            </h3>
+        </div>
+		<img class="lazy" src="public/static/mobile2/img/image/loading.gif" data-original="public/static/mobile2/img/image/tips.jpg" alt="">
+
+         <!-- <div class="notify">
+            <p>註：應台灣海關要求，顧客須填寫真實姓名并下載EZWAY APP完成實名認證，以便部分海外商品順利過關。</p>
+            <p>本商品的實際使用效果根據個人情況決定，不保證每位用戶都能享受到所宣傳的效果。若有疑問請諮詢線上客服或通過電子郵箱聯絡我們，本公司享有最終解釋權。</p>
+
+            <dl>
+                <dt>•關於發貨方式</dt>
+				<dd>支持超商取貨或黑貓宅配+免運費+品質問題無理由退換貨！收到商品後如有任何疑問請聯絡我們：<a href="mailto:fzq396673948@yahoo.com">fzq396673948@yahoo.com</a>.同時，請附上您的姓名和聯絡方式及訂單編號在郵件當中，以便我們能快速的給您及時處理，祝您購物愉快！！！</dd>
+			</dl>
+
+            <dl>
+                <dt>•關於配送時間</dt>
+                <dd>下單成功後，我們會按照下單先後順序進行配貨，配貨週期為3個工作日，一般送達時間為7個工作日左右</dd>
+            </dl>
+            <dl>
+                <dt>•如何申請退換貨</dt>
+                <dd>由於質量原因產生的退換貨：至收到商品之日起7天內，向售後服務中心發送郵件至：fzq396673948@yahoo.com，客服會在收到郵件後的1-3個工作日內受理您的請求。僅正價貨品可以退换货，遺憾的是限时出清促銷商品不能退换货。</dd>
+            </dl>
+            <dl>
+                <dt>•退換貨流程</dt>
+                <dd>​確認收貨—申請退換貨—客服登記處理—黑貓上門取貨—退換貨商品檢查—退款/換貨。</dd>
+            </dl>
+            <dl>
+                <dt>•退換貨請註明：訂單號、姓名、電話。</dt>
+                <dt>•如何取消訂單</dt>
+                <dd>取消訂單需要向售後服務中心發送郵件並註明相關原因，郵件內容應註明您的訂單號、姓名、電話。</dd>
+            </dl>
+
+        </div>-->
+    </div>
+	
+    <div style="width: 100%;height: 6rem;"></div>
+
+</main>
+
+<!-- 图片整屏展示 -->
+		<div class="pswp__scroll-wrap">
+			<div class="swiper-container">
+				<div class="swiper-wrapper">
+					<img>
+				</div>
+			</div>
+			<div class="pswp__top-bar">
+				<div class="pswp__counter">
+					<span id="realIndex">4</span> / <span id="total">4</span>
+				</div>
+				<div class="pswp__button--close">
+					<img src="public//static/mobile2/img/close.png"  title="Close (Esc)">
+				</div>
+			</div>
+		</div>
+<!-- 遮罩层 -->
+<div class="dialog" id="dialog">
+    <div class="goods_close">
+		<i style="display:flex;justify-content:center;align-items:center;">
+			<svg t="1591353796888" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="23787"
+			 width="18" height="18">
+				<path d="M940.8 83.2c25.6 25.6 25.6 64 0 83.2L595.2 512l345.6 345.6c25.6 25.6 25.6 64 0 83.2-25.6 25.6-64 25.6-83.2 0L512 595.2l-345.6 345.6c-25.6 25.6-64 25.6-83.2 0-25.6-25.6-25.6-64 0-83.2L428.8 512 83.2 166.4c-25.6-25.6-25.6-64 0-83.2s64-25.6 83.2 0L512 428.8l345.6-345.6C876.8 57.6 921.6 57.6 940.8 83.2z"
+				 p-id="23788" fill="#ffffff"></path>
+			</svg>
+		</i>
+	</div>
+</div>
+<div class="full-mask-layer"></div>
+
+<!-- 联系客服 -->
+<div class="customer-service">
+<!--    <a href="http://m.me/116332536481393">-->
+    <a href="https://lin.ee/dfiqlrm">
+        <img src="data:image/png;base64,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">
+    </a>
+</div>
+<!-- 购物车 -->
+<a class="shopcart" href="/sure" style="">
+	<span class="cart-point" style="display: inline;">{$shop_car|count}</span>
+    <img data-src="public//static/mobile2/img/shopping.png">
+</a>
+<!-- 返回顶部 -->
+<div class="return-top-mobile" style="">
+	<img data-src="public//static/mobile2/img/top.png">
+</div>
+
+<div class="red" style="width: 10px;
+				height: 10px;
+				background-color: #e7439a;
+				border-radius: 5px;
+				position: fixed;
+				left: 0px;
+				top: 0px;
+				z-index: 999;
+				display: none;">
+</div>
+
+<section class="tips_body" style="display: none;">
+	<div class="van-overlay"></div>
+	<div class="van-popup">
+		<div class="popover-main">
+			<div class="tips_header">
+				<img src="__MOBILE2__/img/logo.jpg" alt="">
+				<span class="colse_tips">關閉</span></div>
+			<div class="popover-container">
+				<div class="input_container">
+					<span style="font-size: 16px;">Line ID：</span>
+					<input class="service_value" placeholder="請輸入您的Line ID" type="text">
+				</div>
+				<span style="color: rgb(219, 59, 46); font-size: 15px;">客服人員將在10分鐘內回復</span>
+				<button class="confirm" type="submit">確認</button>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script src="https://cdn.staticfile.org/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+<script src="https://cdn.staticfile.org/Swiper/4.5.0/js/swiper.min.js"></script>
+<script src="https://www.layuicdn.com/layui-v2.5.5/layui.all.js"></script>
+<script src="__MOBILE2__/js/prudocts_mv2.js"></script>
+
+<script>
+    // 根據請求方式添加購物車或者直接購買傳遞不同的參數
+
+    function AddCart(){
+
+        layer.msg('添加成功');
+
+        fbq('track', 'AddToCart');
+
+        $('form').attr('action','/sure/addCart');
+		
+		$(".red").show();
+
+		var x = $(".btn-addBag2").offset().left;
+		var y = $(".btn-addBag2").offset().top;
+
+		// alert("btn的x坐标是"+x+"y坐标是"+y);
+
+		var btn_width = $(".btn-addBag2").width();
+		var btn_height = $(".btn-addBag2").height();
+
+		var red_width = $(".red").width();
+		var red_height = $(".red").height();
+
+		//拿到小红点，给一个初始的位置
+		// $(".red").css("left", x);
+		// $(".red").css("top", y);
+		var start_x = x + btn_width / 2 - red_width / 2;
+		var start_y = y + btn_height / 2 - red_height / 2;
+		$(".red").css({
+			"left": start_x,
+			"top": start_y
+		});
+
+		//小红点终点的位置
+		// var end_x =?;
+		// var end_y = ?;
+		var car_x = $(".cart-point").offset().left;
+		var car_y = $(".cart-point").offset().top;
+
+		var end_x = car_x + $(".cart-point").width() / 2;
+		var end_y = car_y + $(".cart-point").height() / 2;
+
+		$(".red").animate({
+			"left": end_x,
+			"top": end_y
+		}, 1020, function() {
+			$(".red").hide();
+			var form = document.getElementById('details-form');
+			form.submit();
+		});
+
+
+    }
+
+</script>
+<script>
+    function closeTech(){
+        $('.mdui-appbar-depletion').hide();
+        $('.nav-bar-top').css({'height':'0rem'});
+        $('.header-fixed').css({'top':'0rem'});
+
+    }
+    function openTech(){
+        $.post('/desktop',{},function (data) {
+        })
+        window.location.href = '/shortcut';
+    }
+
+
+
+    $('.taocan').first().css({'display':'block'});
+
+    $('.header-fixed').first().css({'top':'0rem'});
+    $('.home-nav').css({'top':'4.58rem'});
+    
+   /*
+     $('.header-fixed').first().css({'top':'3.5rem'});
+    $('.home-nav').css({'top':'8.08rem'});
+   $(window).scroll(function () {
+
+        if($(window).scrollTop() > 0){
+            $('.mdui-appbar-depletion').hide();
+            $('.nav-bar-top').css({'height':'0rem'});
+            $('.header-fixed').first().css({'top':'0rem'});
+            $('.home-nav').css({'top':'4.58rem'});
+        }else{
+            $('.mdui-appbar-depletion').show();
+            $('.nav-bar-top').css({'height':'3.5rem'});
+            $('.header-fixed').first().css({'top':'3.5rem'});
+            $('.home-nav').css({'top':'8.08rem'});
+        }
+
+    })*/
+	
+
+    function another(cid,obj) {
+        <!-- $(obj).find('i').html('&#xe63d;'); -->
+        $.ajax({
+            url: '{:url("pc/Index/another")}',
+            type: 'get',
+            data: {cid:cid},
+            success: function (data) {
+                // console.log(data);
+                let lists = '';
+                for (let item of data) {
+                    lists += `
+                                 <li class="list__item">
+                                    <div class="list__item-inner">
+                                        <a href="/goodsinfo?goodsid=${item.id}" class="list_item-img">
+                                            <img src="${item.img.replace('http','https')}" class="lazy" style="display: block;">
+                                        </a>
+                                    </div>
+                                    <div class="list_item_main">
+                                        <div class="list__item-name">
+                                            <a href="/goodsinfo?goodsid=${item.id}" title="${item.name}">${item.name}</a>
+                                        </div>
+                                        <div class="list__item-price">
+                                            <span data-price="" class="lang-price">NT$ ${item.sell_price}</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            `;
+                }
+                $('#goodslike').html(lists);
+                <!-- $(obj).find('i').html('&#xe669;'); -->
+            }
+        })
+    }
+
+
+</script>
+
+
+<script>
+    //列表滚动
+    window.onload = roll(50);
+    function roll(t) {
+        var ul1 = document.getElementById("coms1");
+        var ul2 = document.getElementById("coms2");
+        var ulbox = document.getElementById("comsbox");
+
+        if(ul1){
+
+            ul2.innerHTML = ul1.innerHTML;
+
+            ulbox.scrollTop = 0; // 开始无滚动时设为0
+
+            var timer = setInterval(rollStart, 20); // 设置定时器，参数t用在这为间隔时间（单位毫秒），参数t越小，滚动速度越快
+            // 鼠标移入div时暂停滚动
+            ulbox.onmouseover = function () {
+            	clearInterval(timer);
+            }
+            // // 鼠标移出div后继续滚动
+            ulbox.onmouseout = function () {
+            	timer = setInterval(rollStart, t);
+            }
+        }
+
+    }
+
+
+    // 开始滚动函数
+    function rollStart() {
+
+        // 上面声明的DOM对象为局部对象需要再次声明
+        var ul1 = document.getElementById("coms1");
+        var ul2 = document.getElementById("coms2");
+        var ulbox = document.getElementById("comsbox");
+
+        // 正常滚动不断给scrollTop的值+1,当滚动高度大于列表内容高度时恢复为0
+        if (ulbox.scrollTop >= ul1.scrollHeight) {
+
+            ulbox.scrollTop = 0;
+        } else {
+
+            ulbox.scrollTop++;
+
+        }
+
+    }
+
+
+
+    // $(function() {
+    //     //获得当前<ul>
+    //     var $uList = $("#comsbox ul");
+    //     var timer = null;
+    //     //触摸清空定时器
+    //     $uList.hover(function() {
+    //             clearInterval(timer);
+    //         },
+    //         function() { //离开启动定时器
+    //             timer = setInterval(function() {
+    //                     scrollList($uList);
+    //                 },
+    //                 1000);
+    //         }).trigger("mouseleave"); //自动触发触摸事件
+    //     //滚动动画
+    //     function scrollList(obj) {
+    //         //获得当前<li>的高度
+    //         var scrollHeight = $("#comsbox ul li:first").height();
+    //         //滚动出一个<li>的高度
+    //         $uList.stop().animate({
+    //                 marginTop: -scrollHeight
+    //             },
+    //             600,
+    //             function() {
+    //                 //动画结束后，将当前<ul>marginTop置为初始值0状态，再将第一个<li>拼接到末尾。
+    //                 $uList.css({
+    //                     marginTop: 0
+    //                 }).find("#comsbox li:first").appendTo($uList);
+    //             });
+    //     }
+    // });
+</script>
+
+
+{include file="public/facebook_pixel_code" /}
+
+<!-- Facebook Pixel Code -->
+<script>
+    fbq('track', 'ViewContent');
+
+    // console.log($('.commentbox').offset())
+    var bz = true;
+    if(navigator.language!=='zh-CN') {
+
+        $(window).scroll(function () {
+
+            if ( $(".commentbox").length > 0 ) {
+                if ($(window).scrollTop() >= $('.commentbox').offset().top) {
+
+                    if (bz) {
+                        // console.log(3)
+                        fbq('track', 'Lead'); // 潜在客户
+                        bz = false;
+                    }
+                }
+            }
+        })
+
+
+
+        $('#UPTRE_AddCart').click(function () {
+            if (bz) {
+                // console.log(1)
+                fbq('track', 'Lead'); // 潜在客户
+                bz = false;
+            }
+
+        })
+
+
+        $('#UPTRE_Buy').click(function () {
+            if (bz) {
+                // console.log(2)
+                fbq('track', 'Lead'); // 潜在客户
+                bz = false;
+            }
+        })
+
+    }
+</script>
+<!-- End Facebook Pixel Code -->
+
+{include file="public/statistical_code" /}
+
+
+</body>
+</html>

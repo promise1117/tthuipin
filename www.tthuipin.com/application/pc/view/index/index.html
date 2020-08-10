@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="facebook-domain-verification" content="1b84wcbiziu3o6nelqzn1cnh2iaprg" />
+    <title class="title"></title>
+<!--    <link rel="shortcut icon" href="__PUBLIC__/static/pc/images/favicon.png" type="image/x-icon">-->
+    <link rel="stylesheet" href="__PUBLIC__/static/pc1/css/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/Swiper/4.5.1/css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/pc1/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/pc1/css/index.css" />
+    <script type="text/javascript">
+			
+        var sUserAgent = navigator.userAgent;
+        if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(sUserAgent)){
+            window.location.href="/index";
+        }
+    </script>
+</head>
+<body>
+
+{include file="public/header" /}
+
+
+<!-- 焦点图 -->
+<section>
+    <div class="swiper-container">
+        <div class="swiper-wrapper"></div>
+        <!-- 分页器 -->
+        <div class="swiper-pagination"></div>
+    </div>
+</section>
+<!-- 分类模块 -->
+<article>
+    <div class="container">
+        <div class="bride-grid">
+            <div class="content-grid fadeInUp animated">
+                <a href="/pc_categorylist?cat_id=56&cat_name=創意生活&parent_id=44">
+                <figure class="effect-bubba">
+                    <img src="__PUBLIC__/static/pc1/img/static/m08.jpg" alt="創意禮品" data-selector="img">
+                    <figcaption>
+                        <h4>創意禮品</h4>
+<!--                        <p>In sit amet sapien eros Integer in tincidunt labore et dolore magna aliqua</p>-->
+                    </figcaption>
+                </figure>
+                </a>
+                <div class="clearfix"></div>
+                <h3>創意禮品</h3>
+            </div>
+            <div class="content-grid fadeInUp animated">
+                <a href="/pc_categorylist?cat_id=58&cat_name=女鞋&parent_id=0">
+                <figure class="effect-bubba">
+                    <img src="__PUBLIC__/static/pc1/img/static/m087.jpg" alt="女鞋" data-selector="img">
+                    <figcaption>
+                        <h4>女鞋</h4>
+<!--                        <p>In sit amet sapien eros Integer in tincidunt labore et dolore magna aliqua</p>-->
+                    </figcaption>
+                </figure>
+                </a>
+                <div class="clearfix"></div>
+                <h3>女鞋</h3>
+            </div>
+        </div>
+        <div class="bride-grid">
+            <div class="content-grid spanl-grid1 fadeInUp animated">
+                <a href="/pc_categorylist?cat_id=18&cat_name=女裝&parent_id=0">
+                <figure class="effect-bubba effect-bubba1">
+                    <img src="__PUBLIC__/static/pc1/img/static/m085.jpg" alt="女裝" data-selector="img">
+                    <figcaption>
+                        <h4>女裝</h4>
+<!--                        <p>In sit amet sapien eros Integer in tincidunt labore et dolore magna aliqua</p>-->
+                    </figcaption>
+                </figure>
+                </a>
+                <div class="clearfix"></div>
+                <h3>女裝</h3>
+            </div>
+        </div>
+        <div class="bride-grid">
+            <div class="content-grid spanl-grid1 fadeInUp animated">
+                <a href="/pc_categorylist?cat_id=88&cat_name=童裝&parent_id=0">
+                <figure class="effect-bubba">
+                    <img src="__PUBLIC__/static/pc1/img/static/m083.jpg" alt="童裝" data-selector="img">
+                    <figcaption>
+                        <h4>童裝</h4>
+<!--                        <p>In sit amet sapien eros Integer in tincidunt labore et dolore magna aliqua</p>-->
+                    </figcaption>
+                </figure>
+                </a>
+                <div class="clearfix"></div>
+                <h3>童裝</h3>
+            </div>
+            <div class="content-grid spanl-grid2 fadeInUp animated">
+                <a href="/pc_categorylist?cat_id=78&cat_name=配飾&parent_id=0">
+                <figure class="effect-bubba">
+                    <img src="__PUBLIC__/static/pc1/img/static/m084.jpg" alt="配飾" data-selector="img">
+                    <figcaption>
+                        <h4>配飾</h4>
+<!--                        <p>In sit amet sapien eros Integer in tincidunt labore et dolore magna aliqua</p>-->
+                    </figcaption>
+                </figure>
+                </a>
+                <div class="clearfix"></div>
+                <h3>配飾</h3>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</article>
+<div id="app">
+<aside>
+    <div class="container" id="navigation-tab">
+        <div class="navigation-tab">
+            <a class="navigation-tab__item active" href="javascript:;">限時特賣</a>
+            <a class="navigation-tab__item" href="javascript:;">最新產品</a>
+        </div>
+       <ul class="list-wrap fix"  v-cloak>
+			
+				<li class="list__item" v-for="item in goods">
+					<div class="list__item-inner">
+						<a class="list_item-img" :href="`pc_goodsinfo?goodsid=${item.id}`">
+							<img class="lazy" :src="item.img.replace('http','https')">
+						</a>
+					</div>
+					<div class="list__item-name">
+						<a :href="`pc_goodsinfo?goodsid=${item.id}`" :title="item.name">{{item.name}}</a>
+						<a class="list-add-wish" data-action="add-wishlist" data-sku="MY18102902" href="javascript:;">
+							<i class="iconfont icon-like"></i>
+						</a>
+					</div>
+					<div class="list__item-price">
+						<span class="lang-price" :data-price="item.sell_price">NT${{item.sell_price}}</span>
+						<span class="list__item-price-old lang-price" :data-price="item.market_price">NT{{item.market_price}}</span>
+					</div>
+
+					
+				</li>
+				 
+			</ul>
+
+    </div>
+</aside>
+</div>
+<!-- 公用底部 -->
+{include file="public/footer" /}
+
+
+
+<script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/vue/2.6.11/vue.min.js"></script>
+<script src="https://cdn.staticfile.org/Swiper/4.5.1/js/swiper.min.js"></script>
+<script src="__PUBLIC__/static/pc1/js/browser-polyfill.min.js"></script>
+<script src="__PUBLIC__/static/pc1/js/browser.min.js"></script>
+<script src="__PUBLIC__/static/pc1/js/jquery.lazyload.js"></script>
+<script src="__PUBLIC__/static/pc1/js/common.js" type="text/babel"></script>
+<script src="__PUBLIC__/static/pc1/js/index.js" type="text/babel"></script>
+
+<script>
+
+
+
+    // 默認顯示第一張大圖和小圖和第一個套餐顏色尺寸
+    // $('.small_img').eq(0).css({'display':'block'});
+    // $('.big_img').eq(0).addClass('active').css({'display':'block'});
+    // $('.taocan').eq(0).css({'display':'block'});
+    // $('.goods-price').eq(0).css({'display':'block'});
+
+    $('.navigation-content').eq(0).css({'display':'block'});
+    /*$('.dialog-wrap').each(function(){
+        $(this).find('.goods-price').eq(0).css({'display':'block'});
+        $(this).find('.taocan').eq(0).css({'display':'block'});
+    })*/
+
+    // var data_key = 0;
+    // // 更換套餐顯示不同的大圖和小圖和套餐顏色尺寸
+    // $('.goods-meal__list .option1').click(function(){
+    //     data_key = $(this).attr('data-key');
+    //     $('.big_img').eq(data_key).addClass('active').css({'display':'block'}).siblings('.big_img').removeClass('active').css({'display':'none'});
+    //     $('.small_img').eq(data_key).css({'display':'block'}).siblings('.small_img').css({'display':'none'});
+    //     $('.taocan').eq(data_key).css({'display':'block'}).siblings('.taocan').css({'display':'none'});
+    //     $('.goods-price').eq(data_key).css({'display':'block'}).siblings('.goods-price').css({'display':'none'});
+    //
+    //     // 傳遞套餐價格給隱藏input
+    //
+    //     $('input[name="sell_price"]').val($(this).attr('sell-price'));
+    //     $('input[name="market_price"]').val($(this).attr('market-price'));
+    //     $('input[name="cost_price"]').val($(this).attr('cost-price'));
+    //
+    //
+    //     var img = $('.big_img.active').find('img').attr('src');
+    //
+    //     $('input[name="img"]').val(img);
+    // })
+    // fbq('track', 'ViewContent');
+</script>
+</body>
+</html>

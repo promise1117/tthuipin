@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+		<title>我的訂單</title>
+		<link rel="stylesheet" type="text/css" href="public/static/mobile2/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="public/static/mobile2/css/my_order.css" />
+		<script src="https://cdn.staticfile.org/jquery/3.5.0/jquery.min.js"></script>
+		<script src="public/static/mobile2/js/common.js"></script>
+	</head>
+	<body>
+		{include file="public/header" /}
+
+		{include file="public/left" /}
+
+		<div class="newmain">
+			<h4 class="newtitle newtitle_left" style="line-height:40px;">
+				訂單
+				<a href="/enquire">
+					<span> 查詢更多</span>
+				</a>
+			</h4>
+			<div id="app">
+				<div v-if="flag">
+					<div class="order-row" v-for="(item,index) in order_list" v-cloak>
+						<h4 class="border-b">訂單號：{{item.order_no}}<span>{{item.status}}</span></h4>
+
+						<div class="order-item border-b">
+							<p class="item-title"><a :href="item.link">{{item.title}}</a></p>
+							<p class="item-info">[顔色：{{item.attr1}} 尺碼：{{item.attr2}}]</p>
+						</div>
+
+
+						<div class="item-total border-b">
+							<p>共{{item.quantity}}件商品，合計: <span>{{item.price}}<span></span></span></p>
+						</div>
+						<div class="order-detail-row border-b">
+							<p>
+								<svg t="1592452471735" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+								 p-id="8229" width="15" height="15">
+									<path d="M826.593925 1024 197.405068 1024c-63.805436 0-115.71066-53.144682-115.71066-118.41713L81.694408 198.471234c0-65.305674 51.905224-118.41713 115.71066-118.41713l142.674674 0c27.713126 0 50.177433 22.529753 50.177433 50.308326s-22.464306 50.307319-50.177433 50.307319L197.405068 180.669749c-8.47685 0-15.356801 7.98751-15.356801 17.801485l0 707.111636c0 9.813975 6.879952 17.801485 15.356801 17.801485l629.188858 0c8.47685 0 15.356801-7.98751 15.356801-17.801485L841.950727 403.190326c0-27.778573 22.464306-50.274092 50.177433-50.274092 27.713126 0 50.177433 22.496526 50.177433 50.274092l0 502.392545C942.304585 970.855318 890.399361 1024 826.593925 1024L826.593925 1024zM815.117606 91.791203 505.022382 633.504087c-9.291409 16.20358-26.180668 25.267436-43.59048 25.267436-8.44463 0-17.052373-2.151684-24.90899-6.683612-24.028984-13.824343-32.342721-44.569159-18.551604-68.66359L728.065525 41.711437c13.791117-24.094431 44.470486-32.408167 68.49947-18.583824S828.908723 67.696772 815.117606 91.791203L815.117606 91.791203z"
+									 p-id="8230" fill="#cdcdcd"></path>
+								</svg>
+								{{item.time}}
+							</p>
+						</div>
+						<div class="order-detail-row border-b">
+							<p>
+								<svg t="1592458710666" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+								 p-id="10328" width="18" height="18">
+									<path d="M513.88424375 957.02284437c-14.64379219 0-29.28866813-6.21291188-39.49760719-16.86176062-8.43088031-8.88054188-84.76821656-89.2084875-160.656975-191.28379219C211.65002281 611.29498906 159.72550813 502.11720125 159.72550813 423.56189656c0-195.27440156 158.88433406-354.15873563 354.15873562-354.15873656 195.27981937 0 354.16415344 158.88433406 354.16415344 354.15873656 0 47.48857781-18.19557563 105.62708813-54.14681719 172.64397282-35.06167031 65.23990969-87.43042875 140.68875844-155.77787812 224.5684875l-0.44424375 0.44424375-102.07530469 117.16442437c-10.20893906 11.98266375-25.296975 18.63981937-40.38609469 18.63981938h-1.333815z m0-838.80162562c-168.20370188 0-304.89643313 136.69273125-304.89643313 304.90076813 0 66.56939062 49.70654625 169.08893906 144.23945813 296.02130906 75.44884875 101.63106094 153.55990969 183.29282156 156.66636562 186.844605 0.88415344 0.88415344 2.66221219 1.77264094 3.99060938 1.77264094h0.4453275c1.33273125 0 2.66221219-0.8884875 3.55069969-1.77264094l102.07530468-116.72451469c66.57264094-81.66176062 117.16875844-154.44406312 150.45237-216.57751687 32.40054188-59.91548531 48.37814906-110.51051906 48.37814907-149.5638825 0-167.76379219-136.69706531-304.90076719-304.90185094-304.90076813z m0 469.55377031c-90.53688469 0-164.65300219-73.67512406-164.65300219-164.65300218 0-90.98221219 74.1161175-164.2130925 164.65300219-164.21309344 90.53796844 0 164.65733625 73.67620781 164.65733625 164.65300312 0 90.98221219-74.11936781 164.2130925-164.65733625 164.2130925z m0-280.04370281c-63.46185094 0-115.39069969 51.92451469-115.39069969 115.39070063 0 63.46185094 51.92884875 115.38636562 115.39069969 115.38636562 63.46726875 0 115.39069969-51.92451469 115.39069969-115.38636562 0-63.466185-51.92343094-115.39069969-115.39069969-115.39070063z m0 0"
+									 fill="#cdcdcd" p-id="10329"></path>
+								</svg>
+								{{item.address}}
+							</p>
+						</div>
+
+						<div class="order-delivery am-text-right">
+							<a class="cart-item__delete" href="javascript:;" @click="delete_order(index)">
+								<img src="public/static/mobile2/img/delete_03.jpg">
+							</a>
+							<button type="button" class="border-btn" onclick="location.href='https://lin.ee/dfiqlrm'">聯系客服</button>
+						</div>
+					</div>
+				</div>	
+				<div class="order-no-box am-text-center" v-else>
+					<h3>找不到訂單</h3>
+					<p><a href="/enquire">點擊此處查找更多訂單!</a></p>
+				</div>
+			</div>
+		</div>
+		{include file="public/footer" /}
+		<script src="https://cdn.staticfile.org/vue/2.6.11/vue.min.js"></script>
+		<script src="https://cdn.staticfile.org/Swiper/4.5.0/js/swiper.min.js"></script>
+		<script type="text/javascript">
+			const vm = new Vue({
+				el: '#app',
+				data: {
+					flag: false,
+					order_list: []
+				},
+				methods: {
+					delete_order(index){
+						if (confirm("確定刪除?")) {
+							this.order_list.splice(index, 1);
+							localStorage.setItem('order_list', JSON.stringify(this.order_list));
+						}
+					}
+				},
+				created() {
+					if (localStorage.getItem("order_list") !== null) {
+						this.flag = true;
+						this.order_list = JSON.parse(localStorage.getItem('order_list'));
+						if(this.order_list == undefined || this.order_list.length <= 0 ){
+							this.flag = false;
+						}
+					}
+					console.log(this.flag)
+				},
+				updated(){
+					if(this.order_list == undefined || this.order_list.length <= 0 ){
+						this.flag = false;
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

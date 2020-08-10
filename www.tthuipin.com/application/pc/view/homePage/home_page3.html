@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<link rel="stylesheet" href="__PUBLIC__/static/pc1/css/iconfont.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="__PUBLIC__/static/pc1/css/homepage3.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/Swiper/4.5.1/css/swiper.min.css" />
+
+    
+ 	<script type="text/javascript">			
+
+		var sUserAgent = navigator.userAgent;
+
+		if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(sUserAgent)){
+
+			window.location.href="/index";
+
+		}
+
+    </script>
+
+
+
+</head>
+<body>
+	
+<div id="app">
+
+    <!-- header -->
+    <header>
+        <div class="container">
+            <span class="logo header-logo">
+                <a href="/pc_index">
+                    <img >
+                </a>
+            </span>
+            <form class="search" name="topsearchform" id="topsearchform" action="/search" method="get">
+                <input type="text" x-webkit-grammar="builtin:translate" x-webkit-speech="" autocomplete="off" name="search"
+                    data-default="" class="searching" id="id_top_key" placeholder="十二星座">
+                    <input type="submit" class="searchBtn" id="searchBtn" title="搜索" value="搜索">
+                <label class="top_key_label" for="id_top_key"></label>
+                <input type="hidden" name="ref" value="input">
+            </form>
+            <span class="hotWords">
+                <!--热门搜索 index_hot_search Start-->
+                熱搜:
+                   <a href="pc_search?search=情侶" target="_blank">情侶</a>
+                   <a href="pc_search?search=十二星座" target="_blank">十二星座</a>
+                   <a href="pc_search?search=手表" target="_blank">手表</a>
+                   <a href="pc_search?search=香水" target="_blank">香水</a>
+                   <a href="pc_search?search=手机壳" target="_blank">手機殼</a>
+
+                <!--热门搜索 index_hot_search End-->
+            </span>
+            <div id="topsuggest" class="ac_results" style="display: none;"></div>
+            <a href="/pc_sure" class="cart" >
+                <span>
+                    <svg width="26" height="26" t="1591344172422" preserveAspectRatio="xMinYMin meet" viewBox="0 0 1114 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="14707" class="icon">
+                        <path d="M334.366118 602.352941h667.286588L1054.117647 210.823529H248.289882l86.076236 391.529412zM222.117647 150.588235H1054.117647a60.235294 60.235294 0 0 1 59.693177 68.246589l-52.464942 391.529411A60.235294 60.235294 0 0 1 1001.652706 662.588235H336.715294l26.955294 120.470589H933.647059a30.117647 30.117647 0 0 1 0 60.235294H339.516235a30.117647 30.117647 0 0 1-29.394823-23.552L140.167529 60.235294H30.117647a30.117647 30.117647 0 0 1 0-60.235294h134.174118a30.117647 30.117647 0 0 1 29.394823 23.552L222.117647 150.588235zM331.294118 963.764706a60.235294 60.235294 0 1 0 0-120.470588 60.235294 60.235294 0 0 0 0 120.470588z m0 60.235294a120.470588 120.470588 0 1 1 0-240.941176 120.470588 120.470588 0 0 1 0 240.941176z m602.352941-60.235294a60.235294 60.235294 0 1 0 0-120.470588 60.235294 60.235294 0 0 0 0 120.470588z m0 60.235294a120.470588 120.470588 0 1 1 0-240.941176 120.470588 120.470588 0 0 1 0 240.941176z" fill="#ffffff" p-id="14708">
+
+                        </path>
+                    </svg>
+                    購物車
+                </span>
+                <span>
+                    我的訂單<b>({$shop_car|count})</b>
+                    <!-- 去购物车结算<b></b> -->
+                </span>
+            </a>
+            <div class="cartpop" id="cartpop">
+                <div class="pop">
+                    <div class="cc"></div>
+                </div>
+                <div class="bg"></div>
+            </div>
+        </div>
+    </header>
+
+
+<!-- nav -->
+
+<nav>
+    <div class="container">
+        <ul class="menu">
+					<li class="menu-item"><a href="/">首頁</a></li>
+					<li class="menu-item"><a href="/pc_hot">熱門推薦</a></li>
+					<li class="menu-item"><a href="/pc_new">每日新品</a></li>
+					<li class="menu-item"><a href="/pc_special">限時特賣</a></li>
+					<li class="menu-item"><a href="pc_categorylist?cat_id=18&cat_name=女生衣著&parent_id=0">女生衣著</a></li>
+					<li class="menu-item"><a href="pc_categorylist?cat_id=58&cat_name=女士潮鞋&parent_id=0">女士潮鞋</a></li>					
+					<li class="menu-item"><a href="pc_categorylist?cat_id=69&cat_name=女生包包&parent_id=0">女生包包</a></li>
+					<li class="menu-item"><a href="pc_categorylist?cat_id=47&cat_name=居家生活&parent_id=0">居家生活</a></li>
+					<li class="menu-item"><a href="pc_categorylist?cat_id=78&cat_name=女生配件&parent_id=0">女生配件</a></li>
+					<li class="menu-item"><a href="pc_categorylist?cat_id=44&cat_name=創意生活&parent_id=0">創意生活</a></li>
+				</ul>
+             <div class="category">
+
+                <div class="category-type">
+                    <div class="text">商品分類</div>
+                </div>
+                <ul class="normal-nav clearfix" v-cloak>
+
+                    <li class="nav-item category-loaded" v-for="item in catlist">
+                        <a :href="`pc_categorylist?cat_id=${item.cat_id}&cat_name=${item.cat_name}&parent_id=${item.parent_id}`">{{item.cat_name}}</a>
+                    </li>
+
+                </ul>
+                <!-- 鼠标移入出现内容 -->
+                <div class="classify-con">
+
+                    <div class="con-item" v-for="list in catlist">
+                        <div class="item-box item-top">
+                            <div class="clearfix">
+                                <span class="meLabel">類別</span>
+                                <ul class="clearfix"  v-cloak>
+                                    
+                                    <li v-for="item in list.cat_two">
+                                        <a target="_blank" :href="`pc_categorylist?cat_id=${item.cat_id}&cat_name=${item.cat_name}&parent_id=${item.parent_id}`">{{item.cat_name}}</a>
+                                    </li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>			
+</nav>
+
+  
+
+
+
+    <!-- 焦点图 -->
+
+<section>
+
+    <div class="swiper-container">
+
+        <div class="swiper-wrapper"></div>
+
+
+
+        <div class="swiper-pagination"></div>
+
+    </div>
+
+</section>
+        
+<!-- 每日必看 -->
+<div class="container day_show">
+    <div class="show_top">
+        <h3>每日必看區</h3>
+        <span class="title">THE SECTION YOU NEED</span>
+    </div>
+	<ul class="show_btm">
+	   
+	</ul>
+</div>
+
+<!-- 分类 -->
+<div class="girlsGoods classification">
+    <h3>女生配件</h3>
+    <ul class="goodslist goods1">
+        <li class="list__item">
+            <h3>精選女生配飾</h3>
+            <p>辦美女友 潮品不斷</p>
+            <a href="pc_categorylist?cat_id=78&cat_name=女生配件&parent_id=0">立即選購</a>
+        </li>
+    </ul>
+</div>
+
+
+<div class="lifeGoods classification">
+    <h3>創意生活</h3>
+    <ul class="goodslist goods2">
+        <li class="list__item">
+            <h3>精選創意生活</h3>
+            <p>優選新品 好貨不斷</p>
+            <a href="pc_categorylist?cat_id=44&cat_name=創意生活&parent_id=0">立即選購</a>
+        </li>
+    </ul>
+</div>
+
+
+<div class="makeupGoods classification">
+    <h3>流行彩妝</h3>
+    <ul class="goodslist goods3">
+        <li class="list__item">
+            <h3>正品流行彩妝</h3>
+            <p>熱門妝品 出彩壹夏</p>
+            <a href="pc_categorylist?cat_id=49&cat_name=流行彩妝&parent_id=0">立即選購</a>
+        </li>
+      </ul>
+</div>
+<!-- main -->
+<main>
+    
+    <aside class="container">
+        <div class="navigation-tab">
+            <div>
+                <a href="javascript:;" class="navigation-tab__item active">限時特賣</a> 
+                <a href="javascript:;" class="navigation-tab__item">最新產品</a>
+            </div>
+            <!--<a href="">了解更多 >></a>-->
+        </div>
+        <div class="contant"> 
+            <ul class="list-wrap fix active goodsList1"></ul>
+            <ul class="list-wrap fix goodsList2"></ul>
+        </div>
+    </aside>
+</main>
+
+</div>
+
+<!-- footer -->
+
+    {include file="public/footer" /}
+
+	<script src="https://cdn.staticfile.org/vue/2.6.11/vue.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="__PUBLIC__/static/pc1/js/homepage3.js"></script>
+    <script src="https://cdn.staticfile.org/Swiper/4.5.1/js/swiper.min.js"></script>
+	<script src="__PUBLIC__/static/pc1/js/common.js"></script>
+	<script src="__PUBLIC__/static/pc1/js/browser-polyfill.min.js"></script>
+	<script src="__PUBLIC__/static/pc1/js/browser.min.js"></script>
+	<script src="__PUBLIC__/static/pc1/js/jquery.lazyload.js"></script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title class="title"></title>
+		<link rel="stylesheet" href="__PUBLIC__/static/pc1/css/iconfont.css">
+		<link rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/Swiper/4.5.1/css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/pc1/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/pc1/css/home3.css" />
+		<style>
+			[v-cloak]{
+				display: none;
+			}
+		</style>
+		 <script type="text/javascript">			
+			var sUserAgent = navigator.userAgent;
+			if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(sUserAgent)){
+				
+				window.location.href="/index";
+			}
+		</script>
+	</head>
+	<body>
+	<header>
+			<div class="container">
+				<div class="header-top">
+					<div class="header-logo">
+						<a href="/"><img style="width:150px;"></a>
+					</div>
+					<div class="header__right">
+						<form method="post" action="/pc_search" id="search_form">
+							<fieldset>
+								<legend>搜索</legend>
+								<div class="Search-input clearfix">
+									<div class="s-combobox" id="s-combobox-117">
+										<div class="s-combobox-input-wrap">
+											<input type="text" name="search" autocomplete="off" id="mq" class="s-combobox-input" role="combobox"
+											 aria-haspopup="true" title="请输入搜索文字" aria-label="请输入搜索文字">
+										</div>
+										<label for="mq" class="s-combobox-placeholder" style="color: #A4A4A4; visibility: visible;">
+											十二星座
+										</label>
+									</div>
+									<button type="submit">
+										<svg t="1592965031279" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+										 p-id="2166" width="36" height="36">
+											<path d="M830.486464 796.124515 672.790943 638.42797c44.959904-52.799318 72.109099-121.232412 72.109099-196.016087 0-167.084182-135.448007-302.533214-302.53219-302.533214s-302.533214 135.449031-302.533214 302.533214 135.449031 302.53219 302.533214 302.53219c74.782651 0 143.215745-27.149196 196.017111-72.109099L796.101988 830.531518c9.499249 9.499249 24.885227 9.499249 34.384476 0S839.986737 805.623764 830.486464 796.124515zM442.366829 698.401131c-141.380814 0-255.989248-114.631985-255.989248-255.989248 0-141.403341 114.608434-255.989248 255.989248-255.989248 141.37979 0 255.989248 114.585907 255.989248 255.989248C698.356077 583.769146 583.747643 698.401131 442.366829 698.401131z"
+											 p-id="2167" fill="#fff"></path>
+										</svg>
+									</button>
+									<input id="J_Type" type="hidden" name="type" value="p">
+									<input id="J_MallSearchStyle" type="hidden" name="style" value="">
+									<input id="J_Cat" type="hidden" name="cat" value="all">
+									<input type="hidden" name="vmarket" value="">
+								</div>
+							</fieldset>
+						</form>
+						<div class="header-cart">
+							<a href="/pc_sure" rel="nofollow">
+								<svg width='20' height='20' t="1591344172422" class="icon" preserveAspectRatio="xMinYMin meet" viewBox="0 0 1114 1024"
+								 version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="14707">
+									<path d="M334.366118 602.352941h667.286588L1054.117647 210.823529H248.289882l86.076236 391.529412zM222.117647 150.588235H1054.117647a60.235294 60.235294 0 0 1 59.693177 68.246589l-52.464942 391.529411A60.235294 60.235294 0 0 1 1001.652706 662.588235H336.715294l26.955294 120.470589H933.647059a30.117647 30.117647 0 0 1 0 60.235294H339.516235a30.117647 30.117647 0 0 1-29.394823-23.552L140.167529 60.235294H30.117647a30.117647 30.117647 0 0 1 0-60.235294h134.174118a30.117647 30.117647 0 0 1 29.394823 23.552L222.117647 150.588235zM331.294118 963.764706a60.235294 60.235294 0 1 0 0-120.470588 60.235294 60.235294 0 0 0 0 120.470588z m0 60.235294a120.470588 120.470588 0 1 1 0-240.941176 120.470588 120.470588 0 0 1 0 240.941176z m602.352941-60.235294a60.235294 60.235294 0 1 0 0-120.470588 60.235294 60.235294 0 0 0 0 120.470588z m0 60.235294a120.470588 120.470588 0 1 1 0-240.941176 120.470588 120.470588 0 0 1 0 240.941176z"
+									 fill="#000" p-id="14708"></path>
+								</svg>
+								購物車
+								<span class="cart-point">{$shop_car|count}</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+		{include file="public/header" /}
+	
+		<div id="app">
+		<!-- 焦点图 -->
+		<section>
+			<div class="swiper-container">
+				<div class="swiper-wrapper"></div>
+				<!-- 分页器 -->
+				<div class="swiper-pagination"></div>
+			</div>
+		</section>
+		
+		 <article >
+			<div class="recommend">
+				<div class="recommend_body">
+					<h2>
+						<div class="recommend_img"></div>
+						<span>好物</span>推薦
+					</h2>
+					<div class="gray_line"> </div>
+					<h4>超低價好物 等你來搶</h4>
+				</div>
+			</div>
+			<div class="selected_center container"  v-cloak>
+				<div class="selected_main" v-for="item in hot_goods">
+					<div class="pro_left">
+						<h2>網紅同款</h2>
+						<h3 :title="item.name">{{item.name}}</h3>
+						<h4></h4>
+						<p>NT${{item.sell_price}}</p>
+					</div>
+					<div class="pro_right">
+						<a :href="`pc_goodsinfo?goodsid=${item.id}`">
+							<img class="lazy" :src="item.img.replace('http','https')">
+						</a>
+					</div>
+				</div>
+				 
+
+
+
+
+			</div>
+		</article>
+		
+		<article>
+			<div class="recommend">
+				<div class="recommend_body">
+					<div class="red_line"> </div>
+					<h4 style="font-size: 24px;">每日必看專區</h4>
+					<div class="floor-sub-name">the section you need</div>
+				</div>
+			</div>
+			<div class="summer_new container">
+				<div class="new_top">
+					<div class="new_top_left">
+						夏季新品
+					</div>
+					<div class="new_top_right" onclick="location.href='/pc_new'">
+						瞭解更多&gt;&gt;
+					</div>
+				</div>
+				<ul class="new_main"  v-cloak>
+					<li class="new_item" v-for="item in new_goods">
+						<a :href="`pc_goodsinfo?goodsid=${item.id}`">
+							<div class="new_img">
+								<img class="lazy" :src="item.img.replace('http','https')">
+							</div>
+
+							<p class="new_title" :title="item.name">{{item.name | ellipsis}}</p>
+
+						</a>
+						<div class="new_bottom">
+							<div class="scramble">
+								瘋搶價
+							</div>
+							<p>NT${{item.sell_price}}</p>
+						</div>
+					</li>
+					 
+				</ul>
+
+			</div>
+		</article>
+		 
+		<aside class="container">
+			 
+			<div class="navigation-tab">
+				<a class="navigation-tab__item active" href="javascript:;">限時特賣</a>
+				<a class="navigation-tab__item" href="javascript:;">最新產品</a>
+			</div>
+			<ul class="list-wrap fix"  v-cloak>
+			
+				<li class="list__item" v-for="item in goods">
+					<div class="list__item-inner">
+						<a class="list_item-img" :href="`pc_goodsinfo?goodsid=${item.id}`">
+							<img class="lazy" :src="item.img.replace('http','https')">
+						</a>
+					</div>
+					<div class="list__item-name">
+						<a :href="`pc_goodsinfo?goodsid=${item.id}`" :title="item.name">{{item.name}}</a>
+						<a class="list-add-wish" data-action="add-wishlist" data-sku="MY18102902" href="javascript:;">
+							<i class="iconfont icon-like"></i>
+						</a>
+					</div>
+					<div class="list__item-price">
+						<span class="lang-price" :data-price="item.sell_price">NT${{item.sell_price}}</span>
+						<span class="list__item-price-old lang-price" :data-price="item.market_price">NT{{item.market_price}}</span>
+					</div>
+
+					
+				</li>
+				 
+			</ul>
+		</aside>
+		</div>
+		{include file="public/footer" /}
+
+		<script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://cdn.staticfile.org/vue/2.6.11/vue.min.js"></script>
+		<script src="https://cdn.staticfile.org/Swiper/4.5.1/js/swiper.min.js"></script>
+		<script src="__PUBLIC__/static/pc1/js/browser-polyfill.min.js"></script>
+		<script src="__PUBLIC__/static/pc1/js/browser.min.js"></script>
+		<script src="__PUBLIC__/static/pc1/js/jquery.lazyload.js"></script>
+		<script src="__PUBLIC__/static/pc1/js/common.js" type="text/babel"></script>
+		<script src="__PUBLIC__/static/pc1/js/home3.js" type="text/babel"></script>
+	</body>
+
+</html>
