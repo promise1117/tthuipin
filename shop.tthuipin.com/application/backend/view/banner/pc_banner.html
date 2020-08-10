@@ -1,0 +1,398 @@
+{include file="./public/head" /}
+<body>
+<div class="x-nav">
+          <span class="layui-breadcrumb">
+            <a href="/vindex">首页</a>
+            <a href="">演示</a>
+            <a>
+              <cite>导航元素</cite></a>
+          </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
+        <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
+</div>
+<div class="layui-fluid">
+    <div class="layui-row">
+        <table id="banner" lay-filter="banner">
+
+        </table>
+    </div>
+</div>
+
+<div id="detail" style="display: none;">
+    <form class="layui-form" style="margin-top: 30px;" lay-filter="detail"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+        <div class="layui-form-item">
+            <label class="layui-form-label">名称</label>
+            <div class="layui-input-block">
+                <input type="text" readonly name="name" placeholder="" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">url</label>
+            <div class="layui-input-block">
+                <input type="text" readonly name="url" placeholder="" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">banner图</label>
+            <div class="layui-input-block">
+                <img src="" name="img" alt="" style="width:80%;">
+            </div>
+        </div>
+<!--        <div class="layui-form-item">-->
+<!--            <label class="layui-form-label">下拉选择框</label>-->
+<!--            <div class="layui-input-block">-->
+<!--                <select name="interest" lay-filter="aihao">-->
+<!--                    <option value="0">写作</option>-->
+<!--                    <option value="1">阅读</option>-->
+<!--                </select>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="layui-form-item">-->
+<!--            <label class="layui-form-label">复选框</label>-->
+<!--            <div class="layui-input-block">-->
+<!--                <input type="checkbox" name="like[write]" title="写作">-->
+<!--                <input type="checkbox" name="like[read]" title="阅读">-->
+<!--            </div>-->
+<!--        </div>-->
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">页面显示</label>
+            <div class="layui-input-block">
+                <input type="checkbox" name="is_show" lay-skin="switch" lay-text="开启|关闭" disabled>
+            </div>
+        </div>
+<!--        <div class="layui-form-item">-->
+<!--            <label class="layui-form-label">单选框</label>-->
+<!--            <div class="layui-input-block">-->
+<!--                <input type="radio" name="sex" value="0" title="男">-->
+<!--                <input type="radio" name="sex" value="1" title="女" checked>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="layui-form-item layui-form-text">-->
+<!--            <label class="layui-form-label">请填写描述</label>-->
+<!--            <div class="layui-input-block">-->
+<!--                <textarea placeholder="请输入内容" class="layui-textarea"></textarea>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="layui-form-item">-->
+<!--            <div class="layui-input-block">-->
+<!--                <button class="layui-btn" lay-submit lay-filter="*">立即提交</button>-->
+<!--                <button type="reset" class="layui-btn layui-btn-primary">重置</button>-->
+<!--            </div>-->
+<!--        </div>-->
+        <!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->
+    </form>
+</div>
+<div id="edit" style="display: none;">
+    <form class="layui-form" method="post" action="{:url('backend/Banner/pcBannerEdit')}" style="margin-top: 30px;" lay-filter="edit"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+        <input type="hidden" name="id" value="">
+        <input type="hidden" name="img" value="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">名称</label>
+            <div class="layui-input-block">
+                <input type="text" name="name" placeholder="" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">url</label>
+            <div class="layui-input-block">
+                <input type="text" name="url" placeholder="" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">banner图</label>
+            <div class="layui-input-block">
+                <img src="" name="img" alt="" style="width:80%;">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label"></label>
+            <div class="layui-input-block">
+                <button type="button" class="layui-btn" id="uploadImgEdit">
+                    <i class="layui-icon">&#xe67c;</i>上传图片
+                </button>
+            </div>
+        </div>
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">页面显示</label>
+            <div class="layui-input-block">
+                <input type="checkbox" name="is_show" lay-skin="switch" lay-text="开启|关闭">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" type="submit">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+<div id="add" style="display: none;">
+    <form class="layui-form" method="post" action="{:url('backend/Banner/pcBannerAdd')}" style="margin-top: 30px;" lay-filter="add"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+
+        <input type="hidden" name="img" value="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">名称</label>
+            <div class="layui-input-block">
+                <input type="text" name="name" placeholder="请输入名称" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">url</label>
+            <div class="layui-input-block">
+                <input type="text" name="url" placeholder="请输入地址" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">banner图</label>
+            <div class="layui-input-block">
+                <img name="img" alt="" style="width:80%;">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label"></label>
+            <div class="layui-input-block">
+                <button type="button" class="layui-btn" id="uploadImgAdd">
+                    <i class="layui-icon">&#xe67c;</i>上传图片
+                </button>
+            </div>
+        </div>
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">页面显示</label>
+            <div class="layui-input-block">
+                <input type="checkbox" name="is_show" lay-skin="switch" lay-text="开启|关闭">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" type="submit">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+
+
+</body>
+
+<script type="text/html" id="manner">
+    <button class="layui-btn layui-btn-sm" lay-event="detail">查看</button>
+    <button class="layui-btn layui-btn-sm" lay-event="edit">編輯</button>
+    <button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="del">刪除</button>
+</script>
+
+<script type="text/html" id="toolbar">
+    <button type="button" class="layui-btn" lay-event="add">
+        <i class="layui-icon">&#xe608;</i> 添加
+    </button>
+</script>
+
+<script type="text/html" id="show">
+    {{# if(d.is_show == 0){  }}
+    <input type="checkbox" lay-skin="switch" lay-text="开启|关闭" checked>
+    {{#  }else{  }}
+    <input type="checkbox" lay-skin="switch" lay-text="开启|关闭">
+    {{#  } }}
+</script>
+<script>
+    layui.use(['table','layer','form','upload'],function () {
+        var layer = layui.layer;
+        var banner = layui.table;
+        var form = layui.form;
+        var upload = layui.upload;
+        banner.render({
+            elem:'#banner',
+            id:'banner',
+            page:true,
+            url:'/pc_banner_list',
+            cols:[[
+                {field:'id',align:'center',title:'ID',sort:true},
+                {field:'name',align:'center',title:'名稱'},
+                {field:'url',align:'center',title:'url'},
+                {field:'img',align:'center',title:'banner圖',templet:function(d){
+                        return "<img src='"+d.img+"'/>";
+                    }},
+                {field:'order',align:'center',title:'排序',sort:true},
+                {field:'addtime',align:'center',title:'创建時間',sort:true,templet:function (d) {
+                        return (new Date(d.addtime*1000)).toLocaleString();
+                    }},
+                {field:'is_show',align:'center',title:'頁面顯示',templet:"#show",event:'show'},
+                {fixed:'right',align:'center',title:'操作',toolbar:'#manner'},
+            ]],
+            toolbar:'#toolbar',
+            size:'lg',
+            text: {
+                none: '暂无相关数据' //默认：无数据。注：该属性为 layui 2.2.5 开始新增
+            }
+        })
+
+        banner.on('tool(banner)',function (obj) {
+            switch (obj.event) {
+                case 'show':
+                    var id = obj.data.id;
+                    var status = obj.data.is_show == 0?1:0;
+
+                    $.ajax({
+                        url:'{:url("backend/Banner/changeStatus")}',
+                        type:'get',
+                        data:{'id':id,'status':status},
+                        success:function (data) {
+                            // layer.msg('修改成功',{icon:1,time:1000});
+                            banner.reload('banner');
+                        },
+                        error:function (data) {
+                            layer.msg('修改失敗',{icon:2,time:1000});
+                        }
+                    });
+                    break;
+                case 'detail':
+                    var data = obj.data;
+
+                    layer.open({
+                        title:'banner詳情',
+                        type:1,
+                        area: ['1000px', '800px'],
+                        content:$('#detail'),
+                        success:function (layero, index) {
+                            $(layero).find('input[name="name"]').attr('placeholder',data.name);
+                            $(layero).find('input[name="url"]').attr('placeholder',data.url);
+                            $(layero).find('img[name="img"]').attr('src',data.img);
+                            if(data.is_show == 0){
+                                console.log('a')
+                                $(layero).find('input[name="is_show"]').prop('checked',true);
+                                form.render(null,'detail');
+
+                            }else{
+                                console.log('b')
+                                $(layero).find('input[name="is_show"]').removeProp('checked');
+                                form.render(null,'detail');
+                            }
+
+
+                        }
+                    })
+                    break;
+                case 'edit':
+                    var data = obj.data;
+
+                    layer.open({
+                        title: '编辑商品-'+data.name,
+                        type: 1,
+                        area: ['1000px', '800px'],
+                        content:$('#edit'),
+                        success:function (layero, index) {
+                            $(layero).find('input[name="name"]').attr('placeholder',data.name);
+                            $(layero).find('input[name="url"]').attr('placeholder',data.url);
+                            $(layero).find('img[name="img"]').attr('src',data.img);
+                            $(layero).find('input[name="name"]').val(data.name);
+                            $(layero).find('input[name="url"]').val(data.url);
+                            $(layero).find('input[name="img"]').val(data.img);
+                            $(layero).find('input[name="id"]').val(data.id);
+
+                            if(data.is_show == 0){
+
+                                $(layero).find('input[name="is_show"]').prop('checked',true);
+                                form.render(null,'edit');
+
+                            }else{
+
+                                $(layero).find('input[name="is_show"]').removeProp('checked');
+                                form.render(null,'edit');
+                            }
+
+
+                        },
+
+                    });
+                    break;
+                case 'del':
+                    var id = obj.data.id;
+                    layer.confirm('确定删除',{icon:3,title:'提示'},function (index) {
+                        $.ajax({
+                            url:'{:url("backend/Banner/pcBannerDel")}',
+                            data:{id:id},
+                            type:'post',
+                            success:function (data) {
+                                layer.msg(data.msg,{icon:1,time:1000});
+                                banner.reload('banner');
+                            },
+                            error:function (data) {
+                                layer.msg(data.msg,{icon:2,time:1000});
+                            }
+                        });
+                        layer.close(index);
+                    });
+
+                    break;
+            }
+        })
+
+        banner.on('toolbar(banner)',function (obj) {
+            switch (obj.event) {
+                case 'add':
+                    layer.open({
+                        title: '新增banner',
+                        type: 1,
+                        area: ['1000px', '800px'],
+                        content:$('#add'),
+                        success:function (layero, index) {
+
+                        },
+
+                    });
+                    break;
+            }
+        })
+
+    //  表单上传
+        //执行实例
+        var uploadInstEdit = upload.render({
+            elem: '#uploadImgEdit' //绑定元素
+            ,url: '{:url("backend/Banner/pcUploadImg")}' //上传接口
+            ,done: function(res, index, upload){
+                //上传完毕回调
+                this.item.parents('#edit').find('img[name="img"]').attr('src',res.data.src);
+                this.item.parents('#edit').find('input[name="img"]').val(res.data.src);
+
+            }
+            ,error: function(){
+                //请求异常回调
+            }
+        });
+
+        var uploadInstAdd = upload.render({
+            elem: '#uploadImgAdd' //绑定元素
+            ,url: '{:url("backend/Banner/pcUploadImg")}' //上传接口
+            ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#add').find('img[name="img"]').attr('src',result);
+                });
+                layer.load(); //上传loading
+            }
+            ,done: function(res, index, upload){
+                //上传完毕回调
+                this.item.parents('#add').find('input[name="img"]').val(res.data.src);
+                layer.close(layer.index);
+            }
+            ,error: function(){
+                //请求异常回调
+            }
+        })
+    })
+</script>
+</html>

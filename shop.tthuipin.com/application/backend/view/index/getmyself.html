@@ -1,0 +1,70 @@
+{include file="./public/head" /}
+    <body>
+        <div class="layui-fluid">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <!--<div class="layui-card-header">个人信息</div>-->
+                        <div class="layui-card-body ">
+                            <table class="layui-table">
+                                <tbody>
+                                <tr>
+                                    <th>创建时间</th>
+                                    <td>{$myselfinfo['add_time']|date="Y-m-d H:i:s"}</td>
+                                </tr>
+                                <tr>
+                                    <th>用户头像</th>
+                                    <td><img src="{$myselfinfo.headimg}" /> </td>
+                                </tr>
+                                <tr>
+                                    <th>职位</th>
+                                    <td>{$Think.cookie.rolename}</td>
+                                </tr>
+                                <tr>
+                                    <th>账号</th>
+                                    <td>{$myselfinfo.user_name}</td>
+                                </tr>
+                                <tr>
+                                    <th>密码(已加密)</th>
+                                    <td>{php}echo substr_replace($myselfinfo['password'],'******',5,5);{/php}</td>
+                                </tr>
+                                <tr>
+                                    <th>姓名</th>
+                                    <td>{$myselfinfo.name}</td>
+                                </tr>
+                                <tr>
+                                    <th>邮箱</th>
+                                    <td>{$myselfinfo.email}</td>
+                                </tr>
+                                <tr>
+                                    <th>最近一次登录时间</th>
+                                    <td>{php}echo date('Y-m-d H:i:s',$myselfinfo['last_login']){/php}</td>
+                                </tr>
+                                <tr>
+                                    <th>最近一次登录IP</th>
+                                    <td>{$myselfinfo.last_ip}</td>
+                                </tr>
+                                <tr>
+                                    <th>登录次数</th>
+                                    <td>{$myselfinfo.times}</td>
+                                </tr>
+                                <tr>
+                                    <th>安全验证(token:有效期是7天)</th>
+                                    <td>{php}echo substr_replace($myselfinfo['token'],'**********',15,10);{/php}</td>
+                                </tr>
+                                <tr>
+                                    <th>操作</th>
+                                    <td><a title="修改个人信息"  onclick="xadmin.open('修改个人信息','/veditmyself?eid={$myselfinfo.user_id}',500,500)" href="javascript:;">
+                                        <i class="layui-icon">&#xe642;</i>
+                                    </a>&nbsp;</td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,272 @@
+{include file="./public/head" /}
+    <body>
+        <div class="x-nav">
+          <span class="layui-breadcrumb">
+            <a href="/vindex">首页</a>
+            <a href="">演示</a>
+            <a>
+              <cite>导航元素</cite></a>
+          </span>
+          <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
+            <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
+        </div>
+        <div class="layui-fluid">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-body ">
+                            <form class="layui-form layui-col-space5">
+                                <!--<div class="layui-inline layui-show-xs-block">-->
+                                    <!--<input class="layui-input"  autocomplete="off" placeholder="开始日" name="start" id="start">-->
+                                <!--</div>-->
+                                <!--<div class="layui-inline layui-show-xs-block">-->
+                                    <!--<input class="layui-input"  autocomplete="off" placeholder="截止日" name="end" id="end">-->
+                                <!--</div>-->
+                                <div class="layui-inline layui-show-xs-block">
+                                    <input type="text" name="username"  placeholder="请输入用户账号" autocomplete="off" class="layui-input">
+                                </div>
+                                <div class="layui-inline layui-show-xs-block">
+                                    <input type="text" name="name"  placeholder="请输入用户名" autocomplete="off" class="layui-input">
+                                </div>
+                                <div class="layui-inline layui-show-xs-block">
+                                    <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="layui-card-header">
+                            <!--<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>-->
+                            <button class="layui-btn" onclick="xadmin.open('添加用户','/vuseraddedit',600,700)"><i class="layui-icon"></i>添加</button>
+                        </div>
+                        <div class="layui-card-body ">
+                            <table class="layui-table layui-form">
+                              <thead>
+                                <tr>
+                                  <!--<th>-->
+                                    <!--<input type="checkbox" name=""  lay-skin="primary">-->
+                                  <!--</th>-->
+                                  <th>ID</th>
+                                  <th>头像</th>
+                                  <th>用户名</th>
+                                  <th>登录账号</th>
+                                  <th>邮箱</th>
+                                  <th>角色</th>
+                                  <th>加入时间</th>
+                                  <th>最近一次登录</th>
+                                  <th>最新IP</th>
+                                  <th>状态</th>
+                                  <th>操作</th>
+                              </thead>
+                              <tbody>
+                              {volist name="data" id="vo"}
+                                <tr>
+                                  <!--<td>-->
+                                    <!--<input type="checkbox" name=""  lay-skin="primary">-->
+                                  <!--</td>-->
+                                  <td>{$key+1}</td>
+                                  <td><img src="{$vo.headimg}" /></td>
+                                  <td>{$vo.name}</td>
+                                  <td>{$vo.user_name}</td>
+                                  <td>{$vo.email}</td>
+                                <td>{$vo.rolename}</td>
+                                  <td>{php}echo date('Y-m-d H:i:s',$vo['add_time']);{/php}</td>
+                                  <td>{php}echo date('Y-m-d H:i:s',$vo['last_login']);{/php}</td>
+                                  <td>{$vo.last_ip}</td>
+                                  <td class="td-status">
+                                    <span class="layui-btn layui-btn-normal layui-btn-mini {if $vo.allow == 1} layui-btn-disabled {/if}">{if $vo.allow == 0}已启用{else /}已停用{/if}</span></td>
+                                  <td class="td-manage">
+                                    <a onclick="member_stop(this,'{$vo.user_id}')"  href="javascript:;"  title="启用">
+                                        <i class="layui-icon">&#xe601;</i>
+                                    </a>
+                                    <a title="编辑"  onclick="xadmin.open('编辑','/vuseredit?eid={$vo.user_id}',700,800)" href="javascript:;">
+                                      <i class="layui-icon">&#xe642;</i>
+                                  </a>
+                                    <a title="删除" onclick="member_del(this,'{$vo.user_id}')" href="javascript:;">
+                                      <i class="layui-icon">&#xe640;</i>
+                                    </a>
+                                  </td>
+                                </tr>
+                              {foreach $edata as $key=>$v}
+                              {if $v.pid == $vo.user_id}
+                              <tr style="background-color: #FFFFF0">
+                                  <!--<td>-->
+                                  <!--<input type="checkbox" name=""  lay-skin="primary">-->
+                                  <!--</td>-->
+                                  <td>|—{$key}</td>
+                                  <td><img src="{$v.headimg}" /></td>
+                                  <td>—{$v.name}</td>
+                                  <td>{$v.user_name}</td>
+                                  <td>{$v.email}</td>
+                                  <td>{$v.rolename}</td>
+                                  <td>{php}echo date('Y-m-d H:i:s',$v['add_time']);{/php}</td>
+                                  <td>{php}echo date('Y-m-d H:i:s',$v['last_login']);{/php}</td>
+                                  <td>{$v.last_ip}</td>
+                                  <td class="td-status">
+                                      <span class="layui-btn layui-btn-normal layui-btn-mini {if $v.allow==1}layui-btn-disabled{/if}">{if $v.allow == 0}已启用{else /}已停用{/if}</span></td>
+                                  <td class="td-manage">
+                                      <a onclick="member_stop(this,'{$v.user_id}')"  href="javascript:;"  title="启用">
+                                          <i class="layui-icon">&#xe601;</i>
+                                      </a>
+                                      <a title="编辑"  onclick="xadmin.open('编辑','/vuseredit?eid={$v.user_id}',700,800)" href="javascript:;">
+                                          <i class="layui-icon">&#xe642;</i>
+                                      </a>
+                                      <a title="删除" onclick="member_del(this,'{$v.user_id}')" href="javascript:;">
+                                          <i class="layui-icon">&#xe640;</i>
+                                      </a>
+                                  </td>
+                              </tr>
+                              {foreach $edata as $k=>$vv}
+                              {if $vv.pid == $v.user_id}
+                              <tr style="background-color: #FFFAF0">
+                                  <!--<td>-->
+                                  <!--<input type="checkbox" name=""  lay-skin="primary">-->
+                                  <!--</td>-->
+                                  <td>|—|—{$k}</td>
+                                  <td><img src="{$vv.headimg}" /></td>
+                                  <td>——{$vv.name}</td>
+                                  <td>{$vv.user_name}</td>
+                                  <td>{$vv.email}</td>
+                                  <td>{$vv.rolename}</td>
+                                  <td>{php}echo date('Y-m-d H:i:s',$vv['add_time']);{/php}</td>
+                                  <td>{php}echo date('Y-m-d H:i:s',$vv['last_login']);{/php}</td>
+                                  <td>{$vv.last_ip}</td>
+                                  <td class="td-status">
+                                      <span class="layui-btn layui-btn-normal layui-btn-mini {if $vv.allow==1}layui-btn-disabled{/if}">{if $vv.allow == 0}已启用{else /}已停用{/if}</span></td>
+                                  <td class="td-manage">
+                                      <a onclick="member_stop(this,'{$vv.user_id}')"  href="javascript:;"  title="启用">
+                                          <i class="layui-icon">&#xe601;</i>
+                                      </a>
+                                      <a title="编辑"  onclick="xadmin.open('编辑','/vuseredit?eid={$vv.user_id}',700,800)" href="javascript:;">
+                                          <i class="layui-icon">&#xe642;</i>
+                                      </a>
+                                      <a title="删除" onclick="member_del(this,'{$vv.user_id}')" href="javascript:;">
+                                          <i class="layui-icon">&#xe640;</i>
+                                      </a>
+                                  </td>
+                              </tr>
+                              {/if}
+                              {/foreach}
+                              {/if}
+                              {/foreach}
+                              {/volist}
+
+                              </tbody>
+                            </table>
+                        </div>
+                        <div class="layui-card-body ">
+                            <div class="page">
+                                <div>
+                                    {$data|raw}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </body>
+    <script>
+      layui.use(['laydate','form'], function(){
+        var laydate = layui.laydate;
+        var form = layui.form;
+        
+        //执行一个laydate实例
+        laydate.render({
+          elem: '#start' //指定元素
+        });
+
+        //执行一个laydate实例
+        laydate.render({
+          elem: '#end' //指定元素
+        });
+      });
+
+       /*用户-停用*/
+      function member_stop(obj,id){
+          layer.confirm('确认要停用吗？',function(index){
+              if($(obj).attr('title')=='启用'){
+                  $.ajax({
+                      type: 'post',
+                      url:"/vallow",
+                      data:{id:id},
+                      success:function(data){
+                          // console.log(data);return ;
+                          if(data.code = 200){
+                              $(obj).attr('title','停用')
+                              $(obj).find('i').html('&#xe62f;');
+
+                              $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('已停用');
+                              layer.msg('已停用!',{icon: 5,time:1000});
+                          }else{
+                              layer.msg('网络异常!',{icon: 5,time:1000});
+                          }
+                      },
+                      error:function(data){
+                          layer.msg('网络异常!',{icon: 5,time:1000});
+                      }
+                  })
+                //发异步把用户状态进行更改
+              }else{
+                  $.ajax({
+                      url:"/vallow",
+                      data:{id:id},
+                      success:function(data){
+                          if(data.code = 200){
+                              $(obj).attr('title','启用')
+                              $(obj).find('i').html('&#xe601;');
+
+                              $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('已启用');
+                              layer.msg('已启用!',{icon: 6,time:1000});
+                          }else{
+                              layer.msg('网络异常!',{icon: 5,time:1000});
+                          }
+                      },
+                      error:function(data){
+                          layer.msg('网络异常!',{icon: 5,time:1000});
+                      }
+                  })
+
+              }
+              
+          });
+      }
+
+      /*用户-删除*/
+      function member_del(obj,id){
+          layer.confirm('确认要删除吗？',function(index){
+              $.ajax({
+                  type:'post',
+                  url:'/vdelete',
+                  data:{id:id},
+                  success:function(data){
+                      if(data.code =200){
+                          //发异步删除数据
+                          $(obj).parents("tr").remove();
+                          layer.msg('已删除!',{icon:1,time:1000});
+                      }else{
+                          layer.msg('已删除!',{icon:1,time:1000});
+                      }
+                  },
+                  error:function (data) {
+                      if(data.code = 100){
+                          layer.msg('data.message',{icon:1,time:1000});
+                      }
+                  }
+              })
+
+          });
+      }
+
+
+
+      function delAll (argument) {
+
+        var data = tableCheck.getData();
+  
+        layer.confirm('确认要删除吗？'+data,function(index){
+            //捉到所有被选中的，发异步进行删除
+            layer.msg('删除成功', {icon: 1});
+            $(".layui-form-checked").not('.header').parents('tr').remove();
+        });
+      }
+    </script>
+</html>

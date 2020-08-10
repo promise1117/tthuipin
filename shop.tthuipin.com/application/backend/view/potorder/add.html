@@ -1,0 +1,256 @@
+{include file="./public/head" /}
+    <body>
+        <div class="layui-fluid">
+            <div class="layui-row">
+                <form class="layui-form" id="LAY-component-form-setval" lay-filter="example">
+
+                      <div class="layui-form-item">
+
+                          <label for="gid" class="layui-form-label">
+                              <span class="x-red">*</span>售出紫砂壶ID
+                          </label>
+                          <div class="layui-input-inline">
+                              <input type="text" id="gid" name="gid" required="" lay-verify="required"
+                              autocomplete="off" class="layui-input">
+                          </div>
+                          <div class="layui-form-mid layui-word-aux">
+                              <span class="x-red">*</span>紫砂壶ID或者壶名,多件壶请用英文逗号隔开
+                          </div>
+                      </div>
+
+                    <div class="layui-form-item">
+
+                        <label for="payable_amount" class="layui-form-label">
+                            <span class="x-red">*</span>用户购买价格
+                        </label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="payable_amount" name="payable_amount" required="" lay-verify="required"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">
+                            <span class="x-red">*</span>用户购买价格,多件壶请用英文逗号隔开
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+
+                        <label for="name" class="layui-form-label">
+                            <span class="x-red">*</span>用户姓名
+                        </label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="name" name="name" required="" lay-verify="required"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">
+                            <span class="x-red">*</span>购买用户姓名
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+
+                        <label for="telphone" class="layui-form-label">
+                            <span class="x-red">*</span>用户手机号
+                        </label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="telphone" name="telphone" required="" lay-verify="required"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">
+                            <span class="x-red">*</span>购买用户手机号
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+
+                        <label for="address" class="layui-form-label">
+                            <span class="x-red">*</span>用户地址
+                        </label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="address" name="address" required="" lay-verify="required"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">
+                            <span class="x-red">*</span>用户地址
+                        </div>
+                    </div>
+
+                    <!--                    这边付款方式：
+                    1.全额货到付款
+                    2.微信付款
+                    3.支付宝付款
+                    4.对公账号
+                    5.定金+代收货款，定金多少，代收多少-->
+                    <div class="layui-form-item">
+                        <label for="payment" class="layui-form-label">
+                            <span class="x-red">*</span>付款方式
+                        </label>
+
+                        <div class="layui-input-inline">
+                            <select name="payment" id="payment">
+                                <option value="">付款方式</option>
+                                <option value="1">全额货到付款</option>
+                                <option value="2">微信付款</option>
+                                <option value="3">支付宝付款</option>
+                                <option value="4">对公账号</option>
+                                <option value="5">定金+代收货款</option>
+
+                            </select>
+                        </div>
+
+                        <div class="layui-form-mid layui-word-aux">
+                            <span class="x-red">*</span>付款方式
+                        </div>
+
+                    </div>
+
+
+                    <div class="layui-form-item">
+                        <label for="start" class="layui-form-label">
+                            <span class="x-red">*</span>下单时间
+                        </label>
+
+                        <div class="layui-input-inline">
+
+                            <input class="layui-input"  autocomplete="off" placeholder="下单时间" name="order_time" id="start">
+
+                        </div>
+
+                        <div class="layui-form-mid layui-word-aux">
+                            <span class="x-red">*</span>下单时间
+                        </div>
+
+                    </div>
+
+
+
+
+
+
+                    <div class="layui-form-item">
+
+                        <label for="message" class="layui-form-label">
+                            <span class="x-red">*</span>赠品留言
+                        </label>
+                        <div class="layui-input-block">
+                            <textarea id="message" name="message" placeholder="请输入备注留言" class="layui-textarea"></textarea>
+                        </div>
+
+                    </div>
+
+
+
+
+                  <div class="layui-form-item">
+                      <label for="L_repass" class="layui-form-label">
+                      </label>
+                      <button  class="layui-btn" lay-filter="add" lay-submit="">
+                          提交
+                      </button>
+                  </div>
+              </form>
+            </div>
+        </div>
+        <script>
+            layui.use(['laydate'], function(){
+                var laydate = layui.laydate;
+
+
+                //执行一个laydate实例
+                laydate.render({
+                    elem: '#start' //指定元素
+                });
+
+                //执行一个laydate实例
+                laydate.render({
+                    elem: '#end' //指定元素
+                });
+            });
+
+
+            layui.use(['form', 'layer'],
+            function() {
+                $ = layui.jquery;
+                var form = layui.form,
+                layer = layui.layer;
+
+                //监听提交
+                form.on('submit(add)',
+                    function(data) {
+                        // console.log(data.field);return ;
+                        //发异步，把数据提交给php
+                        $.ajax({
+                            url:'/porderadd',
+                            type:'post',
+                            data:data.field,
+                            success:function(data) {
+                                // console.log(data);return;
+                                if(data.code =="200" ){
+                                    // console.log(data.data);return ;
+                                    // view("添加成功！");
+                                    layer.alert("增加成功", {
+                                            icon: 6
+                                        },
+                                        function() {
+                                            //关闭当前frame
+                                            xadmin.close();
+
+                                            // 可以对父窗口进行刷新
+                                            xadmin.father_reload();
+                                        });
+                                    // window.location.reload();
+
+                                }else{
+                                    alert(data.message);
+                                    // view(data.msg);
+                                }
+                            },
+                            error : function() {
+                                // view("异常！");
+                                alert("异常！");
+                            }
+                        });
+                        return false;
+                    });
+
+            });
+        </script>
+        <script>
+            layui.use('upload', function(){
+                var $ = layui.jquery
+                    ,upload = layui.upload;
+
+                //普通图片上传
+                var uploadInst = upload.render({
+                    elem: '#test1'
+                    ,url: '/vupload'
+                    ,before: function(obj){
+                        //预读本地文件示例，不支持ie8
+                        obj.preview(function(index, file, result){
+                            $('#demo1').attr('src', result); //图片链接（base64）
+                        });
+                    }
+                    ,done: function(res){
+                        if(res.code == 200){
+                            $('#headimg').val(res.data);
+                        }
+                        // console.log(res.data);
+                        // return ;
+                        //如果上传失败
+                        if(res.code == 100){
+                            return layer.msg('上传失败');
+                        }
+                        //上传成功
+
+                    }
+                    ,error: function(){
+                        //演示失败状态，并实现重传
+                        var demoText = $('#demoText');
+                        demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                        demoText.find('.demo-reload').on('click', function(){
+                            uploadInst.upload();
+                        });
+                    }
+                });
+            });
+        </script>
+    </body>
+
+</html>

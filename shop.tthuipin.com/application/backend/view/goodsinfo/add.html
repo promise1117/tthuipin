@@ -1,0 +1,315 @@
+{include file="./public/head" /}
+    <body>
+        <div class="layui-fluid">
+            <div class="layui-row">
+                <form class="layui-form" id="LAY-component-form-setval" lay-filter="example">
+<!--                   <div class="layui-form-item">
+                      <label for="username" class="layui-form-label">
+                          <span class="x-red">*</span>名称
+                      </label>
+                      <div class="layui-input-inline">
+                          <input type="text" id="name" name="name" required="" lay-verify="required"
+                          autocomplete="off" class="layui-input">
+                      </div>
+                      <div class="layui-form-mid layui-word-aux">
+                          <span class="x-red">*</span>名称
+                      </div>
+                  </div> -->
+                    <!--<div class="layui-form-item">-->
+                        <!--<label for="contents" class="layui-form-label">-->
+                            <!--<span class="x-red">*</span>评论内容-->
+                        <!--</label>-->
+                        <!--<div class="layui-form-item layui-form-text">-->
+                            <!--<div class="layui-input-block">-->
+                                <!--<textarea placeholder="请输入内容" class="layui-textarea" name="contents"></textarea>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="layui-form-mid layui-word-aux">-->
+                            <!--<span class="x-red">*</span>字数限制100个汉子-->
+                        <!--</div>-->
+                    <!--</div>-->
+<!--                     <div class="layui-form-item">
+
+                        <label for="point" class="layui-form-label">
+                            <span class="x-red">*</span>标题
+                        </label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="title" name="title" required="" lay-verify="required"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">
+                            <span class="x-red">*</span>商品的标题
+                        </div>
+                    </div> -->
+
+                    <div class="layui-form-item">
+
+                        <label for="template" class="layui-form-label">
+                            <span class="x-red">*</span>模板
+                        </label>
+                        <div class="layui-input-inline">
+                            
+                            <select name="template" lay-verify="" id="template">
+                                <option value="">模板选择</option>
+                                {volist name="template" id="vv"}
+                                <option value="{$i}" data-size="{$vv.size}" data-attribute_name="{$vv.attribute_name}" data-sub_attribute_name="{$vv.sub_attribute_name}" data-color="{$vv.color}" data-sell_price="{$vv.sell_price}" data-market_price="{$vv.market_price}" data-cost_price="{$vv.cost_price}" data-image="{$vv.image}" data-order="{$vv.order}">{$vv.name}</option>
+                                {/volist}
+                            </select>
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">
+                            <span class="x-red">*</span>商品的模板,默认无模板
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label for="point" class="layui-form-label">
+                            <span class="x-red">*</span>属性名
+                        </label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="attribute_name" name="attribute_name" required=""
+                                   autocomplete="off" class="layui-input" value="顏色">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">
+                            <span class="x-red">*</span>商品的属性名，默认为颜色
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label for="point" class="layui-form-label">
+                            <span class="x-red">*</span>属性值
+                        </label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="color" name="color" required=""
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">
+                            <span class="x-red">*</span>商品的属性值
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+
+                        <label for="point" class="layui-form-label">
+                            <span class="x-red">*</span>子属性名
+                        </label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="sub_attribute_name" name="sub_attribute_name" required=""
+                                   autocomplete="off" class="layui-input" value="尺寸">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">
+                            <span class="x-red">*</span>商品的子属性名，默认为尺寸
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+
+                        <label for="point" class="layui-form-label">
+                            <span class="x-red">*</span>子属性值
+                        </label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="size" name="size" required=""
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">
+                            <span class="x-red">*</span>商品的子属性值，使用英文的逗号隔开
+                        </div>
+                    </div>
+
+
+                    <div class="layui-form-item">
+                        <label for="username" class="layui-form-label">
+                            <span class="x-red">*</span>价格
+                        </label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="sell_price" name="sell_price" autocomplete="off" class="layui-input">
+                            <input type="text" id="market_price" name="market_price" autocomplete="off" class="layui-input">
+                            <input type="text" id="cost_price" name="cost_price" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">
+                            <span class="x-red">*</span>销售价(NT$)<br />
+                            <span class="x-red">*</span>市场价(NT$)<br />
+                            <span class="x-red">*</span>成本价(NT$)
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+
+                        <label for="username" class="layui-form-label">
+                            <span class="x-red">*</span>图片
+                        </label>
+                        <div class="layui-input-inline">
+                            <input type="hidden" id="headimg" name="files" required="" autocomplete="off" class="layui-input">
+                            <div class="layui-upload">
+                                <button type="button" class="layui-btn" id="test1">上传图片</button>
+                                <div class="layui-upload-list">
+                                    <img class="layui-upload-img" id="demo1"  width="120px" height="120px">
+                                    <p id="demoText"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">
+                            <span class="x-red">*</span>上传产品图片
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">选择所属套餐</label>
+                        <div class="layui-input-block">
+                            {if $goodslist == ''}暂无所属套餐{else /}
+                            {volist name="goodslist" id="vo"}
+                            <input type="checkbox" name="pid[]" value="{$vo.id}" title="{$vo.taocan}" lay-verify="required">
+                            {/volist}
+                            {/if}
+
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">选择所属商品</label>
+                        <div class="layui-input-block">
+                            {if $goodslist == ''}暂无所属商品{else /}
+
+                            <input type="checkbox" name="package[]" value="0" title="商品1">
+
+                            <input type="checkbox" name="package[]" value="1" title="商品2">
+
+                            <input type="checkbox" name="package[]" value="2" title="商品3">
+                            <input type="checkbox" name="package[]" value="3" title="商品4">
+                            <input type="checkbox" name="package[]" value="4" title="商品5">
+                            <input type="checkbox" name="package[]" value="5" title="商品6">
+                            <input type="checkbox" name="package[]" value="6" title="商品7">
+                            <input type="checkbox" name="package[]" value="7" title="商品8">
+
+
+                            {/if}
+                            <!--                            <input type="radio" name="sex" value="禁" title="禁用" disabled="">-->
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label for="sort" class="layui-form-label">
+                            <span class="x-red">*</span>排序
+                        </label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="order" name="order" value="0" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">
+                            <span class="x-red">*</span>数字越大，越往前 默认0
+                        </div>
+                    </div>
+
+
+                  <div class="layui-form-item">
+                      <label for="L_repass" class="layui-form-label">
+                      </label>
+                      <input type="hidden" name="gid" value="{$keyid}">
+                      <input type="hidden" name="goods_id" value="{$goods_id}">
+                      <button  class="layui-btn" lay-filter="add" lay-submit="">
+                          提交
+                      </button>
+                  </div>
+              </form>
+            </div>
+        </div>
+        <script>layui.use(['form', 'layer'],
+            function() {
+                $ = layui.jquery;
+                var form = layui.form,
+                    layer = layui.layer;
+
+                //监听提交
+                form.on('submit(add)',
+                    function(data) {
+                        // console.log(data.field);return ;
+                        //发异步，把数据提交给php
+                        $.ajax({
+                            url:'/vgoodsiadd',
+                            type:'post',
+                            data:data.field,
+                            success:function(data) {
+                                // console.log(data);return;
+                                if(data.code =="200" ){
+                                    // console.log(data.data);return ;
+                                    // view("添加成功！");
+                                    layer.alert("增加成功", {
+                                            icon: 6
+                                        },
+                                        function() {
+                                            //关闭当前frame
+                                            xadmin.close();
+
+                                            // 可以对父窗口进行刷新
+                                            xadmin.father_reload();
+                                        });
+                                    // window.location.reload();
+                                }else{
+                                    alert(data.message);
+                                    // view(data.msg);
+                                }
+                            },
+                            error : function() {
+                                // view("异常！");
+                                alert("异常！");
+                            }
+                        });
+                        return false;
+                    });
+
+
+                // 模板select选择赋值
+                form.on('select', function(data){
+
+                    var elem = data.elem[data.elem.selectedIndex] //得到select原始DOM对象
+
+                    $('#size').val($(elem).attr('data-size'));
+                    $('#color').val($(elem).attr('data-color'));
+                    $('#attribute_name').val($(elem).attr('data-attribute_name'));
+                    $('#sub_attribute_name').val($(elem).attr('data-sub_attribute_name'));
+                    $('#sell_price').val($(elem).attr('data-sell_price'));
+                    $('#market_price').val($(elem).attr('data-market_price'));
+                    $('#cost_price').val($(elem).attr('data-cost_price'));
+                    $('#demo1').attr('src',$(elem).attr('data-image'));
+                    $('#headimg').val($(elem).attr('data-image'));
+                    $('#order').val($(elem).attr('data-order'));
+                })
+            });
+        </script>
+        <script>
+            layui.use('upload', function(){
+                var $ = layui.jquery
+                    ,upload = layui.upload;
+
+                //普通图片上传
+                var uploadInst = upload.render({
+                    elem: '#test1'
+                    ,url: '/vupload'
+                    ,before: function(obj){
+                        //预读本地文件示例，不支持ie8
+                        obj.preview(function(index, file, result){
+                            $('#demo1').attr('src', result); //图片链接（base64）
+                        });
+                    }
+                    ,done: function(res){
+                        if(res.code == 200){
+                            $('#headimg').val(res.data);
+                        }
+                        // console.log(res.data);
+                        // return ;
+                        //如果上传失败
+                        if(res.code == 100){
+                            return layer.msg('上传失败');
+                        }
+                        //上传成功
+
+                    }
+                    ,error: function(){
+                        //演示失败状态，并实现重传
+                        var demoText = $('#demoText');
+                        demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                        demoText.find('.demo-reload').on('click', function(){
+                            uploadInst.upload();
+                        });
+                    }
+                });
+            });
+        </script>
+    </body>
+
+</html>

@@ -1,0 +1,330 @@
+{include file="./public/head" /}
+    <body style="overflow-y: scroll;">
+        <div class="x-nav">
+          <span class="layui-breadcrumb">
+            <a href="/vindex">首页</a>
+            <a href="">演示</a>
+            <a>
+              <cite>导航元素</cite></a>
+          </span>
+          <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
+            <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
+        </div>
+        <div class="layui-fluid">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-body ">
+                            <form class="layui-form layui-col-space5">
+                                <div class="layui-inline layui-show-xs-block">
+                                    <input class="layui-input"  autocomplete="off" placeholder="开始日" name="start" id="start">
+                                </div>
+                                <div class="layui-inline layui-show-xs-block">
+                                    <input class="layui-input"  autocomplete="off" placeholder="截止日" name="end" id="end">
+                                </div>
+                                <div class="layui-inline layui-show-xs-block">
+                                    <input type="text" placeholder="订单号"  autocomplete="off" name="order_no"  class="layui-input">
+                                </div>
+                                <div class="layui-inline layui-show-xs-block">
+                                    <input type="radio" name="is_show" value="0" title="正常" checked="">
+                                    <input type="radio" name="is_show" value="1" title="作废">
+                                </div>
+                                <div class="layui-inline layui-show-xs-block">
+                                    <div class="layui-inline">
+                                        <div class="layui-input-inline">
+                                            <select name="status">
+                                                <option value="">选择订单状态</option>
+                                                <option value="1">下单成功</option>
+                                                <option value="2">厂商配货</option>
+                                                <option value="3">国际运输</option>
+                                                <option value="4">抵达台湾</option>
+                                                <option value="5">订单完成</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--<div class="layui-inline layui-show-xs-block">-->
+                                    <!--<div class="layui-inline">-->
+                                        <!--<div class="layui-input-inline">-->
+                                            <!--<select name="userid">-->
+                                                <!--<option value="">选择人员</option>-->
+                                                <!--{volist name="userlsitt" id="v"}-->
+                                                    <!--<option value="{$v.user_id}">{$v.name}</option>-->
+                                                    <!--{volist name="userlsit" id="vv"}-->
+                                                        <!--{if $vv.pid == $v.user_id}-->
+                                                            <!--<option value="{$vv.user_id}">|—{$vv.name}</option>-->
+                                                            <!--{volist name="userlsit" id="vvv"}-->
+                                                                <!--{if $vvv.pid == $vv.user_id}-->
+                                                                    <!--<option value="{$vvv.user_id}">|—|—{$vvv.name}</option>-->
+                                                                <!--{/if}-->
+                                                            <!--{/volist}-->
+                                                        <!--{/if}-->
+                                                    <!--{/volist}-->
+                                                <!--{/volist}-->
+                                            <!--</select>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <div class="layui-inline layui-show-xs-block">
+                                    <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="layui-card-header">
+
+                            <button class="layui-btn" onclick="xadmin.open('订单添加','/porderadd',1200,800)"><i class="layui-icon"></i>添加</button>
+                        </div>
+                        <div class="layui-card-body ">
+                            <table class="layui-table layui-form" lay-filter="table">
+                              <thead>
+                                <tr>
+                                  <!--<th>序号</th>-->
+                                  <th>订单号</th>
+                                  <th>产品图片</th>
+                                  <th>订单总价</th>
+                                  <th>客户姓名</th>
+                                  <th>联系方式</th>
+                                  <th>地址</th>
+                                  <th>付款方式</th>
+                                  <th>下单时间</th>
+                                  <th>留言</th>
+                                  <th>订单所属</th>
+                                  <th>状态</th>
+                                  <th>操作</th>
+                              </thead>
+                              <tbody>
+                              {php}
+                              //print_r($list);
+                              $goodsurl = config('goodsinfourl');
+                              {/php}
+                              {volist name="list" id="vo"}
+                                {php}
+
+                                      $arr = explode(',',$vo['link_gid']);
+
+                                      foreach ($arr as $kk=>$vv){
+                                      $data = Db('pot_goods')->where('id',$vv)->find();
+
+                                      $vo['order_info'][$kk] = $data;
+
+
+                                      }
+
+                                      $orderinfo = $vo['order_info'];
+
+
+
+                                {/php}
+                                <tr>
+                                  <!--<td></td>-->
+                                  <td>{$vo.order_no}</td>
+
+                                  <td>
+                                      {if empty($orderinfo[0])}
+                                      商品名: {$vo.link_gid}
+                                      {else /}
+
+                                      {volist name="orderinfo" id="va"}
+                                      {if empty($va.photo)}
+                                      <a href="http://www.zishajyw.com/goodsinfo?goodsid={$va.id}" target="_blank"><img src="{$va.img}" /></a>
+                                      <a href="javascript:;">参考价:{$va.sell_price}</a>
+                                      {else /}
+                                      {volist name="va.photo" id="vv"}
+                                      <a href="http://www.zishajyw.com/goodsinfo?goodsid={$va.id}" target="_blank"><img src="{$vv}" style="width:{php}echo 90/count($va['photo']);{/php}%;" /></a>
+                                      <a href="javascript:;">参考价:{$va.sell_price}</a>
+                                      {/volist}
+                                      {/if}
+                                      <hr />
+
+                                      {/volist}
+                                      {/if}
+
+                                  </td>
+
+                                  <td>
+                                      {php}
+                                      $price = explode(',',$vo['payable_amount']);
+                                      {/php}
+                                      {volist name="price" id="va"}
+                                        {$va}
+                                      <hr />
+                                      {/volist}
+                                  </td>
+                                  <td>{$vo.name}</td>
+                                  <td>
+                                      联系电话:{if $vo.telphone == ''}空{else /}{$vo.telphone}{/if}
+                                  </td>
+                                    <td>
+                                      用户地址:{if $vo.address == ''}空{else /}{$vo.address}{/if}
+                                  </td>
+                                    <td>
+                                        {if $vo.payment == ''}空{elseif $vo.payment == 1 /}全额货到付款{elseif $vo.payment == 2 /}微信付款{elseif $vo.payment == 3 /}支付宝付款{elseif $vo.payment == 4 /}对公账号{elseif $vo.payment == 5 /}定金+代收货款{/if}
+                                    </td>
+
+                                  <td>{$vo.order_time}</td>
+                                  <td>{$vo.message?$vo.message:'无留言'}</td>
+                                  <td>
+                                      {$vo.user_name}
+                                  </td>
+                                  <td class="td-status">
+
+                                              {if $vo.is_show == 0}
+                                                {switch $vo.status}
+                                                    {case 1}
+                                                    <span class="layui-btn layui-btn-normal layui-btn-mini {if $vo.is_show==1}layui-btn-disabled{/if}" style="background-color: red;"><a title="编辑"  onclick="xadmin.open('编辑','/porderedit?eid={$vo.id}',600,600)" href="javascript:;">下单成功</a></span>{/case}
+                                                    {case 2}<span class="layui-btn layui-btn-normal layui-btn-mini {if $vo.is_show==1}layui-btn-disabled{/if}" style="background-color: #3C8DBC;"><a title="编辑"  onclick="xadmin.open('编辑','/porderedit?eid={$vo.id}',600,600)" href="javascript:;">厂商配货</a></span>{/case}
+                                                    {case 3}<span class="layui-btn layui-btn-normal layui-btn-mini {if $vo.is_show==1}layui-btn-disabled{/if}"><a title="编辑"  onclick="xadmin.open('编辑','/porderedit?eid={$vo.id}',600,600)" href="javascript:;">国际运输</a></span>{/case}
+                                                    {case 4}<span class="layui-btn layui-btn-normal layui-btn-mini {if $vo.is_show==1}layui-btn-disabled{/if}" style="background-color: red;"><a title="编辑"  onclick="xadmin.open('编辑','/porderedit?eid={$vo.id}',600,600)" href="javascript:;">抵达台湾</a></span>{/case}
+                                                    {case 5}<span class="layui-btn layui-btn-normal layui-btn-mini {if $vo.is_show==1}layui-btn-disabled{/if}" style="background-color: #56C190;"><a title="编辑"  onclick="xadmin.open('编辑','/porderedit?eid={$vo.id}',600,600)" href="javascript:;">订单完成</a></span>{/case}
+                                                {/switch}
+                                              {else /}
+                                      <span class="layui-btn layui-btn-normal layui-btn-mini {if $vo.is_show==1}layui-btn-disabled{/if}">作废</span>
+                                              {/if}
+
+                                  </td>
+                                  <td class="td-manage">
+                                      <a onclick="member_stop(this,'{$vo.id}')"  href="javascript:;"  title="{if $vo.is_show == 0}{switch $vo.status}{case 1 }下单成功{/case}
+    {case 2}厂商配货{/case}{case 3}国际运输{/case}{case 4}抵达台湾{/case}{case 5}订单完成{/case}
+    {default /}数据错误{/switch}{else /}作废{/if}">
+                                          <i class="layui-icon">&#xe601;</i>
+                                      </a>
+<!--                                      <a title="查看用户信息"  onclick="xadmin.open('用户信息','/vorderinfo?iid={$vo.id}',600,400)" href="javascript:;">-->
+<!--                                          <i class="layui-icon">&#xe642;</i>`-->
+<!--                                      </a>-->
+                                      <a title="删除订单" href="javascript:;" onclick="del(this,'{$vo.id}')">
+                                          <i class="layui-icon">&#x1006;</i>
+                                      </a>
+                                  </td>
+                                </tr>
+                              {/volist}
+                              </tbody>
+                            </table>
+                        </div>
+                        <div class="layui-card-body ">
+                            <div class="page">
+                                <div>
+                                    {$list|raw}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+
+      layui.use(['laydate','form','table'], function(){
+        var laydate = layui.laydate;
+        var form = layui.form;
+
+        //执行一个laydate实例
+        laydate.render({
+          elem: '#start' //指定元素
+        });
+
+        //执行一个laydate实例
+        laydate.render({
+          elem: '#end' //指定元素
+        });
+      });
+
+      // 管理员删除订单
+      function del(obj,id){
+        layer.confirm('确认要删除吗',function(index){
+          $.ajax({
+            type: 'post',
+            url:"{:url('backend/potorder/del')}",
+            data:{'id':id},
+            success:function(data){
+              if(data.code == 200){
+                $(obj).parents("tr").remove();
+                layer.msg(data.message,{icon: 6,time:1000});
+              }else{
+                layer.msg(data.message,{icon: 5,time:1000});
+              }
+            },
+            error:function(){
+              layer.msg('网络异常!',{icon: 5,time:1000});
+            }
+          })
+        })
+      }
+
+      /*用户-停用*/
+      function member_stop(obj,id){
+          layer.confirm('确认要操作吗？',function(index){
+              // console.log(obj);return ;
+              if($(obj).attr('title')=='下单成功' || $(obj).attr('title')=='厂商配货' || $(obj).attr('title')=='国际运输' || $(obj).attr('title')=='抵达台湾' || $(obj).attr('title')=='订单完成'){
+                  $.ajax({
+                      type: 'post',
+                      url:"/porderdelete",
+                      data:{id:id},
+                      success:function(data){
+                          // console.log(data);return ;
+                          if(data.code == 200){
+                              $(obj).attr('title','作废');
+                              $(obj).find('i').html('&#xe62f;');
+
+                              $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('作废');
+                              layer.msg('已作废!',{icon: 5,time:1000});
+                          }else{
+                              layer.msg(data.message,{icon: 5,time:1000});
+                          }
+                          window.location.reload();
+                      },
+                      error:function(data){
+                          layer.msg('网络异常!',{icon: 5,time:1000});
+                      }
+                  })
+                  //发异步把用户状态进行更改
+              }else{
+                  $.ajax({
+                      url:"/porderdelete",
+                      data:{id:id},
+                      success:function(data){
+                          if(data.code == 200){
+                              // $(obj).attr('title','正常');
+                              $(obj).find('i').html('&#xe601;');
+                              // console.log(data);return ;
+                              if(data.data == 1){
+                                  $(obj).attr('title','下单成功');
+                                  $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('下单成功');
+                                  layer.msg('恢复到下单成功!',{icon: 6,time:1000});
+                              }else if(data.data == 2){
+                                  $(obj).attr('title','厂商配货');
+                                  $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('厂商配货');
+                                  layer.msg('恢复到厂商配货!',{icon: 6,time:1000});
+                              }else if(data.data == 3){
+                                  $(obj).attr('title','国际运输');
+                                  $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('国际运输');
+                                  layer.msg('恢复到国际运输!',{icon: 6,time:1000});
+                              }else if(data.data == 4){
+                                  $(obj).attr('title','抵达台湾');
+                                  $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('抵达台湾');
+                                  layer.msg('恢复到抵达台湾!',{icon: 6,time:1000});
+                              }else{
+                                  $(obj).attr('title','订单完成');
+                                  $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('订单完成');
+                                  layer.msg('恢复到订单完成!',{icon: 6,time:1000});
+                              }
+                              window.location.reload();
+                              // layer.msg('已正常!',{icon: 6,time:1000});
+
+                          }else{
+                              layer.msg(data.message,{icon: 5,time:1000});
+                          }
+                      },
+                      error:function(data){
+                          layer.msg('网络异常!',{icon: 5,time:1000});
+                      }
+                  })
+
+              }
+
+          });
+      }
+
+    </script>
+</html>

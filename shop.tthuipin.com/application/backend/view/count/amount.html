@@ -1,0 +1,314 @@
+{include file="./public/head" /}
+<body style="overflow-y: scroll;">
+<div class="x-nav">
+          <span class="layui-breadcrumb">
+            <a href="/vindex">首页</a>
+            <a href="">演示</a>
+            <a>
+              <cite>导航元素</cite></a>
+          </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
+        <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
+</div>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body ">
+                    <form class="layui-form layui-col-space5">
+                        <div class="layui-inline layui-show-xs-block">
+                            <input class="layui-input"  autocomplete="off" placeholder="开始日期" name="starttime" id="start">
+                        </div>
+                        <div class="layui-inline layui-show-xs-block">
+                            <input class="layui-input"  autocomplete="off" placeholder="结束日期" name="endtime" id="end">
+                        </div>
+                        <!--<div class="layui-inline layui-show-xs-block">-->
+                        <!--<input type="text" name="name"  placeholder="banner名称" autocomplete="off" class="layui-input">-->
+                        <!--</div>-->
+                        <!--<div class="layui-inline layui-show-xs-block">-->
+                        <!--<input type="text" name="url"  placeholder="请输入路由" autocomplete="off" class="layui-input">-->
+                        <!--</div>-->
+
+                        <div class="layui-inline layui-show-xs-block">
+                            <div class="layui-inline">
+                                <div class="layui-input-inline">
+                                    <select  lay-filter="timeIn">
+                                        <option value="">选择日期(默认本月)</option>
+                                        <option value="3">今日</option>
+                                        <option value="5">昨日</option>
+                                        <option value="2">最近七天</option>
+                                        <option value="1">本月</option>
+                                        <option value="4">上一月</option>
+
+
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-inline layui-show-xs-block">
+                            <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+                        </div>
+                    </form>
+                </div>
+                <script src="__BJS__/echarts.min.js"></script>
+                <div id="container" style="height: 600px"></div>
+                <div id="container1" style="height: 600px;margin-top:100px;"></div>
+                <div id="container2" style="height: 600px;margin-top:100px;display: none;"></div>
+
+                <script>
+                    var dom = document.getElementById("container");
+                    var myChart = echarts.init(dom);
+                    var dom1 = document.getElementById("container1");
+                    var myChart1 = echarts.init(dom1);
+                    var dom2 = document.getElementById("container2");
+                    var myChart2 = echarts.init(dom2);
+
+
+
+                    option = {
+                        title: {
+                            text: '订单月统计总量(新台币)',
+                            // subtext: '数据来自网络'
+                        },
+                        tooltip: {
+                            trigger: 'axis',
+                            axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                                type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                            }
+                        },
+                        legend: {
+                            data: ['销售额统计(默认本月)','今日销售额统计']
+                        },
+
+                        grid: {
+                            left: '3%',
+                            right: '4%',
+                            bottom: '3%',
+                            containLabel: true
+                        },
+                        xAxis: {
+                            type: 'value',
+                            boundaryGap: [0, 0.01]
+                        },
+                        yAxis: {
+                            type: 'category',
+                            data: {php}
+                            echo json_encode($userArr);
+                            {/php}
+                        },
+                        series: [
+                            {
+                                name: '销售额统计(默认本月)',
+                                type: 'bar',
+                                stack: '总量',
+                                label: {
+                                    show: true,
+                                    position: 'insideRight',
+
+                                },
+                                data: {php}
+                                echo json_encode($saleMonthArr);
+                            {/php}
+                            },
+                            {
+                                name: '今日销售额统计',
+                                type: 'bar',
+                                stack: '总量',
+                                label: {
+                                show: true,
+                                position: 'right',
+
+                            },
+                                data: {php}
+                                echo json_encode($saleMonthArr1);
+                                {/php}
+                                }
+
+                        ]
+                    };
+                    // 使用刚指定的配置项和数据显示图表。
+                    myChart.setOption(option);
+
+
+                    option1 = {
+
+                        title: {
+                            text: '个人日订单统计',
+
+                        },
+                        tooltip: {
+                            trigger: 'axis',
+                            axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                                type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                            }
+                        },
+                        legend: {
+                            data: {php}
+                            echo json_encode($legend,JSON_UNESCAPED_UNICODE);
+                            {/php}
+                        },
+                        grid: {
+                            left: '3%',
+                            right: '4%',
+                            bottom: '3%',
+                            containLabel: true
+                        },
+                        xAxis: [
+                            {
+                                type: 'category',
+
+                                data:{php}
+                                echo json_encode($dataTime);
+                                {/php}
+                            }
+                        ],
+                        yAxis: [
+                            {
+                                type: 'value'
+                            }
+                        ],
+                        series: {php}
+                    echo json_encode($temp,JSON_UNESCAPED_UNICODE);
+                    {/php}
+                    };
+
+                    // 使用刚指定的配置项和数据显示图表。
+                    myChart1.setOption(option1);
+
+
+
+
+                    option2 = {
+                        title: {
+                            text: '订单总额',
+
+                        },
+                        tooltip: {
+                            trigger: 'item',
+                            formatter: '{a} <br/>{b} : {c} ({d}%)'
+                        },
+                        legend: {
+                            // orient: 'vertical',
+                            left: 'center',
+                            top: 'bottom',
+                            data: {php}
+                            echo json_encode($legend,JSON_UNESCAPED_UNICODE);
+                    {/php}
+                        },
+                        series: [
+                            {
+                                name: '访问来源',
+                                type: 'pie',
+                                radius: '55%',
+                                center: ['50%', '60%'],
+                                data: {php}
+                                echo json_encode($dataAll,JSON_UNESCAPED_UNICODE);
+                                {/php},
+                                emphasis: {
+                                    itemStyle: {
+                                        shadowBlur: 10,
+                                        shadowOffsetX: 0,
+                                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                    }
+                                }
+                            }
+                        ]
+                    };
+                    // 使用刚指定的配置项和数据显示图表。
+                    myChart2.setOption(option2);
+                </script>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+
+    layui.use(['laydate','form'], function(){
+        var laydate = layui.laydate;
+        var form = layui.form;
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#start' //指定元素
+        });
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#end' //指定元素
+        });
+
+        form.on('select(timeIn)', function(data){
+            switch (data.value) {
+                case '1':
+                    laydate.render({
+                        elem: '#start' //指定元素
+                        ,value: new Date(new Date().getFullYear() + '-' + (new Date().getMonth()+1) + '-01 00:00:00')
+                    });
+                    laydate.render({
+                        elem: '#end' //指定元素
+                        ,value: new Date(new Date().getFullYear() + '-' + (new Date().getMonth()+2) + '-01 00:00:00')
+                    });
+
+
+
+                    ;break;
+                case '2':
+                    laydate.render({
+                        elem: '#start' //指定元素
+                        ,value: new Date(new Date().getTime() - 60*60*24*7*1000)
+                    });
+
+                    laydate.render({
+                        elem: '#end' //指定元素
+                        ,value: new Date(new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'+new Date().getDate())
+                    });
+
+
+                    ;break;
+                case '3':
+                    laydate.render({
+                        elem: '#start' //指定元素
+                        ,value: new Date(new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'+new Date().getDate())
+                    });
+                    laydate.render({
+                        elem: '#end' //指定元素
+                        ,value: new Date(new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'+(new Date().getDate()+1))
+                    });
+
+                    ;break;
+                case '4':
+                    laydate.render({
+                        elem: '#start' //指定元素
+                        ,value: new Date(new Date().getFullYear() + '-' + (new Date().getMonth()) + '-01 00:00:00')
+                    });
+
+                    laydate.render({
+                        elem: '#end' //指定元素
+                        ,value: new Date(new Date().getFullYear() + '-' + (new Date().getMonth()+1) + '-01 00:00:00')
+                    });
+
+                    ;break;
+                case '5':
+                    laydate.render({
+                        elem: '#start' //指定元素
+                        ,value: new Date(new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'+(new Date().getDate()-1))
+                    });
+
+                    laydate.render({
+                        elem: '#end' //指定元素
+                        ,value: new Date(new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'+new Date().getDate())
+                    });
+
+                    ;break;
+
+            }
+        });
+    });
+
+
+</script>
+</html>

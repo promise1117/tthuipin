@@ -1,0 +1,591 @@
+{include file="./public/head" /}
+<script src="http://libs.baidu.com/jquery/1.7.2/jquery.js"></script>
+<body style="overflow-y: scroll;">
+<div class="x-nav">
+          <span class="layui-breadcrumb">
+            <a href="/vindex">首页</a>
+            <a href="">演示</a>
+            <a>
+              <cite>导航元素</cite></a>
+          </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
+        <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
+</div>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body ">
+                    <form class="layui-form layui-col-space5">
+                        <div class="layui-inline layui-show-xs-block" style="width:100px;">
+                            <input class="layui-input"  autocomplete="off" placeholder="开始日" name="start" id="start">
+                        </div>
+                        <div class="layui-inline layui-show-xs-block" style="width:100px;">
+                            <input class="layui-input"  autocomplete="off" placeholder="截止日" name="end" id="end">
+                        </div>
+                        <div class="layui-inline layui-show-xs-block" style="width:150px;">
+                            <div class="layui-inline">
+                                <div class="layui-input-inline">
+                                    <select  lay-filter="timeIn">
+                                        <option value="">选择日期</option>
+
+                                        <option value="1">本月</option>
+                                        <option value="2">本周</option>
+                                        <option value="3">今日</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-inline layui-show-xs-block" style="width:100px;">
+                            <input type="text" placeholder="订单号"  autocomplete="off" name="order_no"  class="layui-input">
+                        </div>
+
+                        <div class="layui-inline layui-show-xs-block" style="width:100px;">
+                            <div class="layui-inline">
+                                <div class="layui-input-inline">
+                                    <select name="status">
+                                        <!-- 下单成功 配送中 到达代取 签收 拒收 退换货 总计-->
+                                        <option value="">选择订单状态</option>
+                                        <option value="1">下单成功</option>
+                                        <option value="2">配送中</option>
+                                        <option value="7">清关中</option>
+                                        <option value="8">到达台湾</option>
+                                        <option value="3">到达代取</option>
+                                        <option value="4">签收</option>
+                                        <option value="5">拒收</option>
+                                        <option value="6">退换货</option>
+                                        <option value="9">作废</option>
+
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-inline layui-show-xs-block" style="width:100px;">
+                            <div class="layui-inline">
+                                <div class="layui-input-inline">
+                                    <select name="user_id">
+                                        <option value="">选择人员</option>
+                                        {volist name="userlsit" id="v"}
+                                        <option value="{$v.user_id}">{$v.name}</option>
+
+                                        {/volist}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-inline layui-show-xs-block" style="width:100px;">
+                            <input type="text" placeholder="客户姓名"  autocomplete="off" name="name"  class="layui-input">
+                        </div>
+
+                        <div class="layui-inline layui-show-xs-block" style="width:100px;">
+                            <input type="text" placeholder="客户手机号"  autocomplete="off" name="telphone"  class="layui-input">
+                        </div>
+
+                        <div class="layui-inline layui-show-xs-block" style="width:100px;">
+                            <input type="text" placeholder="客户邮箱"  autocomplete="off" name="email"  class="layui-input">
+                        </div>
+                        <div class="layui-inline layui-show-xs-block" style="width:100px;">
+                            <input type="text" placeholder="下单地址"  autocomplete="off" name="url"  class="layui-input">
+                        </div>
+                        <div class="layui-inline layui-show-xs-block" style="width:100px;">
+                            <input type="text" placeholder="货号"  autocomplete="off" name="goods_no"  class="layui-input">
+                        </div>
+                        <div class="layui-inline layui-show-xs-block">
+                            <input type="radio" name="is_show" value="0" title="正常" checked="">
+                            <input type="radio" name="is_show" value="1" title="作废">
+                        </div>
+                        <div class="layui-inline layui-show-xs-block">
+                            <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="layui-card-body ">
+                    <table class="layui-table layui-form" lay-filter="table">
+                        <thead>
+                        <tr>
+                            <!--<th>序号</th>-->
+                            <th>订单号</th>
+                            <th>产品信息</th>
+
+
+                            <th>订单总价</th>
+                            <th>姓名</th>
+                            <th>联系方式</th>
+                            <th style="width: 120px;">地址</th>
+                            <th>配送方式</th>
+                            <th>下单时间</th>
+                            <th style="width: 60px;">留言</th>
+
+<!--                            <th>物流状态</th>-->
+<!--                            <th>采购状态</th>-->
+                            <th>操作</th>
+                        </thead>
+                        <tbody>
+                        {php}
+                        //print_r($list);
+                        $goodsurl = config('goodsinfourl');
+                        {/php}
+                        {volist name="list" id="vo"}
+                        {php}
+                        $orderinfo = json_decode($vo['order_info'],true);
+                        $existNameCount = Db('order')->field('id')->where('is_del',0)->where('name',$vo['name'])->count();
+
+                        $url = $vo['url'];
+                        $parse_url = parse_url($url);
+                        $host = $parse_url['host'];
+                        $is_pc = preg_match("/pc/",$parse_url['path']);
+                        // dump($is_mobile);
+                        {/php}
+                        <tr>
+                            <!--<td></td>-->
+                            <td >{$vo.order_no}</td>
+                            <td>
+
+                                <table class="layui-table layui-form" lay-skin="line">
+                                    <thead>
+                                    <tr>
+                                        <th style="width: 120px">貨號/套餐名</th>
+                                        <th>产品图片</th>
+                                        <th>产品主属性</th>
+                                        <th>产品子属性</th>
+                                        <th>购买数量</th>
+                                        <!--                                                <th>优惠(台币)</th>-->
+                                        <th>商品所属</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {volist name="orderinfo" id="va"}
+                                    <tr>
+
+
+                                        <td>
+                                            {php}
+                                            $goodsname = Db('Goods')->field('id,name')->where('goods_no',$va['goods_no'])->find();
+                                            {/php}
+
+                                            <a href="{$goodsurl}{$goodsname.id}" target="_blank">{$va.goods_no}&nbsp;/&nbsp;{$va.taocan}</a>
+                                        </td>
+                                        <td>
+                                            {php}
+                                            $goodsname = Db('Goods')->field('id,name')->where('goods_no',$va['goods_no'])->find();
+
+                                            {/php}
+
+                                            {if empty($va.photo)}
+
+                                            <a><img class="small_img" data-src="{$va.img}" src="{$va.img}" /></a>
+
+                                            {else /}
+                                            {volist name="va.photo" id="vv"}
+                                            <li>
+                                                <a><img class="small_img" data-src="{$vv}" src="{$vv}" style="width:60%;" /></a>
+                                            </li>
+                                            {/volist}
+                                            {/if}
+
+                                            {php}
+                                            $buynumber = Db('Goods')->field('buynumber')->where('goods_no',$va['goods_no'])->find();
+
+                                            {/php}
+                                            <li>已购数量: <span style="color:red;font-style: italic;font-weight: bold;font-size: 20px;">{$buynumber['buynumber']}</span> </li>
+
+                                        </td>
+                                        <td>
+                                            {volist name="va['color']" id="vcc"}
+                                            <li style="margin-bottom:10px;">{$vcc}</li>
+
+                                            {/volist}
+                                        </td>
+                                        <td>
+                                            {volist name="va['size']" id="vdd"}
+                                            <li style="margin-bottom:10px;">{$vdd}</li>
+                                            {/volist}
+                                        </td>
+                                        <td>
+                                            {$va.num}
+                                        </td>
+                                        <!--                                                <td>-->
+                                        <!--                                                    <span>{php}echo $sell =  $va['cost_price']*$va['num'];{/php}</span>-->
+                                        <!--                                                </td>-->
+                                        <td>
+
+                                            {php}
+                                            strval($va['userid']);
+                                            $usernames = Db('AdminUser')->field('name')->where('user_id',$va['userid'])->find();
+                                            {/php}
+                                            <sapn style="text-align: center;">{$usernames['name']}</sapn>
+
+
+                                        </td>
+                                    </tr>
+                                    {/volist}
+                                    </tbody>
+                                </table>
+
+                            </td>
+
+
+
+
+
+                            <td>
+                                {$vo.payable_amount}<br>
+                                {if $vo.discount}
+                                {switch $vo.discount}
+                                {case reduce_50}<span style="color:red;">(50优惠券)</span>{/case}
+                                {case reduce_100}<span style="color:red;">(100优惠券)</span>{/case}
+                                {case reduce_150}<span style="color:red;">(150优惠券)</span>{/case}
+                                {case multiply_70}<span style="color:red;">(7折劵)</span>{/case}
+                                {case multiply_75}<span style="color:red;">(7.5折劵)</span>{/case}
+                                {case multiply_80}<span style="color:red;">(8折劵)</span>{/case}
+                                {case multiply_85}<span style="color:red;">(8.5折劵)</span>{/case}
+                                {default /}无折价码
+                                {/switch}
+                                {/if}
+
+                            </td>
+                            <td >{$vo.name}{if $existNameCount>1}<span style="color:red;">(已购{$existNameCount})</span>{/if}</td>
+                            <td >
+
+                                联系电话:{if $vo.telphone == ''}空{else /}{$vo.telphone}{/if}<br />
+                                E-mail:{if $vo.email == ''}空{else /}{$vo.email}{/if}<br />
+                                Line ID:{if $vo.lineid == ''}空{else /}{$vo.lineid}{/if}<br />
+                                下单地址:{if $vo.url == ''}空{else /}{$host}{/if}<br />
+                                下单设备:{if $is_pc}PC端{else /}移动端{/if}<br />
+                                IP:{if $vo.ip == ''}空{else /}{$vo.ip}{/if}<br />
+                                IP地址:{if $vo.ip_address == ''}空{else /}{$vo.ip_address}{/if}<br />
+
+                            </td>
+                            <td>{$vo.country}{$vo.province}{$vo.city}{$vo.area}{$vo.address}</td>
+                            <td >
+                                {switch $vo.payment}
+                                {case payment1}711超商取货{/case}
+                                {case payment2}全家超商取货{/case}
+                                {case payment3}宅配到府{/case}
+                                {case payment4}黑猫宅配{/case}
+                                {default /}空
+                                {/switch}
+                            </td>
+                            <td >{$vo.create_time|date="Y-m-d H:i:s"}</td>
+                            <td >{$vo.message?$vo.message:'无留言'}</td>
+
+
+
+
+<!--                            <td>-->
+<!--                                &lt;!&ndash;                                        <span  style="margin-top: 5px;" class="layui-btn layui-btn-normal layui-btn-mini">{if $vo.completion == 0}制作中{else /}完成{/if}</span>&ndash;&gt;-->
+<!--                                <span onclick="member_purchase_status(this,'{$vo.id}')" class="layui-btn {if $vo.purchase_status == 1}layui-btn-normal{else /}layui-btn-danger{/if} layui-btn-mini">{if $vo.purchase_status == 0}采购中{else /}采购完成{/if}</span>-->
+<!--                            </td>-->
+
+
+                            <td class="td-manage">
+<!--                                <a onclick="member_stop(this,'{$vo.id}')"  href="javascript:;"  title="{if $vo.is_show == 0}{switch $vo.status}{case 1 }下单成功{/case}-->
+<!--    {case 2}配送中{/case}{case 3}到达代取{/case}{case 4}签收{/case}{case 5}拒收{/case}{case 6}退换货{/case}{case 7}清关中{/case}{case 8}抵达台湾{/case}-->
+<!--    {default /}数据错误{/switch}{else /}作废{/if}">-->
+<!--                                    <i class="layui-icon">&#xe601;</i>-->
+<!--                                </a>-->
+                                <a title="查看用户信息"  onclick="xadmin.open('用户信息','/vorderinfo?iid={$vo.id}',600,400)" href="javascript:;">
+                                    <i class="layui-icon">&#xe642;</i>`
+                                </a>
+<!--                                <a title="删除订单" href="javascript:;" onclick="del(this,'{$vo.id}')">-->
+<!--                                    <i class="layui-icon">&#x1006;</i>-->
+<!--                                </a>-->
+                            </td>
+                        </tr>
+                        {/volist}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="layui-card-body ">
+                    <div class="page">
+                        <div>
+                            {$list|raw}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="http://libs.baidu.com/jquery/1.7.2/jquery.js"></script>
+<script>
+
+    layui.use(['laydate','form','table'], function(){
+        var laydate = layui.laydate;
+        var form = layui.form;
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#start' //指定元素
+        });
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#end' //指定元素
+        });
+
+
+        form.on('select(timeIn)', function(data){
+            switch (data.value) {
+                case '1':
+                    laydate.render({
+                        elem: '#start' //指定元素
+                        ,value: new Date(new Date().getTime() - 60*60*24*30*1000)
+                    });
+
+
+                    ;break;
+                case '2':
+                    laydate.render({
+                        elem: '#start' //指定元素
+                        ,value: new Date(new Date().getTime() - 60*60*24*7*1000)
+                    });
+
+
+                    ;break;
+                case '3':
+                    laydate.render({
+                        elem: '#start' //指定元素
+                        ,value: new Date(new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'+new Date().getDate())
+                    });
+
+                    ;break;
+
+            }
+        });
+    });
+
+    // 管理员删除订单
+    function del(obj,id){
+        layer.confirm('确认要删除吗',function(index){
+            $.ajax({
+                type: 'post',
+                url:"{:url('backend/Order/del')}",
+                data:{'id':id},
+                success:function(data){
+                    if(data.code == 200){
+                        $(obj).parents("tr").remove();
+                        layer.msg(data.message,{icon: 6,time:1000});
+                    }else{
+                        layer.msg(data.message,{icon: 5,time:1000});
+                    }
+                },
+                error:function(){
+                    layer.msg('网络异常!',{icon: 5,time:1000});
+                }
+            })
+        })
+    }
+
+    /*用户-停用*/
+    function member_stop(obj,id){
+        layer.confirm('确认要操作吗？',function(index){
+            // console.log(obj);return ;
+            if($(obj).attr('title')=='下单成功' || $(obj).attr('title')=='配送中' || $(obj).attr('title')=='到达代取' || $(obj).attr('title')=='签收' || $(obj).attr('title')=='拒收' || $(obj).attr('title')=='退换货' || $(obj).attr('title')=='清关中' || $(obj).attr('title')=='抵达台湾'){
+                $.ajax({
+                    type: 'post',
+                    url:"/vorderdelete",
+                    data:{id:id},
+                    success:function(data){
+                        // console.log(data);return ;
+                        if(data.code == 200){
+                            $(obj).attr('title','作废');
+                            $(obj).find('i').html('&#xe62f;');
+
+                            $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('作废');
+                            layer.msg('已作废!',{icon: 5,time:1000});
+                        }else{
+                            layer.msg(data.message,{icon: 5,time:1000});
+                        }
+                        window.location.reload();
+                    },
+                    error:function(data){
+                        layer.msg('网络异常!',{icon: 5,time:1000});
+                    }
+                })
+                //发异步把用户状态进行更改
+            }else{
+                $.ajax({
+                    url:"/vorderdelete",
+                    data:{id:id},
+                    success:function(data){
+                        if(data.code == 200){
+                            // $(obj).attr('title','正常');
+                            $(obj).find('i').html('&#xe601;');
+                            // console.log(data);return ;
+                            <!-- 下单成功 配送中 到达代取 签收 拒收 退换货 总计-->
+                            if(data.data == 1){
+                                $(obj).attr('title','下单成功');
+                                $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('下单成功');
+                                layer.msg('恢复到下单成功!',{icon: 6,time:1000});
+                            }else if(data.data == 2){
+                                $(obj).attr('title','配送中');
+                                $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('配送中');
+                                layer.msg('恢复到配送中!',{icon: 6,time:1000});
+                            }else if(data.data == 3){
+                                $(obj).attr('title','到达代取');
+                                $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('到达代取');
+                                layer.msg('恢复到到达代取!',{icon: 6,time:1000});
+                            }else if(data.data == 4){
+                                $(obj).attr('title','签收');
+                                $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('签收');
+                                layer.msg('恢复到签收!',{icon: 6,time:1000});
+                            }else if(data.data == 5){
+                                $(obj).attr('title','拒收');
+                                $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('拒收');
+                                layer.msg('恢复到拒收!',{icon: 6,time:1000});
+                            }else if(data.data == 6){
+                                $(obj).attr('title','退换货');
+                                $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('退换货');
+                                layer.msg('恢复到退换货!',{icon: 6,time:1000});
+                            }else if(data.data == 7){
+                                $(obj).attr('title','清关中');
+                                $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('清关中');
+                                layer.msg('恢复到清关中!',{icon: 6,time:1000});
+                            }else if(data.data == 8){
+                                $(obj).attr('title','抵达台湾');
+                                $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('抵达台湾');
+                                layer.msg('恢复到抵达台湾!',{icon: 6,time:1000});
+                            }else if(data.data == 9){
+                                $(obj).attr('title','作废');
+                                $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('作废');
+                                layer.msg('恢复到作废!',{icon: 6,time:1000});
+                            }
+                            window.location.reload();
+                            // layer.msg('已正常!',{icon: 6,time:1000});
+
+                        }else{
+                            layer.msg(data.message,{icon: 5,time:1000});
+                        }
+                    },
+                    error:function(data){
+                        layer.msg('网络异常!',{icon: 5,time:1000});
+                    }
+                })
+
+            }
+
+        });
+    }
+
+
+
+    /*用户-榜单状态修改*/
+    function member_purchase_status(obj,id){
+        if($(obj).html() == '采购中'){
+            layer.confirm('确认要修改为采购完成吗？',function(index){
+                $.ajax({
+                    type: 'post',
+                    url:"{:url('/backend/Goods/changePurchaseStatus')}",
+                    data:{id:id},
+                    success:function(data){
+                        // console.log(data);return ;
+                        if(data.code = 200){
+                            $(obj).html('采购完成');
+                            // $(obj).find('i').html('&#xe62f;');
+
+                            // $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('下架');
+                            layer.msg('已修改为采购完成!',{icon: 1,time:1000});
+                            location.reload();
+                        }else{
+                            layer.msg('网络异常!',{icon: 2,time:1000});
+                        }
+                    },
+                    error:function(data){
+                        layer.msg('网络异常!',{icon: 2,time:1000});
+                    }
+                })
+            })
+        }else{
+            layer.confirm('确认要修改为采购中吗？',function(index){
+                $.ajax({
+                    url:"{:url('/backend/Goods/changePurchaseStatus')}",
+                    data:{id:id},
+                    success:function(data){
+                        if(data.code = 200){
+                            $(obj).html('采购中');
+                            // $(obj).find('i').html('&#xe601;');
+                            //
+                            // $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('正常');
+                            layer.msg('已修改为采购中!',{icon: 2,time:1000});
+                            location.reload();
+                        }else{
+                            layer.msg('网络异常!',{icon: 2,time:1000});
+                        }
+                    },
+                    error:function(data){
+                        layer.msg('网络异常!',{icon: 2,time:1000});
+                    }
+                })
+            })
+        }
+        // layer.confirm('确认要停用吗？',function(index){
+        //     if($(obj).attr('title')=='正常'){
+        //         $.ajax({
+        //             type: 'post',
+        //             url:"/vgoodsshow",
+        //             data:{id:id},
+        //             success:function(data){
+        //                 // console.log(data);return ;
+        //                 if(data.code = 200){
+        //                     $(obj).attr('title','下架')
+        //                     $(obj).find('i').html('&#xe62f;');
+        //
+        //                     $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('下架');
+        //                     layer.msg('已下架!',{icon: 5,time:1000});
+        //                 }else{
+        //                     layer.msg('网络异常!',{icon: 5,time:1000});
+        //                 }
+        //             },
+        //             error:function(data){
+        //                 layer.msg('网络异常!',{icon: 5,time:1000});
+        //             }
+        //         })
+        //         //发异步把用户状态进行更改
+        //     }else{
+        //         $.ajax({
+        //             url:"/vgoodsshow",
+        //             data:{id:id},
+        //             success:function(data){
+        //                 if(data.code = 200){
+        //                     $(obj).attr('title','下架')
+        //                     $(obj).find('i').html('&#xe601;');
+        //
+        //                     $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('正常');
+        //                     layer.msg('已正常!',{icon: 6,time:1000});
+        //                 }else{
+        //                     layer.msg('网络异常!',{icon: 5,time:1000});
+        //                 }
+        //             },
+        //             error:function(data){
+        //                 layer.msg('网络异常!',{icon: 5,time:1000});
+        //             }
+        //         })
+        //
+        //     }
+        //
+        // });
+    }
+    // 放大图片js
+
+    $(".small_img").click(function(){
+        layindex = layer.open({
+
+            type: 1,
+            title: false,
+            closeBtn: 0,
+            shadeClose: true, //点击阴影关闭
+            area: [ '600px', '600px'], //宽高
+            content: "<img style='width:600px;height:600px;' src=" + $(this).attr('data-src') + " />"
+        });
+
+    })
+
+</script>
+</html>

@@ -1,0 +1,227 @@
+{include file="./public/head" /}
+    <body>
+        <div class="layui-fluid">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-body ">
+                            <blockquote class="layui-elem-quote">欢迎&nbsp;{$Think.cookie.rolename}：
+                                <span class="x-red">{$Think.cookie.name}</span>&nbsp;&nbsp;^_^...
+                                <span>请您注意天气状况：<iframe width="500" scrolling="no" height="14" frameborder="0" allowtransparency="true" src="//i.tianqi.com/index.php?c=code&id=11&icon=2&site=10"></iframe>&nbsp;&nbsp;&nbsp;祝您工作开心...</span>
+                                &nbsp;&nbsp;&nbsp;&nbsp;当前时间:<span id="time"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <!--<span style="margin-right: 10px;">日期</span>-->
+                            </blockquote>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-header">数据统计(总)</div>
+                        <div class="layui-card-body ">
+                            <ul class="layui-row layui-col-space10 layui-this x-admin-carousel x-admin-backlog">
+                                <li class="layui-col-md2 layui-col-xs6">
+                                    <a href="javascript:;" class="x-admin-backlog-body">
+                                        <h3>管理员 (包含自己)</h3>
+                                        <p>
+                                            <cite>{$userallow}/位</cite></p>
+                                    </a>
+                                </li>
+                                <li class="layui-col-md2 layui-col-xs6">
+                                    <a href="javascript:;" class="x-admin-backlog-body">
+                                        <h3>本月添加到桌面次数</h3>
+                                        <p>
+                                            <cite>{$count}</cite></p>
+                                    </a>
+                                </li>
+
+                                <li class="layui-col-md2 layui-col-xs6">
+                                    <a href="javascript:;" class="x-admin-backlog-body">
+                                        <h3>商品总数&nbsp;/&nbsp;下架&nbsp;/&nbsp;已删除 (个)</h3>
+                                        <p>
+                                            <cite>{$goodsall}&nbsp;&nbsp;/&nbsp;&nbsp;{$goodstwo}&nbsp;&nbsp;/&nbsp;&nbsp;{$goodsdel}</cite></p>
+                                    </a>
+                                </li>
+                                <li class="layui-col-md2 layui-col-xs6">
+                                    <a href="javascript:;" class="x-admin-backlog-body">
+                                        <h3>有效商品 (个)</h3>
+                                        <p>
+                                            <cite>{$goodsone}</cite></p>
+                                    </a>
+                                </li>
+                                <li class="layui-col-md2 layui-col-xs6">
+                                    <a href="javascript:;" class="x-admin-backlog-body">
+                                        <h3>订单总数&nbsp;/&nbsp;作废 (单)</h3>
+                                        <p>
+                                            <cite>{$orderall}&nbsp;&nbsp;/&nbsp;&nbsp;{$ordersix}</cite></p>
+                                    </a>
+                                </li>
+                                <li class="layui-col-md2 layui-col-xs6 ">
+                                    <a href="javascript:;" class="x-admin-backlog-body">
+                                        <h3>已完成订单总数 (单)</h3>
+                                        <p>
+                                            <cite>{$orderfour}</cite></p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-md3">
+                    <div class="layui-card">
+                        <div class="layui-card-header">下单成功
+                            <span class="layui-badge layui-bg-cyan layuiadmin-badge">总</span></div>
+                        <div class="layui-card-body  ">
+                            <p class="layuiadmin-big-font">{$orderone}单</p>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-md3">
+                    <div class="layui-card">
+                        <div class="layui-card-header">配送中
+                            <span class="layui-badge layui-bg-cyan layuiadmin-badge">总</span></div>
+                        <div class="layui-card-body ">
+                            <p class="layuiadmin-big-font">{$ordertwo}单</p>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-md3">
+                    <div class="layui-card">
+                        <div class="layui-card-header">到达代取
+                            <span class="layui-badge layui-bg-cyan layuiadmin-badge">总</span></div>
+                        <div class="layui-card-body ">
+                            <p class="layuiadmin-big-font">{$orderthree}单</p>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-md3">
+                    <div class="layui-card">
+                        <div class="layui-card-header">签收
+                            <span class="layui-badge layui-bg-cyan layuiadmin-badge">总</span></div>
+                        <div class="layui-card-body ">
+                            <p class="layuiadmin-big-font">{$orderfour}单</p>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-md3">
+                    <div class="layui-card">
+                        <div class="layui-card-header">拒收
+                            <span class="layui-badge layui-bg-cyan layuiadmin-badge">总</span></div>
+                        <div class="layui-card-body ">
+                            <p class="layuiadmin-big-font">{$orderfive}单</p>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-md3">
+                    <div class="layui-card">
+                        <div class="layui-card-header">退换货
+                            <span class="layui-badge layui-bg-cyan layuiadmin-badge">总</span></div>
+                        <div class="layui-card-body ">
+                            <p class="layuiadmin-big-font">{$ordersix}单</p>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-md3">
+                    <div class="layui-card">
+                        <div class="layui-card-header">清关中
+                            <span class="layui-badge layui-bg-cyan layuiadmin-badge">总</span></div>
+                        <div class="layui-card-body ">
+                            <p class="layuiadmin-big-font">{$orderseven}单</p>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-md3">
+                    <div class="layui-card">
+                        <div class="layui-card-header">到达台湾
+                            <span class="layui-badge layui-bg-cyan layuiadmin-badge">总</span></div>
+                        <div class="layui-card-body ">
+                            <p class="layuiadmin-big-font">{$ordereight}单</p>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="layui-col-sm6 layui-col-md3">-->
+                    <!--<div class="layui-card">-->
+                        <!--<div class="layui-card-header">订单完成-->
+                            <!--<span class="layui-badge layui-bg-cyan layuiadmin-badge">总</span></div>-->
+                        <!--<div class="layui-card-body ">-->
+                            <!--<p class="layuiadmin-big-font">33,555</p>-->
+                            <!--<p>新下载-->
+                                <!--<span class="layuiadmin-span-color">10%-->
+                                    <!--<i class="layui-inline layui-icon layui-icon-face-smile-b"></i></span>-->
+                            <!--</p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-header">系统信息</div>
+                        <div class="layui-card-body ">
+                            <table class="layui-table">
+                                <tbody>
+                                    {volist name="systeminfo" id="vo"}
+                                        <tr>
+                                            <th>{$key}</th>
+                                            <td>{$vo}</td>
+                                        </tr>
+                                    {/volist}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-header">开发团队</div>
+                        <div class="layui-card-body ">
+                            <table class="layui-table">
+                                <tbody>
+                                    <tr>
+                                        <th>版权所有</th>
+                                        <td>tthuipin.com(web)
+                                            <a href="http://www.tthuipin.com/" target="_blank">访问官网</a></td>
+                                    </tr>
+                                    <tr>
+                                        <th>开发者</th>
+                                        <td>张俊君(微信:zjj__weixin)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <style id="welcome_style"></style>
+                <div class="layui-col-md12">
+                    <blockquote class="layui-elem-quote layui-quote-nm">感谢layui,百度Echarts,jquery,本系统由x-admin提供技术支持。</blockquote></div>
+            </div>
+        </div>
+        </div>
+    </body>
+
+<script type="text/javascript">
+    function time(){
+        var vWeek,vWeek_s,vDay;
+        vWeek = ["星期天","星期一","星期二","星期三","星期四","星期五","星期六"];
+        var date =  new Date();
+        year = date.getFullYear();
+        month = date.getMonth() + 1;
+        day = date.getDate();
+        hours = date.getHours();
+        minutes = date.getMinutes();
+        seconds = date.getSeconds();
+        vWeek_s = date.getDay();
+        document.getElementById("time").innerHTML = year + "年" + month + "月" + day + "日" + "\t" + hours + ":" + minutes +":" + seconds + "\t" + vWeek[vWeek_s] ;
+
+    };
+    setInterval("time()",1000);
+</script>
+
+</html>

@@ -1,0 +1,167 @@
+{include file="./public/head" /}
+    <body>
+        <div class="x-nav">
+          <span class="layui-breadcrumb">
+            <a href="/vindex">首页</a>
+            <a href="">演示</a>
+            <a>
+              <cite>导航元素</cite></a>
+          </span>
+          <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
+            <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
+        </div>
+        <div class="layui-fluid">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <!--<div class="layui-card-body ">-->
+                            <!--<form class="layui-form layui-col-space5">-->
+                                <!--&lt;!&ndash;<div class="layui-inline layui-show-xs-block">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<input class="layui-input"  autocomplete="off" placeholder="开始日" name="start" id="start">&ndash;&gt;-->
+                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<div class="layui-inline layui-show-xs-block">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<input class="layui-input"  autocomplete="off" placeholder="截止日" name="end" id="end">&ndash;&gt;-->
+                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--<div class="layui-inline layui-show-xs-block">-->
+                                    <!--<input type="text" name="name"  placeholder="banner名称" autocomplete="off" class="layui-input">-->
+                                <!--</div>-->
+                                <!--&lt;!&ndash;<div class="layui-inline layui-show-xs-block">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<input type="text" name="url"  placeholder="请输入路由" autocomplete="off" class="layui-input">&ndash;&gt;-->
+                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--<div class="layui-inline layui-show-xs-block">-->
+                                    <!--<button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>-->
+                                <!--</div>-->
+                            <!--</form>-->
+                        <!--</div>-->
+                        <!--<div class="layui-card-header">-->
+                            <!--<button class="layui-btn layui-btn-danger" onclick="backup()">&lt;!&ndash;<i class="layui-icon"></i>&ndash;&gt;生成备份(全部表)</button>-->
+                            <!--&lt;!&ndash;<button class="layui-btn" onclick="xadmin.open('banenr添加','/vbanneradd',600,800)"><i class="layui-icon"></i>生成备份</button>&ndash;&gt;-->
+                        <!--</div>-->
+                        <div class="layui-card-body ">
+                            <table class="layui-table layui-form">
+                              <thead>
+                                <tr>
+                                  <!--<th>-->
+                                    <!--<input type="checkbox" name=""  lay-skin="primary">-->
+                                  <!--</th>-->
+                                  <th>序号</th>
+                                  <th>名字</th>
+                                  <th>是否压缩</th>
+                                  <th>SIZE</th>
+                                  <th>备份时间时间</th>
+                                  <th>操作</th>
+                              </thead>
+                              <tbody>
+                              <form name="bm">
+                              {volist name="list" id="vo"}
+                                <tr id="{$vo.time}">
+                                  <!--<td>-->
+                                    <!--<input type="checkbox" name=""  lay-skin="primary">-->
+                                  <!--</td>-->
+                                  <td>{$i}</td>
+                                  <td>{$vo.time|date='Ymd-His-1'}.sql</td>
+                                  <td>{$vo.compress}</td>
+                                  <td>{$vo.size}</td>
+                                  <td>{$vo.time|date='Y-m-d H:h:s'}</td>
+                                  <td class="td-manage">
+                                      <a href="{php}echo 'http://'.$_SERVER['SERVER_NAME'] ;{/php}/Data/{$vo.time|date='Ymd-His-1'}.sql" download="{$vo.time|date='Ymd-His-1'}.sql"  title="下载{$vo.time|date='Ymd-His-1'}.sql">
+                                          <i class="layui-icon">&#xe601;</i>
+                                      </a>
+                                      &nbsp;&nbsp;
+                                    <!--<a title="恢复表" onclick="reduction({$vo.time})"   href="javascript:;">-->
+                                      <!--<i class="layui-icon"></i>-->
+                                  <!--</a>-->
+                                      &nbsp;&nbsp;
+                                    <a title="删除" onclick="delback('{$vo.time}')" href="javascript:;">
+                                      <i class="layui-icon">&#xe640;</i>
+                                  </a>
+                                  </td>
+                                </tr>
+                              {/volist}
+                              </tbody>
+                            </table>
+                        </div>
+                        <div class="layui-card-body ">
+                            <div class="page">
+                                <div>
+                                    {$lsit|raw}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </body>
+
+    <script>
+
+      layui.use(['laydate','form'], function(){
+        var laydate = layui.laydate;
+        var form = layui.form;
+        
+        //执行一个laydate实例
+        laydate.render({
+          elem: '#start' //指定元素
+        });
+
+        //执行一个laydate实例
+        laydate.render({
+          elem: '#end' //指定元素
+        });
+      });
+
+      function delback(obj){
+          $.ajax({
+              type:'post',
+              data:{bname:obj},
+              url:'/vmysqldelback',
+              success:function(res){
+                  if(res.code == 200){
+                      $('#'+obj).remove();
+                      layer.alert(res.message, {
+                              icon: 6
+                          },
+                          /*function() {
+                              //关闭当前frame
+                              xadmin.close();
+
+                              // 可以对父窗口进行刷新
+                              xadmin.father_reload();
+                          }*/);
+                  }
+              }
+
+          })
+      }
+
+      // function reduction(obj){
+      //     $.ajax({
+      //         type:'post',
+      //         data:{bname:obj},
+      //         url:'/vmysqlreduction',
+      //         success:function(res){
+      //             if(res.code == 200){
+      //                 $('#'+obj).remove();
+      //                 layer.alert(res.message, {
+      //                         icon: 6
+      //                     },
+      //                     /*function() {
+      //                         //关闭当前frame
+      //                         xadmin.close();
+      //
+      //                         // 可以对父窗口进行刷新
+      //                         xadmin.father_reload();
+      //                     }*/);
+      //             }
+      //         }
+      //
+      //     })
+      // }
+
+
+
+
+
+    </script>
+</html>

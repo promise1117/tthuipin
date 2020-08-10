@@ -1,0 +1,1008 @@
+{include file="./public/head" /}
+<style>
+    .layui-table td, .layui-table th {
+         min-width: 0px !important;
+    }
+</style>
+    <body style="overflow-y: scroll;">
+        <div class="x-nav">
+          <span class="layui-breadcrumb">
+            <a href="/vindex">首页</a>
+            <a href="">演示</a>
+            <a>
+              <cite>导航元素</cite></a>
+          </span>
+          <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
+            <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
+        </div>
+        <div class="layui-fluid">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-body ">
+                            <form class="layui-form layui-col-space5">
+                                <div class="layui-inline layui-show-xs-block">
+                                    <input class="layui-input"  autocomplete="off" placeholder="开始日期" name="starttime" id="start">
+                                </div>
+                                <div class="layui-inline layui-show-xs-block">
+                                    <input class="layui-input"  autocomplete="off" placeholder="结束日期" name="endtime" id="end">
+                                </div>
+                                <div class="layui-inline layui-show-xs-block">
+                                    <div class="layui-inline">
+                                        <div class="layui-input-inline">
+                                            <select  lay-filter="timeIn">
+                                                <option value="">选择日期(默认本月)</option>
+                                                <option value="3">今日</option>
+                                                <option value="5">昨日</option>
+                                                <option value="2">最近七天</option>
+                                                <option value="1">本月</option>
+                                                <option value="4">上一月</option>
+
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-inline layui-show-xs-block">
+                                    <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+                                </div>
+                            </form>
+                        </div>
+                        <script src="__BJS__/echarts.min.js"></script>
+                        <div id="container" style="height: 600px"></div>
+                        <div class="layui-card-body">
+                            <p style="font-size: 20px;font-weight: 900;margin: 28px 0;">运营人员订单时间表格 <span style="color:#c7c7c7;font-size:14px;">(由于订单可能有离职产品人员或者一个订单有多名产品人员,所以统计订单总量统计以域名统计表为准)</span> </p>
+                            <table class="layui-table">
+                                <thead>
+                                <tr>
+                                    <th>姓名/时间</th>
+                                    {volist name="time1" id="vo"}
+                                    <th>{$vo|date="m-d"}</th>
+                                    {/volist}
+                                    <th>合计</th>
+                                </tr>
+
+                                </thead>
+                                <tbody>
+                                {volist name="list1" id="vo"}
+                                <tr>
+                                    <td>{$vo.name}</td>
+                                    {volist name="vo.ordernum" id="vv"}
+                                    <td class="ordernum" data-key="{$key}">{$vv}</td>
+                                    {/volist}
+                                    <td class="row_total" style="color:red;font-weight: bold;font-size:16px;"></td>
+                                </tr>
+
+                                {/volist}
+                                <tr>
+                                    <td>合计</td>
+                                    {volist name="vo.ordernum" id="vv"}
+                                    <td class="col_total" data-key="{$key}" style="color:red;font-weight: bold;font-size:16px;"></td>
+                                    {/volist}
+                                    <td class="total" style="color:blue;font-weight: bold;font-size:20px;"></td>
+
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+
+
+                        <div class="layui-card-body">
+                            <p style="font-size: 20px;font-weight: 900;margin: 28px 0;">推广人员域名订单时间表格</p>
+                            <table class="layui-table">
+                                <thead>
+                                <tr>
+                                    <th>域名/时间</th>
+                                    {volist name="time3" id="vo"}
+                                    <th>{$vo|date="m-d"}</th>
+                                    {/volist}
+<!--                                    <th>成本价统计(人民币)</th>-->
+                                    <th>销售额统计(人民币)</th>
+                                    <th>合计(单量)</th>
+                                </tr>
+
+                                </thead>
+                                <tbody>
+                                {php}
+                                // 定义标志 , 给予多重循环内循环一次循环
+                                $bz1 = true;
+                                $bz2 = true;
+                                $bz3 = true;
+                                $bz4 = true;
+                                $bz5 = true;
+                                $bz6 = true;
+                                $bz7 = true;
+                                $bz8 = true;
+                                {/php}
+                                {volist name="promoteArr1" id="vo"}
+                                {php}
+                                $parse_url = $urlArr[$key];
+                                $sellUrlall = $promoteSellPrice[$key];
+                                $costUrlall = $promoteCostPrice[$key];
+                                $left_parse_url = strstr($parse_url,'www',true);
+                                $right_parse_url = strstr($parse_url,'www');
+                                {/php}
+
+                                {switch $left_parse_url}
+                                {case (公共)}
+                                {if $bz1}
+                                <tr style="color:red;font-weight: bold;">
+                                    <th>公共</th>
+                                    {volist name="vo" id="vv"}
+                                    <td class="public_col_total2" data-key="{$key}"></td>
+                                    {/volist}
+                                    <!--                                    <td class="ordercost2">{$costUrlall}</td>-->
+                                    <td class="public_col_sell_total2"></td>
+                                    <td class="public_total2" style="font-weight: bold;font-size: 14px;"></td>
+                                </tr>
+                                {/if}
+                                {php}
+                                $bz1 = false;
+                                {/php}
+                                <tr>
+                                    <th>
+                                        {$right_parse_url}
+                                    </th>
+
+                                    {volist name="vo" id="vv"}
+                                    <td class="ordernum2 public_ordernum2" data-key="{$key}">{$vv}</td>
+                                    {/volist}
+                                    <!--                                    <td class="ordercost2">{$costUrlall}</td>-->
+                                    <td class="ordersell2 public_ordersell2">{$sellUrlall}</td>
+                                    <td class="row_total2 public_row_total2" style="color:black;font-weight: bold;font-size:14px;"></td>
+                                </tr>
+                                {/case}
+
+                                {case (客服)}
+                                {if $bz2}
+                                <tr style="color:red;font-weight: bold;">
+                                    <th>客服</th>
+                                    {volist name="vo" id="vv"}
+                                    <td class="kf_col_total2" data-key="{$key}"></td>
+                                    {/volist}
+                                    <!--                                    <td class="ordercost2">{$costUrlall}</td>-->
+                                    <td class="kf_col_sell_total2"></td>
+                                    <td class="kf_total2" style="font-weight: bold;font-size: 14px;"></td>
+                                </tr>
+                                {/if}
+                                {php}
+                                $bz2 = false;
+                                {/php}
+                                <tr>
+                                    <th>
+                                        {$right_parse_url}
+                                    </th>
+
+                                    {volist name="vo" id="vv"}
+                                    <td class="ordernum2 kf_ordernum2" data-key="{$key}">{$vv}</td>
+                                    {/volist}
+                                    <!--                                    <td class="ordercost2">{$costUrlall}</td>-->
+                                    <td class="ordersell2 kf_ordersell2">{$sellUrlall}</td>
+                                    <td class="row_total2 kf_row_total2" style="color:black;font-weight: bold;font-size:14px;"></td>
+                                </tr>
+                                {/case}
+
+
+                                {case (时杰伟)}
+                                {if $bz3}
+                                <tr style="color:red;font-weight: bold;">
+                                    <th>时杰伟</th>
+                                    {volist name="vo" id="vv"}
+                                    <td class="sjw_col_total2" data-key="{$key}"></td>
+                                    {/volist}
+                                    <!--                                    <td class="ordercost2">{$costUrlall}</td>-->
+                                    <td class="sjw_col_sell_total2"></td>
+                                    <td class="sjw_total2" style="font-weight: bold;font-size: 14px;"></td>
+                                </tr>
+                                {/if}
+                                {php}
+                                $bz3 = false;
+                                {/php}
+                                <tr>
+                                    <th>
+                                        {$right_parse_url}
+                                    </th>
+
+                                    {volist name="vo" id="vv"}
+                                    <td class="ordernum2 sjw_ordernum2" data-key="{$key}">{$vv}</td>
+                                    {/volist}
+                                    <!--                                    <td class="ordercost2">{$costUrlall}</td>-->
+                                    <td class="ordersell2 sjw_ordersell2">{$sellUrlall}</td>
+                                    <td class="row_total2 sjw_row_total2" style="color:black;font-weight: bold;font-size:14px;"></td>
+                                </tr>
+                                {/case}
+
+
+
+                                {case (王金雷)}
+                                {if $bz5}
+                                <tr style="color:red;font-weight: bold;">
+                                    <th>王金雷</th>
+                                    {volist name="vo" id="vv"}
+                                    <td class="wjl_col_total2" data-key="{$key}"></td>
+                                    {/volist}
+                                    <!--                                    <td class="ordercost2">{$costUrlall}</td>-->
+                                    <td class="wjl_col_sell_total2"></td>
+                                    <td class="wjl_total2" style="font-weight: bold;font-size: 14px;"></td>
+                                </tr>
+                                {/if}
+                                {php}
+                                $bz5 = false;
+                                {/php}
+                                <tr>
+                                    <th>
+                                        {$right_parse_url}
+                                    </th>
+
+                                    {volist name="vo" id="vv"}
+                                    <td class="ordernum2 wjl_ordernum2" data-key="{$key}">{$vv}</td>
+                                    {/volist}
+                                    <!--                                    <td class="ordercost2">{$costUrlall}</td>-->
+                                    <td class="ordersell2 wjl_ordersell2">{$sellUrlall}</td>
+                                    <td class="row_total2 wjl_row_total2" style="color:black;font-weight: bold;font-size:14px;"></td>
+                                </tr>
+                                {/case}
+
+
+                                {case (章晋超)}
+                                {if $bz6}
+                                <tr style="color:red;font-weight: bold;">
+                                    <th>章晋超</th>
+                                    {volist name="vo" id="vv"}
+                                    <td class="zjc_col_total2" data-key="{$key}"></td>
+                                    {/volist}
+                                    <!--                                    <td class="ordercost2">{$costUrlall}</td>-->
+                                    <td class="zjc_col_sell_total2"></td>
+                                    <td class="zjc_total2" style="font-weight: bold;font-size: 14px;"></td>
+                                </tr>
+                                {/if}
+                                {php}
+                                $bz6 = false;
+                                {/php}
+                                <tr>
+                                    <th>
+                                        {$right_parse_url}
+                                    </th>
+
+                                    {volist name="vo" id="vv"}
+                                    <td class="ordernum2 zjc_ordernum2" data-key="{$key}">{$vv}</td>
+                                    {/volist}
+                                    <!--                                    <td class="ordercost2">{$costUrlall}</td>-->
+                                    <td class="ordersell2 zjc_ordersell2">{$sellUrlall}</td>
+                                    <td class="row_total2 zjc_row_total2" style="color:black;font-weight: bold;font-size:14px;"></td>
+                                </tr>
+                                {/case}
+                                
+                                {case (时海龙)}
+                                {if $bz4}
+                                <tr style="color:red;font-weight: bold;">
+                                    <th>时海龙</th>
+                                    {volist name="vo" id="vv"}
+                                    <td class="shl_col_total2" data-key="{$key}"></td>
+                                    {/volist}
+                                    <!--                                    <td class="ordercost2">{$costUrlall}</td>-->
+                                    <td class="shl_col_sell_total2"></td>
+                                    <td class="shl_total2" style="font-weight: bold;font-size: 14px;"></td>
+                                </tr>
+                                {/if}
+                                {php}
+                                $bz4 = false;
+                                {/php}
+                                <tr>
+                                    <th>
+                                        {$right_parse_url}
+                                    </th>
+
+                                    {volist name="vo" id="vv"}
+                                    <td class="ordernum2 shl_ordernum2" data-key="{$key}">{$vv}</td>
+                                    {/volist}
+                                    <!--                                    <td class="ordercost2">{$costUrlall}</td>-->
+                                    <td class="ordersell2 shl_ordersell2">{$sellUrlall}</td>
+                                    <td class="row_total2 shl_row_total2" style="color:black;font-weight: bold;font-size:14px;"></td>
+                                </tr>
+                                {/case}
+
+
+
+
+
+
+                                {case (张清政)}
+                                {if $bz8}
+                                <tr style="color:red;font-weight: bold;">
+                                    <th>张清政</th>
+                                    {volist name="vo" id="vv"}
+                                    <td class="zqz_col_total2" data-key="{$key}"></td>
+                                    {/volist}
+                                    <!--                                    <td class="ordercost2">{$costUrlall}</td>-->
+                                    <td class="zqz_col_sell_total2"></td>
+                                    <td class="zqz_total2" style="font-weight: bold;font-size: 14px;"></td>
+                                </tr>
+                                {/if}
+                                {php}
+                                $bz8 = false;
+                                {/php}
+                                <tr>
+                                    <th>
+                                        {$right_parse_url}
+                                    </th>
+
+                                    {volist name="vo" id="vv"}
+                                    <td class="ordernum2 zqz_ordernum2" data-key="{$key}">{$vv}</td>
+                                    {/volist}
+                                    <!--                                    <td class="ordercost2">{$costUrlall}</td>-->
+                                    <td class="ordersell2 zqz_ordersell2">{$sellUrlall}</td>
+                                    <td class="row_total2 zqz_row_total2" style="color:black;font-weight: bold;font-size:14px;"></td>
+                                </tr>
+                                {/case}
+
+                                {default /}
+                                {if $bz7}
+                                <tr style="color:red;font-weight: bold;">
+                                    <th>其他</th>
+                                    {volist name="vo" id="vv"}
+                                    <td class="else_col_total2" data-key="{$key}"></td>
+                                    {/volist}
+                                    <!--                                    <td class="ordercost2">{$costUrlall}</td>-->
+                                    <td class="else_col_sell_total2"></td>
+                                    <td class="else_total2" style="font-weight: bold;font-size: 14px;"></td>
+                                </tr>
+                                {/if}
+                                {php}
+                                $bz7 = false;
+                                {/php}
+                                <tr>
+                                    <th>
+                                        {$parse_url}
+                                    </th>
+
+                                    {volist name="vo" id="vv"}
+                                    <td class="ordernum2 else_ordernum2" data-key="{$key}">{$vv}</td>
+                                    {/volist}
+                                    <!--                                    <td class="ordercost2">{$costUrlall}</td>-->
+                                    <td class="ordersell2 else_ordersell2">{$sellUrlall}</td>
+                                    <td class="row_total2 else_row_total2" style="color:black;font-weight: bold;font-size:14px;"></td>
+                                </tr>
+                                {/switch}
+
+
+                                {/volist}
+                                <tr>
+                                    <td>合计</td>
+                                    {volist name="promoteArr1[0]" id="vv"}
+
+                                        <td class="col_total2" data-key="{$key}" style="color:red;font-weight: bold;font-size:16px;"></td>
+
+                                    {/volist}
+<!--                                    <td class="col_cost_total2" style="color:red;font-weight: bold;font-size:16px;"></td>-->
+                                    <td class="col_sell_total2" style="color:red;font-weight: bold;font-size:16px;"></td>
+                                    <td class="total2" style="color:blue;font-weight: bold;font-size:20px;"></td>
+
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+
+
+                        <div class="layui-card-body">
+                            <p style="font-size: 20px;font-weight: 900;margin: 28px 0;">订单小时时间表格</p>
+                            <table class="layui-table">
+                                <thead>
+                                <tr>
+                                    <th>日期/起始时刻</th>
+                                    {volist name="time2[0]['hour']" id="vo"}
+                                    <th>{$time2[0]['hour'][$key]['time']|date="H:i"}</th>
+                                    {/volist}
+                                    <th>合计</th>
+                                </tr>
+
+                                </thead>
+                                <tbody>
+                                {volist name="time2" id="vo"}
+                                <tr>
+                                    <td>{$vo.day.time|date="m-d"}</td>
+                                    {volist name="vo.hour" id="vv"}
+                                    <td class="ordernum1" data-key="{$key}">{$vv.hoursalessum}</td>
+                                    {/volist}
+                                    <td class="row_total1" style="color:red;font-weight: bold;font-size:16px;"></td>
+                                </tr>
+
+                                {/volist}
+                                <tr>
+                                    <td>合计</td>
+                                    {volist name="time2[0]['hour']" id="vo"}
+                                    <td class="col_total1" data-key="{$key}" style="color:red;font-weight: bold;font-size:16px;"></td>
+                                    {/volist}
+                                    <td class="total1" style="color:blue;font-weight: bold;font-size:20px;"></td>
+
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="container1" style="height: 600px;margin-top:100px;display: none;"></div>
+
+
+
+                        {php}
+                            foreach($time as $v){
+                                $newtime[] = date('Y-m-d',$v);
+                            }
+                            $timeb = json_encode($newtime);
+                            $jsonTime = str_replace("\"","'",$timeb);
+                            //print_r($jsonTime);
+
+
+                            foreach($time1 as $v){
+                            $newtime1[] = date('Y-m-d H:i:s',$v);
+                            }
+                            $timeb1 = json_encode($newtime1);
+                            $jsonTime1 = str_replace("\"","'",$timeb1);
+                        {/php}
+
+
+
+                        <script>
+                            var dom = document.getElementById("container");
+                            var dom1 = document.getElementById("container1");
+                            var myChart = echarts.init(dom);
+                            var myChart1 = echarts.init(dom1);
+                            var app = {};
+                            var app1 = {};
+                            option = null;
+                            option1 = null;
+
+                            option = {
+                                title: {
+                                    text: '日订单总量(折线图)'
+                                },
+                                tooltip: {
+                                    trigger: 'axis'
+                                },
+                                legend: {
+                                    data:['日订单总量(折线图)']
+                                },
+                                grid: {
+                                    left: '3%',
+                                    right: '4%',
+                                    bottom: '3%',
+                                    containLabel: true
+                                },
+                                toolbox: {
+                                    feature: {
+                                        saveAsImage: {}
+                                    }
+                                },
+                                xAxis: {
+                                    type: 'category',
+                                    boundaryGap: false,
+                                    data: {$jsonTime}
+                                },
+                                yAxis: {
+                                    type: 'value'
+                                },
+                                series: [
+                                    {php}
+                                    foreach($list as $k => $v){
+                                $numStr[] = $v['daysalessum'];
+                            }
+                            foreach($numStr as $key=>$val){
+                                $newNumStr[] = str_replace($val,"'$val'",$val);
+                            }
+                            $num     = json_encode($newNumStr,true);
+                            $jsonNum = str_replace("\"","",$num);
+
+                            {/php}
+                                {
+                                    name:['日订单量'],
+                                        type:'line',
+                                    stack: '总量',
+                                    data:{$jsonNum}
+                                },
+                            ]
+                            };
+                            ;
+                            option1 = {
+                                title: {
+                                    text: '订单人员时间曲线图'
+                                },
+                                tooltip: {
+                                    trigger: 'axis'
+                                },
+                                legend: {
+                                    data: {php}
+                                    foreach ( $nameArr as $key => $value ) {
+                                    $testJSON[$key] = urlencode ( $value );
+                                    }
+
+                                    $name = urldecode ( json_encode ( $testJSON ) );
+
+                                    $jsonName = str_replace("\"","'",$name);
+                                    {/php}
+                                        {$jsonName}
+                                },
+                                grid: {
+                                    left: '3%',
+                                    right: '4%',
+                                    bottom: '3%',
+                                    containLabel: true
+                                },
+                                toolbox: {
+                                    feature: {
+                                        saveAsImage: {}
+                                    }
+                                },
+                                xAxis: {
+                                    type: 'category',
+                                    boundaryGap: false,
+                                    data: {$jsonTime1}
+                                },
+                                yAxis: {
+                                    type: 'value'
+                                },
+                                series: [
+
+
+                                    {volist name="list1" id="vo"}
+                                    {php}
+
+                                    $num     = json_encode($vo['ordernum']);
+                                    $jsonNum = str_replace("\"","'",$num);
+
+                                    {/php}
+                                        {
+                                            name:'{$vo.name}',
+                                            type:'line',
+                                            stack: '总量',
+                                            data:{$jsonNum},
+
+                                            areaStyle: {}
+                                        },
+                                    {/volist}
+                                    
+                                ]
+                            };
+
+                            if (option && typeof option === "object") {
+                                myChart.setOption(option, true);
+                            }
+
+                            if (option1 && typeof option1 === "object") {
+                                myChart1.setOption(option1, true);
+                            }
+                        </script>
+
+
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </body>
+    <script>
+
+        layui.use(['laydate','form'], function(){
+            var laydate = layui.laydate;
+            var form = layui.form;
+
+            //执行一个laydate实例
+            laydate.render({
+                elem: '#start', //指定元素
+                // value: new Date().getFullYear()+'-'+(new Date().getUTCMonth()+1)+'-01' //可任意组合
+                // format: '2020年06月01日'//可任意组合
+            });
+
+            //执行一个laydate实例
+            laydate.render({
+                elem: '#end' //指定元
+            });
+
+
+            form.on('select(timeIn)', function(data){
+                switch (data.value) {
+                    case '1':
+                        laydate.render({
+                            elem: '#start' //指定元素
+                            ,value: new Date(new Date().getFullYear() + '-' + (new Date().getMonth()+1) + '-01 00:00:00')
+                        });
+                        laydate.render({
+                            elem: '#end' //指定元素
+                            ,value: new Date(new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'+(new Date().getDate()+1))
+                        });
+
+
+
+                        ;break;
+                    case '2':
+                        laydate.render({
+                            elem: '#start' //指定元素
+                            ,value: new Date(new Date().getTime() - 60*60*24*7*1000)
+                        });
+                        laydate.render({
+                            elem: '#end' //指定元素
+                            ,value: new Date(new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'+(new Date().getDate()+1))
+                        });
+
+
+                        ;break;
+                    case '3':
+                        laydate.render({
+                            elem: '#start' //指定元素
+                            ,value: new Date(new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'+new Date().getDate())
+                        });
+                        laydate.render({
+                            elem: '#end' //指定元素
+                            ,value: new Date(new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'+(new Date().getDate()+1))
+                        });
+
+
+                        ;break;
+                    case '4':
+                        laydate.render({
+                            elem: '#start' //指定元素
+                            ,value: new Date(new Date().getFullYear() + '-' + (new Date().getMonth()) + '-01 00:00:00')
+                        });
+
+                        laydate.render({
+                            elem: '#end' //指定元素
+                            ,value: new Date(new Date().getFullYear() + '-' + (new Date().getMonth()+1) + '-01 00:00:00')
+                        });
+
+                        ;break;
+                    case '5':
+                        laydate.render({
+                            elem: '#start' //指定元素
+                            ,value: new Date(new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'+(new Date().getDate()-1))
+                        });
+
+                        laydate.render({
+                            elem: '#end' //指定元素
+                            ,value: new Date(new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'+new Date().getDate())
+                        });
+
+                        ;break;
+
+                }
+            });
+        });
+
+
+    </script>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+<script>
+    // 行统计
+    $('.row_total').each(function(){
+        var row_total = 0;
+        $(this).siblings('.ordernum').each(function () {
+            row_total+=parseInt($(this).text())
+        })
+        $(this).text(row_total)
+    })
+
+
+    // 列统计
+    $('.col_total').each(function(){
+        var data_key = $(this).attr('data-key');
+        var col_total = 0;
+        $('.ordernum[data-key="'+data_key+'"]').each(function(){
+            col_total+=parseInt($(this).text())
+        })
+        $(this).text(col_total)
+    })
+
+    // 总计
+    var total = 0;
+    $('.ordernum').each(function () {
+        total+=parseInt($(this).text())
+    })
+    $('.total').text(total);
+</script>
+
+<script>
+    // 行统计
+    $('.row_total1').each(function(){
+        var row_total1 = 0;
+        $(this).siblings('.ordernum1').each(function () {
+            row_total1+=parseInt($(this).text())
+        })
+        $(this).text(row_total1)
+    })
+
+
+    // 列统计
+    $('.col_total1').each(function(){
+        var data_key = $(this).attr('data-key');
+        var col_total1 = 0;
+        $('.ordernum1[data-key="'+data_key+'"]').each(function(){
+            col_total1+=parseInt($(this).text())
+        })
+        $(this).text(col_total1)
+    })
+
+    // 总计
+    var total1 = 0;
+    $('.ordernum1').each(function () {
+        total1+=parseInt($(this).text())
+    })
+    $('.total1').text(total1);
+</script>
+
+
+<script>
+    // 总行统计
+    $('.row_total2').each(function(){
+        var row_total2 = 0;
+        $(this).siblings('.ordernum2').each(function () {
+            row_total2+=parseInt($(this).text())
+        })
+        $(this).text(row_total2)
+        //删除订单为0的url
+        if($(this).text() == 0){
+            $(this).parents('tr').remove();
+        }
+
+    })
+
+    // 总列统计
+    $('.col_total2').each(function(){
+        var data_key = $(this).attr('data-key');
+        var col_total2 = 0;
+        $('.ordernum2[data-key="'+data_key+'"]').each(function(){
+            col_total2+=parseInt($(this).text())
+        })
+        $(this).text(col_total2)
+    })
+
+
+    // 总计
+    var total2 = 0;
+    $('.ordernum2').each(function () {
+        total2+=parseInt($(this).text())
+    })
+    $('.total2').text(total2);
+
+
+    // 对成本价进行统计
+    var col_cost_total2 =0
+    $('.ordercost2').each(function(){
+        col_cost_total2 += parseInt($(this).text());
+    })
+    $('.col_cost_total2').text(col_cost_total2)
+
+    // 对销售额进行统计
+    var col_sell_total2 =0
+    $('.ordersell2').each(function(){
+        col_sell_total2 += parseInt($(this).text());
+    })
+    $('.col_sell_total2').text(col_sell_total2)
+
+
+
+    //下面都是字行以及子列的一些单量与销售额统计
+
+    // 子列统计===>公共列
+    $('.public_col_total2').each(function(){
+        var data_key = $(this).attr('data-key');
+        var public_col_total2 = 0;
+        $('.public_ordernum2[data-key="'+data_key+'"]').each(function(){
+            public_col_total2+=parseInt($(this).text())
+        })
+        $(this).text(public_col_total2)
+    })
+    // 子列统计===>公共列销售额
+    var public_col_sell_total2 = 0;
+    $('.public_ordersell2').each(function(){
+        public_col_sell_total2 += parseInt($(this).text())
+    })
+    $('.public_col_sell_total2').text(public_col_sell_total2)
+    //子行统计===>公共行
+    var public_total2 = 0;
+    $('.public_col_total2').each(function(){
+        public_total2+=parseInt($(this).text())
+    })
+    if(public_total2 == 0){
+        $('.public_total2').parents('tr').remove();
+    }
+
+    $('.public_total2').text(public_total2)
+
+
+
+
+    // 子列统计===>客服列
+    $('.kf_col_total2').each(function(){
+        var data_key = $(this).attr('data-key');
+        var kf_col_total2 = 0;
+        $('.kf_ordernum2[data-key="'+data_key+'"]').each(function(){
+            kf_col_total2+=parseInt($(this).text())
+        })
+        $(this).text(kf_col_total2)
+    })
+    // 子列统计===>客服列销售额
+    var kf_col_sell_total2 = 0;
+    $('.kf_ordersell2').each(function(){
+        kf_col_sell_total2 += parseInt($(this).text())
+    })
+    $('.kf_col_sell_total2').text(kf_col_sell_total2)
+    //子行统计===>客服行
+    var kf_total2 = 0;
+    $('.kf_col_total2').each(function(){
+        kf_total2+=parseInt($(this).text())
+    })
+    if(kf_total2 == 0){
+        $('.kf_total2').parents('tr').remove();
+    }
+    $('.kf_total2').text(kf_total2)
+
+
+
+
+    // 子列统计===>时杰伟列
+    $('.sjw_col_total2').each(function(){
+        var data_key = $(this).attr('data-key');
+        var sjw_col_total2 = 0;
+        $('.sjw_ordernum2[data-key="'+data_key+'"]').each(function(){
+            sjw_col_total2+=parseInt($(this).text())
+        })
+        $(this).text(sjw_col_total2)
+    })
+    // 子列统计===>时杰伟列销售额
+    var sjw_col_sell_total2 = 0;
+    $('.sjw_ordersell2').each(function(){
+        sjw_col_sell_total2 += parseInt($(this).text())
+    })
+    $('.sjw_col_sell_total2').text(sjw_col_sell_total2)
+    //子行统计===>时杰伟行
+    var sjw_total2 = 0;
+    $('.sjw_col_total2').each(function(){
+        sjw_total2+=parseInt($(this).text())
+    })
+    if(sjw_total2 == 0){
+        $('.sjw_total2').parents('tr').remove();
+    }
+    $('.sjw_total2').text(sjw_total2)
+
+
+
+
+    // 子列统计===>时海龙列
+    $('.shl_col_total2').each(function(){
+        var data_key = $(this).attr('data-key');
+        var shl_col_total2 = 0;
+        $('.shl_ordernum2[data-key="'+data_key+'"]').each(function(){
+            shl_col_total2+=parseInt($(this).text())
+        })
+        $(this).text(shl_col_total2)
+    })
+    // 子列统计===>时海龙列销售额
+    var shl_col_sell_total2 = 0;
+    $('.shl_ordersell2').each(function(){
+        shl_col_sell_total2 += parseInt($(this).text())
+    })
+    $('.shl_col_sell_total2').text(shl_col_sell_total2)
+    //子行统计===>时海龙行
+    var shl_total2 = 0;
+    $('.shl_col_total2').each(function(){
+        shl_total2+=parseInt($(this).text())
+    })
+    if(shl_total2 == 0){
+        $('.shl_total2').parents('tr').remove();
+    }
+    $('.shl_total2').text(shl_total2)
+
+
+
+    // 子列统计===>王金雷列
+    $('.wjl_col_total2').each(function(){
+        var data_key = $(this).attr('data-key');
+        var wjl_col_total2 = 0;
+        $('.wjl_ordernum2[data-key="'+data_key+'"]').each(function(){
+            wjl_col_total2+=parseInt($(this).text())
+        })
+        $(this).text(wjl_col_total2)
+    })
+    // 子列统计===>王金雷列销售额
+    var wjl_col_sell_total2 = 0;
+    $('.wjl_ordersell2').each(function(){
+        wjl_col_sell_total2 += parseInt($(this).text())
+    })
+    $('.wjl_col_sell_total2').text(wjl_col_sell_total2)
+    //子行统计===>王金雷行
+    var wjl_total2 = 0;
+    $('.wjl_col_total2').each(function(){
+        wjl_total2+=parseInt($(this).text())
+    })
+    if(wjl_total2 == 0){
+        $('.wjl_total2').parents('tr').remove();
+    }
+    $('.wjl_total2').text(wjl_total2)
+
+
+
+
+    // 子列统计===>章晋超列
+    $('.zjc_col_total2').each(function(){
+        var data_key = $(this).attr('data-key');
+        var zjc_col_total2 = 0;
+        $('.zjc_ordernum2[data-key="'+data_key+'"]').each(function(){
+            zjc_col_total2+=parseInt($(this).text())
+        })
+        $(this).text(zjc_col_total2)
+    })
+    // 子列统计===>章晋超列销售额
+    var zjc_col_sell_total2 = 0;
+    $('.zjc_ordersell2').each(function(){
+        zjc_col_sell_total2 += parseInt($(this).text())
+    })
+    $('.zjc_col_sell_total2').text(zjc_col_sell_total2)
+    //子行统计===>章晋超行
+    var zjc_total2 = 0;
+    $('.zjc_col_total2').each(function(){
+        zjc_total2+=parseInt($(this).text())
+    })
+    if(zjc_total2 == 0){
+        $('.zjc_total2').parents('tr').remove();
+    }
+    $('.zjc_total2').text(zjc_total2)
+
+
+
+    // 子列统计===>张清政列
+    $('.zqz_col_total2').each(function(){
+        var data_key = $(this).attr('data-key');
+        var zqz_col_total2 = 0;
+        $('.zqz_ordernum2[data-key="'+data_key+'"]').each(function(){
+            zqz_col_total2+=parseInt($(this).text())
+        })
+        $(this).text(zqz_col_total2)
+    })
+    // 子列统计===>张清政列销售额
+    var zqz_col_sell_total2 = 0;
+    $('.zqz_ordersell2').each(function(){
+        zqz_col_sell_total2 += parseInt($(this).text())
+    })
+    $('.zqz_col_sell_total2').text(zqz_col_sell_total2)
+    //子行统计===>张清政行
+    var zqz_total2 = 0;
+    $('.zqz_col_total2').each(function(){
+        zqz_total2+=parseInt($(this).text())
+    })
+    if(zqz_total2 == 0){
+        $('.zqz_total2').parents('tr').remove();
+    }
+    $('.zqz_total2').text(zqz_total2)
+
+
+
+
+
+
+    // 子列统计===>其他列
+    $('.else_col_total2').each(function(){
+        var data_key = $(this).attr('data-key');
+        var else_col_total2 = 0;
+        $('.else_ordernum2[data-key="'+data_key+'"]').each(function(){
+            else_col_total2+=parseInt($(this).text())
+        })
+        $(this).text(else_col_total2)
+    })
+    // 子列统计===>其他列销售额
+    var else_col_sell_total2 = 0;
+    $('.else_ordersell2').each(function(){
+        else_col_sell_total2 += parseInt($(this).text())
+    })
+    $('.else_col_sell_total2').text(else_col_sell_total2)
+    //子行统计===>其他行
+    var else_total2 = 0;
+    $('.else_col_total2').each(function(){
+        else_total2+=parseInt($(this).text())
+    })
+    if(else_total2 == 0){
+        $('.else_total2').parents('tr').remove();
+    }
+    $('.else_total2').text(else_total2)
+
+
+</script>
+</html>

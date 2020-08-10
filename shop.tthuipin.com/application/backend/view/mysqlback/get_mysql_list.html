@@ -1,0 +1,196 @@
+{include file="./public/head" /}
+    <body>
+        <div class="x-nav">
+          <span class="layui-breadcrumb">
+            <a href="/vindex">首页</a>
+            <a href="">演示</a>
+            <a>
+              <cite>导航元素</cite></a>
+          </span>
+          <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
+            <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
+        </div>
+        <div class="layui-fluid">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <!--<div class="layui-card-body ">-->
+                            <!--<form class="layui-form layui-col-space5">-->
+                                <!--&lt;!&ndash;<div class="layui-inline layui-show-xs-block">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<input class="layui-input"  autocomplete="off" placeholder="开始日" name="start" id="start">&ndash;&gt;-->
+                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<div class="layui-inline layui-show-xs-block">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<input class="layui-input"  autocomplete="off" placeholder="截止日" name="end" id="end">&ndash;&gt;-->
+                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--<div class="layui-inline layui-show-xs-block">-->
+                                    <!--<input type="text" name="name"  placeholder="banner名称" autocomplete="off" class="layui-input">-->
+                                <!--</div>-->
+                                <!--&lt;!&ndash;<div class="layui-inline layui-show-xs-block">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<input type="text" name="url"  placeholder="请输入路由" autocomplete="off" class="layui-input">&ndash;&gt;-->
+                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--<div class="layui-inline layui-show-xs-block">-->
+                                    <!--<button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>-->
+                                <!--</div>-->
+                            <!--</form>-->
+                        <!--</div>-->
+                        <div class="layui-card-header">
+                            <button class="layui-btn layui-btn-danger" onclick="backup()"><!--<i class="layui-icon"></i>-->生成备份(全部表)</button>
+                            <!--<button class="layui-btn" onclick="xadmin.open('banenr添加','/vbanneradd',600,800)"><i class="layui-icon"></i>生成备份</button>-->
+                        </div>
+                        <div class="layui-card-body ">
+                            <table class="layui-table layui-form">
+                              <thead>
+                                <tr>
+                                  <!--<th>-->
+                                    <!--<input type="checkbox" name=""  lay-skin="primary">-->
+                                  <!--</th>-->
+                                  <th>序号</th>
+                                  <th>表名</th>
+                                  <th>引擎</th>
+                                  <th>行格式</th>
+                                  <th>当前总行数</th>
+                                  <th>创建时间</th>
+                                  <th>修改时间</th>
+                                  <th>编码</th>
+                                  <th>备注</th>
+                                  <th>操作</th>
+                              </thead>
+                              <tbody>
+                              <form name="bm">
+                              {volist name="list" id="vo"}
+                                <tr>
+                                  <!--<td>-->
+                                    <!--<input type="checkbox" name=""  lay-skin="primary">-->
+                                  <!--</td>--><form name="bm">
+                                  <td>{$key+1}</td>
+                                  <td>{$vo.name}<input type="hidden" name="bname[]" value="{$vo.name}"></td>
+                                  <td>{$vo.engine}</td>
+                                  <td>{$vo.row_format}</td>
+                                  <td>{$vo.rows}</td>
+                                  <td>{$vo.create_time}</td>
+                                  <td>{$vo.update_time}</td>
+                                  <td>{$vo.collation}</td>
+                                  <td>{$vo.comment}</td>
+                                  <td class="td-manage">
+                                      <a onclick="backuponly('{$vo.name}')" href="javascript:;"  title="备份当前表">
+                                          <i class="layui-icon">&#xe601;</i>
+                                      </a>
+                                      &nbsp;&nbsp;
+                                    <a title="恢复表"   href="javascript:;">
+                                      <i class="layui-icon"></i>
+                                  </a>
+                                      &nbsp;&nbsp;
+                                    <a title="修复表" onclick="repair('{$vo.name}')" href="javascript:;" title="服务器宕机使用">
+                                      <i class="layui-icon"></i>
+                                    </a>
+                                  </td>
+                                </tr>
+                              {/volist}
+                              </form>
+                              </tbody>
+                            </table>
+                        </div>
+                        <div class="layui-card-body ">
+                            <div class="page">
+                                <div>
+                                    {$lsit|raw}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </body>
+
+    <script>
+
+      layui.use(['laydate','form'], function(){
+        var laydate = layui.laydate;
+        var form = layui.form;
+        
+        //执行一个laydate实例
+        laydate.render({
+          elem: '#start' //指定元素
+        });
+
+        //执行一个laydate实例
+        laydate.render({
+          elem: '#end' //指定元素
+        });
+      });
+
+      function backup(){
+          var data = $("form").serialize();
+          $.ajax({
+              type:'post',
+              data:data,
+              url:'/vmysqlbackup',
+              success:function(res){
+                  if(res.code == 200){
+                      layer.alert(res.message, {
+                              icon: 6
+                          },
+                          /*function() {
+                              //关闭当前frame
+                              xadmin.close();
+
+                              // 可以对父窗口进行刷新
+                              xadmin.father_reload();
+                          }*/);
+                  }
+              }
+
+          })
+      }
+
+      function backuponly(obj){
+          // console.log(obj);
+          $.ajax({
+              type:'post',
+              data:{bname:obj},
+              url:'/vmysqlbackuponly',
+              success:function(res){
+                  if(res.code == 200){
+                      layer.alert(res.message, {
+                              icon: 6
+                          },
+                          /*function() {
+                              //关闭当前frame
+                              xadmin.close();
+
+                              // 可以对父窗口进行刷新
+                              xadmin.father_reload();
+                          }*/);
+                  }
+              }
+
+          })
+      }
+
+      function repair(obj){
+          $.ajax({
+              type:'post',
+              data:{bname:obj},
+              url:'/vmysqlrepair',
+              success:function(res){
+                  if(res.code == 200){
+                      layer.alert(res.message, {
+                              icon: 6
+                          },
+                          /*function() {
+                              //关闭当前frame
+                              xadmin.close();
+
+                              // 可以对父窗口进行刷新
+                              xadmin.father_reload();
+                          }*/);
+                  }
+              }
+
+          })
+      }
+
+
+    </script>
+</html>

@@ -1,0 +1,1044 @@
+{include file="./public/head" /}
+    <body style="overflow-y: scroll;">
+        <div class="x-nav">
+          <span class="layui-breadcrumb">
+            <a href="/vindex">首页</a>
+            <a href="">演示</a>
+            <a>
+              <cite>导航元素</cite></a>
+          </span>
+          <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
+            <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
+        </div>
+        <div class="layui-fluid">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-body ">
+                            <form class="layui-form layui-col-space5">
+                                <div class="layui-inline layui-show-xs-block">
+                                    <input class="layui-input"  class="layui-form" autocomplete="off" placeholder="开始日" name="starttime" id="start">
+                                </div>
+                                <div class="layui-inline layui-show-xs-block">
+                                    <input class="layui-input"  class="layui-form" autocomplete="off" placeholder="截止日" name="endtime" id="end">
+                                </div>
+
+                                <!--                 器型               -->
+                                <div class="layui-inline layui-show-xs-block">
+                                    <div class="layui-inline">
+                                        <div class="layui-input-inline">
+                                            <select name="shape_id" class="layui-form">
+                                                <option value="">选择器型</option>
+
+
+                                                {volist name="categorylsit_shape" id="v"}
+<!--                                                <optgroup label="{$v.cat_name}">{$v.cat_name}</optgroup>-->
+                                                {volist name="elist_shape" id="vv"}
+                                                {if $v.cat_id == $vv.parent_id}
+                                                <!--                                                <optgroup label="——{$vv.cat_name}"></optgroup>-->
+                                                <optgroup label="{$vv.cat_name}">--{$vv.cat_name}</optgroup>
+                                                {volist name="elist" id="vvv"}
+                                                {if $vv.cat_id == $vvv.parent_id}
+                                                <option value="{$vvv.cat_id}">——{$vvv.cat_name}</option>
+                                                {/if}
+                                                {/volist}
+                                                {/if}
+                                                {/volist}
+                                                {/volist}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--              容量                  -->
+                                <div class="layui-inline layui-show-xs-block">
+                                    <div class="layui-inline">
+                                        <div class="layui-input-inline">
+                                            <select name="capacityid" class="layui-form">
+                                                <option value="">选择容量</option>
+
+
+                                                {volist name="categorylsit_capacity" id="v"}
+                                                <!--                                                <optgroup label="{$v.cat_name}">{$v.cat_name}</optgroup>-->
+                                                {volist name="elist_capacity" id="vv"}
+                                                {if $v.cat_id == $vv.parent_id}
+                                                <!--                                                <optgroup label="——{$vv.cat_name}"></optgroup>-->
+                                                <optgroup label="{$vv.cat_name}">--{$vv.cat_name}</optgroup>
+                                                {volist name="elist" id="vvv"}
+                                                {if $vv.cat_id == $vvv.parent_id}
+                                                <option value="{$vvv.cat_id}">——{$vvv.cat_name}</option>
+                                                {/if}
+                                                {/volist}
+                                                {/if}
+                                                {/volist}
+                                                {/volist}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <!--              大师                  -->
+                                <div class="layui-inline layui-show-xs-block">
+                                    <div class="layui-inline">
+                                        <div class="layui-input-inline">
+                                            <select name="pid" class="layui-form">
+                                                <option value="">选择工艺师</option>
+
+
+                                                {volist name="categorylsit_people" id="v"}
+                                                <!--                                                <optgroup label="{$v.cat_name}">{$v.cat_name}</optgroup>-->
+                                                {volist name="elist_people" id="vv"}
+                                                {if $v.cat_id == $vv.parent_id}
+                                                <!--                                                <optgroup label="——{$vv.cat_name}"></optgroup>-->
+                                                <optgroup label="{$vv.cat_name}">--{$vv.cat_name}</optgroup>
+                                                {volist name="elist" id="vvv"}
+                                                {if $vv.cat_id == $vvv.parent_id}
+                                                <option value="{$vvv.cat_id}">——{$vvv.cat_name}</option>
+                                                {/if}
+                                                {/volist}
+                                                {/if}
+                                                {/volist}
+                                                {/volist}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                                <!--              大师                  -->
+                                <div class="layui-inline layui-show-xs-block">
+                                    <div class="layui-inline">
+                                        <div class="layui-input-inline">
+                                            <select name="price" class="layui-form">
+                                                <option value="">价格区间</option>
+                                                <option value="1">0-500</option>
+                                                <option value="2">500-1000</option>
+                                                <option value="3">1000-2000</option>
+                                                <option value="4">2000-3000</option>
+                                                <option value="5">3000-5000</option>
+                                                <option value="6">5000-8000</option>
+                                                <option value="7">8000-10000</option>
+                                                <option value="8">10000-20000</option>
+                                                <option value="9">20000以上</option>
+                                                
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                    &nbsp;
+                                <div class="layui-inline layui-show-xs-block">
+                                    <input type="text" name="goods_no"  placeholder="商品货号" autocomplete="off" class="layui-input layui-form">
+                                </div>
+                                    &nbsp;
+                                <div class="layui-inline layui-show-xs-block">
+                                    <input type="text" name="name"  placeholder="商品名称" autocomplete="off" class="layui-input layui-form">
+                                </div>
+                                    &nbsp;&nbsp;&nbsp;
+                                    <div class="layui-inline layui-show-xs-block">
+<!--                                            <input type="radio" name="is_del" value="0" title="正常" checked="">-->
+                                            <input class="layui-form" type="radio" name="is_del" value="2" title="下架">
+                                    </div>
+<!--                                <div class="layui-inline layui-show-xs-block">-->
+<!--                                    <div class="layui-inline">-->
+<!--                                        <div class="layui-input-inline">-->
+<!--                                            <select name="userid">-->
+<!--                                                <option value="">选择人员</option>-->
+<!--                                                {volist name="puser" id="v"}-->
+<!--                                                    <option value="{$v.user_id}">{$v.name}</option>-->
+<!--                                                    {volist name="cuser" id="vv"}-->
+<!--                                                        {if $vv.pid == $v.user_id}-->
+<!--                                                            <option value="{$vv.user_id}">|—{$vv.name}</option>-->
+<!--                                                            {volist name="cuser" id="vvv"}-->
+<!--                                                                {if $vvv.pid == $vv.user_id}-->
+<!--                                                                    <option value="{$vvv.user_id}">|—|—{$vvv.name}</option>-->
+<!--                                                                {/if}-->
+<!--                                                            {/volist}-->
+<!--                                                        {/if}-->
+<!--                                                    {/volist}-->
+<!--                                                {/volist}-->
+<!--                                            </select>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+                                <div class="layui-inline layui-show-xs-block">
+                                    <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+                                </div>
+
+                            </form>
+                        </div>
+                        {if $userInfo.role_id!==19}
+
+                        <div class="layui-card-header">
+                            <button class="layui-btn layui-btn-danger" id="delete" ><i class="layui-icon"></i>批量删除</button><!--onclick="delAll()"-->
+<!--                            <button class="layui-btn layui-btn-warm" id="cost_price" ><i class="layui-icon">&#xe65e;</i>批量调价</button>-->
+<!--                            <button class="layui-btn layui-bg-cyan" id="templete_goods" ><i class="layui-icon">&#xe656;</i>模板商品</button>-->
+                            <button class="layui-btn" onclick="xadmin.open('商品添加','/pproductadd',1200,800)"><i class="layui-icon"></i>添加</button>
+                        </div>
+
+                        {/if}
+                        <div class="layui-card-body ">
+                            <table class="layui-table layui-form">
+                              <thead>
+                                <tr>
+                                  <th>
+                                    <input type="checkbox" name=""  lay-skin="primary">
+                                  </th>
+                                  <th>编号</th>
+                                  <th>商品名称</th>
+                                  <th>列表图</th>
+                                  <th>所属壶型</th>
+                                  <th>所属容量</th>
+                                  <th>所属工艺师</th>
+
+                                  <!--<th>销售价&nbsp;<span style="color: red;font-size:18px;">/</span>&nbsp;市场价&nbsp;<span style="color: red;font-size:18px;">/</span>&nbsp;成本价(NT$)</th>-->
+<!--                                  <th>查看评论<span style="color: red;font-size:18px;">/</span>&nbsp;添加</th>-->
+<!--                                  <th>查看商品<span style="color: red;font-size:18px;">/</span>&nbsp;添加商品<span style="color: red;font-size:18px;">/</span>&nbsp;添加套餐</th>-->
+                                  <th>上传者</th>
+<!--                                  <th>购买次数</th>-->
+                                  <th>状态</th>
+<!--                                  <th>ID</th>-->
+                                  <th>参考价</th>
+                                  {if $userInfo.role_id!==19}
+                                  <th>操作</th>
+                                  {/if}
+                              </thead>
+                              <tbody>
+                                {$error}
+                                {php}
+                                    $domain = $_SERVER["REQUEST_SCHEME"].'://'.$_SERVER['SERVER_NAME'];
+
+                                    $httpUrl = str_replace('shop','www',$domain);
+
+                                {/php}
+                              {volist name="goodslsit" id="vo"}
+                                <tr>
+                                  <td><input type="checkbox" name="id" value="{$vo.id}"  lay-skin="primary"></td>
+
+                                    <td><a href="http://www.xinshishangc.com/goodsinfo?goodsid={$vo.id}" target="_blank">{$vo.goods_no}</a></td>
+                                    <td><a href="http://www.xinshishangc.com/goodsinfo?goodsid={$vo.id}" target="_blank">{$vo.name}</a></td>
+                                    <td><a href="http://www.xinshishangc.com/goodsinfo?goodsid={$vo.id}" target="_blank"><img src="{$vo.img}" /></a></td>
+                                    <td><a href="http://www.xinshishangc.com/goodsinfo?goodsid={$vo.id}" target="_blank">{$vo.cat_name}</a></td>
+                                    <td><a href="javascript:;" target="_blank">{$vo.capacity_name}</a></td>
+                                    <td><a href="javascript:;" target="_blank">{$vo.people_name}</a></td>
+
+                                    <!--<td>{$vo.sell_price}&nbsp;<span style="color: red;font-size:18px;">/</span>&nbsp;{$vo.market_price}&nbsp;<span style="color: red;font-size:18px;">/</span>&nbsp;{$vo.cost_price}</td>-->
+<!--                                    <td>-->
+<!--                                        <span onclick="xadmin.open('评论数据','/vcommentslist?goods_id={$vo.id}',1200,800)"><i class="layui-icon"></i></span>-->
+<!--                                        <span style="color: red;font-size:18px;">/</span>&nbsp;-->
+<!--                                        <span onclick="xadmin.open('添加','/vcommentsadd?goods_id={$vo.id}',600,800)"><i class="layui-icon"></i></span>-->
+<!--                                    </td>-->
+<!--                                    <td>-->
+<!--                                        <span onclick="xadmin.open('产品列表','/vgoodsilist?goods_id={$vo.id}',1600,800)"><i class="layui-icon"></i></span>-->
+<!--                                        <span style="color: red;font-size:18px;">/</span>&nbsp;-->
+<!--                                        <span onclick="xadmin.open('添加产品','/vgoodsiadd?goods_id={$vo.id}',600,800)"><i class="layui-icon"></i></span>-->
+<!--                                        <span style="color: red;font-size:18px;">/</span>&nbsp;-->
+<!--                                        <span onclick="xadmin.open('添加套餐','/vgoodsiaddt?goods_id={$vo.id}',600,400)"><i class="layui-icon"></i></span>-->
+<!--                                    </td>-->
+                                  <td>{$vo.uername}</td>
+<!--                                  <td>{$vo.buynumber}</td>-->
+                                    <td class="td-status">
+                                        <span class="layui-btn layui-btn-normal layui-btn-mini {if $vo.is_del == 2}layui-btn-disabled{/if}">{if $vo.is_del == 0}正常{else /}下架{/if}</span></td>
+<!--                                    <td>{$vo.id}</td>-->
+                                    <td {if $userInfo.role_id!==19}class="edit"{/if} data-id="{$vo.id}" data-type="1">{$vo.sell_price}</td>
+                                    {if $userInfo.role_id!==19}
+
+                                  <td class="td-manage">&nbsp;
+                                      <a onclick="member_stop(this,'{$vo.id}')"  href="javascript:;"  title="正常">
+                                          <i class="layui-icon">&#xe601;</i>
+                                      </a>&nbsp;
+<!--                                    <a title="套餐列表"  onclick="xadmin.open('套餐列表','/vgoodsitlist?goods_id={$vo.id}',1200,800)" href="javascript:;">-->
+<!--                                      <i class="layui-icon"></i>-->
+<!--                                  </a>&nbsp;-->
+                                      <a title="编辑"  onclick="xadmin.open('编辑','/pproductedit?eid={$vo.id}',1200,800)" href="javascript:;">
+                                          <i class="layui-icon">&#xe642;</i>
+                                      </a>&nbsp;
+                                    <a title="删除" onclick="member_del(this,'{$vo.id}')" href="javascript:;">
+                                      <i class="layui-icon">&#xe640;</i>
+                                    </a>&nbsp;
+                                  </td>
+
+                                    {/if}
+                                </tr>
+                              {/volist}
+                              </tbody>
+                            </table>
+                        </div>
+                        <div class="layui-card-body ">
+                            <div class="page">
+                                <div>
+                                    {$goodslsit|raw}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="cost_price_content" style="display: none;">
+            <div id="slideTest" style="margin:100px auto;width:70%;"></div>
+            <button class="layui-btn layui-btn-danger" style="margin-left: 20%;" onclick="change_price(0)">涨价</button>
+            <button class="layui-btn" style="margin-left: 3%;" onclick="change_price(1)">降价</button>
+        </div>
+    </body>
+
+
+    <!--  模板list页面  -->
+    <div id="template_goods_list" style="display: none;">
+        <table id="template_goods_table" lay-filter="template_goods_table"></table>
+    </div>
+    <!--  模板添加页面  -->
+    <div id="add_template" style="display: none;">
+        <div class="layui-fluid">
+            <div class="layui-row">
+                <form class="layui-form" id="LAY-component-form-setval">
+
+                    <div class="layui-form-item">
+
+                        <label for="point" class="layui-form-label">
+                            <span class="x-red">*</span>尺码
+                        </label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="size" name="size" required=""
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">
+                            <span class="x-red">*</span>商品的尺寸，使用英文的逗号隔开
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label for="point" class="layui-form-label">
+                            <span class="x-red">*</span>颜色
+                        </label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="color" name="color" required=""
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">
+                            <span class="x-red">*</span>商品的颜色
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label for="point" class="layui-form-label">
+                            <span class="x-red">*</span>模板产品名
+                        </label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="name" name="name" required=""
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">
+                            <span class="x-red">*</span>模板产品名
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label for="username" class="layui-form-label">
+                            <span class="x-red">*</span>价格
+                        </label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="sell_price" name="sell_price" autocomplete="off" class="layui-input">
+                            <input type="text" id="market_price" name="market_price" autocomplete="off" class="layui-input">
+                            <input type="text" id="cost_price" name="cost_price" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">
+                            <span class="x-red">*</span>销售价(NT$)<br />
+                            <span class="x-red">*</span>市场价(NT$)<br />
+                            <span class="x-red">*</span>成本价(NT$)
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+
+                        <label for="username" class="layui-form-label">
+                            <span class="x-red">*</span>图片
+                        </label>
+                        <div class="layui-input-inline">
+                            <input type="hidden" id="headimg" name="files" required="" autocomplete="off" class="layui-input">
+                            <div class="layui-upload">
+                                <button type="button" class="layui-btn" id="test1">上传图片</button>
+                                <div class="layui-upload-list">
+                                    <img class="layui-upload-img" id="demo1"  width="120px" height="120px">
+                                    <p id="demoText"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">
+                            <span class="x-red">*</span>上传产品图片
+                        </div>
+                    </div>
+
+
+                    <div class="layui-form-item">
+                        <label for="sort" class="layui-form-label">
+                            <span class="x-red">*</span>排序
+                        </label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="order" name="order" value="0" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">
+                            <span class="x-red">*</span>数字越大，越往前 默认0
+                        </div>
+                    </div>
+
+
+                    <div class="layui-form-item">
+                        <label for="L_repass" class="layui-form-label">
+                        </label>
+                        <input type="hidden" name="gid" value="{$keyid}">
+                        <input type="hidden" name="goods_id" value="{$goods_id}">
+                        <button  class="layui-btn" lay-filter="add" lay-submit>
+                            提交
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!--  模板编辑页面  -->
+    <div id="edit_template" style="display: none;">
+        <div class="layui-fluid">
+            <div class="layui-row">
+                <form class="layui-form" id="LAY-component-form-setval1">
+
+                    <div class="layui-form-item">
+
+                        <label for="point" class="layui-form-label">
+                            <span class="x-red">*</span>尺码
+                        </label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="edit_size" name="size" required=""
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">
+                            <span class="x-red">*</span>商品的尺寸，使用英文的逗号隔开
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label for="point" class="layui-form-label">
+                            <span class="x-red">*</span>颜色
+                        </label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="edit_color" name="color" required=""
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">
+                            <span class="x-red">*</span>商品的颜色
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label for="point" class="layui-form-label">
+                            <span class="x-red">*</span>模板产品名
+                        </label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="edit_name" name="name" required=""
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">
+                            <span class="x-red">*</span>模板产品名
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label for="username" class="layui-form-label">
+                            <span class="x-red">*</span>价格
+                        </label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="edit_sell_price" name="sell_price" autocomplete="off" class="layui-input">
+                            <input type="text" id="edit_market_price" name="market_price" autocomplete="off" class="layui-input">
+                            <input type="text" id="edit_cost_price" name="cost_price" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">
+                            <span class="x-red">*</span>销售价(NT$)<br />
+                            <span class="x-red">*</span>市场价(NT$)<br />
+                            <span class="x-red">*</span>成本价(NT$)
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+
+                        <label for="username" class="layui-form-label">
+                            <span class="x-red">*</span>图片
+                        </label>
+                        <div class="layui-input-inline">
+                            <input type="hidden" id="edit_headimg" name="files" required="" autocomplete="off" class="layui-input">
+                            <div class="layui-upload">
+                                <button type="button" class="layui-btn" id="edit_test1">上传图片</button>
+                                <div class="layui-upload-list">
+                                    <img class="layui-upload-img" id="edit_demo1"  width="120px" height="120px">
+                                    <p id="edit_demoText"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">
+                            <span class="x-red">*</span>上传产品图片
+                        </div>
+                    </div>
+
+
+                    <div class="layui-form-item">
+                        <label for="sort" class="layui-form-label">
+                            <span class="x-red">*</span>排序
+                        </label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="edit_order" name="order" value="0" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">
+                            <span class="x-red">*</span>数字越大，越往前 默认0
+                        </div>
+                    </div>
+
+
+                    <div class="layui-form-item">
+                        <label for="L_repass" class="layui-form-label">
+                        </label>
+                        <input type="hidden" name="gid" value="{$keyid}">
+                        <input type="hidden" name="goods_id" value="{$goods_id}">
+                        <button  class="layui-btn" lay-filter="edit" lay-submit>
+                            提交
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<script src="http://libs.baidu.com/jquery/1.7.2/jquery.js"></script>
+<script type="text/javascript">
+
+  var sliderValue;
+    layui.use('slider',function(){
+        var slider = layui.slider;
+        //渲染
+
+
+        slider.render({
+            elem: '#slideTest',  //绑定元素
+            input: true,
+            setTips: function(value){ //自定义提示文本
+            return value + '%';
+            },
+            change : function (data) {
+                sliderValue = data;
+            }
+        });
+
+
+
+    })
+    function change_price(type){
+        array = new Array();
+        $("input[type='checkbox']:gt(0):checked").each(function() {
+            array.push($(this).parent().next().text());
+        });
+        if (array == 0) {
+            layer.alert("请勾选!!");
+        } else {
+            $.ajax({
+                type:'post',
+                url:'{:url("backend/Goods/changePrice")}',
+                data:{ids:array,sliderValue:sliderValue,type:type},
+                success:function(data){
+
+                    if(data.code = 200){
+                        layer.msg('价格调整成功!',{icon: 6,time:2000},function () {
+                            window.location.reload();
+                        });
+                    }else{
+                        layer.msg('网络异常!',{icon: 5,time:1000});
+                    }
+                },
+                error:function(data){
+                    layer.msg('网络异常!',{icon: 5,time:1000});
+                }
+            })
+        }
+    }
+
+
+
+    $(function() {
+        $("#delete").click(function() {
+            array = new Array();
+            $("input[type='checkbox']:gt(0):checked").each(function() {
+                array.push($(this).parent().next().text());
+            });
+            if (array == 0) {
+                alert("请勾选!!");
+            } else {
+                $.ajax({
+                    type:'post',
+                    url:'/pproductdels',
+                    data:{ids:array},
+                    success:function(data){
+                        // console.log(data);return ;
+                        if(data.code = 200){
+                            layer.msg('已删除!如果后悔，请联系开发者找回',{icon: 5,time:3000});
+                            // window.location.reload();
+                            // layer.alert("增加成功", {
+                            //         icon: 6
+                            //     },
+                            //     function() {
+                            //         //关闭当前frame
+                            //         xadmin.close();
+                            //
+                            //         // 可以对父窗口进行刷新
+                            //         xadmin.father_reload();
+                            //     });
+                            // window.location.reload();
+                        }else{
+                            layer.msg('网络异常!',{icon: 5,time:1000});
+                        }
+                    },
+                    error:function(data){
+                        layer.msg('网络异常!',{icon: 5,time:1000});
+                    }
+                })
+            }
+        });
+
+
+        // 批量加减价
+       $("#cost_price").click(function() {
+
+           array = new Array();
+           $("input[type='checkbox']:gt(0):checked").each(function() {
+               array.push($(this).parent().next().text());
+           });
+           if (array == 0) {
+               layer.alert("请勾选!!");
+           } else {
+               layer.open({
+                   type: 1,
+                   title: '批量调价',
+                   content: $('#cost_price_content'),
+                   area: ['1000px', '500px'],
+                   cancel: function(index, layero){
+                      $('#cost_price_content').css({'display':'none'});
+                    }
+               });
+           }
+       });
+    });
+</script>
+    <script>
+
+
+      /*用户-停用*/
+      function member_stop(obj,id){
+          layer.confirm('确认要停用吗？',function(index){
+              if($(obj).attr('title')=='正常'){
+                  $.ajax({
+                      type: 'post',
+                      url:"/pproductshow",
+                      data:{id:id},
+                      success:function(data){
+                          // console.log(data);return ;
+                          if(data.code = 200){
+                              $(obj).attr('title','下架')
+                              $(obj).find('i').html('&#xe62f;');
+
+                              $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('下架');
+                              layer.msg('已下架!',{icon: 5,time:1000});
+                          }else{
+                              layer.msg('网络异常!',{icon: 5,time:1000});
+                          }
+                      },
+                      error:function(data){
+                          layer.msg('网络异常!',{icon: 5,time:1000});
+                      }
+                  })
+                  //发异步把用户状态进行更改
+              }else{
+                  $.ajax({
+                      url:"/pproductshow",
+                      data:{id:id},
+                      success:function(data){
+                          if(data.code = 200){
+                              $(obj).attr('title','下架')
+                              $(obj).find('i').html('&#xe601;');
+
+                              $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('正常');
+                              layer.msg('已正常!',{icon: 6,time:1000});
+                          }else{
+                              layer.msg('网络异常!',{icon: 5,time:1000});
+                          }
+                      },
+                      error:function(data){
+                          layer.msg('网络异常!',{icon: 5,time:1000});
+                      }
+                  })
+
+              }
+
+          });
+      }
+      /*用户-删除*/
+      function member_del(obj,id){
+          layer.confirm('确认要删除吗？',function(index){
+              $.ajax({
+                  type:'post',
+                  url:'/pproductdelete',
+                  data:{id:id},
+                  success:function(data){
+                      if(data.code =200){
+                          //发异步删除数据
+                          $(obj).parents("tr").remove();
+                          layer.msg('已删除!',{icon:1,time:1000});
+                      }else{
+                          layer.msg('删除失败!',{icon:5,time:1000});
+                      }
+                  },
+                  error:function (data) {
+                      if(data.code = 100){
+                          layer.msg(data.message,{icon:1,time:1000});
+                      }
+                  }
+              })
+
+          });
+      }
+
+
+
+
+      // 模板商品
+      // 模板商品展示列表页面
+      $('#templete_goods').click(function(){
+          layer.open({
+              type : 1,
+              title : '所有模板商品',
+              content : $('#template_goods_list'),
+              area:['90%','60%'],
+              cancel:function (index) {
+                  $('#template_goods_list').css({'display':'none'});
+              }
+          })
+      })
+
+      layui.use(['laydate','form','table','upload'],function() {
+          var table = layui.table;
+          var laydate = layui.laydate;
+          var form = layui.form;
+          var upload = layui.upload;
+
+          //执行一个laydate实例
+          laydate.render({
+              elem: '#start' //指定元素
+          });
+
+          //执行一个laydate实例
+          laydate.render({
+              elem: '#end' //指定元素
+          });
+
+
+          //模板添加执行上传实例
+          var uploadInst = upload.render({
+              elem: '#test1' //绑定元素
+              ,url:"{:url('backend/Goods/uploadImg')}"
+              ,accept:'images'  // 允许上传的文件类型
+              ,auto:true // 自动上传
+              ,size:2000
+              ,before:function (obj) {
+                  // console.log(obj);
+                  // 预览
+                  obj.preview(function(index,file,result) {
+                      // console.log(file.name);    //图片名字
+                      // console.log(file.type);    //图片格式
+                      // console.log(file.size);    //图片大小
+                      // console.log(result);    //图片地址
+                      $('#demo1').attr('src',result); //图片链接 base64
+                  });
+                  // layer.load();
+              }
+              // 上传成功回调
+              ,done:function(res) {
+                  //如果上传失败
+
+                  console.log(res);
+                  if (res.code == 1) {
+                      layer.msg('上传失败');
+                  }
+
+
+                  $('#headimg').val(res.savename);
+                  //console.log($('#head_photo').val());
+              }
+              // 上传失败回调
+              ,error:function(index,upload) {
+                  // 上传失败
+              }
+
+          });
+
+          //模板编辑执行上传实例
+          var uploadInst1 = upload.render({
+              elem: '#edit_test1' //绑定元素
+              ,url:"{:url('backend/Goods/uploadImg')}"
+              ,accept:'images'  // 允许上传的文件类型
+              ,auto:true // 自动上传
+              ,size:2000
+              ,before:function (obj) {
+                  // console.log(obj);
+                  // 预览
+                  obj.preview(function(index,file,result) {
+                      // console.log(file.name);    //图片名字
+                      // console.log(file.type);    //图片格式
+                      // console.log(file.size);    //图片大小
+                      // console.log(result);    //图片地址
+                      $('#edit_demo1').attr('src',result); //图片链接 base64
+                  });
+                  // layer.load();
+              }
+              // 上传成功回调
+              ,done:function(res) {
+                  //如果上传失败
+
+                  console.log(res);
+                  if (res.code == 1) {
+                      layer.msg('上传失败');
+                  }
+
+
+                  $('#edit_headimg').val(res.savename);
+                  //console.log($('#head_photo').val());
+              }
+              // 上传失败回调
+              ,error:function(index,upload) {
+                  // 上传失败
+              }
+
+          });
+
+          table.render({
+              elem : '#template_goods_table',
+              url : 'backend/Goods/templeteGoodsTable',
+              page: true, //开启分页
+              id:'template_goods_table',
+              toolbar: '#toolbarDemo',
+              cols: [[ //表头
+                  {field: 'id', title: 'ID', sort: true,align:'center',rowspan:2}
+                  ,{field: 'image', title: '图片',align:'center',rowspan:2,templet:function(d){
+                          return '<img src="'+d.image+'"/>';
+                      }}
+                  ,{field: 'color', title: '颜色',align:'center',rowspan:2}
+                  // ,{field: 'taocan', title: '套餐名',align:'center',rowspan:2}
+                  ,{field: 'name', title: '模板产品名',align:'center',rowspan:2}
+                  ,{field: 'size', title: '尺寸',align:'center',rowspan:2}
+                  ,{title: '销售价 / 市场价 / 成本价(NT$)',align:'center', sort: true,colspan:3}
+                  // ,{field: 'sort', title: '排序',align:'center',rowspan:2}
+                  ,{field: 'addtime', title: '时间',align:'center', sort: true,rowspan:2,templet:function(d){
+                          return new Date(Number(d.addtime)*1000).toLocaleString();
+                      }}
+                  ,{title:'编辑', align:'center', toolbar: '#barDemo',rowspan:2} //这里的toolbar值是模板元素的选择器
+              ],
+                  [
+                      {field: 'sell_price', title: '销售价',align:'center', sort: true}
+                      ,{field: 'market_price', title: '市场价',align:'center', sort: true}
+                      ,{field: 'cost_price', title: '成本价',align:'center', sort: true}
+                  ]],
+              size:'lg',
+              text: {
+                  none: '暂无相关数据,去添加几条呗!' //默认：无数据。注：该属性为 layui 2.2.5 开始新增
+              },
+              done: function (res, curr, count) {
+                  $("table").css("width", "100%");
+              },
+          })
+
+
+          //监听toolbar事件
+          table.on('toolbar(template_goods_table)', function(obj){
+              switch(obj.event){
+                  case 'add':
+                      layer.open({
+                          type : 1,
+                          title : '添加模板商品',
+                          content : $('#add_template'),
+                          area:['30%','70%'],
+                          cancel:function (index) {
+                              $('#add_template').css({'display':'none'});
+                          }
+                      })
+                      // 监听模板添加页面
+                      form.on('submit(add)', function (data) {
+
+                          $.ajax({
+                              type: 'post',
+                              url: '{:url("backend/Goods/addTemplate")}',
+                              data: data.field,
+                              success: function (data) {
+                                  if (data.code == 0) {
+                                      layer.msg('添加成功', {icon: 6, time: 1000}, function () {
+                                          layer.close(layer.index-1);
+                                          table.reload('template_goods_table');
+                                      });
+                                  }
+                              },
+                              error: function (data) {
+
+                              }
+                          })
+                          return false;
+                      })
+                      break;
+              };
+          });
+          // 监听tool事件
+          table.on('tool(template_goods_table)',function (obj) {
+              switch(obj.event){
+                  case 'edit':
+                      var data = obj.data;
+                      layer.open({
+                          type : 1,
+                          title : '编辑模板商品',
+                          content : $('#edit_template'),
+                          area:['30%','70%'],
+                          success: function(layero, index){
+                              $('#edit_color').val(data.color);
+                              $('#edit_size').val(data.size);
+                              $('#edit_sell_price').val(data.sell_price);
+                              $('#edit_market_price').val(data.market_price);
+                              $('#edit_cost_price').val(data.cost_price);
+                              $('#edit_order').val(data.order);
+                              $('#edit_headimg').val(data.image);
+                              $('#edit_name').val(data.name);
+                              $('#edit_demo1').attr('src',data.image);
+                              $('input[name="goods_id"]').val(data.id);
+                          },
+                          cancel:function (index) {
+                              $('#edit_template').css({'display':'none'});
+                          }
+                      })
+
+                      // 监听模板编辑页面
+                      form.on('submit(edit)', function (data) {
+
+                          $.ajax({
+                              type: 'post',
+                              url: '{:url("backend/Goods/editTemplate")}',
+                              data: data.field,
+                              success: function (data) {
+                                  if (data.code == 0) {
+                                      layer.msg('编辑成功', {icon: 6, time: 1000}, function () {
+                                          layer.close(layer.index-1);
+                                          table.reload('template_goods_table');
+                                      });
+                                  }
+                              },
+                              error: function (data) {
+
+                              }
+                          })
+                          return false;
+                      })
+                      break;
+                  case 'del':
+                      var data = obj.data;
+                      layer.confirm('确定删除该模板吗?',function(){
+                          $.post('{:url("backend/Goods/delTemplate")}',{goods_id:data.id},function(res){
+                              if(res.code==0){
+                                  layer.msg('删除成功', {icon: 6, time: 1000}, function () {
+                                      table.reload('template_goods_table');
+                                  });
+                              }else{
+                                  layer.msg('删除失败',{'icon':5,time:1000});
+                              }
+                          })
+                      })
+                      break;
+              };
+          })
+
+      })
+    </script>
+
+
+    <script type="text/html" id="barDemo">
+        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    </script>
+
+    <script type="text/html" id="toolbarDemo">
+        <button class="layui-btn" lay-event="add"><i class="layui-icon"></i>添加模板商品</button>
+    </script>
+
+<script>
+
+    $(function(){
+
+        $('.edit').click(function(){
+            if(!$(this).is('.input')){
+                $(this).addClass('input').html('<input style="width:5rem;" type="text" value="'+ $(this).text() +'" />').find('input').focus().blur(function(){
+                    var thisid = $(this).parent().attr('data-id');
+                    var thistype = $(this).parent().attr('data-type');
+                    var thisvalue=$(this).val();
+                    var thisclass = $(this).parent().attr("class");
+
+                    $.ajax({
+                        type: 'post',
+                        url: '{:url("backend/Product/editMoney")}',
+                        data: {'id':thisid,'price':thisvalue,'type':thistype},
+                        success: function (data) {
+                            if (data.code == 0) {
+                                layer.msg('修改成功', {icon: 6, time: 1000}, function () {
+                                    layer.close(layer.index-1);
+                                });
+                            }else{
+                                layer.msg('修改失败', {icon: 5, time: 1000}, function () {
+                                    layer.close(layer.index-1);
+                                });
+                            }
+                        },
+                        error: function (data) {
+
+                        }
+                    });
+                    $(this).parent().removeClass('input').html($(this).val() || 0);
+                });
+            }
+        }).hover(function(){
+            $(this).addClass('hover');
+        },function(){
+            $(this).removeClass('hover');
+        });
+
+
+
+    });
+</script>
+
+<script>
+
+    layui.use('form',function(){
+        var form = layui.form;
+        form.on('submit(sreach)', function(data){
+            sessionStorage.setItem("starttime", data.field.starttime);
+            sessionStorage.setItem("endtime", data.field.endtime);
+            sessionStorage.setItem("shape_id", data.field.shape_id);
+            sessionStorage.setItem("capacityid", data.field.capacityid);
+            sessionStorage.setItem("pid", data.field.pid);
+            sessionStorage.setItem("price", data.field.price);
+            sessionStorage.setItem("goods_no", data.field.goods_no);
+            sessionStorage.setItem("name", data.field.name);
+
+            // console.log(sessionStorage.getItem("starttime"));
+        });
+
+    })
+
+    $('input[name="starttime"]').val(sessionStorage.getItem("starttime"));
+    $('input[name="endtime"]').val(sessionStorage.getItem("endtime"));
+    $('select[name="shape_id"]').val(sessionStorage.getItem("shape_id"));
+    $('select[name="capacityid"]').val(sessionStorage.getItem("capacityid"));
+    $('select[name="pid"]').val(sessionStorage.getItem("pid"));
+    $('select[name="price"]').val(sessionStorage.getItem("price"));
+    $('input[name="goods_no"]').val(sessionStorage.getItem("goods_no"));
+    $('input[name="name"]').val(sessionStorage.getItem("name"));
+
+</script>
+</html>

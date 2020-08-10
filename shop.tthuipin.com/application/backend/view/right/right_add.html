@@ -1,0 +1,150 @@
+{include file="./public/head" /}
+    <body>
+        <div class="layui-fluid">
+            <div class="layui-row">
+                <form class="layui-form" id="LAY-component-form-setval" lay-filter="example">
+
+                  <div class="layui-form-item">
+
+                      <label for="username" class="layui-form-label">
+                          <span class="x-red">*</span>名称
+                      </label>
+                      <div class="layui-input-inline">
+                          <input type="text" id="name" name="name" required="" lay-verify="required"
+                          autocomplete="off" class="layui-input">
+                      </div>
+                      <div class="layui-form-mid layui-word-aux">
+                          <span class="x-red">*</span>权限名称
+                      </div>
+                  </div>
+                    <div class="layui-form-item">
+
+                        <label for="username" class="layui-form-label">
+                            <span class="x-red">*</span>图标
+                        </label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="ico" name="ico" required=""
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">
+                            <span class="x-red">*</span>图标名称
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+
+                        <label for="username" class="layui-form-label">
+                            <span class="x-red">*</span>路由
+                        </label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="url" name="url" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">
+                            <span class="x-red">*</span>路由地址
+                        </div>
+                    </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">
+                        <span class="x-red">*</span>描述
+                    </label>
+                    <div class="layui-input-inline">
+                        <input type="text" size="55" id="description" name="description" required="" lay-verify="required"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">
+                        <span class="x-red">*</span>快速了解权限
+                    </div>
+                </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">
+                            <span class="x-red">*</span>排序
+                        </label>
+                        <div class="layui-input-inline">
+                            <input type="text" size="55" id="sort" name="sort" required=""
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">
+                            <span class="x-red">*</span>数字越大越往前
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">上级选择</label>
+                            <div class="layui-input-inline">
+                                <select name="pid">
+                                    <option value="0">请选择权限所属分类</option>
+                                    {volist name="right" id="v"}
+                                        <option value="{$v.id}">{$v.name}</option>
+                                        {volist name="eright" id="vv"}
+                                            {if $v.id == $vv.pid}
+                                                <optgroup label="——{$vv.name}"></optgroup>
+                                                <!--<option value="{$vv.id}">——{$vv.name}</option>-->
+                                            {/if}
+                                        {/volist}
+                                    {/volist}
+                                </select>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">
+                                <span class="x-red">*</span>默认一级
+                            </div>
+                        </div>
+                  <div class="layui-form-item">
+                      <label for="L_repass" class="layui-form-label">
+                      </label>
+                      <button  class="layui-btn" lay-filter="add" lay-submit="">
+                          提交
+                      </button>
+                  </div>
+              </form>
+            </div>
+        </div>
+        <script>layui.use(['form', 'layer'],
+            function() {
+                $ = layui.jquery;
+                var form = layui.form,
+                layer = layui.layer;
+
+                //监听提交
+                form.on('submit(add)',
+                    function(data) {
+                        // console.log(data.field);return ;
+                        //发异步，把数据提交给php
+                        $.ajax({
+                            url:'/vrightadd',
+                            type:'post',
+                            data:data.field,
+                            success:function(data) {
+                                // console.log(data);return;
+                                if(data.code =="200" ){
+                                    // console.log(data.data);return ;
+                                    // view("添加成功！");
+                                    layer.alert("增加成功", {
+                                            icon: 6
+                                        },
+                                        function() {
+                                            //关闭当前frame
+                                            xadmin.close();
+
+                                            // 可以对父窗口进行刷新
+                                            xadmin.father_reload();
+                                        });
+                                    // window.location.reload();
+
+                                }else{
+                                    alert(data.message);
+                                    // view(data.msg);
+                                }
+                            },
+                            error : function() {
+                                // view("异常！");
+                                alert("异常！");
+                            }
+                        });
+                        return false;
+                    });
+
+            });
+        </script>
+
+    </body>
+
+</html>

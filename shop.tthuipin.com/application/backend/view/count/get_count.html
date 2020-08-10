@@ -1,0 +1,286 @@
+{include file="./public/head" /}
+<style>
+    .layui-table td, .layui-table th {
+        min-width: 0px !important;
+    }
+</style>
+<script src="__BJS__/echarts.min.js"></script>
+    <body style="overflow-y: scroll;">
+        <div class="x-nav">
+          <span class="layui-breadcrumb">
+            <a href="/vindex">首页</a>
+            <a href="">演示</a>
+            <a>
+              <cite>导航元素</cite></a>
+          </span>
+          <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
+            <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
+        </div>
+        <div class="layui-fluid">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-body ">
+                            <form class="layui-form layui-col-space5">
+                                <div class="layui-inline layui-show-xs-block">
+                                    <input class="layui-input"  autocomplete="off" placeholder="开始日期" name="starttime" id="start">
+                                </div>
+                                <div class="layui-inline layui-show-xs-block">
+                                    <input class="layui-input"  autocomplete="off" placeholder="结束日期" name="endtime" id="end">
+                                </div>
+                                <!--<div class="layui-inline layui-show-xs-block">-->
+                                    <!--<input type="text" name="name"  placeholder="banner名称" autocomplete="off" class="layui-input">-->
+                                <!--</div>-->
+                                <!--<div class="layui-inline layui-show-xs-block">-->
+                                    <!--<input type="text" name="url"  placeholder="请输入路由" autocomplete="off" class="layui-input">-->
+                                <!--</div>-->
+
+                                <div class="layui-inline layui-show-xs-block">
+                                    <div class="layui-inline">
+                                        <div class="layui-input-inline">
+                                            <select  lay-filter="timeIn">
+                                                <option value="">选择日期(默认本月)</option>
+                                                <option value="3">今日</option>
+                                                <option value="5">昨日</option>
+                                                <option value="2">最近七天</option>
+                                                <option value="1">本月</option>
+                                                <option value="4">上一月</option>
+
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-inline layui-show-xs-block">
+                                    <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div id="container" style="height: 600px"></div>
+
+
+                        <div class="layui-card-body">
+                            <p style="font-size: 20px;font-weight: 900;margin: 28px 0;">运营人员上品时间表格</p>
+                            <table class="layui-table">
+                                <thead>
+                                <tr>
+                                    <th>姓名/时间</th>
+                                    {volist name="time" id="vo"}
+                                    <th>{$vo|date="m-d"}</th>
+                                    {/volist}
+                                    <th>合计</th>
+                                </tr>
+
+                                </thead>
+                                <tbody>
+                                {volist name="list" id="vo"}
+                                <tr>
+                                    <td>{$vo.name}</td>
+                                    {volist name="vo.goodsnum" id="vv"}
+                                    <td class="ordernum" data-key="{$key}">{$vv}</td>
+                                    {/volist}
+                                    <td class="row_total" style="color:red;font-weight: bold;font-size:16px;"></td>
+                                </tr>
+
+                                {/volist}
+                                <tr>
+                                    <td>合计</td>
+                                    {volist name="vo.goodsnum" id="vv"}
+                                    <td class="col_total" data-key="{$key}" style="color:red;font-weight: bold;font-size:16px;"></td>
+                                    {/volist}
+                                    <td class="total" style="color:blue;font-weight: bold;font-size:20px;"></td>
+
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        {php}
+
+                            foreach ( $username as $key => $value ) {
+                                $testJSON[$key] = urlencode ( $value );
+                            }
+
+                            $name = urldecode ( json_encode ( $testJSON ) );
+
+                            $jsonName = str_replace("\"","'",$name);
+                            foreach($time as $v){
+                                $newtime[] = date('Y-m-d',$v);
+                            }
+                            $timeb = json_encode($newtime);
+                            $jsonTime = str_replace("\"","'",$timeb);
+
+                        {/php}
+                        <script>
+                            var dom = document.getElementById("container");
+                            var myChart = echarts.init(dom);
+                            var app = {};
+                            option = null;
+                            option = {
+                                title: {
+                                    text: '运营人员上品时间折线图'
+                                },
+                                tooltip: {
+                                    trigger: 'axis'
+                                },
+                                legend: {
+                                    // data:['邮件营销','联盟广告','视频广告','直接访问','搜索引擎']
+                                    data:{$jsonName}
+                                },
+                                grid: {
+                                    left: '3%',
+                                    right: '4%',
+                                    bottom: '3%',
+                                    containLabel: true
+                                },
+                                toolbox: {
+                                    feature: {
+                                        saveAsImage: {}
+                                    }
+                                },
+                                xAxis: {
+                                    type: 'category',
+                                    boundaryGap: false,
+                                    // data: ['周一','周二','周三','周四','周五','周六','周日']
+                                    data: {$jsonTime}
+                                },
+                                yAxis: {
+                                    type: 'value'
+                                },
+                                series: [
+                                    {volist name="list" id="vo"}
+                                    {php}
+
+                                    $num     = json_encode($vo['goodsnum']);
+                                    $jsonNum = str_replace("\"","'",$num);
+
+                                    {/php}
+                                    {
+                                        name:'{$vo.name}',
+                                        type:'line',
+                                        stack: '总量',
+                                        data:{$jsonNum},
+                                        
+                                        areaStyle: {}
+                                    },
+                                    {/volist}
+
+                                ]
+                            };
+                            ;
+                            if (option && typeof option === "object") {
+                                myChart.setOption(option, true);
+                            }
+                        </script>
+
+
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </body>
+    <script>
+
+      layui.use(['laydate','form'], function(){
+        var laydate = layui.laydate;
+        var form = layui.form;
+        
+        //执行一个laydate实例
+        laydate.render({
+          elem: '#start' //指定元素
+        });
+
+        //执行一个laydate实例
+        laydate.render({
+          elem: '#end' //指定元素
+        });
+
+
+          form.on('select(timeIn)', function(data){
+              switch (data.value) {
+                  case '1':
+                      laydate.render({
+                          elem: '#start' //指定元素
+                          ,value: new Date(new Date().getFullYear() + '-' + (new Date().getMonth()+1) + '-01 00:00:00')
+                      });
+
+
+
+                      ;break;
+                  case '2':
+                      laydate.render({
+                          elem: '#start' //指定元素
+                          ,value: new Date(new Date().getTime() - 60*60*24*7*1000)
+                      });
+
+
+                      ;break;
+                  case '3':
+                      laydate.render({
+                          elem: '#start' //指定元素
+                          ,value: new Date(new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'+new Date().getDate())
+                      });
+
+                      ;break;
+                  case '4':
+                      laydate.render({
+                          elem: '#start' //指定元素
+                          ,value: new Date(new Date().getFullYear() + '-' + (new Date().getMonth()) + '-01 00:00:00')
+                      });
+
+                      laydate.render({
+                          elem: '#end' //指定元素
+                          ,value: new Date(new Date().getFullYear() + '-' + (new Date().getMonth()+1) + '-01 00:00:00')
+                      });
+
+                      ;break;
+                  case '5':
+                      laydate.render({
+                          elem: '#start' //指定元素
+                          ,value: new Date(new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'+(new Date().getDate()-1))
+                      });
+
+                      laydate.render({
+                          elem: '#end' //指定元素
+                          ,value: new Date(new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'+new Date().getDate())
+                      });
+
+                      ;break;
+
+              }
+          });
+      });
+
+
+    </script>
+<script src="http://libs.baidu.com/jquery/1.7.2/jquery.js"></script>
+<script>
+    // 行统计
+    $('.row_total').each(function(){
+        var row_total = 0;
+        $(this).siblings('.ordernum').each(function () {
+            row_total+=parseInt($(this).text())
+        })
+        $(this).text(row_total)
+    })
+
+
+    // 列统计
+    $('.col_total').each(function(){
+        var data_key = $(this).attr('data-key');
+        var col_total = 0;
+        $('.ordernum[data-key="'+data_key+'"]').each(function(){
+            col_total+=parseInt($(this).text())
+        })
+        $(this).text(col_total)
+    })
+
+    // 总计
+    var total = 0;
+    $('.ordernum').each(function () {
+        total+=parseInt($(this).text())
+    })
+    $('.total').text(total);
+</script>
+</html>

@@ -1,0 +1,47 @@
+{include file="./public/head" /}
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <!--<div class="layui-card-header">个人信息</div>-->
+                <div class="layui-card-body ">
+                    <table class="layui-table">
+                        <tbody>
+                        <tr>
+                            <th>订单创建时间</th>
+                            <td>{$info['create_time']|date="Y-m-d H:i:s"}</td>
+                        </tr>
+                        <tr>
+                            <th>姓名</th>
+                            <td>{$info.name}</td>
+                        </tr>
+                        <tr>
+                            <th>电话</th>
+                            <td>{$info.telphone}</td>
+                        </tr>
+                        <tr>
+                            <th>邮箱</th>
+                            <td>{$info.email}</td>
+                        </tr>
+                        <tr>
+                            <th>Line ID</th>
+                            <td>{$info.lineid}</td>
+                        </tr>
+                        <tr>
+                            <th>客户留言</th>
+                            <td>{$info.message}</td>
+                        </tr>
+                        <tr>
+                            <th>地址</th>
+                            <td>{$info.country}{$info.province}{$info.city}{$info.area}{$info.address}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
